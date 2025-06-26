@@ -76,3 +76,30 @@
 	});
 
 })(jQuery);
+
+function filterProjects(category) {
+  const projects = document.querySelectorAll('.project');
+
+  projects.forEach(project => {
+    if (category === 'all' || !category) {
+      project.style.display = 'block';
+    } else {
+      project.style.display = project.classList.contains(category) ? 'block' : 'none';
+    }
+  });
+
+  // Manage active class for buttons
+  const buttons = document.querySelectorAll('#filter-buttons button');
+  buttons.forEach(btn => {
+    const btnCategory = btn.getAttribute('data-category');
+    if (btnCategory === category) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Run default filter on page load
+window.onload = () => filterProjects('all');
+

@@ -1278,3 +1278,36 @@ a:hover.back-to-top {
 	/* end of extra pages */
 }
 /* end of min-width 1200px */
+
+/* Start of project filter button section */
+
+#filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px 0;
+  justify-content: center;
+}
+
+#filter-buttons button {
+  padding: 8px 20px;
+  border: 1px solid #0b36a8;
+  background-color: transparent;
+  color:#0b36a8 ;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 999px; /* Oval/Pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#filter-buttons button:hover {
+  background-color: #0b36a8;
+  color: #ffffff;
+}
+
+#filter-buttons button.active {
+  background-color: #0b36a8;
+  color: #ffffff;
+}
+/* End of project filter button section */
