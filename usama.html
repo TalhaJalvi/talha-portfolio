@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Health Tools — Sleep • Water • Calories • BMI • Due Date</title>
+  <meta name="description" content="Free calculators: Sleep planner, Water intake, Calorie (TDEE), BMI and Pregnancy due date. Instant & private."/>
+  <style>
+    :root{--bg:#f6fbff;--card:#fff;--accent:#1572e8;--muted:#556}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#072032}
+    .wrap{max-width:960px;margin:20px auto;padding:16px}
+    header{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,var(--accent),#0f5fb5);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{margin:0;font-size:22px}
+    p.lead{margin:6px 0 14px;color:var(--muted)}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    nav a{padding:8px 10px;border-radius:8px;text-decoration:none;background:#fff;border:1px solid #eef6ff;color:var(--accent);font-weight:600}
+    section.card{background:var(--card);border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 6px 18px rgba(8,18,40,0.06)}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .col{flex:1 1 220px;min-width:140px}
+    input,select,button{font-size:15px;padding:9px;border-radius:8px;border:1px solid #e6eef9}
+    button{background:var(--accent);color:#fff;border:0;cursor:pointer}
+    button.ghost{background:#eef6ff;color:var(--accent);border:1px solid #dbeeff}
+    .result{margin-top:10px;padding:10px;border-radius:8px;background:#fbfdff;border:1px solid #eef6ff;white-space:pre-line}
+    .muted{color:var(--muted);font-size:13px}
+    footer{font-size:13px;color:var(--muted);margin-top:14px}
+    @media(max-width:720px){.row{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">HT</div>
+      <div>
+        <h1>Health Tools</h1>
+        <p class="lead">Sleep planner • Water intake • Calorie (TDEE) • BMI • Pregnancy due date — runs in your browser.</p>
+      </div>
+    </header>
+
+    <nav aria-label="Jump to">
+      <a href="#sleep">Sleep</a>
+      <a href="#water">Water</a>
+      <a href="#calorie">Calories</a>
+      <a href="#bmi">BMI</a>
+      <a href="#preg">Due Date</a>
+    </nav>
+
+    <!-- SLEEP -->
+    <section id="sleep" class="card" aria-labelledby="sleepH">
+      <h2 id="sleepH">Sleep Cycle Planner</h2>
+      <p class="muted">Use 90-minute cycles + fall-asleep buffer to get recommended bed/wake times.</p>
+      <div class="row">
+        <div class="col">
+          <label for="sleepMode">Mode</label>
+          <select id="sleepMode"><option value="wake">I want to wake up at (show bedtimes)</option><option value="sleep">I want to go to sleep at (show wake times)</option></select>
+        </div>
+        <div class="col">
+          <label id="sleepTimeLabel" for="sleepTime">Time</label>
+          <input id="sleepTime" type="time"/>
+        </div>
+        <div class="col">
+          <label for="sleepBuffer">Fall-asleep buffer (minutes)</label>
+          <input id="sleepBuffer" type="number" min="0" value="15"/>
+        </div>
+      </div>
+      <div style="margin-top:8px" class="row">
+        <div class="col"><button id="sleepCalc">Calculate</button></div>
+        <div class="col"><button id="sleepReset" class="ghost">Reset</button></div>
+      </div>
+      <div id="sleepResult" class="result" aria-live="polite">Enter a time and click Calculate.</div>
+    </section>
+
+    <!-- WATER -->
+    <section id="water" class="card" aria-labelledby="waterH">
+      <h2 id="waterH">Water Intake Calculator</h2>
+      <p class="muted">Baseline 35 ml/kg. Adjust for activity, climate, pregnancy/breastfeeding.</p>
+      <div class="row">
+        <div class="col"><label for="wWeight">Weight</label><input id="wWeight" type="number" min="1" placeholder="e.g. 70"/></div>
+        <div class="col"><label for="wUnit">Unit</label><select id="wUnit"><option value="kg">kg</option><option value="lb">lb</option></select></div>
+        <div class="col"><label for="wActivity">Activity</label><select id="wActivity"><option value="1">Sedentary</option><option value="1.1">Light</option><option value="1.2">Moderate</option><option value="1.3">Very active</option></select></div>
+      </div>
+      <div style="margin-top:8px" class="row">
+        <div class="col"><label for="wClimate">Climate</label><select id="wClimate"><option value="1">Normal</option><option value="1.1">Hot (+10%)</option><option value="1.2">Very hot (+20%)</option></select></div>
+        <div class="col"><label for="wPreg">Pregnant/Breastfeeding</label><select id="wPreg"><option value="0">No</option><option value="0.3">Yes (+0.3 L)</option></select></div>
+        <div class="col" style="align-self:end"><button id="wCalc">Calculate</button></div>
+      </div>
+      <div id="wResult" class="result">Enter details and click Calculate.</div>
+    </section>
+
+    <!-- CALORIE -->
+    <section id="calorie" class="card" aria-labelledby="calH">
+      <h2 id="calH">Calorie (TDEE) Calculator</h2>
+      <p class="muted">Mifflin-St Jeor BMR × activity = TDEE. Goal adjust ±15%.</p>
+      <div class="row">
+        <div class="col"><label for="cWeight">Weight</label><input id="cWeight" type="number" min="1" placeholder="e.g. 70"/></div>
+        <div class="col"><label for="cHeight">Height</label><input id="cHeight" type="number" min="50" placeholder="e.g. 175"/></div>
+        <div class="col"><label for="cAge">Age</label><input id="cAge" type="number" min="10" max="120" value="28"/></div>
+      </div>
+      <div style="margin-top:8px" class="row">
+        <div class="col"><label for="cSex">Sex</label><select id="cSex"><option value="male">Male</option><option value="female">Female</option></select></div>
+        <div class="col"><label for="cActivity">Activity</label><select id="cActivity"><option value="1.2">Sedentary</option><option value="1.375">Light</option><option value="1.55">Moderate</option><option value="1.725">Very active</option><option value="1.9">Extra active</option></select></div>
+        <div class="col"><label for="cGoal">Goal</label><select id="cGoal"><option value="maintain">Maintain</option><option value="lose">Lose (-15%)</option><option value="gain">Gain (+15%)</option></select></div>
+      </div>
+      <div style="margin-top:8px" class="row">
+        <div class="col"><label for="cUnits">Units</label><select id="cUnits"><option value="metric">kg / cm</option><option value="imperial">lb / ft</option></select></div>
+        <div class="col" style="align-self:end"><button id="cCalc">Calculate</button></div>
+      </div>
+      <div id="cResult" class="result">Fill inputs and click Calculate.</div>
+    </section>
+
+    <!-- BMI -->
+    <section id="bmi" class="card" aria-labelledby="bmiH">
+      <h2 id="bmiH">BMI Calculator</h2>
+      <p class="muted">BMI & category + healthy weight range (18.5–24.9).</p>
+      <div class="row">
+        <div class="col"><label for="bWeight">Weight</label><input id="bWeight" type="number" min="1" placeholder="e.g. 70"/></div>
+        <div class="col"><label for="bHeight">Height</label><input id="bHeight" type="number" min="50" placeholder="e.g. 175"/></div>
+        <div class="col"><label for="bUnits">Units</label><select id="bUnits"><option value="metric">kg / cm</option><option value="imperial">lb / ft</option></select></div>
+      </div>
+      <div style="margin-top:8px" class="row">
+        <div class="col"><button id="bCalc">Calculate BMI</button></div>
+        <div class="col"><button id="bReset" class="ghost">Reset</button></div>
+      </div>
+      <div id="bResult" class="result">Enter details and click Calculate BMI.</div>
+    </section>
+
+    <!-- PREGNANCY -->
+    <section id="preg" class="card" aria-labelledby="pregH">
+      <h2 id="pregH">Pregnancy Due Date Calculator</h2>
+      <p class="muted">Naegele's rule: LMP + 280 days → estimate due date & gestational age.</p>
+      <div class="row">
+        <div class="col"><label for="lmp">First day of last period (LMP)</label><input id="lmp" type="date"/></div>
+        <div class="col"><label for="cycle">Cycle length (days)</label><input id="cycle" type="number" min="21" max="40" value="28"/></div>
+        <div class="col" style="align-self:end"><button id="pCalc">Calculate</button></div>
+      </div>
+      <div id="pResult" class="result">Select LMP and click Calculate.</div>
+    </section>
+
+    <footer>
+      <div class="muted">Privacy: All calculations run locally in your browser. For medical advice consult a professional.</div>
+    </footer>
+  </div>
+
+  <script>
+  /* Helpers */
+  function kgFrom(val, unit){ val = Number(val); if(!val) return 0; return unit==='lb' ? val * 0.45359237 : val; }
+  function cmFrom(val, unit){ val = Number(val); if(!val) return 0; return unit==='imperial' ? val * 30.48 : val; }
+  function round2(n){ return Math.round(n*100)/100; }
+  function fmtDate(d){ return d.toLocaleDateString(); }
+  function fmtTime(d){ return d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}); }
+
+  // Smooth nav
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); });
+  });
+
+  /* Sleep */
+  const sMode = document.getElementById('sleepMode');
+  const sTime = document.getElementById('sleepTime');
+  const sBuffer = document.getElementById('sleepBuffer');
+  const sRes = document.getElementById('sleepResult');
+  sMode.addEventListener('change', ()=>{ document.getElementById('sleepTimeLabel').textContent = sMode.value==='wake' ? 'Wake time' : 'Time'; });
+
+  document.getElementById('sleepCalc').addEventListener('click', ()=>{
+    const mode = sMode.value; const t = sTime.value; const buf = Number(sBuffer.value) || 15;
+    if(!t){ sRes.textContent='Please select a time.'; return; }
+    const parts = t.split(':'); const now = new Date();
+    const base = new Date(now.getFullYear(), now.getMonth(), now.getDate(), Number(parts[0]), Number(parts[1]));
+    const cycles = [6,5,4,3];
+    let out = '';
+    if(mode==='wake'){
+      out += `If you want to wake at ${fmtTime(base)}, try going to bed at:\n`;
+      cycles.forEach(c=>{ const mins=c*90+buf; const dt=new Date(base.getTime()-mins*60000); out += `• ${fmtTime(dt)} (~${(c*1.5).toFixed(1)} hrs)\n`; });
+    } else {
+      out += `If you go to bed at ${fmtTime(base)}, you could wake at:\n`;
+      cycles.forEach(c=>{ const mins=c*90+buf; const dt=new Date(base.getTime()+mins*60000); out += `• ${fmtTime(dt)} (~${(c*1.5).toFixed(1)} hrs)\n`; });
+    }
+    out += '\nTip: short naps ~20 min or ~90 min are helpful.';
+    sRes.textContent = out;
+  });
+  document.getElementById('sleepReset').addEventListener('click', ()=>{ sTime.value=''; sBuffer.value='15'; sRes.textContent='Enter a time and click Calculate.'; });
+
+  /* Water */
+  document.getElementById('wCalc').addEventListener('click', ()=>{
+    const w = Number(document.getElementById('wWeight').value);
+    const unit = document.getElementById('wUnit').value;
+    const act = Number(document.getElementById('wActivity').value) || 1;
+    const cli = Number(document.getElementById('wClimate').value) || 1;
+    const preg = Number(document.getElementById('wPreg').value) || 0;
+    const outEl = document.getElementById('wResult');
+    if(!w || w<=0){ outEl.textContent='Please enter a valid weight.'; return; }
+    const kg = kgFrom(w, unit);
+    const mlPerKg = 35;
+    let liters = kg * (mlPerKg/1000) * act * cli + preg;
+    liters = round2(liters);
+    const glasses = Math.round((liters*1000)/250);
+    outEl.innerHTML = `<strong>${liters} L</strong> per day (~${glasses} × 250ml).<br><span class="muted">Increase during heavy exercise, illness or very hot days.</span>`;
+  });
+
+  /* Calorie (TDEE) */
+  document.getElementById('cCalc').addEventListener('click', ()=>{
+    let w = Number(document.getElementById('cWeight').value);
+    let h = Number(document.getElementById('cHeight').value);
+    const age = Number(document.getElementById('cAge').value);
+    const sex = document.getElementById('cSex').value;
+    const activity = Number(document.getElementById('cActivity').value) || 1.2;
+    const goal = document.getElementById('cGoal').value;
+    const units = document.getElementById('cUnits').value;
+    const outEl = document.getElementById('cResult');
+    if(!w || !h || !age){ outEl.textContent='Please fill weight, height and age.'; return; }
+    if(units==='imperial'){ w = kgFrom(w,'lb'); h = cmFrom(h,'imperial'); }
+    const BMR = (sex==='male') ? (10*w + 6.25*h - 5*age + 5) : (10*w + 6.25*h - 5*age - 161);
+    const tdee = Math.round(BMR * activity);
+    let factor = 1; if(goal==='lose') factor=0.85; if(goal==='gain') factor=1.15;
+    const goalCals = Math.round(tdee * factor);
+    const proteinG = Math.round(1.6 * w);
+    const proteinCal = proteinG * 4;
+    const fatsCal = Math.round(goalCals * 0.25);
+    const fatsG = Math.round(fatsCal / 9);
+    const carbsCal = goalCals - (proteinCal + fatsCal);
+    const carbsG = Math.round(carbsCal / 4);
+    outEl.innerHTML = `BMR: <strong>${Math.round(BMR)} kcal/day</strong>\nTDEE: <strong>${tdee} kcal/day</strong>\nGoal calories: <strong>${goalCals} kcal/day</strong>\n\nSuggested macros:\nProtein: ${proteinG} g/day\nFats: ${fatsG} g/day\nCarbs: ${carbsG} g/day\n\n(General guidance. Consult a professional for medical advice.)`;
+  });
+
+  /* BMI */
+  document.getElementById('bCalc').addEventListener('click', ()=>{
+    let w = Number(document.getElementById('bWeight').value);
+    let h = Number(document.getElementById('bHeight').value);
+    const units = document.getElementById('bUnits').value;
+    const outEl = document.getElementById('bResult');
+    if(!w || !h){ outEl.textContent='Please enter weight and height.'; return; }
+    if(units==='imperial'){ w = kgFrom(w,'lb'); h = cmFrom(h,'imperial'); }
+    const m = h/100;
+    const bmi = round2(w/(m*m));
+    let cat = 'Normal';
+    if(bmi < 18.5) cat='Underweight'; else if(bmi < 25) cat='Normal'; else if(bmi < 30) cat='Overweight'; else cat='Obese';
+    const minW = Math.round(18.5 * m * m);
+    const maxW = Math.round(24.9 * m * m);
+    outEl.innerHTML = `BMI: <strong>${bmi}</strong> — <strong>${cat}</strong>\nHealthy weight: ${minW} kg — ${maxW} kg\n\n(BMI has limits for muscular people.)`;
+  });
+  document.getElementById('bReset').addEventListener('click', ()=>{ document.getElementById('bWeight').value=''; document.getElementById('bHeight').value=''; document.getElementById('bResult').textContent='Enter details and click Calculate BMI.'; });
+
+  /* Pregnancy */
+  document.getElementById('pCalc').addEventListener('click', ()=>{
+    const lmpVal = document.getElementById('lmp').value;
+    const cycle = Number(document.getElementById('cycle').value) || 28;
+    const outEl = document.getElementById('pResult');
+    if(!lmpVal){ outEl.textContent='Please select the first day of your last period.'; return; }
+    const lmp = new Date(lmpVal + 'T00:00:00');
+    const edd = new Date(lmp.getTime() + 280*24*60*60*1000);
+    const now = new Date();
+    const diff = Math.floor((now - lmp) / (24*60*60*1000));
+    const weeks = Math.floor(diff / 7);
+    const days = diff % 7;
+    let tri = 'First trimester';
+    if(weeks > 13 && weeks <= 27) tri = 'Second trimester';
+    else if(weeks > 27) tri = 'Third trimester';
+    const ov = new Date(lmp.getTime() + (cycle - 14) * 24*60*60*1000);
+    const ovStart = new Date(ov.getTime() - 2*24*60*60*1000);
+    const ovEnd = new Date(ov.getTime() + 2*24*60*60*1000);
+    outEl.innerHTML = `Estimated due date (EDD): ${fmtDate(edd)}\nGestational age: ${weeks} weeks + ${days} days (${tri})\nApprox conception: ${fmtDate(ovStart)} — ${fmtDate(ovEnd)}\n\n(This is an estimate — consult your doctor.)`;
+  });
+
+  // Set initial messages
+  (function init(){ document.getElementById('sleepResult').textContent='Enter a time and click Calculate.'; document.getElementById('wResult').textContent='Enter details and click Calculate.'; })();
+  </script>
+</body>
+</html>
