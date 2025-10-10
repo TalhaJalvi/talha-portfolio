@@ -1,0 +1,225 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --sidebar-bg: #ffffff;
+    --header-bg: #ffffff;
+    --border-color: #dee2e6;
+    --code-bg: #e9ecef;
+    --link-color: #007bff;
+    --link-active-bg: #e6f2ff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --sidebar-bg: #1e1e1e;
+    --header-bg: #1e1e1e;
+    --border-color: #333333;
+    --code-bg: #2d2d2d;
+    --link-color: #58a6ff;
+    --link-active-bg: #2c3e50;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* --- General Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Header --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+}
+
+.theme-switcher {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switcher:hover {
+    background-color: var(--code-bg);
+}
+
+/* --- Sidebar Navigation --- */
+/* --- New CSS for Hamburger Menu --- */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    order: -1; /* Place it before the title on mobile */
+}
+
+/* --- Sidebar Updates --- */
+
+/* --- Content Updates --- */
+.content {
+    margin-left: 240px; /* Keep this for desktop */
+    padding: 80px 3rem 3rem 3rem;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 240px;
+    height: calc(100vh - 60px);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding-top: 2rem;
+    overflow-y: auto;
+
+    left: 0; /* Keep this for desktop */
+    transition: left 0.3s ease-in-out, background-color 0.3s, border-color 0.3s;
+    z-index: 999; /* Ensure it stays below the header but above content */
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 0.75rem 2rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s, border-left 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--code-bg);
+}
+
+.sidebar ul li a.active {
+    color: var(--link-color);
+    font-weight: 700;
+    background-color: var(--link-active-bg);
+    border-left: 3px solid var(--link-color);
+}
+
+/* --- Main Content --- */
+.content {
+    margin-left: 240px;
+    padding: 80px 3rem 3rem 3rem; /* top-padding = header-height + extra space */
+}
+
+.content section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 80px; /* Offset for fixed header */
+}
+
+.content h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.content h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+p, ul, ol {
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    padding-left: 1.5rem;
+}
+
+pre {
+    background-color: var(--code-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* --- Responsive Design (Mobile View) --- */
+@media (max-width: 768px) {
+    /* 1. Show the Hamburger Button */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* 2. Reposition Header elements for mobile */
+    .header {
+        justify-content: space-between;
+    }
+    .header h1 {
+        flex-grow: 1; /* Allows it to take up space between buttons */
+        text-align: center;
+    }
+    
+    /* 3. Hide Sidebar by default on mobile */
+    .sidebar {
+        left: -240px; 
+    }
+
+    /* 4. Slide Sidebar into view when 'open' class is added by JS */
+    .sidebar.open {
+        left: 0;
+        box-shadow: 2px 0 5px var(--shadow-color); /* Add a shadow when open */
+    }
+
+    /* 5. Main content uses full width and no margin */
+    .content {
+        margin-left: 0;
+        padding: 80px 1.5rem 1.5rem 1.5rem;
+    }
+}
