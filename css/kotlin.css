@@ -189,6 +189,34 @@ code {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/* Style for the container of the "Data Not Found" image and message */
+.error-message-container {
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Horizontally center content */
+    justify-content: center; /* Vertically center content if container has height */
+    
+    padding: 20px; /* Add some space around the error message */
+    min-height: 50vh; /* Ensure it takes up enough vertical space to center visually */
+    text-align: center; /* Fallback for older browsers / specific cases */
+}
+
+.error-message-container img {
+    max-width: 300px; /* Control the image size, adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+.error-message-container p {
+    font-size: 1.1em;
+    color: #666; /* Adjust color for theme */
+    /* Add any other styling for your error message text */
+}
+
+/* For dark mode (if you have theme switching) */
+body.dark-mode .error-message-container p {
+    color: #ccc; /* Lighter color for dark mode */
+}
 
 /* --- Responsive Design (Mobile View) --- */
 @media (max-width: 768px) {
@@ -222,4 +250,37 @@ code {
         margin-left: 0;
         padding: 80px 1.5rem 1.5rem 1.5rem;
     }
+}
+
+.memory-diagram {
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.stack, .heap {
+    border: 2px solid #4CAF50;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+    background-color: #f0fff0;
+}
+
+.stack h4, .heap h4 {
+    text-align: center;
+    color: #2E7D32;
+}
+
+.stack ul, .heap ul {
+    list-style-type: none;
+    padding-left: 10px;
+    line-height: 1.6;
+}
+
+.stack li::before {
+    content: "🟩 ";
+}
+
+.heap li::before {
+    content: "🟦 ";
 }

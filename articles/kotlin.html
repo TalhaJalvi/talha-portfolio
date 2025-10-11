@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation Page</title>
+    <title>Kotlin Notes</title>
     <link rel="stylesheet" href="../css/kotlin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 
     <header class="header">
         <header class="header">
-        <h1>Kotlin Docs</h1>
+        <h1>Kotlin Notes</h1>
         <button id="menu-toggle" class="menu-toggle">
             &#9776; </button>
         <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
@@ -21,69 +21,135 @@
     </header>
 
     <nav class="sidebar">
-        <ul>
-            <li><a href="#introduction" class="nav-link">Introduction</a></li>
-            <li><a href="#getting-started" class="nav-link">Getting Started</a></li>
-            <li><a href="#installation" class="nav-link">Installation</a></li>
-            <li><a href="#usage" class="nav-link">Usage</a></li>
-            <li><a href="#api-reference" class="nav-link">API Reference</a></li>
-        </ul>
+    <ul class="sidebar-menu">
+        <li class="menu-title">Kotlin Topics</li>
+
+        <!-- 1. Kotlin Basics -->
+        <li class="menu-section">Basics</li>
+        <li><a href="content-kotlin/basics/introduction.html" class="nav-link">Introduction</a></li>
+        <li><a href="content-kotlin/basics/variables-and-types.html" class="nav-link">Variables & Data Types</a></li>
+        <li><a href="content-kotlin/basics/type-inference.html" class="nav-link">Type Inference</a></li>
+        <li><a href="content-kotlin/basics/strings.html" class="nav-link">Strings & Interpolation</a></li>
+        <li><a href="content-kotlin/basics/comments.html" class="nav-link">Comments</a></li>
+
+        <!-- 2. Control Flow -->
+        <li class="menu-section">Control Flow</li>
+        <li><a href="content-kotlin/control-flow/if-else.html" class="nav-link">If-Else</a></li>
+        <li><a href="content-kotlin/control-flow/when.html" class="nav-link">When Expression</a></li>
+        <li><a href="content-kotlin/control-flow/loops.html" class="nav-link">Loops</a></li>
+        <li><a href="content-kotlin/control-flow/ranges.html" class="nav-link">Ranges</a></li>
+        <li><a href="content-kotlin/control-flow/break-continue.html" class="nav-link">Break & Continue</a></li>
+
+        <!-- 3. Functions -->
+        <li class="menu-section">Functions</li>
+        <li><a href="content-kotlin/functions/basic-functions.html" class="nav-link">Basic Functions</a></li>
+        <li><a href="content-kotlin/functions/default-arguments.html" class="nav-link">Default & Named Arguments</a></li>
+        <li><a href="content-kotlin/functions/vararg.html" class="nav-link">Vararg Parameters</a></li>
+        <li><a href="content-kotlin/functions/lambdas.html" class="nav-link">Lambdas & Higher-Order Functions</a></li>
+        <li><a href="content-kotlin/functions/infix-inline.html" class="nav-link">Infix & Inline Functions</a></li>
+
+        <!-- 4. Collections -->
+        <li class="menu-section">Collections</li>
+        <li><a href="content-kotlin/collections/arrays.html" class="nav-link">Arrays</a></li>
+        <li><a href="content-kotlin/collections/lists.html" class="nav-link">Lists</a></li>
+        <li><a href="content-kotlin/collections/sets.html" class="nav-link">Sets</a></li>
+        <li><a href="content-kotlin/collections/maps.html" class="nav-link">Maps</a></li>
+        <li><a href="content-kotlin/collections/functions.html" class="nav-link">Collection Functions</a></li>
+
+        <!-- 5. OOP -->
+        <li class="menu-section">Object-Oriented Programming</li>
+        <li><a href="content-kotlin/oop/classes-and-objects.html" class="nav-link">Classes & Objects</a></li>
+        <li><a href="content-kotlin/oop/constructors.html" class="nav-link">Constructors</a></li>
+        <li><a href="content-kotlin/oop/inheritance.html" class="nav-link">Inheritance</a></li>
+        <li><a href="content-kotlin/oop/abstract-interfaces.html" class="nav-link">Abstract & Interfaces</a></li>
+        <li><a href="content-kotlin/oop/data-classes.html" class="nav-link">Data Classes</a></li>
+        <li><a href="content-kotlin/oop/companion-objects.html" class="nav-link">Companion & Object Declarations</a></li>
+        <li><a href="content-kotlin/oop/sealed-enum.html" class="nav-link">Sealed & Enum Classes</a></li>
+
+        <!-- 6. Null Safety -->
+        <li class="menu-section">Null Safety</li>
+        <li><a href="content-kotlin/null-safety/nullables.html" class="nav-link">Nullable Types</a></li>
+        <li><a href="content-kotlin/null-safety/operators.html" class="nav-link">Safe Calls & Elvis Operator</a></li>
+        <li><a href="content-kotlin/null-safety/scope-functions.html" class="nav-link">Scope Functions</a></li>
+
+        <!-- 7. Standard Library -->
+        <li class="menu-section">Standard Library</li>
+        <li><a href="content-kotlin/std-lib/let-apply-run.html" class="nav-link">Let, Apply, Run, Also, With</a></li>
+        <li><a href="content-kotlin/std-lib/takeif.html" class="nav-link">TakeIf & TakeUnless</a></li>
+        <li><a href="content-kotlin/std-lib/lazy.html" class="nav-link">Lazy Initialization</a></li>
+
+        <!-- 8. Exception Handling -->
+        <li class="menu-section">Exception Handling</li>
+        <li><a href="content-kotlin/exceptions/try-catch.html" class="nav-link">Try-Catch-Finally</a></li>
+        <li><a href="content-kotlin/exceptions/custom-exceptions.html" class="nav-link">Custom Exceptions</a></li>
+
+        <!-- 9. Functional Programming -->
+        <li class="menu-section">Functional Programming</li>
+        <li><a href="content-kotlin/fp/higher-order.html" class="nav-link">Higher-Order Functions</a></li>
+        <li><a href="content-kotlin/fp/extension-functions.html" class="nav-link">Extension Functions</a></li>
+        <li><a href="content-kotlin/fp/operator-overloading.html" class="nav-link">Operator Overloading</a></li>
+        <li><a href="content-kotlin/fp/currying.html" class="nav-link">Currying & Partial Application</a></li>
+
+        <!-- 10. Generics -->
+        <li class="menu-section">Generics</li>
+        <li><a href="content-kotlin/generics/generic-functions.html" class="nav-link">Generic Functions</a></li>
+        <li><a href="content-kotlin/generics/type-constraints.html" class="nav-link">Type Constraints</a></li>
+        <li><a href="content-kotlin/generics/variance.html" class="nav-link">Variance & Reified Types</a></li>
+
+        <!-- 11. Coroutines -->
+        <li class="menu-section">Coroutines</li>
+        <li><a href="content-kotlin/coroutines/intro.html" class="nav-link">Introduction</a></li>
+        <li><a href="content-kotlin/coroutines/suspend.html" class="nav-link">Suspend Functions</a></li>
+        <li><a href="content-kotlin/coroutines/scopes.html" class="nav-link">Coroutine Scopes</a></li>
+        <li><a href="content-kotlin/coroutines/builders.html" class="nav-link">Launch, Async, RunBlocking</a></li>
+        <li><a href="content-kotlin/coroutines/dispatchers.html" class="nav-link">Dispatchers</a></li>
+        <li><a href="content-kotlin/coroutines/flows.html" class="nav-link">Kotlin Flow</a></li>
+
+        <!-- 12. Kotlin in Android -->
+        <li class="menu-section">Kotlin in Android</li>
+        <li><a href="content-kotlin/android/kotlin-vs-java.html" class="nav-link">Kotlin vs Java</a></li>
+        <li><a href="content-kotlin/android/viewbinding.html" class="nav-link">ViewBinding / DataBinding</a></li>
+        <li><a href="content-kotlin/android/coroutines-livedata.html" class="nav-link">Coroutines with LiveData</a></li>
+        <li><a href="content-kotlin/android/room-retrofit.html" class="nav-link">Room & Retrofit</a></li>
+        <li><a href="content-kotlin/android/hilt.html" class="nav-link">Dependency Injection (Hilt/Koin)</a></li>
+
+        <!-- 13. File I/O -->
+        <li class="menu-section">File & IO</li>
+        <li><a href="content-kotlin/io/read-write.html" class="nav-link">Read/Write Files</a></li>
+        <li><a href="content-kotlin/io/streams.html" class="nav-link">Streams</a></li>
+        <li><a href="content-kotlin/io/serialization.html" class="nav-link">Serialization</a></li>
+
+        <!-- 14. Advanced Kotlin -->
+        <li class="menu-section">Advanced</li>
+        <li><a href="content-kotlin/advanced/reflection.html" class="nav-link">Reflection</a></li>
+        <li><a href="content-kotlin/advanced/delegation.html" class="nav-link">Delegation</a></li>
+        <li><a href="content-kotlin/advanced/dsl.html" class="nav-link">DSLs</a></li>
+        <li><a href="content-kotlin/advanced/multiplatform.html" class="nav-link">Kotlin Multiplatform</a></li>
+
+        <!-- 15. Testing -->
+        <li class="menu-section">Testing</li>
+        <li><a href="content-kotlin/testing/unit-tests.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="content-kotlin/testing/mockk.html" class="nav-link">Mocking with MockK</a></li>
+        <li><a href="content-kotlin/testing/coroutine-tests.html" class="nav-link">Coroutine Testing</a></li>
+
+        <!-- 16. Best Practices -->
+        <li class="menu-section">Best Practices</li>
+        <li><a href="content-kotlin/best-practices/immutability.html" class="nav-link">Immutability</a></li>
+        <li><a href="content-kotlin/best-practices/idiomatic.html" class="nav-link">Idiomatic Kotlin</a></li>
+        <li><a href="content-kotlin/best-practices/clean-code.html" class="nav-link">Clean Code Guidelines</a></li>
+
+        <!-- 17. Backend (Ktor) -->
+        <li class="menu-section">Backend (Ktor)</li>
+        <li><a href="content-kotlin/backend/ktor-intro.html" class="nav-link">Ktor Basics</a></li>
+        <li><a href="content-kotlin/backend/routing.html" class="nav-link">Routing & HTTP</a></li>
+        <li><a href="content-kotlin/backend/database.html" class="nav-link">Database with Exposed</a></li>
+    </ul>
     </nav>
 
+
     <main class="content">
-        <section id="introduction">
-            <h2>Introduction</h2>
-            <p>Welcome to the documentation for My Project! This document provides all the information you need to get started, from installation to advanced usage and API references.</p>
-            <p>Our goal is to make this project as easy to use as possible. If you find any part of this documentation unclear, please feel free to open an issue on our GitHub repository.</p>
-        </section>
-
-        <section id="getting-started">
-            <h2>Getting Started</h2>
-            <p>This section will walk you through the initial steps required to set up the project on your local machine for development and testing purposes.</p>
-            <h3>Prerequisites</h3>
-            <p>Before you begin, ensure you have the following installed:</p>
-            <ul>
-                <li>Node.js (v18.x or later)</li>
-                <li>npm (usually comes with Node.js)</li>
-                <li>A modern web browser like Chrome or Firefox</li>
-            </ul>
-        </section>
-
-        <section id="installation">
-            <h2>Installation</h2>
-            <p>Follow these steps to install the project dependencies and run it locally.</p>
-            <ol>
-                <li>Clone the repository from GitHub:</li>
-                <pre><code>git clone https://github.com/yourusername/my-project.git</code></pre>
-                <li>Navigate to the project directory:</li>
-                <pre><code>cd my-project</code></pre>
-                <li>Install the required dependencies:</li>
-                <pre><code>npm install</code></pre>
-            </ol>
-        </section>
-
-        <section id="usage">
-            <h2>Usage</h2>
-            <p>After a successful installation, you can run the project using the following command. This will start a local development server.</p>
-            <pre><code>npm start</code></pre>
-            <p>Once the server is running, you can view the application by navigating to <code>http://localhost:3000</code> in your web browser.</p>
-        </section>
-
-        <section id="api-reference">
-            <h2>API Reference</h2>
-            <p>This section details the available API endpoints and their functionalities.</p>
-            <h3>GET /api/users</h3>
-            <p>Fetches a list of all users. Returns a JSON array of user objects.</p>
-            <pre><code>[
-    {
-        "id": 1,
-        "name": "Jane Doe",
-        "email": "jane.doe@example.com"
-    }
-]</code></pre>
-            <h3>POST /api/users</h3>
-            <p>Creates a new user. The request body must contain a JSON object with the user's name and email.</p>
-        </section>
+        <div id="content-display">
+            </div>
     </main>
 
     <script src="../js/kotlin.js"></script>

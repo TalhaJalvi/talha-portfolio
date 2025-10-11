@@ -1,0 +1,128 @@
+<section id="kotlin-variables-data-types">
+    <h2>Variables & Data Types in Kotlin</h2>
+    <p>Variables are the building blocks of any programming language. They are used to store data that can be manipulated and accessed throughout a program. Kotlin provides a modern, type-safe approach to variables and data types, helping developers write safer and more expressive code.</p>
+
+    <h3>1. Why Variables Are Needed</h3>
+    <p>Variables are needed because programs usually require:</p>
+    <ul>
+        <li><strong>Storing Data:</strong> To hold numbers, text, or objects that can change over time.</li>
+        <li><strong>Data Manipulation:</strong> To perform calculations, string operations, or logic based on stored values.</li>
+        <li><strong>Code Reusability:</strong> Instead of hardcoding values, variables allow flexible and maintainable code.</li>
+    </ul>
+
+    <h3>How Variables Store Data Internally in Kotlin</h3>
+    <p>Kotlin runs on the JVM, so variables are stored either in the <strong>stack</strong> or <strong>heap</strong> depending on their type. Understanding this helps you write more efficient and safe code.</p>
+
+    <h3>1. Primitive Types</h3>
+    <p>Primitive types like <code>Int</code>, <code>Double</code>, and <code>Boolean</code> store their values directly in the stack for fast access.</p>
+    <pre><code>val age: Int = 25
+var temperature: Double = 36.6</code></pre>
+
+    <h3>2. Reference / Object Types</h3>
+    <p>Reference types like <code>String</code>, <code>List</code>, or custom classes store a reference in the stack, pointing to the actual object in the heap.</p>
+    <pre><code>val name: String = "Kotlin"
+val numbers: List<Int> = listOf(1, 2, 3)</code></pre>
+
+    <h3>3. Nullable Types</h3>
+    <p>Kotlin enforces null-safety. Nullable references can hold <code>null</code> or point to a heap object.</p>
+    <pre><code>var nickname: String? = null
+nickname = "Kotliner"</code></pre>
+
+    <h3>4. Memory Layout Diagram</h3>
+    <div class="memory-diagram">
+        <div class="stack">
+            <h4>Stack (Fast, LIFO)</h4>
+            <ul>
+                <li>age: 25</li>
+                <li>temperature: 36.6</li>
+                <li>name → reference → points to heap</li>
+                <li>numbers → reference → points to heap</li>
+                <li>nickname → null / reference → heap</li>
+            </ul>
+        </div>
+        <div class="heap">
+            <h4>Heap (Managed, GC)</h4>
+            <ul>
+                <li>"Kotlin" (String object)</li>
+                <li>List object [1, 2, 3]</li>
+                <li>"Kotliner" (String object)</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>5. Key Points</h3>
+    <ul>
+        <li>Primitives are stored in the stack → very fast.</li>
+        <li>Objects are stored in the heap → accessed via references in the stack.</li>
+        <li>Kotlin ensures null-safety at compile time for nullable types.</li>
+        <li>Heap memory is managed by the JVM garbage collector.</li>
+    </ul>
+    <p>When you assign a value to a variable, the compiler allocates the appropriate memory, and the JVM keeps track of the type. Kotlin also adds <strong>null-safety</strong> at compile-time, preventing many runtime errors common in Java.</p>
+
+    <h3>3. How to Define Variables in Kotlin</h3>
+    <p>Kotlin uses two keywords for variables:</p>
+    <ul>
+        <li><code>val</code> — Immutable variable (cannot be reassigned, similar to <code>final</code> in Java).</li>
+        <li><code>var</code> — Mutable variable (can be reassigned).</li>
+    </ul>
+    <p>Syntax:</p>
+    <pre><code>val name: String = "Kotlin"   // Immutable
+var age: Int = 25               // Mutable</code></pre>
+    <p>Kotlin also supports <strong>type inference</strong>, so you can omit the type if it can be inferred from the value:</p>
+    <pre><code>val city = "London"   // Kotlin infers String
+var score = 100             // Kotlin infers Int</code></pre>
+
+    <h3>4. Examples of Variables & Data Types</h3>
+    <p>Here are common data types in Kotlin with examples:</p>
+    <ul>
+        <li><strong>Numbers:</strong> <code>Int, Long, Double, Float</code></li>
+        <pre><code>val age: Int = 30
+var temperature: Double = 36.6</code></pre>
+        <li><strong>Text:</strong> <code>String</code></li>
+        <pre><code>val name: String = "Alice"
+var greeting = "Hello, $name"</code></pre>
+        <li><strong>Boolean:</strong> <code>Boolean</code></li>
+        <pre><code>val isActive: Boolean = true
+var isLoggedIn = false</code></pre>
+        <li><strong>Characters:</strong> <code>Char</code></li>
+        <pre><code>val initial: Char = 'K'</code></pre>
+        <li><strong>Nullable Types:</strong> Can hold null values using <code>?</code></li>
+        <pre><code>var nickname: String? = null
+nickname = "Ally"</code></pre>
+    </ul>
+
+    <h3>5. Common Interview Questions</h3>
+    <ul>
+        <li>What is the difference between <code>val</code> and <code>var</code> in Kotlin?</li>
+        <li>Explain type inference in Kotlin.</li>
+        <li>How does Kotlin ensure null safety in variables?</li>
+        <li>What are primitive types in Kotlin and how are they stored in memory?</li>
+        <li>Can you reassign a <code>val</code> variable after initialization? Why or why not?</li>
+        <li>Explain the difference between nullable and non-nullable types in Kotlin.</li>
+    </ul>
+
+    <h3>Example Program</h3>
+    <pre><code>fun main() {
+    val language: String = "Kotlin"      // Immutable variable
+    var version: Double = 1.8            // Mutable variable
+    
+    println("Language: $language")
+    println("Version: $version")
+    
+    // Reassign mutable variable
+    version = 2.0
+    println("Updated Version: $version")
+    
+    // Nullable variable
+    var nickname: String? = null
+    println("Nickname: $nickname")
+    nickname = "Kotliner"
+    println("Updated Nickname: $nickname")
+}</code></pre>
+    <p>Output:</p>
+    <pre><code>Language: Kotlin
+Version: 1.8
+Updated Version: 2.0
+Nickname: null
+Updated Nickname: Kotliner</code></pre>
+</section>
