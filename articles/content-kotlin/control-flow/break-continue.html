@@ -1,0 +1,99 @@
+<section id="break-continue" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Break and Continue in Kotlin</h2>
+
+    <h4>1. Why use Break and Continue?</h4>
+    <p>
+      In Kotlin, loops are often used to repeat actions, but sometimes you need more control over their flow. 
+      The <code>break</code> and <code>continue</code> statements help you manage that control:
+    </p>
+    <ul>
+      <li><strong>break</strong> immediately exits the loop when a certain condition is met.</li>
+      <li><strong>continue</strong> skips the current iteration and moves to the next one.</li>
+    </ul>
+    <p>
+      These statements improve readability and efficiency by preventing unnecessary iterations once a goal is reached or a condition is satisfied.
+    </p>
+
+    <hr>
+
+    <h4>2. How to Use (with Examples)</h4>
+
+    <h5>Example 1: Using <code>break</code></h5>
+    <pre><code class="language-kotlin">
+fun main() {
+    for (i in 1..10) {
+        if (i == 5) {
+            println("Stopping loop at $i")
+            break
+        }
+        println("Number: $i")
+    }
+}
+    </code></pre>
+    <p>
+      <strong>Explanation:</strong> The loop stops as soon as <code>i</code> becomes 5. 
+      Any numbers after 5 are not printed.
+    </p>
+
+    <h5>Example 2: Using <code>continue</code></h5>
+    <pre><code class="language-kotlin">
+fun main() {
+    for (i in 1..5) {
+        if (i == 3) continue
+        println(i)
+    }
+}
+    </code></pre>
+    <p>
+      <strong>Explanation:</strong> When <code>i</code> equals 3, that iteration is skipped. 
+      The loop continues from the next value.
+    </p>
+
+    <h5>Example 3: Labeled Loops with <code>break</code></h5>
+    <pre><code class="language-kotlin">
+fun main() {
+    outer@ for (i in 1..3) {
+        for (j in 1..3) {
+            if (i == 2 && j == 2) break@outer
+            println("i = $i, j = $j")
+        }
+    }
+}
+    </code></pre>
+    <p>
+      <strong>Explanation:</strong> The <code>break@outer</code> statement stops not only the inner loop but also the outer one. 
+      Labels are useful when working with nested loops.
+    </p>
+
+    <hr>
+
+    <h4>3. When to Use and When Not to Use</h4>
+
+    <h6>Use when:</h6>
+    <ul>
+      <li>You need to stop processing once a condition is met (e.g., finding a match in a list).</li>
+      <li>You want to skip specific cases without breaking the entire loop.</li>
+      <li>You’re handling nested loops that depend on multiple conditions.</li>
+    </ul>
+
+    <h6>Avoid when:</h6>
+    <ul>
+      <li>They make the code harder to follow.</li>
+      <li>You can achieve the same result with clearer conditions or data filtering.</li>
+    </ul>
+
+    <hr>
+
+    <h4>4. Interview Questions</h4>
+
+    <ul>
+      <li>What is the main difference between <code>break</code> and <code>continue</code> in Kotlin?</li>
+      <li>Can you use <code>break</code> and <code>continue</code> inside nested loops? How?</li>
+      <li>What are labeled loops and when should they be used?</li>
+      <li>Why can’t <code>break</code> be used directly inside a <code>forEach</code> loop?</li>
+      <li>When should you avoid using <code>break</code> or <code>continue</code> for cleaner code?</li>
+    </ul>
+
+  </div>
+</section>

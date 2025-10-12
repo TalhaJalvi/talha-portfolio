@@ -1,0 +1,109 @@
+<section id="kotlin-control-flow-when">
+  <h2>Control Flow in Kotlin: When Expression</h2>
+
+  <h3>1. Why Use When?</h3>
+  <p>
+    The <code>when</code> expression in Kotlin is a powerful alternative to the traditional <code>if-else-if</code> ladder. It is used to:
+  </p>
+  <ul>
+    <li>Handle multiple conditional branches more clearly and concisely.</li>
+    <li>Improve readability compared to long nested <code>if-else</code> statements.</li>
+    <li>Match values, ranges, types, or conditions in a single construct.</li>
+    <li>Make code more maintainable and less error-prone.</li>
+  </ul>
+
+  <h3>2. How to Use When? (With Example)</h3>
+  <p>
+    The <code>when</code> expression evaluates a value or condition and executes the corresponding block.
+  </p>
+
+  <pre><code>fun main() {
+    val day = 3
+    val dayName = when(day) {
+        1 -> "Monday"
+        2 -> "Tuesday"
+        3 -> "Wednesday"
+        4 -> "Thursday"
+        5 -> "Friday"
+        6 -> "Saturday"
+        7 -> "Sunday"
+        else -> "Invalid day"
+    }
+    println("Day: $dayName")
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Day: Wednesday</code></pre>
+
+  <h3>3. Explain Each Form</h3>
+
+  <h4>3.1 Basic When</h4>
+  <p>Matches a value against constants:</p>
+  <pre><code>val color = "Red"
+when (color) {
+    "Red" -> println("Stop")
+    "Green" -> println("Go")
+    "Yellow" -> println("Caution")
+    else -> println("Unknown color")
+}</code></pre>
+
+  <h4>3.2 When with Multiple Conditions</h4>
+  <p>You can group multiple conditions with commas:</p>
+  <pre><code>val number = 3
+when (number) {
+    1, 3, 5, 7, 9 -> println("Odd number")
+    2, 4, 6, 8, 10 -> println("Even number")
+    else -> println("Out of range")
+}</code></pre>
+
+  <h4>3.3 When as an Expression</h4>
+  <p>When can return a value:</p>
+  <pre><code>val score = 85
+val grade = when {
+    score >= 90 -> "A"
+    score >= 75 -> "B"
+    score >= 60 -> "C"
+    else -> "Fail"
+}
+println("Grade: $grade")</code></pre>
+
+  <h4>3.4 When with Ranges and Types</h4>
+  <p>You can check for ranges or types:</p>
+  <pre><code>val x: Any = 42
+when (x) {
+    in 1..50 -> println("x is between 1 and 50")
+    is String -> println("x is a string")
+    else -> println("Unknown type or value")
+}</code></pre>
+
+  <h3>4. Key Points</h3>
+  <ul>
+    <li>When is more readable and concise than long <code>if-else-if</code> chains.</li>
+    <li>It can be used both as a statement (side-effects) or an expression (returns value).</li>
+    <li>The <code>else</code> branch is optional if all possible values are covered.</li>
+    <li>Supports constants, ranges, types, and arbitrary boolean conditions.</li>
+  </ul>
+
+  <h3>5. Interview Questions</h3>
+
+  <h4>Why Use When?</h4>
+  <ul>
+    <li>Why would you use a <code>when</code> expression instead of multiple if-else statements?</li>
+    <li>How does using when improve code readability and maintainability?</li>
+  </ul>
+
+  <h4>How When Works?</h4>
+  <ul>
+    <li>Explain how Kotlin matches values or conditions in a when expression.</li>
+    <li>What is the difference between using when as a statement and when as an expression?</li>
+    <li>How can you use ranges or types in a when expression?</li>
+  </ul>
+
+  <h4>Other Common Questions</h4>
+  <ul>
+    <li>Can a when expression exist without an else branch? When is this safe?</li>
+    <li>Write a program using when to return a grade based on a numeric score.</li>
+    <li>How does Kotlin handle multiple matching conditions in a single when branch?</li>
+  </ul>
+
+</section>

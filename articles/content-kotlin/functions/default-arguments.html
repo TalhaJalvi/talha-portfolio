@@ -1,0 +1,158 @@
+<section id="kotlin-default-arguments" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Default and Named Arguments in Kotlin</h2>
+
+    <h4>1. Introduction</h4>
+    <p>
+      Kotlin simplifies function calls using <strong>default</strong> and <strong>named arguments</strong>.
+      These features make functions more flexible, readable, and reduce the need for multiple overloaded versions.
+    </p>
+
+    <hr>
+
+    <h4>2. Default Arguments</h4>
+    <p>
+      You can assign default values to function parameters. If a value isn’t provided during a function call, 
+      the default value is used automatically.
+    </p>
+
+    <pre><code class="language-kotlin">
+// Example of default arguments
+fun greetUser(name: String, age: Int = 18) {
+    println("Hello $name, your age is $age")
+}
+
+fun main() {
+    greetUser("Talha")          // Uses default value: age = 18
+    greetUser("Sara", 25)       // Overrides default value
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Hello Talha, your age is 18
+Hello Sara, your age is 25
+    </code></pre>
+
+    <p>
+      Default arguments reduce the need to overload functions — unlike Java, where multiple versions of a method 
+      are required for optional parameters.
+    </p>
+
+    <hr>
+
+    <h4>3. Named Arguments</h4>
+    <p>
+      Kotlin allows you to specify arguments by their names, making function calls more readable and avoiding confusion 
+      when multiple parameters have the same type.
+    </p>
+
+    <pre><code class="language-kotlin">
+// Using named arguments
+fun displayUser(name: String, city: String, country: String) {
+    println("$name lives in $city, $country")
+}
+
+fun main() {
+    displayUser(name = "Ali", city = "Lahore", country = "Pakistan")
+    displayUser(country = "USA", city = "New York", name = "John")  // Order can change!
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Ali lives in Lahore, Pakistan
+John lives in New York, USA
+    </code></pre>
+
+    <p>
+      Named arguments are especially useful when dealing with functions that have many parameters 
+      or parameters of the same type.
+    </p>
+
+    <hr>
+
+    <h4>4. Mixing Positional and Named Arguments</h4>
+    <p>
+      You can combine both positional and named arguments in a single function call — but named arguments 
+      must come <strong>after</strong> positional ones.
+    </p>
+
+    <pre><code class="language-kotlin">
+fun createAccount(username: String, email: String, isAdmin: Boolean = false) {
+    println("User: $username | Email: $email | Admin: $isAdmin")
+}
+
+fun main() {
+    createAccount("Talha", "talha@example.com")               // Uses default isAdmin = false
+    createAccount("Sara", email = "sara@example.com", isAdmin = true) // Mix of positional + named
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>5. Default Arguments with Function Overloading</h4>
+    <p>
+      In Java, optional parameters require function overloading. Kotlin eliminates that by supporting 
+      default arguments directly — reducing redundant code.
+    </p>
+
+    <pre><code class="language-kotlin">
+// In Java (Overloading)
+void showMessage(String text) { ... }
+void showMessage(String text, int count) { ... }
+
+// In Kotlin (Simplified)
+fun showMessage(text: String, count: Int = 1) {
+    repeat(count) { println(text) }
+}
+
+fun main() {
+    showMessage("Welcome")      // Default count = 1
+    showMessage("Hello", 3)     // Custom count = 3
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>6. Interview Questions</h4>
+    <ul>
+      <li>What are default arguments in Kotlin?</li>
+      <li>How do named arguments improve code readability?</li>
+      <li>Can you mix positional and named arguments in Kotlin?</li>
+      <li>How do default arguments reduce function overloading compared to Java?</li>
+      <li>What happens if you provide all parameters while calling a function with default arguments?</li>
+    </ul>
+
+    <hr>
+
+    <h4>7. Example Program</h4>
+    <pre><code class="language-kotlin">
+fun calculatePrice(item: String, quantity: Int = 1, pricePerUnit: Double = 10.0) {
+    val total = quantity * pricePerUnit
+    println("Item: $item | Quantity: $quantity | Total: $$total")
+}
+
+fun main() {
+    calculatePrice("Notebook")                         // Uses both default values
+    calculatePrice("Pencil", quantity = 5)             // Uses one default
+    calculatePrice("Bag", quantity = 2, pricePerUnit = 25.5) // Overrides all defaults
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Item: Notebook | Quantity: 1 | Total: $10.0
+Item: Pencil | Quantity: 5 | Total: $50.0
+Item: Bag | Quantity: 2 | Total: $51.0
+    </code></pre>
+
+    <hr>
+
+    <p>
+      <strong>Summary:</strong>  
+      Default and named arguments in Kotlin simplify function design, reduce boilerplate, and make code more expressive — 
+      features that are not directly available in Java without using method overloading or builder patterns.
+    </p>
+  </div>
+</section>

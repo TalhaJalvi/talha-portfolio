@@ -1,0 +1,105 @@
+<section id="kotlin-control-flow-if-else">
+  <h2>Control Flow in Kotlin: If-Else</h2>
+
+  <h3>1. Why Use If-Else?</h3>
+  <p>
+    Control flow statements allow a program to make decisions and execute different code paths based on conditions. 
+    In Kotlin, <code>if</code> and <code>if-else</code> statements are used to:
+  </p>
+  <ul>
+    <li>Perform different actions depending on conditions.</li>
+    <li>Make the code dynamic instead of executing sequentially all the time.</li>
+    <li>Handle logical decisions in algorithms, user input, or system state.</li>
+    <li>Improve readability and maintainability compared to complex nested code.</li>
+  </ul>
+
+  <h3>2. How to Use If-Else? (With Example)</h3>
+  <p>
+    The <code>if</code> statement evaluates a condition and executes code if the condition is true. You can add 
+    <code>else</code> to handle the false case.
+  </p>
+
+  <pre><code>fun main() {
+    val number = 10
+
+    if (number > 0) {
+        println("Number is positive")
+    } else {
+        println("Number is zero or negative")
+    }
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Number is positive</code></pre>
+
+  <h3>3. Explain Each Form</h3>
+
+  <h4>3.1 Simple If</h4>
+  <p>Executes a block only when the condition is true:</p>
+  <pre><code>val age = 20
+if (age >= 18) {
+    println("You are an adult")
+}</code></pre>
+  <p>Output: <code>You are an adult</code></p>
+
+  <h4>3.2 If-Else</h4>
+  <p>Handles both true and false conditions:</p>
+  <pre><code>val temperature = 30
+if (temperature > 35) {
+    println("It's very hot")
+} else {
+    println("Temperature is moderate")
+}</code></pre>
+  <p>Output: <code>Temperature is moderate</code></p>
+
+  <h4>3.3 If-Else If Ladder</h4>
+  <p>Check multiple conditions in sequence:</p>
+  <pre><code>val score = 85
+
+if (score >= 90) {
+    println("Grade A")
+} else if (score >= 75) {
+    println("Grade B")
+} else if (score >= 60) {
+    println("Grade C")
+} else {
+    println("Fail")
+}</code></pre>
+  <p>Output: <code>Grade B</code></p>
+
+  <h4>3.4 Using If as an Expression</h4>
+  <p>In Kotlin, <code>if</code> can return a value:</p>
+  <pre><code>val max = if (10 > 5) 10 else 5
+println("Max value: $max")</code></pre>
+  <p>Output: <code>Max value: 10</code></p>
+
+  <h3>4. Key Points</h3>
+  <ul>
+    <li>All <code>if</code> statements evaluate boolean expressions.</li>
+    <li><code>if</code> can be used as an expression to return a value.</li>
+    <li>Chaining <code>else if</code> allows checking multiple conditions in order.</li>
+    <li>Curly braces are required when executing multiple statements in a block.</li>
+  </ul>
+
+  <h3>5. Interview Questions</h3>
+
+  <h4>Why Use If-Else?</h4>
+  <ul>
+    <li>Why do we use if-else statements in Kotlin?</li>
+    <li>What are the benefits of using if-else over sequential statements?</li>
+  </ul>
+
+  <h4>How If-Else Works?</h4>
+  <ul>
+    <li>How does Kotlin evaluate if-else conditions?</li>
+    <li>Explain the difference between using if as a statement and if as an expression.</li>
+  </ul>
+
+  <h4>Other Common Questions</h4>
+  <ul>
+    <li>Can an if statement exist without an else? When is it useful?</li>
+    <li>How does Kotlin handle multiple conditions in an else-if ladder?</li>
+    <li>Write a Kotlin program that returns the maximum of three numbers using if-else.</li>
+  </ul>
+
+</section>
