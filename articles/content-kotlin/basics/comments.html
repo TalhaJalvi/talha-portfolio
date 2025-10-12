@@ -1,0 +1,99 @@
+<section id="kotlin-comments">
+  <h2>Comments in Kotlin</h2>
+  
+  <h3>1. Why Comments Are Important</h3>
+  <p>
+    Comments are notes in your code that are ignored by the compiler. They help developers:
+  </p>
+  <ul>
+    <li>Explain the purpose or logic of code.</li>
+    <li>Make code more readable and maintainable.</li>
+    <li>Assist other developers (or future you) in understanding complex logic.</li>
+    <li>Document public APIs using structured documentation comments.</li>
+  </ul>
+
+  <h3>2. How to Use Comments in Kotlin</h3>
+  
+  <h4>2.1 Single-Line Comments</h4>
+  <p>Start with <code>//</code> and extend to the end of the line.</p>
+  <pre><code>// This is a single-line comment
+val name = "Kotlin" // Comment can also follow code</code></pre>
+
+  <h4>2.2 Multi-Line Comments</h4>
+  <p>Enclosed between <code>/*</code> and <code>*/</code>, can span multiple lines.</p>
+  <pre><code>/* This is a multi-line comment
+   which spans several lines */
+val age = 25</code></pre>
+
+  <h4>2.3 Nested Multi-Line Comments</h4>
+  <p>Kotlin allows nested comments:</p>
+  <pre><code>/* Outer comment
+   /* Inner comment */
+   Outer comment ends */</code></pre>
+
+  <h4>2.4 Documentation Comments</h4>
+  <p>Use <code>/** ... */</code> to generate API documentation. Place them above classes, functions, or properties.</p>
+  <pre><code>/**
+ * Adds two numbers and returns the result.
+ * @param a First number
+ * @param b Second number
+ * @return Sum of a and b
+ */
+fun add(a: Int, b: Int): Int {
+    return a + b
+}</code></pre>
+
+  <h4>2.5 Best Practices</h4>
+  <ul>
+    <li>Explain <strong>why</strong> a piece of code exists, not what it does — the code itself should be clear.</li>
+    <li>Keep comments concise, clear, and relevant.</li>
+    <li>Update comments whenever code changes.</li>
+    <li>Use documentation comments for public APIs and complex logic.</li>
+  </ul>
+
+  <h3>3. Example Program</h3>
+  <pre><code>fun main() {
+    // Greeting program with comments
+    
+    val name = "Alice"  // User's name
+    val age = 28        // User's age
+
+    /* Print a greeting using string templates */
+    println("Hello, $name! You are $age years old.")
+    
+    /**
+     * Function to double a number.
+     * @param x Number to double
+     * @return Double the input
+     */
+    fun double(x: Int) = x * 2
+
+    println("Double of age: ${double(age)}")
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Hello, Alice! You are 28 years old.
+Double of age: 56</code></pre>
+
+  <h3>4. Common Interview Questions</h3>
+  
+  <h4>Why Comments?</h4>
+  <ul>
+    <li>Why are comments used in Kotlin?</li>
+    <li>Why should documentation comments be preferred for public APIs?</li>
+  </ul>
+
+  <h4>How Comments Work?</h4>
+  <ul>
+    <li>How do single-line and multi-line comments differ in Kotlin?</li>
+    <li>How are nested comments handled?</li>
+    <li>How can documentation comments be generated into API docs?</li>
+  </ul>
+
+  <h4>Other Interview Questions</h4>
+  <ul>
+    <li>What are the best practices for writing comments in Kotlin?</li>
+    <li>Can comments affect the performance of a Kotlin program?</li>
+    <li>Explain the difference between documentation comments and regular comments.</li>
+  </ul>
+</section>

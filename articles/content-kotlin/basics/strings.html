@@ -1,0 +1,117 @@
+<section id="kotlin-strings-interpolation">
+  <h2>Strings and Interpolation in Kotlin</h2>
+  <p>
+    Strings represent sequences of characters and are used to store text in Kotlin programs. 
+    Kotlin provides versatile features to work with strings, including templates, interpolation, 
+    concatenation, and multiline string support, making text handling both concise and expressive.
+  </p>
+
+  <h3>1. Creating Strings</h3>
+  <p>Kotlin supports two main ways to declare string literals:</p>
+  <ul>
+    <li>
+      <strong>Escaped strings:</strong> Enclosed in double quotes (<code>" "</code>) and support escape sequences like <code>\n</code>, <code>\t</code>, etc.
+      <pre><code>val greeting = "Hello\nKotlin!"</code></pre>
+    </li>
+    <li>
+      <strong>Raw strings:</strong> Enclosed in triple quotes (<code>""" """</code>) and can span multiple lines. Escape sequences are interpreted literally.
+      <pre><code>val multiLine = """This is
+a multi-line
+string."""</code></pre>
+    </li>
+  </ul>
+
+  <h3>2. Concatenating Strings</h3>
+  <p>You can combine multiple strings using the <code>+</code> operator:</p>
+  <pre><code>val firstName = "John"
+val lastName = "Doe"
+val fullName = firstName + " " + lastName
+println(fullName) // Output: John Doe</code></pre>
+
+  <h3>3. String Templates and Interpolation</h3>
+  <p>Kotlin allows embedding variables and expressions directly into strings using templates:</p>
+  <ul>
+    <li>
+      <strong>Variable interpolation:</strong> Use <code>$variableName</code> to insert a variable.
+      <pre><code>val name = "Alice"
+println("Hello, $name!") // Output: Hello, Alice!</code></pre>
+    </li>
+    <li>
+      <strong>Expression interpolation:</strong> Use <code>${expression}</code> for inline calculations or method calls.
+      <pre><code>val a = 5
+val b = 10
+println("Sum of $a and $b is ${a + b}") // Output: Sum of 5 and 10 is 15</code></pre>
+    </li>
+  </ul>
+
+  <h3>4. Calling Functions Inside Templates</h3>
+  <p>You can invoke functions directly within string templates for dynamic output:</p>
+  <pre><code>fun greet(name: String) = "Hello, $name!"
+val message = greet("Kotlin")
+println("Message: $message") // Output: Message: Hello, Kotlin!</code></pre>
+
+  <h3>5. Common String Operations</h3>
+  <p>Kotlin provides multiple built-in methods for manipulating strings:</p>
+  <ul>
+    <li><code>length</code> — Returns the number of characters.</li>
+    <li><code>uppercase()</code> / <code>lowercase()</code> — Change text case.</li>
+    <li><code>trim()</code> — Removes whitespace at the beginning and end.</li>
+    <li><code>substring(startIndex, endIndex)</code> — Extracts part of a string.</li>
+    <li><code>replace(oldValue, newValue)</code> — Replaces specific text.</li>
+  </ul>
+  <pre><code>val text = "  Kotlin is fun!  "
+println(text.length)         // Output: 18
+println(text.trim())         // Output: Kotlin is fun!
+println(text.uppercase())    // Output:   KOTLIN IS FUN!  
+println(text.substring(2, 8)) // Output: Kotlin
+println(text.replace("fun", "awesome")) // Output:   Kotlin is awesome!  </code></pre>
+
+  <h3>6. Multiline Strings and Margins</h3>
+  <p>Raw strings can include leading margins, which can be removed using <code>trimMargin()</code>:</p>
+  <pre><code>val poem = """
+    |Roses are red,
+    |Violets are blue,
+    |Kotlin is fun,
+    |And so are you.
+  """.trimMargin()
+println(poem)
+/* Output:
+Roses are red,
+Violets are blue,
+Kotlin is fun,
+And so are you.
+*/</code></pre>
+
+  <h3>7. Advantages of Using String Templates</h3>
+  <ul>
+    <li>Reduces the need for manual concatenation.</li>
+    <li>Allows expressions and function calls directly inside strings.</li>
+    <li>Improves code readability and maintainability.</li>
+    <li>Supports cleaner multiline formatting with <code>trimMargin()</code>.</li>
+  </ul>
+
+  <h3>8. Example Program</h3>
+  <pre><code>fun main() {
+    val firstName = "Emma"
+    val lastName = "Stone"
+    val age = 30
+
+    val greeting = "Hello, $firstName $lastName! You are $age years old."
+    println(greeting)
+
+    val poem = """
+      |Roses are red,
+      |Violets are blue,
+      |Kotlin is fun,
+      |And so are you.
+    """.trimMargin()
+    println(poem)
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Hello, Emma Stone! You are 30 years old.
+Roses are red,
+Violets are blue,
+Kotlin is fun,
+And so are you.</code></pre>
+</section>
