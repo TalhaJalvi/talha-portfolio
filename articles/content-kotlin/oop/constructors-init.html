@@ -1,0 +1,153 @@
+<section id="kotlin-constructors-init">
+  <h2>Constructors and Init Blocks in Kotlin</h2>
+  <p>In Kotlin, constructors and <code>init</code> blocks provide a structured way to initialize objects and perform setup tasks. Kotlin simplifies object creation by supporting primary and secondary constructors along with initialization blocks.</p>
+
+  <h3>1. Why Constructors and Init Blocks Matter</h3>
+  <p>Constructors and init blocks help in setting up the initial state of objects:</p>
+  <ul>
+    <li><strong>Encapsulation:</strong> Ensure that objects are always initialized in a valid state.</li>
+    <li><strong>Code Organization:</strong> Keeps initialization logic within the class, making it easier to maintain.</li>
+    <li><strong>Flexibility:</strong> Allows complex initialization and input validation during object creation.</li>
+  </ul>
+
+  <h3>2. Primary Constructor</h3>
+  <p>The primary constructor is a concise way to initialize a class. It is defined in the class header:</p>
+  <pre><code>
+class Person(val name: String, var age: Int) 
+<!--
+val name: read-only property
+var age: mutable property
+This primary constructor automatically generates properties and initializes them.
+-->
+  </code></pre>
+
+  <h4>2.1 Using Init Blocks</h4>
+  <p>The <code>init</code> block is executed when the object is created and can contain initialization logic:</p>
+  <pre><code>
+class Person(val name: String, var age: Int) {
+    init {
+        println("Person object created: $name, Age: $age") 
+        <!-- Init block executes after primary constructor -->
+        <!-- You can perform initialization tasks here -->
+    }
+}
+  </code></pre>
+  <p>Example:</p>
+  <pre><code>
+fun main() {
+    val person = Person("Alice", 25)
+    <!-- Object created using primary constructor -->
+}
+  </code></pre>
+  <p>Output:</p>
+  <pre><code>
+Person object created: Alice, Age: 25
+  </code></pre>
+
+  <h3>3. Secondary Constructor</h3>
+  <p>Secondary constructors allow multiple ways to initialize a class. They are defined inside the class body using the <code>constructor</code> keyword:</p>
+  <pre><code>
+class Person {
+    var name: String
+    var age: Int
+
+    constructor(name: String) {
+        this.name = name
+        this.age = 0
+        <!-- Secondary constructor provides default age -->
+    }
+
+    constructor(name: String, age: Int) {
+        this.name = name
+        this.age = age
+        <!-- Full initialization using secondary constructor -->
+    }
+}
+  </code></pre>
+  <p>Example:</p>
+  <pre><code>
+fun main() {
+    val person1 = Person("Bob") // Uses first secondary constructor
+    val person2 = Person("Charlie", 30) // Uses second secondary constructor
+    println("${person1.name}, ${person1.age}") // Bob, 0
+    println("${person2.name}, ${person2.age}") // Charlie, 30
+}
+  </code></pre>
+
+  <h3>4. Combining Init Blocks and Constructors</h3>
+  <p>You can combine primary constructors, secondary constructors, and <code>init</code> blocks to handle complex initialization:</p>
+  <pre><code>
+class Person(val name: String, var age: Int) {
+
+    init {
+        println("Init block: $name, Age: $age")
+        if(age < 0) age = 0
+        <!-- Validation logic: age cannot be negative -->
+    }
+
+    constructor(name: String) : this(name, 0) {
+        println("Secondary constructor called for $name")
+        <!-- Explanation: 
+             ': this(name, 0)' calls the primary constructor
+             passing 'name' and a default 'age' of 0.
+             This ensures the init block and primary constructor logic execute.
+             Then, additional logic specific to this secondary constructor runs.
+        -->
+    }
+}
+  </code></pre>
+  <p>Example:</p>
+  <pre><code>
+fun main() {
+    val person1 = Person("David", 28) // Primary constructor called
+    val person2 = Person("Eve")       // Secondary constructor called
+}
+  </code></pre>
+  <p>Output:</p>
+  <pre><code>
+Init block: David, Age: 28
+Init block: Eve, Age: 0
+Secondary constructor called for Eve
+  </code></pre>
+
+  <h3>5. Execution Order of Constructors and Init Blocks</h3>
+  <p>Here’s the order when an object is created:</p>
+  <ol>
+    <li>If you call a secondary constructor that delegates to a primary constructor, the <strong>primary constructor runs first</strong>.</li>
+    <li>Then, all <code>init</code> blocks execute in the order they appear in the class.</li>
+    <li>Finally, the code inside the secondary constructor runs.</li>
+  </ol>
+  <p>If you don’t delegate to the primary constructor, the secondary constructor runs directly and init blocks are <strong>not executed</strong>.</p>
+
+  <h3>6. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is the difference between primary and secondary constructors?</strong> <br>
+        Primary constructors are declared in the class header, while secondary constructors are inside the class body.</li>
+    <li><strong>When is the init block executed?</strong> <br>
+        The <code>init</code> block runs immediately after the primary constructor is called, before any secondary constructor logic.</li>
+    <li><strong>Why do we use <code>: this(...)</code> in secondary constructors?</strong> <br>
+        It calls the primary constructor, ensuring all common initialization logic (including init blocks) executes, reducing code duplication.</li>
+    <li><strong>Can a class have multiple secondary constructors?</strong> <br>
+        Yes, allowing multiple ways to create objects with different input parameters.</li>
+    <li><strong>Can a class have multiple init blocks?</strong> <br>
+        Yes, init blocks are executed in the order they appear in the class.</li>
+    <li><strong>Why would you need a secondary constructor instead of default parameters?</strong> <br>
+        Secondary constructors are useful when you need completely different initialization logic that can't be handled with default values alone.</li>
+    <li><strong>If a secondary constructor does not call the primary constructor, what happens?</strong> <br>
+        Init blocks are skipped, and you are responsible for initializing all properties inside the secondary constructor.</li>
+    <li><strong>What is the execution order when a secondary constructor calls the primary constructor?</strong> <br>
+        1. Primary constructor runs first.<br>
+        2. Init blocks execute in order.<br>
+        3. Secondary constructor code executes last.</li>
+  </ul>
+
+  <h3>7. Key Takeaways</h3>
+  <ul>
+    <li>Primary constructors provide a concise way to initialize properties.</li>
+    <li>Init blocks allow execution of initialization logic and validation.</li>
+    <li>Secondary constructors provide flexibility for multiple initialization paths.</li>
+    <li>Calling the primary constructor from a secondary constructor ensures consistency and avoids code duplication.</li>
+    <li>Combining init blocks and constructors helps in managing complex initialization logic cleanly.</li>
+    <li>Understanding execution order is crucial for writing predictable initialization logic.</li>
+  </ul>
+</section>

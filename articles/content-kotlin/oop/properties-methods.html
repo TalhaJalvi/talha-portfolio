@@ -1,0 +1,97 @@
+<section id="kotlin-properties-methods">
+  <h2>Properties and Methods (Getters/Setters) in Kotlin</h2>
+  <p>In Kotlin, properties encapsulate fields with their accessors (getters and setters), streamlining code and enhancing readability. This approach eliminates the need for explicit getter and setter methods, making the codebase cleaner and easier to understand.</p>
+
+  <h3>1. Why Properties and Methods Matter</h3>
+  <p>Properties in Kotlin provide a concise way to manage data within classes:</p>
+  <ul>
+    <li><strong>Encapsulation:</strong> Protects the internal state of an object by controlling access through getters and setters.</li>
+    <li><strong>Readability:</strong> Reduces boilerplate code, making the codebase cleaner and easier to understand.</li>
+    <li><strong>Flexibility:</strong> Allows for custom logic during property access or modification without changing the external interface.</li>
+  </ul>
+
+  <h3>2. What Are Properties and Methods?</h3>
+  <p><strong>Property:</strong> A property in Kotlin is a combination of a field and its accessors. It is declared using the <code>val</code> (read-only) or <code>var</code> (mutable) keyword.</p>
+  <p><strong>Getter:</strong> A function that retrieves the value of a property. It is automatically provided for <code>val</code> properties and can be customized.</p>
+  <p><strong>Setter:</strong> A function that sets the value of a property. It is automatically provided for <code>var</code> properties and can be customized.</p>
+
+  <h4>2.1 Default Getters and Setters</h4>
+  <pre><code>class Person {
+    var name: String = "John Doe"
+    val age: Int = 30
+}</code></pre>
+  <p>In the above example, the <code>name</code> property has both a getter and a setter, while the <code>age</code> property has only a getter because it is declared with <code>val</code>.</p>
+
+  <h4>2.2 Custom Getters and Setters</h4>
+  <p>Custom getters and setters allow you to add logic when accessing or modifying a property:</p>
+  <pre><code>class Rectangle(val width: Int, val height: Int) {
+    val area: Int
+      get() = width * height
+}</code></pre>
+  <p>In this example, the <code>area</code> property calculates its value based on other properties.</p>
+
+  <h4>2.3 Using Backing Fields</h4>
+  <p>Backing fields are used to store the actual value of a property in memory. You can reference the backing field using the <code>field</code> keyword inside custom setters or getters.</p>
+  <pre><code>class Person {
+    var name: String = "John Doe"
+      set(value) {
+        // Trim the input before assigning to the backing field
+        field = value.trim()
+      }
+}</code></pre>
+  <p>Here, <code>field</code> is the backing field for <code>name</code>. The setter ensures any value assigned to <code>name</code> is trimmed of whitespace.</p>
+
+  <p><strong>Additional Examples:</strong></p>
+
+  <pre><code>class Student {
+    var score: Int = 0
+      set(value) {
+        // Ensure the score is always between 0 and 100
+        field = when {
+          value < 0 -> 0
+          value > 100 -> 100
+          else -> value
+        }
+      }
+}
+
+fun main() {
+    val student = Student()
+    student.score = 150
+    println(student.score) // Output: 100
+    student.score = -10
+    println(student.score) // Output: 0
+}</code></pre>
+  <p>In this example, the backing field <code>field</code> ensures that the <code>score</code> property cannot go below 0 or above 100.</p>
+
+  <h4>2.4 Controlling Visibility</h4>
+  <p>You can control the visibility of getters and setters independently:</p>
+  <pre><code>class BankAccount(initialBalance: Int) {
+    var balance: Int = initialBalance
+      private set
+}</code></pre>
+  <p>In this example, the setter is private, so the balance can only be modified within the class.</p>
+
+  <h3>3. Common Interview Questions</h3>
+  <ul>
+    <li><strong>What is the difference between <code>val</code> and <code>var</code> in Kotlin?</strong> <br><code>val</code> declares a read-only property, while <code>var</code> declares a mutable property.</li>
+    <li><strong>How do you define a custom getter in Kotlin?</strong> <br>By using the <code>get()</code> function within the property declaration.</li>
+    <li><strong>What is a backing field in Kotlin?</strong> <br>A backing field is an automatically generated field that stores the property's value in memory. It can be accessed using the <code>field</code> keyword.</li>
+  </ul>
+
+  <h3>4. Example Program</h3>
+  <pre><code>fun main() {
+    val rectangle = Rectangle(5, 10)
+    println("Area: ${rectangle.area}")
+}</code></pre>
+  <p>Output:</p>
+  <pre><code>Area: 50</code></pre>
+
+  <h3>5. Key Takeaways</h3>
+  <ul>
+    <li>Kotlin properties combine fields and accessors into a single entity, simplifying code.</li>
+    <li>Custom getters and setters allow you to add logic during property access or modification.</li>
+    <li>Backing fields store the property's value in memory and can be accessed using the <code>field</code> keyword.</li>
+    <li>Controlling the visibility of getters and setters provides fine-grained access control.</li>
+  </ul>
+</section>
