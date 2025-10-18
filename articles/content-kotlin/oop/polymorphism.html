@@ -1,0 +1,112 @@
+<section id="kotlin-polymorphism">
+  <h2>Polymorphism in Kotlin</h2>
+  <p>
+    Polymorphism is a core concept of object-oriented programming that allows objects to be treated as instances of their parent class rather than their actual class. 
+    It enables one interface to be used for multiple forms (types) of objects.
+  </p>
+
+  <h3>1. Why Polymorphism Matters</h3>
+  <ul>
+    <li><strong>Code Reusability:</strong> You can write generic code that works with different types of objects.</li>
+    <li><strong>Extensibility:</strong> Easily add new classes with minimal changes to existing code.</li>
+    <li><strong>Runtime Flexibility:</strong> The program can decide at runtime which method implementation to execute.</li>
+  </ul>
+
+  <h3>2. Types of Polymorphism in Kotlin</h3>
+  <p>Polymorphism in Kotlin can be broadly classified into:</p>
+  <ul>
+    <li><strong>Compile-time (Static) Polymorphism:</strong> Method overloading — multiple methods with the same name but different parameters.</li>
+    <li><strong>Runtime (Dynamic) Polymorphism:</strong> Method overriding — subclass provides its own implementation for a method defined in the parent class.</li>
+  </ul>
+
+  <h3>3. Compile-time Polymorphism (Method Overloading)</h3>
+  <pre><code>
+class Calculator {
+    fun add(a: Int, b: Int) = a + b
+    fun add(a: Int, b: Int, c: Int) = a + b + c
+}
+
+fun main() {
+val calc = Calculator()
+println(calc.add(2, 3))       // Output: 5
+println(calc.add(2, 3, 4))    // Output: 9
+} </code></pre>
+
+  <h3>4. Runtime Polymorphism (Method Overriding)</h3>
+  <pre><code>
+open class Animal {
+    open fun sound() {
+        println("Some generic sound")
+    }
+}
+
+class Dog : Animal() {
+override fun sound() {
+println("Bark")
+}
+}
+
+class Cat : Animal() {
+override fun sound() {
+println("Meow")
+}
+}
+
+fun main() {
+val animals: List<Animal> = listOf(Dog(), Cat())
+for (animal in animals) {
+animal.sound()  // Runtime decides which sound() to call
+}
+} </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Bark
+Meow
+  </code></pre>
+
+  <h3>5. Polymorphism with Interfaces</h3>
+  <pre><code>
+interface Flyer {
+    fun fly()
+}
+
+class Bird : Flyer {
+override fun fly() = println("Bird is flying")
+}
+
+class Plane : Flyer {
+override fun fly() = println("Plane is flying")
+}
+
+fun main() {
+val flyers: List<Flyer> = listOf(Bird(), Plane())
+flyers.forEach { it.fly() }
+} </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Bird is flying
+Plane is flying
+  </code></pre>
+
+  <h3>6. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is polymorphism?</strong> <br>
+        The ability of an object to take multiple forms, allowing a single interface to represent different underlying forms (classes).</li>
+    <li><strong>What are the types of polymorphism in Kotlin?</strong> <br>
+        Compile-time (method overloading) and runtime (method overriding).</li>
+    <li><strong>How does runtime polymorphism work?</strong> <br>
+        Through method overriding — the actual method executed is determined at runtime based on the object type.</li>
+    <li><strong>Can interfaces be used for polymorphism?</strong> <br>
+        Yes, multiple classes implementing the same interface can be treated polymorphically.</li>
+  </ul>
+
+  <h3>7. Key Takeaways</h3>
+  <ul>
+    <li>Polymorphism enables flexibility and code reuse.</li>
+    <li>Compile-time polymorphism is achieved with method overloading.</li>
+    <li>Runtime polymorphism is achieved with method overriding and interface implementations.</li>
+    <li>It allows a single variable or interface to refer to objects of multiple types safely.</li>
+  </ul>
+</section>

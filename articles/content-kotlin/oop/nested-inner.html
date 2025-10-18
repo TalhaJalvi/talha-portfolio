@@ -1,0 +1,186 @@
+<section id="kotlin-nested-inner-classes">
+  <h2>Nested and Inner Classes in Kotlin</h2>
+  <p>
+    In Kotlin, classes can be defined inside other classes to logically group and encapsulate related functionality.
+    These are known as <strong>nested</strong> and <strong>inner</strong> classes. 
+    Although they look similar, they behave differently in how they access members of the outer class.
+  </p>
+
+  <h3>1. Why Use Nested or Inner Classes?</h3>
+  <p>Nested and inner classes improve structure and encapsulation:</p>
+  <ul>
+    <li><strong>Encapsulation:</strong> Helps organize related code logically within a parent class.</li>
+    <li><strong>Readability:</strong> Keeps supporting classes close to where they are used.</li>
+    <li><strong>Access Control:</strong> Inner classes can access members of the outer class, but nested ones cannot (unless made inner).</li>
+  </ul>
+
+  <h3>2. Nested Classes</h3>
+  <p>
+    A <strong>nested class</strong> is simply a class defined inside another class. 
+    By default, it does <strong>not</strong> hold a reference to the outer class and cannot access its members.
+  </p>
+
+  <pre><code>
+class Outer {
+    private val outerName = "Outer Class"
+
+    class Nested {
+        fun show() = "Hello from Nested Class"
+        // Cannot access outerName directly
+    }
+}
+
+fun main() {
+    val nested = Outer.Nested() // No need to create Outer instance
+    println(nested.show())
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>Hello from Nested Class</code></pre>
+
+  <h4>Key Points:</h4>
+  <ul>
+    <li>Defined using <code>class Nested</code> inside another class.</li>
+    <li>Acts like a static class in Java.</li>
+    <li>Cannot access members (properties or methods) of the outer class directly.</li>
+    <li>Does not require an instance of the outer class to be created.</li>
+  </ul>
+
+  <h3>3. Inner Classes</h3>
+  <p>
+    If you want the nested class to access the members of the outer class, 
+    you must declare it as an <strong>inner class</strong> using the <code>inner</code> keyword.
+  </p>
+
+  <pre><code>
+class Outer {
+    private val outerName = "Outer Class"
+
+    inner class Inner {
+        fun show() = "Accessing: $outerName from Inner Class"
+    }
+}
+
+fun main() {
+    val inner = Outer().Inner() // Requires Outer instance
+    println(inner.show())
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>Accessing: Outer Class from Inner Class</code></pre>
+
+  <h4>Key Points:</h4>
+  <ul>
+    <li>Declared using the <code>inner</code> keyword.</li>
+    <li>Holds a reference to the outer class instance.</li>
+    <li>Can access all members (including private ones) of the outer class.</li>
+    <li>Requires an instance of the outer class to be created first.</li>
+  </ul>
+
+  <h3>4. Accessing Outer Class Members</h3>
+  <p>
+    The <code>this@OuterClassName</code> syntax allows inner classes to explicitly refer to the outer class instance.
+  </p>
+
+  <pre><code>
+class Outer {
+    private val outerName = "Outer"
+
+    inner class Inner {
+        private val innerName = "Inner"
+        fun display() {
+            println("Inner Name: $innerName")
+            println("Outer Name: ${this@Outer.outerName}")
+        }
+    }
+}
+
+fun main() {
+    val obj = Outer().Inner()
+    obj.display()
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Inner Name: Inner
+Outer Name: Outer
+  </code></pre>
+
+  <h3>5. Nested vs Inner Class (Comparison)</h3>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Nested Class</th>
+        <th>Inner Class</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Keyword</td>
+        <td>Defined normally</td>
+        <td>Declared using <code>inner</code></td>
+      </tr>
+      <tr>
+        <td>Outer Class Reference</td>
+        <td>Does not hold a reference</td>
+        <td>Holds a reference</td>
+      </tr>
+      <tr>
+        <td>Access to Outer Members</td>
+        <td>Cannot access outer members</td>
+        <td>Can access outer members (even private ones)</td>
+      </tr>
+      <tr>
+        <td>Object Creation</td>
+        <td><code>Outer.Nested()</code></td>
+        <td><code>Outer().Inner()</code></td>
+      </tr>
+      <tr>
+        <td>Analogy in Java</td>
+        <td>Static nested class</td>
+        <td>Non-static inner class</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>6. Nested and Inner Classes in Real Use Cases</h3>
+  <ul>
+    <li><strong>UI Components:</strong> Inner classes are often used for click listeners or callbacks that access activity data.</li>
+    <li><strong>Encapsulation:</strong> Nested helper classes can be used to contain logic only relevant to the outer class.</li>
+    <li><strong>Builder Pattern:</strong> Nested classes can implement builder-style configurations without referencing the outer class instance.</li>
+  </ul>
+
+  <h3>7. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is a nested class in Kotlin?</strong><br>
+        A class defined inside another class without the <code>inner</code> keyword. It cannot access members of the outer class.</li>
+
+    <li><strong>What is an inner class in Kotlin?</strong><br>
+        A class defined inside another class using the <code>inner</code> keyword. It has access to members of the outer class instance.</li>
+
+    <li><strong>How do you access outer class members from an inner class?</strong><br>
+        By using the syntax <code>this@OuterClassName.memberName</code>.</li>
+
+    <li><strong>Do nested classes hold a reference to the outer class?</strong><br>
+        No, nested classes do not. Only inner classes hold such a reference.</li>
+
+    <li><strong>Can an inner class access private members of the outer class?</strong><br>
+        Yes, it can. Kotlin’s <code>inner</code> class has full access to all members of its outer class.</li>
+
+    <li><strong>When to use nested vs inner classes?</strong><br>
+        Use nested when no outer class reference is needed, and inner when you need to access outer data or behavior.</li>
+  </ul>
+
+  <h3>8. Key Takeaways</h3>
+  <ul>
+    <li>Nested classes are static by default in Kotlin.</li>
+    <li>Inner classes hold a reference to their outer class instance.</li>
+    <li>Use <code>this@OuterClass</code> to access outer members explicitly.</li>
+    <li>Nested and inner classes improve code organization and encapsulation.</li>
+    <li>Choose inner classes carefully to avoid unnecessary memory references to the outer class.</li>
+  </ul>
+</section>

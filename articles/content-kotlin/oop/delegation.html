@@ -1,0 +1,285 @@
+<section id="kotlin-delegation-object-declarations">
+  <h2>Delegation & Object Declarations in Kotlin</h2>
+  <p>
+    In Kotlin, two advanced features—<strong>delegation</strong> and <strong>object declarations</strong>—help you build cleaner, more modular, and maintainable code. 
+    Using the analogy of an airplane’s design and control systems, we’ll explore how delegation lets you share behavior, and how object declarations let you create single-instance managers.
+  </p>
+
+  <h3>1. Why Delegation & Object Declarations Matter</h3>
+  <ul>
+    <li><strong>Behavior reuse:</strong> Imagine different aircraft types (jet, glider, helicopter) reuse lift or propulsion systems—delegation helps you avoid rewriting the same behavior.</li>
+    <li><strong>Separation of concerns:</strong> The airplane class focuses on “aircraft”, while delegate classes handle flying, landing gear, propulsion systems.</li>
+    <li><strong>Singleton / global manager:</strong> A single FlightControlCenter object governs all flights—object declarations are perfect for that.</li>
+    <li><strong>Cleaner architecture:</strong> Composition over deep inheritance hierarchies—makes your code easier to change when new aircraft types appear.</li>
+ <li><strong>Why use Delegation instead of Inheritance?</strong> <br>
+      Inheritance allows a class to extend only <em>one superclass</em>, which limits flexibility and can lead to the “diamond problem” (ambiguity from multiple parents). 
+      Delegation, on the other hand, lets a class reuse functionality from multiple independent classes (interfaces) safely and clearly. 
+      <br><br></li>
+  </ul>
+
+  <hr>
+
+  <h3>2. Delegation in Kotlin</h3>
+  <p>
+    Delegation is when one class “hands off” part of its responsibilities to another class (delegate). In Kotlin, this works with interfaces and properties using the <code>by</code> keyword.
+  </p>
+
+  <h4>2.1 Interface Delegation (Airplane Example)</h4>
+  <p>
+    Suppose you have interfaces for flying and moving. You can implement those behaviors once and reuse via delegation.
+  </p>
+
+  <h2>Delegation Example: Airplane System</h2>
+
+  <p>
+    In this example, the <code>Airplane</code> class delegates its behaviors — flying and moving — 
+    to two separate systems: <code>Flyable</code> and <code>Movable</code>. 
+    Kotlin’s <code>by</code> keyword makes delegation easy and eliminates the need for redundant boilerplate code.
+  </p>
+
+  <pre><code>
+// Define interfaces representing behaviors
+interface Flyable {
+    fun fly(): String
+}
+
+interface Movable {
+    fun move(): String
+}
+
+// JetFlySystem provides the actual implementation for flying
+class JetFlySystem : Flyable {
+    override fun fly() = "Jet-style takeoff and high speed ascent"
+}
+
+// TurbofanPropulsion provides implementation for ground and air movement
+class TurbofanPropulsion : Movable {
+    override fun move() = "Turbofan propulsion: taxi, accelerate, lift-off"
+}
+
+// Airplane delegates both Flyable and Movable interfaces to respective systems
+class Airplane(
+    private val flySystem: Flyable,       // delegate object for flying behavior
+    private val propulsion: Movable       // delegate object for movement behavior
+) : Flyable by flySystem,                 // Kotlin automatically forwards Flyable calls to flySystem
+    Movable by propulsion {               // and Movable calls to propulsion
+    // No need to implement fly() or move() manually — compiler does it for you!
+}
+
+fun main() {
+    val plane = Airplane(JetFlySystem(), TurbofanPropulsion())
+    
+    // These calls are automatically delegated to their respective systems
+    println(plane.fly())   // delegates to JetFlySystem.fly()
+    println(plane.move())  // delegates to TurbofanPropulsion.move()
+}
+  </code></pre>
+
+  <h3>Output:</h3>
+  <pre><code>
+Jet-style takeoff and high speed ascent
+Turbofan propulsion: taxi, accelerate, lift-off
+  </code></pre>
+
+  <h3>Explanation</h3>
+  <ul>
+    <li><strong>Delegation Concept:</strong> Kotlin allows a class to delegate interface implementation to another object using the <code>by</code> keyword.</li>
+    <li><strong>Composition Over Inheritance:</strong> Instead of inheriting behavior, <code>Airplane</code> <em>composes</em> behavior by combining different components (<code>Flyable</code> and <code>Movable</code>).</li>
+    <li><strong>Automatic Method Forwarding:</strong> Kotlin generates all forwarding methods internally — 
+        for example, <code>fly()</code> calls are redirected to <code>flySystem.fly()</code> and <code>move()</code> calls to <code>propulsion.move()</code>.</li>
+    <li><strong>Flexibility:</strong> You can easily change how the airplane behaves by passing different implementations of <code>Flyable</code> or <code>Movable</code>.</li>
+  </ul>
+
+  <h3>Notes</h3>
+  <ul>
+    <li><strong>Delegation works only with interfaces</strong> — you cannot delegate to concrete classes directly.</li>
+    <li><strong>Overrides are still possible:</strong> Even if you delegate, you can override specific methods inside the class to customize behavior.</li>
+    <li><strong>Cleaner Code:</strong> The <code>by</code> keyword removes the need to manually write boilerplate like <code>override fun fly() = flySystem.fly()</code>.</li>
+    <li><strong>Under the hood:</strong> Kotlin stores the delegate object as a property and automatically generates all interface methods that forward calls to it.</li>
+    <li><strong>Use Case:</strong> Ideal when different systems (like engines, controls, or navigation modules) handle distinct behaviors but should work together in one unified class.</li>
+  </ul>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Jet-style takeoff and high speed ascent
+Turbofan propulsion: taxi, accelerate, lift-off
+  </code></pre>
+
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li>Airplane implements both <code>Flyable</code> and <code>Movable</code> by delegating to the provided systems.</li>
+    <li>No need to manually override each method — the compiler generates forwarding code. :contentReference[oaicite:0]{index=0}</li>
+    <li>If you later want a glider with a different fly system but same aircraft logic, you can reuse without changing Airplane’s core logic.</li>
+  </ul>
+
+  <h4>2.2 Manual Delegation (Without `by` Keyword)</h4>
+  <p>Sometimes you want to add extra logic around delegation (e.g., logging or safety checks). You can do it manually:</p>
+
+  <pre><code>
+class AirplaneManual(
+    private val flySystem: Flyable,
+    private val propulsion: Movable
+) : Flyable, Movable {
+
+    override fun fly(): String {
+        println("Pre-flight check: systems OK")
+        val result = flySystem.fly()
+        println("Post-flight log: flight completed")
+        return result
+    }
+
+    override fun move(): String {
+        println("Taxi check, wheels down")
+        return propulsion.move()
+    }
+}
+
+fun main() {
+    val plane = AirplaneManual(JetFlySystem(), TurbofanPropulsion())
+    println(plane.fly())
+    println(plane.move())
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Pre-flight check: systems OK
+Jet-style takeoff and high speed ascent
+Post-flight log: flight completed
+Taxi check, wheels down
+Turbofan propulsion: taxi, accelerate, lift-off
+  </code></pre>
+
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li>You implement the interfaces yourself and forward calls manually (wrapping additional logic).</li>
+    <li>This gives you full control, at the cost of more boilerplate.</li>
+    <li>Using <code>by</code> offers brevity, but manual delegation offers extension points.</li>
+  </ul>
+
+  <hr>
+
+  <h3>3. Property Delegation (Airplane Systems Monitoring)</h3>
+  <p>
+    Delegation also applies to properties — you can delegate how a property’s getter or setter behaves. Imagine monitoring fuel level or landing gear status.
+  </p>
+
+  <pre><code>
+import kotlin.properties.Delegates
+
+class AircraftSystems {
+    var fuelLevel: Int by Delegates.observable(100) { prop, old, new ->
+        println("Fuel level changed from \$old% to \$new%")
+    }
+}
+
+fun main() {
+    val systems = AircraftSystems()
+    systems.fuelLevel = 90
+    systems.fuelLevel = 75
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Fuel level changed from 100% to 90%
+Fuel level changed from 90% to 75%
+  </code></pre>
+
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li>The property <code>fuelLevel</code> uses a delegate which runs monitoring logic whenever its value changes.</li>
+    <li>Useful for logging, validating, triggering system alerts when fuel drops below threshold.</li>
+  </ul>
+
+  <hr>
+
+  <h3>4. Object Declarations (Flight Control Manager)</h3>
+  <p>
+    In Kotlin, <code>object</code> declarations define a class and its single instance at once. This is perfect for single-point managers in aviation software.
+  </p>
+
+  <h4>4.1 Singleton Example</h4>
+  <pre><code>
+object FlightControlCenter {
+    init {
+        println("FlightControlCenter initialized – monitoring all flights")
+    }
+    fun registerFlight(flightId: String) {
+        println("Flight \$flightId registered")
+    }
+}
+
+fun main() {
+    FlightControlCenter.registerFlight("A123")
+    FlightControlCenter.registerFlight("B456")
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+FlightControlCenter initialized – monitoring all flights
+Flight A123 registered
+Flight B456 registered
+  </code></pre>
+
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li>The <code>object</code> keyword creates a thread-safe singleton named <code>FlightControlCenter</code>.</li>
+    <li>The <code>init</code> block executes only once—when the object is first accessed.</li>
+    <li>All subsequent calls reuse that single instance.</li>
+  </ul>
+
+  <h4>4.2 Anonymous Object (One-off Flight Handler)</h4>
+  <p>Sometimes you need a one‐time handler—like a temporary flight-monitor object.</p>
+  <pre><code>
+val tempHandler = object {
+    fun handleEmergency(flightId: String) {
+        println("Emergency handler for flight \$flightId activated")
+    }
+}
+
+fun main() {
+    tempHandler.handleEmergency("C789")
+}
+  </code></pre>
+
+  <p><strong>Use Case:</strong> Quick callbacks, event handlers in aviation simulation environments.</p>
+
+  <hr>
+
+  <h3>5. Real-World Use Cases (Aviation Context)</h3>
+  <ul>
+    <li><strong>Delegation:</strong> Aircraft class delegates lift and propulsion behavior to systems classes rather than inheriting from a monolithic aircraft superclass.</li>
+    <li><strong>Property Delegation:</strong> Monitoring aircraft status (fuel, speed, altitude) through observable or custom delegates.</li>
+    <li><strong>Object Declarations:</strong> Central management systems such as <code>FlightControlCenter</code>, <code>Logger</code>, <code>MaintenanceScheduler</code> implemented as singletons.</li>
+  </ul>
+
+  <hr>
+
+  <h3>6. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is delegation in Kotlin?</strong><br>
+        A design pattern where a class forwards part of its responsibilities to a delegate object (composition over inheritance). :contentReference[oaicite:1]{index=1}</li>
+
+    <li><strong>How does Kotlin’s <code>by</code> keyword simplify delegation?</strong><br>
+        It causes the compiler to generate forwarding methods automatically instead of writing boilerplate. :contentReference[oaicite:2]{index=2}</li>
+
+    <li><strong>Can you combine automatic delegation and manual overrides?</strong><br>
+        Yes — you can delegate most methods using <code>by</code> and override specific ones manually for customization. :contentReference[oaicite:3]{index=3}</li>
+
+    <li><strong>What is an object declaration in Kotlin?</strong><br>
+        It defines a class and its single instance simultaneously — a singleton. Useful for global managers. </li>
+
+    <li><strong>Are Kotlin singletons thread-safe by default?</strong><br>
+        Yes, the initialization of object declarations is thread-safe and happens lazily when first accessed.</li>
+  </ul>
+
+  <h3>7. Key Takeaways</h3>
+  <ul>
+    <li>Delegation promotes behavior reuse and cleaner architecture.</li>
+    <li>Use `by` keyword for interface and property delegation to reduce boilerplate.</li>
+    <li>Manual delegation is useful when you need extra control or custom logic.</li>
+    <li>Object declarations offer a straightforward singleton pattern with thread-safety.</li>
+    <li>Using these patterns in an aviation-inspired model (airplane systems, flight control) illustrates how real systems can be built modularly.</li>
+  </ul>
+</section>

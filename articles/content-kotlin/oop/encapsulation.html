@@ -1,0 +1,152 @@
+<section id="kotlin-encapsulation">
+  <h2>Encapsulation in Kotlin</h2>
+  <p>
+    Encapsulation is one of the four fundamental principles of Object-Oriented Programming (OOP). 
+    It means bundling data (variables) and methods (functions) that operate on that data within a single unit — a <strong>class</strong>. 
+    In Kotlin, encapsulation is achieved mainly using <strong>access modifiers</strong> such as <code>private</code>, <code>protected</code>, and <code>public</code>, 
+    which control visibility and safeguard the internal state of objects.
+  </p>
+
+  <h3>1. Why Encapsulation Matters</h3>
+  <ul>
+    <li><strong>Data Protection:</strong> Prevents external code from directly modifying sensitive data.</li>
+    <li><strong>Controlled Access:</strong> Provides controlled exposure through getters, setters, or methods.</li>
+    <li><strong>Modularity:</strong> Keeps related data and behavior together inside a class, improving maintainability.</li>
+    <li><strong>Code Safety:</strong> Prevents unintended side effects by hiding implementation details.</li>
+  </ul>
+
+  <h3>2. What is Encapsulation?</h3>
+  <p>
+    Encapsulation hides the internal implementation details of a class and exposes only what’s necessary through public interfaces.
+    This is often referred to as the <em>“black box”</em> concept — you can use the class without knowing how it works inside.
+  </p>
+  <pre><code>
+class BankAccount {
+    private var balance: Double = 0.0   // Hidden from outside
+
+    fun deposit(amount: Double) {
+        if (amount > 0) balance += amount
+    }
+
+    fun withdraw(amount: Double) {
+        if (amount <= balance) balance -= amount
+        else println("Insufficient balance")
+    }
+
+    fun getBalance(): Double = balance  // Controlled access
+}
+
+fun main() {
+    val account = BankAccount()
+    account.deposit(500.0)
+    account.withdraw(100.0)
+    println("Current Balance: ${account.getBalance()}")
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Current Balance: 400.0
+  </code></pre>
+
+  <h3>3. How Encapsulation Works in Kotlin</h3>
+  <ul>
+    <li><strong>Access Modifiers:</strong>
+      <ul>
+        <li><code>private</code> – Visible only inside the same class.</li>
+        <li><code>protected</code> – Visible in the class and its subclasses.</li>
+        <li><code>internal</code> – Visible within the same module.</li>
+        <li><code>public</code> – Visible everywhere (default modifier).</li>
+      </ul>
+    </li>
+    <li><strong>Getters and Setters:</strong> In Kotlin, properties automatically generate getter and setter methods.
+      You can customize them to add validation logic.
+    </li>
+  </ul>
+
+  <h4>3.1 Example: Custom Getters and Setters</h4>
+  <pre><code>
+class Pilot {
+    var name: String = "Unknown"
+        private set  // Restrict modification from outside
+
+    var experienceYears: Int = 0
+        set(value) {
+            if (value >= 0) field = value
+            else println("Experience cannot be negative!")
+        }
+
+    fun assignName(newName: String) {
+        if (newName.isNotBlank()) name = newName
+    }
+}
+
+fun main() {
+    val pilot = Pilot()
+    pilot.assignName("Amelia Earhart")
+    pilot.experienceYears = 5
+    println("${pilot.name} has ${pilot.experienceYears} years of experience.")
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Amelia Earhart has 5 years of experience.
+  </code></pre>
+
+  <h3>4. How to Implement Encapsulation Manually (without Kotlin’s property syntax)</h3>
+  <p>
+    You can also implement encapsulation manually using private variables and explicit getter/setter functions, similar to Java-style:
+  </p>
+  <pre><code>
+class Airplane {
+    private var altitude: Int = 0
+
+    fun setAltitude(value: Int) {
+        if (value >= 0) altitude = value
+    }
+
+    fun getAltitude(): Int {
+        return altitude
+    }
+}
+
+fun main() {
+    val plane = Airplane()
+    plane.setAltitude(3000)
+    println("Current altitude: ${plane.getAltitude()} ft")
+}
+  </code></pre>
+
+  <h3>5. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is encapsulation?</strong> <br>
+        It’s the bundling of data and behavior in a class while restricting direct access to internal details.</li>
+
+    <li><strong>How does Kotlin support encapsulation?</strong> <br>
+        Through access modifiers and property accessors (getters/setters).</li>
+
+    <li><strong>Can we override a getter or setter in Kotlin?</strong> <br>
+        Yes, you can define custom logic inside them to validate or transform data.</li>
+
+    <li><strong>What happens if you make a property <code>private</code>?</strong> <br>
+        It becomes inaccessible outside the class, ensuring data safety.</li>
+
+    <li><strong>Difference between encapsulation and abstraction?</strong> <br>
+        Encapsulation hides implementation and restricts access; abstraction hides complexity by showing only relevant details.</li>
+
+            <li><strong>What is a module in Kotlin?</strong> <br>
+        A module is a set of Kotlin files compiled together as a unit. 
+        <ul>
+            <li>Files in the same module can access each other’s <code>internal</code> members.</li>
+            <li>Files in different modules cannot access <code>internal</code> members of other modules, even if they are in the same project.</li>
+        </ul>
+    </li>
+  </ul>
+
+  <h3>6. Key Takeaways</h3>
+  <ul>
+    <li>Encapsulation improves security, readability, and maintainability.</li>
+    <li>Use <code>private</code> variables and <code>public</code> functions for controlled access.</li>
+    <li>Custom getters and setters are powerful for data validation.</li>
+    <li>Encapsulation ensures that changes inside a class don’t affect other parts of the program.</li>
+  </ul>
+</section>

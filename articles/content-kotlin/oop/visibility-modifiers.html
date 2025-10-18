@@ -1,0 +1,105 @@
+<section id="kotlin-visibility-modifiers">
+  <h2>Visibility Modifiers in Kotlin</h2>
+  <p>
+    Visibility modifiers in Kotlin determine the accessibility of classes, objects, interfaces, constructors, functions, and properties. 
+    They control which parts of code can access a particular declaration, helping enforce encapsulation and clean architecture.
+  </p>
+
+  <h3>1. Why Visibility Modifiers Matter</h3>
+  <ul>
+    <li><strong>Data Safety:</strong> Prevent unintended access or modification of variables and methods.</li>
+    <li><strong>Code Organization:</strong> Clearly define which parts of your code are public APIs and which are internal implementation details.</li>
+    <li><strong>Encapsulation:</strong> Keep the internal state hidden, exposing only what’s necessary.</li>
+    <li><strong>Maintainability:</strong> Restricting access reduces the chance of breaking code in other modules or classes.</li>
+  </ul>
+
+  <h3>2. Types of Visibility Modifiers</h3>
+  <ul>
+    <li><strong>public</strong> – Default visibility. Accessible from anywhere.</li>
+    <li><strong>private</strong> – Accessible only within the same class (or file for top-level declarations).</li>
+    <li><strong>protected</strong> – Accessible within the class and its subclasses.</li>
+    <li><strong>internal</strong> – Accessible within the same module.</li>
+  </ul>
+
+  <h3>3. How Visibility Modifiers Work</h3>
+  <p>Let’s see examples of each modifier in a Kotlin class:</p>
+  <pre><code>
+class Airplane(private val name: String, internal var maxAltitude: Int) {
+
+    private fun checkSystems() {
+        println("Checking all systems for $name")
+    }
+
+    protected fun takeOff() {
+        println("$name is taking off")
+    }
+
+    internal fun refuel() {
+        println("$name is refueling")
+    }
+
+    fun status() {
+        println("Airplane $name, max altitude $maxAltitude")
+        checkSystems()  // private function accessible inside class
+    }
+}
+
+class Jet : Airplane("JetOne", 40000) {
+    fun jetTakeOff() {
+        takeOff()  // protected function accessible in subclass
+        // checkSystems()  -> Not accessible, private in parent class
+        refuel()    // internal function accessible in same module
+    }
+}
+
+fun main() {
+    val plane = Airplane("Boeing", 35000)
+    plane.status()     // Accessible
+    // plane.checkSystems()  -> Not accessible, private
+    // plane.takeOff()      -> Not accessible, protected
+    plane.refuel()     // Accessible if in same module
+}
+  </code></pre>
+
+  <h4>3.1 Notes on Each Modifier</h4>
+  <ul>
+    <li><strong>public:</strong> No restrictions, can be used anywhere.</li>
+    <li><strong>private:</strong> Safeguards internal details; can be applied to class members or top-level declarations (file-level).</li>
+    <li><strong>protected:</strong> Only makes sense in classes; not allowed for top-level declarations.</li>
+    <li><strong>internal:</strong> Useful for library code or multi-module projects; keeps APIs usable within the same module but hidden outside.</li>
+  </ul>
+
+  <h3>4. Practical Use Cases</h3>
+  <ul>
+    <li>Mark sensitive data like passwords or API keys as <code>private</code>.</li>
+    <li>Expose methods for controlled access as <code>public</code> or <code>internal</code>.</li>
+    <li>Use <code>protected</code> for methods meant to be extended by subclasses.</li>
+    <li>Use <code>internal</code> for library helpers that shouldn't be exposed outside the module.</li>
+  </ul>
+
+  <h3>5. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What are the visibility modifiers in Kotlin?</strong> <br>
+        public, private, protected, internal.</li>
+
+    <li><strong>What is the default visibility of a class or function in Kotlin?</strong> <br>
+        public.</li>
+
+    <li><strong>Can top-level functions be protected?</strong> <br>
+        No, protected is only for classes and their members.</li>
+
+    <li><strong>What is the difference between private and internal?</strong> <br>
+        private restricts access to the class or file, internal restricts access to the module.</li>
+
+    <li><strong>Why use internal modifier?</strong> <br>
+        To allow access within the same module but hide it from other modules, useful for libraries or multi-module projects.</li>
+  </ul>
+
+  <h3>6. Key Takeaways</h3>
+  <ul>
+    <li>Visibility modifiers enforce encapsulation and prevent unintended access.</li>
+    <li>Choose modifiers based on whether the member should be public, restricted to class, subclass, or module.</li>
+    <li>Proper use of visibility modifiers improves maintainability, readability, and safety of code.</li>
+    <li>Kotlin’s <code>internal</code> modifier is unique compared to Java and helps in multi-module project design.</li>
+  </ul>
+</section>

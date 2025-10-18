@@ -1,0 +1,180 @@
+<section id="kotlin-interfaces-default-methods">
+  <h2>Interfaces & Default Methods in Kotlin</h2>
+  <p>
+    Interfaces in Kotlin define a contract for classes, specifying functions and properties that must be implemented. 
+    Unlike Java 7, Kotlin interfaces can also provide default implementations, allowing behavior reuse without requiring inheritance.
+  </p>
+
+  <h3>1. Why Interfaces & Default Methods Matter</h3>
+  <ul>
+    <li><strong>Behavior abstraction:</strong> Define capabilities that multiple classes can implement, regardless of their position in the class hierarchy.</li>
+    <li><strong>Code reuse:</strong> Default methods allow sharing common behavior across multiple classes without duplication.</li>
+    <li><strong>Multiple behavior inheritance:</strong> Classes can implement multiple interfaces safely, avoiding the diamond problem seen in multiple class inheritance.</li>
+    <li><strong>Decoupling:</strong> Interfaces allow classes to depend on abstract behavior rather than concrete implementations.</li>
+  </ul>
+
+  <h3>2. What is an Interface?</h3>
+  <p>
+    An interface is a collection of abstract methods and properties that a class must implement. 
+    It defines <em>what</em> a class should do, not <em>how</em>.
+  </p>
+
+  <h4>2.1 Basic Interface Example</h4>
+  <pre><code>
+interface Flyable {
+    fun fly()
+}
+
+class Bird : Flyable {
+override fun fly() {
+println("Bird is flying")
+}
+}
+
+fun main() {
+val bird = Bird()
+bird.fly()
+} </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Bird is flying
+  </code></pre>
+
+  <h3>3. Default Methods in Interfaces</h3>
+  <p>
+    Kotlin allows you to provide a default implementation in an interface. 
+    Classes implementing the interface can reuse it or override it if needed.
+  </p>
+
+  <h4>3.1 Example: Default Method</h4>
+  <pre><code>
+interface Movable {
+    fun move() {
+        println("Moving by default behavior")
+    }
+}
+
+class Car : Movable {
+// Reuses default implementation
+}
+
+class Bike : Movable {
+override fun move() {
+println("Bike moves differently")
+}
+}
+
+fun main() {
+val car = Car()
+val bike = Bike()
+car.move()   // Uses default method
+bike.move()  // Uses overridden method
+} </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Moving by default behavior
+Bike moves differently
+  </code></pre>
+
+  <h3>4. Difference Between Interface Default Methods and Class Methods</h3>
+  <ul>
+    <li><strong>Interface default method:</strong> Provides behavior only, cannot store state (no backing fields).</li>
+    <li><strong>Class method:</strong> Can access class properties and store state.</li>
+  </ul>
+  <pre><code>
+interface Flyer {
+    val speed: Int
+        get() = 100  // Computed property
+}
+
+class Jet : Flyer {
+// Uses speed = 100 from interface getter
+} </code></pre>
+
+  <h3>5. Multiple Interfaces & Conflict Resolution (Diamond Problem)</h3>
+  <p>
+    A class can implement multiple interfaces. If two interfaces have methods with the same signature, Kotlin requires you to override the method and resolve the conflict explicitly.
+  </p>
+  <pre><code>
+interface Flyer {
+    fun action() = println("Flying")
+}
+
+interface Mover {
+fun action() = println("Moving")
+}
+
+class Drone : Flyer, Mover {
+override fun action() {
+super<Flyer>.action()  // Call Flyer’s version
+super<Mover>.action()  // Call Mover’s version
+println("Drone executes both actions")
+}
+}
+
+fun main() {
+val drone = Drone()
+drone.action()
+} </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Flying
+Moving
+Drone executes both actions
+  </code></pre>
+
+  <h3>6. Summary Table</h3>
+  <table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+      <th>Concept</th>
+      <th>Interface Default Method</th>
+      <th>Class Method</th>
+    </tr>
+    <tr>
+      <td>Can provide behavior</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Can store state (backing field)</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Mandatory override</td>
+      <td>Optional</td>
+      <td>Optional (open/abstract)</td>
+    </tr>
+    <tr>
+      <td>Multiple inheritance safe?</td>
+      <td>(explicit override needed if conflict)</td>
+      <td>(diamond problem)</td>
+    </tr>
+  </table>
+
+  <h3>7. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is an interface in Kotlin?</strong> <br>
+        A contract that defines methods and properties a class must implement, optionally providing default implementations.</li>
+    <li><strong>Can interfaces have state in Kotlin?</strong> <br>
+        No, interfaces cannot have backing fields, but they can define properties with custom getters.</li>
+    <li><strong>What are default methods?</strong> <br>
+        Methods in interfaces with a pre-defined implementation that implementing classes can reuse or override.</li>
+    <li><strong>How does Kotlin handle multiple interfaces with same method signatures?</strong> <br>
+        You must explicitly override the method and use <code>super&lt;InterfaceName&gt;.method()</code> to resolve conflicts.</li>
+    <li><strong>Why use interfaces instead of abstract classes?</strong> <br>
+        Interfaces allow multiple behavior inheritance and are more flexible for decoupling code.</li>
+  </ul>
+
+  <h3>8. Key Takeaways</h3>
+  <ul>
+    <li>Interfaces define a contract for behavior and can have default methods for code reuse.</li>
+    <li>Kotlin supports multiple interfaces safely, resolving conflicts explicitly.</li>
+    <li>Use interfaces to design flexible, decoupled, and reusable components.</li>
+    <li>Default methods reduce code duplication while still allowing overriding when needed.</li>
+    <li>Understand the difference between interface default methods (behavior only) and class methods (can have state).</li>
+  </ul>
+</section>

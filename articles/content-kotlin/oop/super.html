@@ -1,0 +1,103 @@
+<section id="kotlin-super-keyword">
+  <h2>Calling Superclass / <code>super</code> Keyword in Kotlin</h2>
+  <p>
+    In Kotlin, the <code>super</code> keyword allows a subclass to access properties or methods from its parent class. 
+    This is particularly useful when you override a method or property but still want to retain some behavior from the superclass.
+  </p>
+
+  <h3>1. Why the <code>super</code> Keyword Matters</h3>
+  <ul>
+    <li><strong>Access Parent Behavior:</strong> Allows the subclass to use methods or properties of the superclass.</li>
+    <li><strong>Partial Override:</strong> Enables overriding a method while still incorporating the original logic.</li>
+    <li><strong>Maintain Code Reuse:</strong> Avoids rewriting parent logic in the subclass.</li>
+  </ul>
+
+  <h3>2. Basic Usage</h3>
+  <p>You can call a parent method using <code>super.methodName()</code>:</p>
+  <pre><code>
+open class Aircraft {
+    open fun startEngine() {
+        println("Engine started in parent Aircraft")
+    }
+}
+
+class Jet : Aircraft() {
+    override fun startEngine() {
+        super.startEngine()  // Call parent method
+        println("Additional engine checks in Jet")
+    }
+}
+
+fun main() {
+    val jet = Jet()
+    jet.startEngine()
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Engine started in parent Aircraft
+Additional engine checks in Jet
+  </code></pre>
+
+  <h3>3. Accessing Parent Properties</h3>
+  <p>You can also use <code>super</code> to access parent properties when overridden in a subclass:</p>
+  <pre><code>
+open class Aircraft(open val type: String = "Generic") 
+
+class Jet : Aircraft("Jet") {
+    override val type: String = "Fighter Jet"
+
+    fun showTypes() {
+        println("Parent type: ${super.type}")  // Parent property
+        println("Child type: $type")           // Overridden property
+    }
+}
+
+fun main() {
+    val jet = Jet()
+    jet.showTypes()
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Parent type: Generic
+Child type: Fighter Jet
+  </code></pre>
+
+  <h3>4. Using <code>super</code> with Constructors</h3>
+  <p>When a subclass inherits from a parent class with a primary constructor, <code>super</code> is used implicitly or explicitly to call the parent constructor:</p>
+  <pre><code>
+open class Aircraft(val model: String)
+
+class Jet(model: String, val maxSpeed: Int) : Aircraft(model)  // Calls parent constructor
+
+fun main() {
+    val jet = Jet("F-16", 1500)
+    println("Model: ${jet.model}, Max Speed: ${jet.maxSpeed}")
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Model: F-16, Max Speed: 1500
+  </code></pre>
+
+  <h3>5. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is <code>super</code> in Kotlin?</strong> <br>
+        It refers to the parent class and allows access to overridden properties and methods.</li>
+    <li><strong>Can <code>super</code> be used to call constructors?</strong> <br>
+        Yes, when a subclass extends a parent class with a primary constructor, it uses <code>super</code> implicitly or explicitly.</li>
+    <li><strong>Why use <code>super</code> in overridden methods?</strong> <br>
+        To retain and reuse the behavior of the parent class while adding new functionality in the subclass.</li>
+    <li><strong>What happens if you don’t use <code>super</code>?</strong> <br>
+        The parent method or property will not be invoked; only the subclass implementation executes.</li>
+  </ul>
+
+  <h3>6. Key Takeaways</h3>
+  <ul>
+    <li><code>super</code> provides access to parent properties and methods.</li>
+    <li>It is useful for partially overriding behavior while keeping the original logic.</li>
+    <li>Helps in constructor chaining to initialize parent classes properly.</li>
+    <li>Using <code>super</code> ensures proper reuse and avoids code duplication.</li>
+  </ul>
+</section>
