@@ -1,0 +1,183 @@
+<section id="kotlin-jvmstatic-java-interop">
+  <h2>@JvmStatic & Java Interop</h2>
+
+  <p>
+    Kotlin is designed to be fully <strong>interoperable with Java</strong>. This means that Kotlin code can call Java code,
+    and Java code can call Kotlin code seamlessly — both can coexist within the same project.
+    However, because Kotlin doesn’t use the <code>static</code> keyword like Java, some adjustments are needed
+    to make Kotlin classes behave predictably when used from Java. 
+    That’s where <strong>@JvmStatic</strong> and other JVM annotations come into play.
+  </p>
+
+  <h3>Understanding Java Interoperability</h3>
+  <p>
+    When Kotlin code is compiled, it runs on the Java Virtual Machine (JVM). 
+    Therefore, every Kotlin class, function, and property is compiled into bytecode
+    that Java can understand. This makes Kotlin and Java <em>mutually compatible</em> in mixed-language projects.
+  </p>
+
+  <h4>Example: Calling Kotlin Code from Java</h4>
+  <pre><code class="language-kotlin">
+// Kotlin file: Utils.kt
+class Utils {
+    companion object {
+        fun greet(name: String) = "Hello, $name!"
+    }
+}
+  </code></pre>
+
+  <pre><code class="language-java">
+// Java file: Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Java way of calling companion object function
+        System.out.println(Utils.Companion.greet("Talha"));
+    }
+}
+  </code></pre>
+
+  <p>
+    Notice how in Java, we need to call <code>Utils.Companion.greet()</code> because Java 
+    doesn’t automatically recognize Kotlin’s companion object members as static methods.
+    This is where <strong>@JvmStatic</strong> becomes useful.
+  </p>
+
+  <h3>What is @JvmStatic?</h3>
+  <p>
+    The <strong>@JvmStatic</strong> annotation tells the Kotlin compiler to generate a 
+    <code>static</code> method in the compiled bytecode, making it accessible directly
+    from Java without needing to reference <code>Companion</code> or the enclosing object.
+  </p>
+
+  <h4>Example: Using @JvmStatic</h4>
+  <pre><code class="language-kotlin">
+class Utils {
+    companion object {
+        @JvmStatic
+        fun greet(name: String) = "Hello, $name!"
+    }
+}
+  </code></pre>
+
+  <pre><code class="language-java">
+// Java file: Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Now can be accessed directly — simpler!
+        System.out.println(Utils.greet("Talha"));
+    }
+}
+  </code></pre>
+
+  <p>
+    Thanks to <code>@JvmStatic</code>, the function behaves like a static method from the Java side,
+    even though Kotlin internally doesn’t use the <code>static</code> keyword.
+  </p>
+
+  <h3>When to Use @JvmStatic</h3>
+  <ul>
+    <li>When you want Java code to access companion object members like <code>static</code> methods.</li>
+    <li>When exposing utility methods or constants to Java clients.</li>
+    <li>When working on mixed Kotlin-Java projects and you need clean Java-style access syntax.</li>
+  </ul>
+
+  <h4>Example with Properties</h4>
+  <pre><code class="language-kotlin">
+class Config {
+    companion object {
+        @JvmStatic
+        val version = "1.0"
+
+        @JvmStatic
+        fun showVersion() = println("App Version: $version")
+    }
+}
+  </code></pre>
+
+  <pre><code class="language-java">
+// Java code
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Config.getVersion());
+        Config.showVersion();
+    }
+}
+  </code></pre>
+
+  <p>
+    Without <code>@JvmStatic</code>, Java would need to access these through 
+    <code>Config.Companion.getVersion()</code> or <code>Config.Companion.showVersion()</code>.
+  </p>
+
+  <h3>@JvmStatic vs @JvmField vs @JvmOverloads</h3>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Annotation</th>
+        <th>Purpose</th>
+        <th>Usage Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>@JvmStatic</code></td>
+        <td>Makes a function or property static in bytecode for Java access.</td>
+        <td><code>@JvmStatic fun greet()</code></td>
+      </tr>
+      <tr>
+        <td><code>@JvmField</code></td>
+        <td>Exposes a Kotlin property as a public Java field (no getters/setters).</td>
+        <td><code>@JvmField val id = 10</code></td>
+      </tr>
+      <tr>
+        <td><code>@JvmOverloads</code></td>
+        <td>Generates overloaded methods for functions with default parameters.</td>
+        <td><code>@JvmOverloads fun show(msg: String = "Hi")</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Java Calling Kotlin Companion Object – Without & With @JvmStatic</h3>
+  <pre><code class="language-kotlin">
+// Without @JvmStatic
+class Helper {
+    companion object {
+        fun sayHi() = "Hi from Kotlin!"
+    }
+}
+
+// With @JvmStatic
+class StaticHelper {
+    companion object {
+        @JvmStatic
+        fun sayHi() = "Hi from Static Kotlin!"
+    }
+}
+  </code></pre>
+
+  <pre><code class="language-java">
+// Java code
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Helper.Companion.sayHi());     // Needs Companion
+        System.out.println(StaticHelper.sayHi());          // Direct call (cleaner)
+    }
+}
+  </code></pre>
+
+  <h3>Key Takeaways</h3>
+  <ul>
+    <li>Kotlin and Java are fully interoperable — you can mix both in the same project.</li>
+    <li>Use <code>@JvmStatic</code> when you want Java to call Kotlin methods like traditional static ones.</li>
+    <li>Kotlin’s companion objects act like singletons but can mimic static behavior for Java using annotations.</li>
+    <li>Other JVM annotations like <code>@JvmField</code> and <code>@JvmOverloads</code> improve Java compatibility further.</li>
+  </ul>
+
+  <h3>Conclusion</h3>
+  <p>
+    The <strong>@JvmStatic</strong> annotation bridges the small gap between Kotlin’s modern object-oriented design 
+    and Java’s traditional static model. It ensures that Kotlin classes remain easy to use from Java 
+    without sacrificing Kotlin’s expressive and safe design. Understanding these interop features 
+    is essential when maintaining or migrating mixed Kotlin-Java codebases.
+  </p>
+</section>
