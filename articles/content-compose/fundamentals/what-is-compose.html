@@ -1,0 +1,134 @@
+<section id="what-is-compose">
+  <h2>What is Jetpack Compose?</h2>
+  <p>
+    <strong>Jetpack Compose</strong> is a modern toolkit for building native Android user interfaces (UI) using a declarative programming model. 
+    Instead of writing XML layouts, Compose allows developers to describe their UI using Kotlin code — making UI development faster, easier to maintain, and more intuitive.
+  </p>
+
+  <h3>Why Jetpack Compose?</h3>
+  <p>
+    Traditionally, Android UIs were built using XML and imperative code to update the UI, which often led to complex and error-prone structures. 
+    Jetpack Compose revolutionizes this process by offering a <em>declarative approach</em> — you describe <em>what</em> the UI should look like for a given state, and Compose takes care of updating it automatically when that state changes.
+  </p>
+
+  <h3>Declarative vs. Imperative UI</h3>
+  <p>
+    In the imperative approach (used in XML-based layouts), developers manually change the UI elements when data changes. 
+    In contrast, Compose’s declarative model automatically reacts to data updates and recomposes the affected UI parts. 
+    This leads to cleaner, more predictable, and reactive UI behavior.
+  </p>
+
+  <h3>Core Principles of Jetpack Compose</h3>
+  <ul>
+    <li><strong>Declarative UI:</strong> Define your UI by describing its state, not by manipulating views.</li>
+    <li><strong>Kotlin-based:</strong> Entirely written in Kotlin, leveraging its features like lambdas, extension functions, and type safety.</li>
+    <li><strong>State-driven:</strong> The UI automatically updates when the underlying data (state) changes.</li>
+    <li><strong>Composability:</strong> Small reusable UI elements, called <code>@Composable</code> functions, can be combined to build complex interfaces.</li>
+    <li><strong>Integration:</strong> Works seamlessly with existing View-based UI and Jetpack libraries like ViewModel, LiveData, and Navigation.</li>
+  </ul>
+
+  <h3>Composable Functions</h3>
+  <p>
+    The building blocks of Jetpack Compose are <strong>Composable functions</strong>. 
+    A composable function is annotated with <code>@Composable</code> and is used to define a piece of UI. 
+    For example:
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello, $name!")
+}
+  </code></pre>
+
+  <p>
+    Here, <code>Greeting()</code> is a composable that renders a text element. 
+    Composables can call other composables, creating a hierarchy of UI components.
+  </p>
+
+  <h3>Recomposition</h3>
+  <p>
+    When the state changes, Jetpack Compose automatically re-executes the relevant composables to update the UI. 
+    This process is known as <strong>Recomposition</strong>. 
+    Developers don’t need to worry about manually updating the views — Compose ensures the UI always reflects the current state.
+  </p>
+
+  <h3>State Management</h3>
+  <p>
+    State is central to Jetpack Compose. Using tools like <code>remember</code>, <code>mutableStateOf()</code>, or external state holders like 
+    <code>ViewModel</code> and <code>StateFlow</code>, Compose observes and reacts to data changes.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+
+    Column {
+        Text(text = "Clicked $count times")
+        Button(onClick = { count++ }) {
+            Text("Click me")
+        }
+    }
+}
+  </code></pre>
+
+  <h3>Advantages of Jetpack Compose</h3>
+  <ul>
+    <li><strong>Less boilerplate code:</strong> No need for XML layouts or findViewById calls.</li>
+    <li><strong>Faster iteration:</strong> With tools like Live Preview and Hot Reload, UI updates are visible instantly.</li>
+    <li><strong>Reusable components:</strong> Composables can be reused and parameterized easily.</li>
+    <li><strong>Seamless integration:</strong> Works with existing Android architecture and libraries.</li>
+    <li><strong>Better performance:</strong> Compose optimizes recomposition intelligently for efficient rendering.</li>
+  </ul>
+
+  <h3>Example: Combining Composables</h3>
+  <pre><code class="language-kotlin">
+@Composable
+fun UserCard(name: String, onFollowClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Person,
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = name, style = MaterialTheme.typography.titleMedium)
+        Spacer(modifier = Modifier.weight(1f))
+        Button(onClick = onFollowClick) {
+            Text("Follow")
+        }
+    }
+}
+  </code></pre>
+
+  <p>
+    Here, multiple composables like <code>Row</code>, <code>Text</code>, and <code>Button</code> are combined to create a functional UI component.
+  </p>
+
+  <h3>Integration with XML-based UI</h3>
+  <p>
+    Jetpack Compose can coexist with XML-based UI. You can embed a composable inside an XML layout using <code>ComposeView</code> or 
+    include traditional views inside Compose using <code>AndroidView</code>.
+  </p>
+
+  <pre><code class="language-kotlin">
+setContent {
+    AndroidView(factory = { context ->
+        TextView(context).apply { text = "This is an XML View inside Compose!" }
+    })
+}
+  </code></pre>
+
+  <h3>Conclusion</h3>
+  <p>
+    Jetpack Compose represents a significant shift in Android UI development. 
+    Its declarative, Kotlin-first approach simplifies the creation of dynamic and reactive UIs. 
+    With Compose, developers can write less code, build more scalable applications, and maintain a clean architecture that naturally fits with modern Android development practices.
+  </p>
+</section>
