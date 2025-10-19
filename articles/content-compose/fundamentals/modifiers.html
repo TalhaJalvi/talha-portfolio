@@ -1,0 +1,174 @@
+<section id="compose-modifiers">
+  <h2>Modifiers & Chaining in Jetpack Compose</h2>
+
+  <p>
+    In Jetpack Compose, <strong>Modifiers</strong> are one of the most powerful tools 
+    that allow you to adjust how composables look, behave, and interact with each other.  
+    They are the Compose equivalent of XML attributes — but much more flexible and composable.
+  </p>
+
+  <h3>1. What Are Modifiers?</h3>
+  <p>
+    A <code>Modifier</code> is an immutable object that you attach to a composable 
+    to describe how it should be measured, laid out, drawn, or respond to user input.
+    You can think of modifiers as a chain of UI transformations applied to a composable.
+  </p>
+
+  <pre><code class="language-kotlin">
+Text(
+    text = "Hello Compose!",
+    modifier = Modifier
+        .padding(16.dp)
+        .background(Color.Yellow)
+        .fillMaxWidth()
+        .clickable { println("Clicked!") }
+)
+  </code></pre>
+
+  <p>
+    Here, each modifier adjusts the UI element — applying spacing, color, layout sizing, 
+    and click behavior. The order of modifiers <strong>matters</strong> 
+    because they are applied sequentially.
+  </p>
+
+  <h3>2. Why Modifiers Exist</h3>
+  <p>
+    In traditional Android XML, UI attributes were tied to specific widgets.  
+    In Compose, however, the goal is to make layout and styling behavior reusable and composable.
+    Modifiers separate <em>what a composable does</em> from <em>how it looks or behaves</em>.
+  </p>
+
+  <h3>3. Modifier Basics</h3>
+  <ul>
+    <li><code>Modifier</code> is defined as a Kotlin <code>interface</code>.</li>
+    <li>It’s <strong>immutable</strong> — creating a new Modifier every time you chain one.</li>
+    <li>Modifiers can be composed using <code>then()</code> or the <code>.</code> chaining syntax.</li>
+  </ul>
+
+  <h3>4. Commonly Used Modifiers</h3>
+
+  <ul>
+    <li><code>padding()</code> – Adds inner space around content.</li>
+    <li><code>background()</code> – Draws a colored background behind a composable.</li>
+    <li><code>fillMaxWidth()</code>, <code>fillMaxHeight()</code> – Expands composable to available space.</li>
+    <li><code>size()</code> / <code>width()</code> / <code>height()</code> – Sets specific dimensions.</li>
+    <li><code>border()</code> – Draws a border around the composable.</li>
+    <li><code>clip()</code> – Clips composable content to a shape (e.g., CircleShape).</li>
+    <li><code>clickable()</code> – Makes composable respond to click gestures.</li>
+    <li><code>alpha()</code> – Adjusts transparency level.</li>
+    <li><code>offset()</code> – Moves composable by specified x/y distances.</li>
+  </ul>
+
+  <h3>5. Modifier Order Matters</h3>
+  <p>
+    The order in which you apply modifiers affects the final result.  
+    Modifiers are evaluated <strong>top to bottom</strong> in your chain.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Example 1
+Box(
+    modifier = Modifier
+        .background(Color.Red)
+        .padding(16.dp)
+)
+
+// Example 2
+Box(
+    modifier = Modifier
+        .padding(16.dp)
+        .background(Color.Red)
+)
+  </code></pre>
+
+  <p>
+    In Example 1, the padding applies inside the red background,  
+    while in Example 2, the red background covers the padded area — producing different visuals.
+  </p>
+
+  <h3>6. Modifier Chain Concept</h3>
+  <p>
+    Modifiers are applied as a chain of transformations — each returning a new Modifier.  
+    Internally, Compose uses <code>then()</code> to combine them:
+  </p>
+
+  <pre><code class="language-kotlin">
+Modifier.padding(8.dp).background(Color.Blue)
+// Equivalent to:
+Modifier.padding(8.dp).then(Modifier.background(Color.Blue))
+  </code></pre>
+
+  <p>
+    This design enables modifier reuse and composition.
+  </p>
+
+  <h3>7. Custom Modifiers</h3>
+  <p>
+    You can create your own modifiers using the <code>Modifier.composed()</code> function.  
+    This is useful when you want reusable UI behavior.
+  </p>
+
+  <pre><code class="language-kotlin">
+fun Modifier.shadowedClickable(onClick: () -> Unit): Modifier = composed {
+    this
+        .shadow(4.dp, RoundedCornerShape(12.dp))
+        .clip(RoundedCornerShape(12.dp))
+        .background(Color.White)
+        .clickable(onClick = onClick)
+}
+  </code></pre>
+
+  <p>
+    Custom modifiers make your UI code more declarative and reusable.
+  </p>
+
+  <h3>8. Modifier Scopes</h3>
+  <p>
+    Some composables, like <code>Box</code> or <code>Column</code>, 
+    expose special <strong>scope modifiers</strong> for aligning or positioning children.
+  </p>
+
+  <pre><code class="language-kotlin">
+Box(
+    modifier = Modifier.fillMaxSize(),
+    contentAlignment = Alignment.Center
+) {
+    Text("Centered Text")
+}
+  </code></pre>
+
+  <p>
+    You can also use <code>Modifier.align()</code> inside layout scopes:
+  </p>
+
+  <pre><code class="language-kotlin">
+Box {
+    Text(
+        "Bottom Right",
+        modifier = Modifier.align(Alignment.BottomEnd)
+    )
+}
+  </code></pre>
+
+  <h3>9. Performance Considerations</h3>
+  <ul>
+    <li>Modifiers are lightweight — chaining them doesn’t affect performance.</li>
+    <li>However, avoid unnecessary recompositions by keeping modifier chains outside recomposing code when possible.</li>
+    <li>Use <code>remember</code> or <code>rememberUpdatedState</code> for stable references if modifier depends on dynamic state.</li>
+  </ul>
+
+  <h3>10. Best Practices</h3>
+  <ul>
+    <li>Use modifiers for layout, styling, and interaction — not for business logic.</li>
+    <li>Keep modifier order intentional — test visual differences when chaining.</li>
+    <li>Encapsulate repetitive modifier chains into custom modifiers.</li>
+    <li>Group related modifiers for readability.</li>
+  </ul>
+
+  <h3>11. What’s Next?</h3>
+  <p>
+    Now that you understand modifiers and chaining,  
+    the next article will focus on <strong>Basic Layouts</strong> — 
+    learning how to build structures using <code>Row</code>, <code>Column</code>, <code>Box</code>, and <code>Spacer</code> composables.
+  </p>
+</section>

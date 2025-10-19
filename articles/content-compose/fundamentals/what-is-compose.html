@@ -111,19 +111,6 @@ fun UserCard(name: String, onFollowClick: () -> Unit) {
     Here, multiple composables like <code>Row</code>, <code>Text</code>, and <code>Button</code> are combined to create a functional UI component.
   </p>
 
-  <h3>Integration with XML-based UI</h3>
-  <p>
-    Jetpack Compose can coexist with XML-based UI. You can embed a composable inside an XML layout using <code>ComposeView</code> or 
-    include traditional views inside Compose using <code>AndroidView</code>.
-  </p>
-
-  <pre><code class="language-kotlin">
-setContent {
-    AndroidView(factory = { context ->
-        TextView(context).apply { text = "This is an XML View inside Compose!" }
-    })
-}
-  </code></pre>
 
   <h3>Conclusion</h3>
   <p>

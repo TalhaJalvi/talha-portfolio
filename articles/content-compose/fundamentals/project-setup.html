@@ -1,0 +1,142 @@
+<section id="compose-project-setup">
+  <h2>Setting Up Project for Jetpack Compose</h2>
+  <p>
+    Jetpack Compose is Android’s modern toolkit for building native UI using a
+    declarative approach. Unlike the traditional XML-based UI, Compose allows
+    you to define your entire interface in Kotlin code, making it concise,
+    reactive, and easier to manage as your app scales.
+  </p>
+
+  <h3>1. What You’ll Need</h3>
+  <ul>
+    <li>Minimum SDK version: <code>21 (Android 5.0)</code></li>
+    <li>Compose Compiler compatible with your Kotlin version</li>
+  </ul>
+
+  <h3>2. Creating a New Compose Project</h3>
+  <p>
+    The easiest way to start is by using the built-in template in Android
+    Studio:
+  </p>
+  <ol>
+    <li>Open <strong>Android Studio → New Project → Empty Compose Activity</strong>.</li>
+    <li>Give your project a name, choose Kotlin, and finish setup.</li>
+    <li>Android Studio automatically adds all necessary dependencies.</li>
+  </ol>
+
+  <pre><code class="language-kotlin">
+// MainActivity.kt
+package com.example.mycomposeapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                Text(text = "Hello Compose!")
+            }
+        }
+    }
+}
+  </code></pre>
+
+  <h3>3. Manual Setup (For Existing Projects)</h3>
+  <p>
+    If you want to add Compose to an existing Android project, follow these steps:
+  </p>
+
+  <h4>a) Enable Compose in Gradle</h4>
+  <pre><code class="language-groovy">
+// build.gradle (Module-level)
+android {
+    namespace "com.example.mycomposeapp"
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+}
+  </code></pre>
+
+  <h4>b) Add Compose Dependencies</h4>
+  <pre><code class="language-groovy">
+dependencies {
+    implementation platform('androidx.compose:compose-bom:2024.10.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.activity:activity-compose'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+}
+  </code></pre>
+
+  <h3>4. Verifying the Setup</h3>
+  <p>
+    Once Gradle syncs successfully, create your first composable:
+  </p>
+  <pre><code class="language-kotlin">
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello, $name!")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Greeting("Talha")
+}
+  </code></pre>
+
+  <p>
+    Click the <strong>Preview</strong> tab or the <em>▶️ Run Preview</em> button to see your
+    UI instantly rendered inside Android Studio — no emulator needed.
+  </p>
+
+  <h3>5. Common Setup Errors</h3>
+  <ul>
+    <li><strong>Unresolved reference: @Composable</strong> → Check that <code>buildFeatures.compose = true</code> is enabled.</li>
+    <li><strong>Preview not showing</strong> → Use the correct <code>@Preview</code> import from <code>androidx.compose.ui.tooling.preview</code>.</li>
+    <li><strong>Gradle sync failed</strong> → Verify your Kotlin and Compose compiler versions are compatible.</li>
+  </ul>
+
+  <h3>6. Folder Structure (Recommended)</h3>
+  <pre><code>
+  app/
+  ├── java/com/example/mycomposeapp/
+  │   ├── MainActivity.kt
+  │   └── ui/
+  │       ├── theme/ (Color.kt, Typography.kt, Theme.kt)
+  │       ├── components/ (Reusable composables)
+  │       └── screens/ (HomeScreen.kt, DetailsScreen.kt)
+  └── res/
+      └── values/ (colors.xml, strings.xml)
+  </code></pre>
+
+  <p>
+    Keeping a clear folder structure helps organize composables as your app
+    grows — separating <em>themes</em>, <em>components</em>, and <em>screens</em>.
+  </p>
+
+  <h3>7. Next Steps</h3>
+  <p>
+    Now that your project is ready, the next article will explore how
+    <strong>Composable functions</strong> work — the building blocks of all UI in
+    Jetpack Compose.
+  </p>
+</section>
