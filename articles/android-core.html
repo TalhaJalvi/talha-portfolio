@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <!-- Jetpack Compose -->
+   <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
+
+        <!-- 1. Dependency Injection & Dagger Hilt -->
+        <li class="menu-section">Dependency Injection & Dagger Hilt</li>
+        <li><a href="content-compose/fundamentals/what-is-compose.html" class="nav-link">What & Why: Jetpack Compose</a></li>
+        <li><a href="content-compose/fundamentals/project-setup.html" class="nav-link">Setting Up Project for Compose</a></li>
+        <li><a href="content-compose/fundamentals/composable-functions.html" class="nav-link">Composable Functions & Syntax</a></li>
+        <li><a href="content-compose/fundamentals/recomposition-lifecycle.html" class="nav-link">Recomposition & Lifecycle</a></li>
+        <li><a href="content-compose/fundamentals/state-basics.html" class="nav-link">State Management: remember & mutableStateOf</a></li>
+        <li><a href="content-compose/fundamentals/modifiers.html" class="nav-link">Modifiers & Chaining</a></li>
+        <li><a href="content-compose/fundamentals/basic-layouts.html" class="nav-link">Basic Layouts: Row, Column, Box, Spacer</a></li>
+        <li><a href="content-compose/fundamentals/preview-tools.html" class="nav-link">@Preview & Tooling Support</a></li>
+
+        <!-- 2. Layouts & UI Components -->
+        <li class="menu-section">Layouts & UI Components</li>
+        <li><a href="content-compose/ui/material-components.html" class="nav-link">Material Design Components (Material2 / Material3)</a></li>
+        <li><a href="content-compose/ui/lists-grids.html" class="nav-link">Lists & Grids: LazyColumn, LazyRow, LazyVerticalGrid</a></li>
+        <li><a href="content-compose/ui/forms-inputs.html" class="nav-link">Forms & Inputs: TextField, Switch, Checkbox</a></li>
+        <li><a href="content-compose/ui/images-icons.html" class="nav-link">Images, Icons & Resources</a></li>
+        <li><a href="content-compose/ui/custom-layouts.html" class="nav-link">Custom Layouts & Measuring</a></li>
+        <li><a href="content-compose/ui/drawing-canvas.html" class="nav-link">Drawing with Canvas & Graphics</a></li>
+        <li><a href="content-compose/ui/accessibility.html" class="nav-link">Accessibility & Semantics</a></li>
+        <li><a href="content-compose/ui/system-insets.html" class="nav-link">Handling System Insets & Edge-to-Edge</a></li>
+
+        <!-- 3. State Management & Architecture -->
+        <li class="menu-section">State Management & Architecture</li>
+        <li><a href="content-compose/state/viewmodel-integration.html" class="nav-link">ViewModel Integration & StateFlow</a></li>
+        <li><a href="content-compose/state/unidirectional-data-flow.html" class="nav-link">Unidirectional Data Flow</a></li>
+        <li><a href="content-compose/state/compositionlocal.html" class="nav-link">CompositionLocal (Dependency Injection)</a></li>
+        <li><a href="content-compose/state/side-effects.html" class="nav-link">Side Effects: LaunchedEffect, DisposableEffect</a></li>
+        <li><a href="content-compose/state/derived-state.html" class="nav-link">DerivedStateOf & Performance Optimization</a></li>
+        <li><a href="content-compose/state/interop-with-view.html" class="nav-link">Interop: Compose inside XML Views</a></li>
+        <li><a href="content-compose/state/ui-testing.html" class="nav-link">UI Testing in Compose</a></li>
+
+        <!-- 4. Navigation & App Structure -->
+        <li class="menu-section">Navigation & App Structure</li>
+        <li><a href="content-compose/navigation/navigation-basics.html" class="nav-link">Navigation in Compose</a></li>
+        <li><a href="content-compose/navigation/nested-graphs.html" class="nav-link">Nested Graphs & Back Stack</a></li>
+        <li><a href="content-compose/navigation/bottom-nav.html" class="nav-link">Bottom Navigation & Drawer</a></li>
+        <li><a href="content-compose/navigation/arguments.html" class="nav-link">Passing Arguments Between Screens</a></li>
+        <li><a href="content-compose/navigation/animations.html" class="nav-link">Navigation Animations & Transitions</a></li>
+        <li><a href="content-compose/navigation/multi-window.html" class="nav-link">Multi-Window & Foldable Support</a></li>
+
+        <!-- 5. Animation & Visual Effects -->
+        <li class="menu-section">Animation & Visual Effects</li>
+        <li><a href="content-compose/animation/animate-as-state.html" class="nav-link">animate*AsState & Transitions</a></li>
+        <li><a href="content-compose/animation/animated-visibility.html" class="nav-link">AnimatedVisibility & AnimatedContent</a></li>
+        <li><a href="content-compose/animation/custom-transitions.html" class="nav-link">Custom Transitions Between Screens</a></li>
+        <li><a href="content-compose/animation/physics-based.html" class="nav-link">Spring & Physics-based Animations</a></li>
+        <li><a href="content-compose/animation/gesture-animations.html" class="nav-link">Gesture-driven Animations</a></li>
+        <li><a href="content-compose/animation/performance.html" class="nav-link">Animation Performance Tips</a></li>
+
+        <!-- 6. Theming & Styling -->
+        <li class="menu-section">Theming & Styling</li>
+        <li><a href="content-compose/theming/material3.html" class="nav-link">Material3 & Dynamic Color</a></li>
+        <li><a href="content-compose/theming/custom-theme.html" class="nav-link">Creating Custom Themes</a></li>
+        <li><a href="content-compose/theming/typography.html" class="nav-link">Typography, Shapes & Elevation</a></li>
+        <li><a href="content-compose/theming/dark-mode.html" class="nav-link">Dark Mode & Theme Switching</a></li>
+        <li><a href="content-compose/theming/adaptive-ui.html" class="nav-link">Adaptive UI for Phones & Tablets</a></li>
+
+        <!-- 7. Lists, Paging & Data -->
+        <li class="menu-section">Lists, Paging & Data</li>
+        <li><a href="content-compose/lists/pagination.html" class="nav-link">Pagination with Paging3</a></li>
+        <li><a href="content-compose/lists/sticky-headers.html" class="nav-link">Sticky Headers & Grouped Lists</a></li>
+        <li><a href="content-compose/lists/swipe-drag.html" class="nav-link">Swipe to Delete & Drag-and-Drop</a></li>
+        <li><a href="content-compose/lists/animated-lists.html" class="nav-link">Animated List Changes</a></li>
+        <li><a href="content-compose/lists/filter-search.html" class="nav-link">Filtering & Searching Lists</a></li>
+
+        <!-- 8. Interoperability & Migration -->
+        <li class="menu-section">Interoperability & Migration</li>
+        <li><a href="content-compose/interop/compose-in-view.html" class="nav-link">Using Compose in XML Apps</a></li>
+        <li><a href="content-compose/interop/view-in-compose.html" class="nav-link">Using Views Inside Compose</a></li>
+        <li><a href="content-compose/interop/migration-strategies.html" class="nav-link">Migration Strategies & Tips</a></li>
+        <li><a href="content-compose/interop/compose-multiplatform.html" class="nav-link">Compose Multiplatform (Desktop, Web)</a></li>
+
+        <!-- 9. Tooling & Performance -->
+        <li class="menu-section">Tooling & Performance</li>
+        <li><a href="content-compose/tooling/compose-inspector.html" class="nav-link">Layout Inspector & Preview Tools</a></li>
+        <li><a href="content-compose/tooling/debugging.html" class="nav-link">Debugging Recomposition</a></li>
+        <li><a href="content-compose/tooling/profiling.html" class="nav-link">Profiling Performance</a></li>
+        <li><a href="content-compose/tooling/testing.html" class="nav-link">Testing Compose UIs</a></li>
+        <li><a href="content-compose/tooling/code-organization.html" class="nav-link">Code Organization & Modules</a></li>
+
+        <!-- 10. Advanced Topics -->
+        <li class="menu-section">Advanced Topics</li>
+        <li><a href="content-compose/advanced/compose-multiplatform.html" class="nav-link">Compose Multiplatform Deep Dive</a></li>
+        <li><a href="content-compose/advanced/custom-layouts.html" class="nav-link">Custom Layout Algorithms</a></li>
+        <li><a href="content-compose/advanced/compiler-internals.html" class="nav-link">Compiler Internals & Slot Table</a></li>
+        <li><a href="content-compose/advanced/glance-widgets.html" class="nav-link">Jetpack Glance & Widgets</a></li>
+        <li><a href="content-compose/advanced/accessibility.html" class="nav-link">Advanced Accessibility</a></li>
+
+        <!-- 11. Sample Projects -->
+        <li class="menu-section">Sample Projects</li>
+        <li><a href="content-compose/projects/full-app.html" class="nav-link">Building a Full App with Compose</a></li>
+        <li><a href="content-compose/projects/instagram-clone.html" class="nav-link">Instagram UI Clone in Compose</a></li>
+        <li><a href="content-compose/projects/migration-case-study.html" class="nav-link">Migration Case Study</a></li>
+        <li><a href="content-compose/projects/testing-integration.html" class="nav-link">Testing & Integration in Real App</a></li>
+
+        <!-- 12. Best Practices & Pitfalls -->
+        <li class="menu-section">Best Practices & Pitfalls</li>
+        <li><a href="content-compose/best-practices/common-mistakes.html" class="nav-link">Common Mistakes in Compose</a></li>
+        <li><a href="content-compose/best-practices/performance-tips.html" class="nav-link">Performance Tips & Tricks</a></li>
+        <li><a href="content-compose/best-practices/state-hoisting.html" class="nav-link">Proper State Hoisting</a></li>
+        <li><a href="content-compose/best-practices/maintainability.html" class="nav-link">Maintainability in Large Apps</a></li>
+
+        <!-- 13. Ecosystem & Community -->
+        <li class="menu-section">Ecosystem & Community</li>
+        <li><a href="content-compose/community/libraries.html" class="nav-link">Popular Compose Libraries</a></li>
+        <li><a href="content-compose/community/resources.html" class="nav-link">Learning Resources & Blogs</a></li>
+        <li><a href="content-compose/community/opensource-apps.html" class="nav-link">Open Source Apps using Compose</a></li>
+        <li><a href="content-compose/community/future.html" class="nav-link">Future of Compose & Trends</a></li>
+
+    </ul>
+    </nav>
+
+
+
+    <main class="content">
+        <div id="content-display">
+            </div>
+    </main>
+
+    <script src="../js/kotlin.js"></script>
+</body>
+</html>

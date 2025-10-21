@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDisplay = document.querySelector('.content #content-display'); // Target div where content is loaded
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
-    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    // const navLinks = document.querySelectorAll('.sidebar .nav-link');
     const themeSwitcher = document.getElementById('theme-switcher');
     const body = document.body;
 
@@ -85,7 +85,7 @@ function loadContent(url) {
         });
     }
 
-// --- Sidebar Link Click Handler (Updated) ---
+// <!-- Sidebar Link Click Handler (Updated) -->
 
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
