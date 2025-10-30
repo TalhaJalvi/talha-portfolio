@@ -1,0 +1,190 @@
+<section id="hilt-basics">
+  <h2>Hilt Basics in Android</h2>
+
+  <p>
+    <strong>Hilt</strong> is a dependency injection library built on top of 
+    <strong>Dagger</strong> that simplifies the setup and management of dependencies 
+    in Android applications. It provides a standard way to integrate Dagger into 
+    Android components like Activities, Fragments, ViewModels, and Services — 
+    without writing complex boilerplate code.
+  </p>
+
+  <h3>1. What Is Hilt?</h3>
+  <p>
+    Hilt is Google’s recommended solution for dependency injection in Android.  
+    It manages the lifecycle of dependencies automatically and connects them 
+    with the Android framework.
+  </p>
+
+  <p>
+    With Hilt, you simply annotate classes and Android components — and it generates 
+    all the necessary Dagger code for you behind the scenes.
+  </p>
+
+  <h3>2. Why Use Hilt?</h3>
+  <ul>
+    <li>Reduces the manual setup required for Dagger.</li>
+    <li>Automatically injects dependencies into Android classes (Activity, Fragment, etc.).</li>
+    <li>Provides built-in integration with <code>ViewModel</code>.</li>
+    <li>Encourages modular, testable, and clean architecture.</li>
+  </ul>
+
+  <h3>3. Setting Up Hilt</h3>
+  <p>
+    To start using Hilt, add the dependencies to your <code>build.gradle</code> files:
+  </p>
+
+  <pre><code class="language-groovy">
+// project-level build.gradle
+buildscript {
+    dependencies {
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.51"
+    }
+}
+
+// app-level build.gradle
+plugins {
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
+}
+
+dependencies {
+    implementation "com.google.dagger:hilt-android:2.51"
+    kapt "com.google.dagger:hilt-android-compiler:2.51"
+}
+  </code></pre>
+
+  <h3>4. Hilt Setup in Application Class</h3>
+  <p>
+    The <code>@HiltAndroidApp</code> annotation triggers Hilt’s code generation, 
+    creating the base dependency container for the entire app.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Application class
+@HiltAndroidApp
+class MyApp : Application()
+  </code></pre>
+
+  <p>
+    Don’t forget to register your Application class in <code>AndroidManifest.xml</code>:
+  </p>
+
+  <pre><code class="language-xml">
+<application
+    android:name=".MyApp"
+    android:label="@string/app_name"
+    android:icon="@mipmap/ic_launcher">
+</application>
+  </code></pre>
+
+  <h3>5. Injecting Dependencies into Android Components</h3>
+  <p>
+    Use the <code>@AndroidEntryPoint</code> annotation to enable injection 
+    into Activities, Fragments, Services, or ViewModels.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Example: Injecting into Activity
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var repository: AuthRepository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        repository.loginUser()
+    }
+}
+  </code></pre>
+
+  <h3>6. Providing Dependencies with Modules</h3>
+  <p>
+    Hilt uses <strong>modules</strong> to define how to create and provide dependencies.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Example: Hilt Module
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(): AuthRepository {
+        return AuthRepository()
+    }
+}
+  </code></pre>
+
+  <p>
+    The <code>@InstallIn</code> annotation defines the scope of the module — 
+    e.g., <code>SingletonComponent</code> means the dependency will live 
+    as long as the application does.
+  </p>
+
+  <h3>7. Injecting into ViewModels</h3>
+  <p>
+    Hilt integrates seamlessly with Jetpack’s <code>ViewModel</code>.  
+    Use the <code>@HiltViewModel</code> annotation to inject dependencies into it.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Example: Hilt ViewModel
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val repository: AuthRepository
+) : ViewModel() {
+
+    fun authenticate() = repository.loginUser()
+}
+  </code></pre>
+
+  <p>
+    Then, in your Activity or Fragment:
+  </p>
+
+  <pre><code class="language-kotlin">
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+    private val viewModel: AuthViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.authenticate()
+    }
+}
+  </code></pre>
+
+  <h3>8. Hilt Scopes</h3>
+  <p>
+    Hilt provides predefined <strong>scopes</strong> to manage dependency lifecycles efficiently:
+  </p>
+
+  <ul>
+    <li><code>@Singleton</code> – Single instance throughout the app.</li>
+    <li><code>@ActivityScoped</code> – One instance per activity.</li>
+    <li><code>@FragmentScoped</code> – One instance per fragment.</li>
+    <li><code>@ViewModelScoped</code> – One instance per ViewModel.</li>
+  </ul>
+
+  <h3>9. Best Practices</h3>
+  <ul>
+    <li>Use <code>@HiltViewModel</code> for all dependency-aware ViewModels.</li>
+    <li>Keep module functions small and focused.</li>
+    <li>Prefer Constructor Injection wherever possible.</li>
+    <li>Use Field Injection only in Android system classes (e.g., Activity, Fragment).</li>
+  </ul>
+
+  <h3>10. Summary</h3>
+  <p>
+    Hilt removes the complexity of manual dependency management.  
+    By leveraging annotations like <code>@HiltAndroidApp</code>, 
+    <code>@AndroidEntryPoint</code>, and <code>@HiltViewModel</code>, 
+    you can build scalable, testable, and maintainable Android apps.
+  </p>
+
+  <p><strong>Next:</strong> Learn about <a href="scopes.html">Hilt Scopes & Lifecycle Management</a>.</p>
+</section>

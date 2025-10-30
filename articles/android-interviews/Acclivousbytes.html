@@ -1,0 +1,550 @@
+<section id="oop-android-interview">
+  <h2>OOP & Android Interview Questions and Answers</h2>
+
+  <!-- ======================== -->
+  <!-- 🧱 OOP (Object-Oriented Programming) -->
+  <!-- ======================== -->
+  <h3>OOP Concepts</h3>
+
+<h4>1. How Can a Class Like Animal Be Initialized with Cat?</h4>
+<p>
+  In Kotlin, when a class <code>Cat</code> inherits from <code>Animal</code>, it forms an 
+  <strong>“is-a” relationship</strong> — meaning a <code>Cat</code> is also an <code>Animal</code>.  
+  Because of this relationship, an <code>Animal</code> reference can hold a <code>Cat</code> object.  
+  This concept is known as <strong>upcasting</strong>.
+</p>
+
+<pre><code class="language-kotlin">
+open class Animal {
+    open fun sound() = println("Some generic animal sound")
+}
+
+class Cat : Animal() {
+    override fun sound() = println("Meow")
+}
+
+fun main() {
+    val animal: Animal = Cat()  // ✅ Parent reference holds Child object
+    animal.sound()              // Output: Meow
+}
+</code></pre>
+
+<h4>2. Why Does This Work?</h4>
+<p>
+  Since <code>Cat</code> extends <code>Animal</code>, it inherits all of <code>Animal</code>’s 
+  properties and methods. Therefore, the compiler allows assigning a <code>Cat</code> instance 
+  to an <code>Animal</code> variable.  
+  This lets us treat different subclasses (like <code>Cat</code>, <code>Dog</code>, <code>Cow</code>) 
+  as the same base type <code>Animal</code>.
+</p>
+
+<h4>3. What Happens at Runtime?</h4>
+<p>
+  When <code>animal.sound()</code> is called, the JVM checks the <strong>actual object type</strong> 
+  stored in memory — in this case, <code>Cat</code> — and executes the overridden 
+  <code>sound()</code> function from the <code>Cat</code> class instead of <code>Animal</code>.  
+  This behavior is called <strong>runtime polymorphism</strong>.
+</p>
+
+<pre><code class="language-kotlin">
+val animal: Animal = Cat()
+animal.sound() // Output: Meow
+</code></pre>
+
+<h4>4. Why Is It Useful?</h4>
+<p>
+  This allows writing reusable and flexible code.  
+  For example, you can pass different <code>Animal</code> types to the same function:
+</p>
+
+<pre><code class="language-kotlin">
+fun makeSound(animal: Animal) {
+    animal.sound()
+}
+
+makeSound(Cat()) // Meow
+makeSound(Dog()) // Woof
+</code></pre>
+
+<p>
+  Thus, initializing <code>Animal</code> with <code>Cat()</code> is perfectly valid 
+  due to inheritance and polymorphism, enabling cleaner and extensible object-oriented design.
+</p>
+<h4>Can an <code>Animal</code> Reference Access Properties or Functions of <code>Cat</code>?</h4>
+
+<p>
+  No ❌ — an <code>Animal</code> reference <strong>cannot directly access</strong> properties or 
+  functions that are <strong>only defined in <code>Cat</code></strong>.  
+  Even though the actual object in memory is a <code>Cat</code>, the reference type 
+  (<code>Animal</code>) limits access to only what’s declared in <code>Animal</code>.
+</p>
+
+<pre><code class="language-kotlin">
+open class Animal {
+    open fun sound() = println("Some sound")
+}
+
+class Cat : Animal() {
+    override fun sound() = println("Meow")
+    fun scratch() = println("Cat is scratching!") // Unique to Cat
+}
+
+fun main() {
+    val animal: Animal = Cat()
+
+    animal.sound()   // ✅ Allowed → Output: Meow
+    // animal.scratch() ❌ Not allowed — scratch() not in Animal
+
+    // To access Cat-specific methods:
+    if (animal is Cat) {
+        animal.scratch() // ✅ Allowed after type check
+    }
+}
+</code></pre>
+
+<p>
+  The reason: Kotlin (and Java) use the <strong>reference type</strong> to decide 
+  what members you can access at compile time.  
+  The <strong>object type</strong> (actual instance) decides which implementation 
+  runs at runtime.
+</p>
+
+<h4>Summary</h4>
+<ul>
+  <li>✅ You can call overridden methods (like <code>sound()</code>), since they exist in <code>Animal</code>.</li>
+  <li>❌ You cannot call new functions or properties defined only in <code>Cat</code> using an <code>Animal</code> reference.</li>
+  <li>✅ You can access them after <strong>type casting</strong> or <strong>type checking</strong> using <code>is</code> or <code>as</code>.</li>
+</ul>
+
+<h4>Can I Declare a Static Variable Without Initialization?</h4>
+
+<h5>🟢 In Kotlin</h5>
+<p>
+  Kotlin does not have true <code>static</code> variables.  
+  Instead, it uses <strong><code>companion objects</code></strong> to replicate static-like behavior.
+  However, just like Java, you cannot leave a variable uninitialized unless you use
+  <code>lateinit</code> for mutable non-null types.
+</p>
+
+<pre><code class="language-kotlin">
+// ❌ Error – must be initialized or declared as lateinit
+class MyClass {
+    companion object {
+        var name: String
+    }
+}
+</code></pre>
+
+<h5>✅ Correct Kotlin Examples</h5>
+
+<pre><code class="language-kotlin">
+// Option 1: Initialize immediately
+class MyClass {
+    companion object {
+        var name: String = "Default"
+    }
+}
+
+// Option 2: Use lateinit (assign later)
+class MyClass {
+    companion object {
+        lateinit var name: String
+    }
+}
+
+fun main() {
+    MyClass.name = "Talha"
+    println(MyClass.name) // Output: Talha
+}
+
+// Option 3: Use const val for compile-time constants
+class MyClass {
+    companion object {
+        const val VERSION = 1
+    }
+}
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><code>lateinit</code> only works with <code>var</code> (mutable, non-null).</li>
+  <li><code>const val</code> must be initialized immediately.</li>
+  <li>Access using <code>MyClass.name</code> or <code>MyClass.VERSION</code>.</li>
+</ul>
+
+<hr/>
+
+<h5>🟣 In Java</h5>
+<p>
+  Java supports <strong>true static variables</strong>.  
+  You can declare a <code>static</code> variable without initializing it —  
+  but you must assign it a value before using it.  
+  If not initialized explicitly, it takes the <strong>default value</strong> for its type.
+</p>
+
+<pre><code class="language-java">
+public class MyClass {
+    static String name; // ✅ Allowed, default value = null
+    static int count;   // ✅ Allowed, default value = 0
+
+    public static void main(String[] args) {
+        System.out.println(name);  // null
+        System.out.println(count); // 0
+
+        name = "Talha";
+        count = 10;
+        System.out.println(name);  // Talha
+        System.out.println(count); // 10
+    }
+}
+</code></pre>
+
+<h5>🧠 Key Difference</h5>
+<ul>
+  <li>In <strong>Java</strong>, static variables get default values (e.g., 0, null, false).</li>
+  <li>In <strong>Kotlin</strong>, you must explicitly initialize them — unless you mark them <code>lateinit</code>.</li>
+  <li>Kotlin uses <strong>companion objects</strong> instead of static fields/methods.</li>
+</ul>
+
+<h4>✅ Summary</h4>
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Kotlin</th>
+      <th>Java</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Static keyword</td>
+      <td>No — uses <code>companion object</code></td>
+      <td>Yes — uses <code>static</code> keyword</td>
+    </tr>
+    <tr>
+      <td>Default value if uninitialized</td>
+      <td>❌ Not allowed (must initialize or use <code>lateinit</code>)</td>
+      <td>✅ Allowed (default values like 0 or null)</td>
+    </tr>
+    <tr>
+      <td>Constant declaration</td>
+      <td><code>const val</code></td>
+      <td><code>static final</code></td>
+    </tr>
+    <tr>
+      <td>Access syntax</td>
+      <td><code>MyClass.name</code></td>
+      <td><code>MyClass.name</code></td>
+    </tr>
+  </tbody>
+</table>
+
+  <h4>3. What Happens When a Class Is Declared <code>final</code>?</h4>
+  <p>
+    A <code>final</code> class cannot be inherited or extended.
+  </p>
+  <pre><code class="language-kotlin">
+final class Animal
+class Cat : Animal() // ❌ Error
+  </code></pre>
+
+  <h4>4. What Is <code>static</code> in Java? Can Static Functions Access Class Variables?</h4>
+  <p>
+    The <code>static</code> keyword means a member belongs to the class rather than an instance.
+    Static functions <strong>cannot</strong> access non-static variables since they don’t belong to an instance.
+  </p>
+  <pre><code class="language-java">
+class Demo {
+    static int a = 10;
+    int b = 20;
+
+    static void show() {
+        System.out.println(a); // ✅ OK
+        System.out.println(b); // ❌ Error
+    }
+}
+  </code></pre>
+
+  <h4>5. Example: Animal–Cat Polymorphism</h4>
+  <pre><code class="language-kotlin">
+open class Animal {
+    open fun sound() = println("Some sound")
+}
+
+class Cat : Animal() {
+    override fun sound() = println("Meow")
+}
+
+val obj: Animal = Cat()
+obj.sound() // Output: Meow
+  </code></pre>
+
+  <h4>6. What Is Method Overloading?</h4>
+  <p>
+    Method overloading means having multiple methods with the same name but different parameters. It is resolved at <strong>compile-time</strong>.
+  </p>
+  <pre><code class="language-kotlin">
+fun add(a: Int, b: Int) = a + b
+fun add(a: Double, b: Double) = a + b
+  </code></pre>
+
+  <!-- ======================== -->
+  <!-- 📱 ANDROID SECTION -->
+  <!-- ======================== -->
+
+  <h3>Android Specific Questions</h3>
+
+<h4>1. Lifecycle of ViewModel & When It’s Destroyed</h4>
+<p>
+  A <strong>ViewModel</strong> is tied to a <code>ViewModelStoreOwner</code>, such as an Activity or Fragment.  
+  It helps you store UI-related data and survive configuration changes like screen rotations.
+</p>
+
+<ul>
+  <li>
+    <strong>Scope:</strong> The ViewModel lives as long as its owner (Activity or Fragment) is alive.
+  </li>
+  <li>
+    <strong>Survives configuration changes:</strong> When the Activity or Fragment is recreated (e.g., rotation), the ViewModel instance is retained.
+  </li>
+  <li>
+    <strong>Destroyed:</strong> The ViewModel's <code>onCleared()</code> method is called when:
+    <ul>
+      <li>The Activity finishes permanently.</li>
+      <li>The Fragment is removed permanently.</li>
+      <li>The process is killed by the system.</li>
+    </ul>
+  </li>
+</ul>
+
+<h5>Examples</h5>
+
+<!-- Activity-scoped ViewModel -->
+<p><strong>Activity-scoped ViewModel (XML)</strong></p>
+<pre><code class="language-kotlin">
+class MyViewModel : ViewModel() {
+    val counter = MutableLiveData(0)
+
+    override fun onCleared() {
+        super.onCleared()
+        println("ViewModel is destroyed")
+    }
+}
+
+// In Activity
+val viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+viewModel.counter.observe(this) { value ->
+    println("Counter: $value")
+}
+</code></pre>
+
+<!-- Fragment-scoped ViewModel -->
+<p><strong>Fragment-scoped ViewModel (XML)</strong></p>
+<pre><code class="language-kotlin">
+class MyFragment : Fragment() {
+    private val viewModel: MyViewModel by viewModels() // scoped to this fragment
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.counter.observe(viewLifecycleOwner) { value ->
+            println("Counter in Fragment: $value")
+        }
+    }
+}
+</code></pre>
+
+<!-- Compose example -->
+<p><strong>Compose + rememberSaveable</strong></p>
+<pre><code class="language-kotlin">
+@Composable
+fun CounterScreen(viewModel: MyViewModel = viewModel()) {
+    val counter by viewModel.counter.observeAsState(0)
+
+    Button(onClick = { viewModel.counter.value = counter + 1 }) {
+        Text("Count: $counter")
+    }
+}
+</code></pre>
+
+<p>
+  ✅ <strong>Key point:</strong> The ViewModel survives rotation or recomposition,  
+  but will be cleared when the Activity/Fragment is destroyed permanently.
+</p>
+
+
+  <h4>2. Avoid Resetting Data During Screen Rotation</h4>
+  <p>
+    Use <strong>ViewModel</strong> (for XML) or <strong>rememberSaveable</strong> (for Compose) to preserve state.
+  </p>
+  <pre><code class="language-kotlin">
+// XML
+val viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+// Compose
+val state = rememberSaveable { mutableStateOf("") }
+  </code></pre>
+
+  <h4>3. Types of ViewModel</h4>
+  <ul>
+    <li>Activity ViewModel — shared across fragments</li>
+    <li>Fragment ViewModel — scoped to a single fragment</li>
+    <li>Shared ViewModel — shared between fragments in the same activity</li>
+  </ul>
+
+  <h4>4. Avoid Repetitive Recomposition</h4>
+  <ul>
+    <li>Use <code>remember</code> or <code>rememberSaveable</code></li>
+    <li>Keep state in ViewModel, not Composables</li>
+    <li>Use <code>derivedStateOf</code> for computed values</li>
+  </ul>
+
+  <h4>5. Show Ads in RecyclerView After Every Two Cards</h4>
+  <pre><code class="language-kotlin">
+override fun getItemViewType(position: Int): Int {
+    return if ((position + 1) % 3 == 0) AD_TYPE else NORMAL_TYPE
+}
+  </code></pre>
+
+  <h4>6. Separate URLs for Staging & Production (No Build Flavor)</h4>
+  <pre><code class="language-kotlin">
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+    @Provides
+    fun provideBaseUrl(): String {
+        return if (BuildConfig.DEBUG) STAGING_URL else PROD_URL
+    }
+}
+  </code></pre>
+
+  <h4>7. Difference Between <code>async</code> and <code>launch</code></h4>
+  <table border="1" cellpadding="6">
+    <tr><th>Feature</th><th>launch</th><th>async</th></tr>
+    <tr><td>Returns</td><td>Job</td><td>Deferred&lt;T&gt;</td></tr>
+    <tr><td>Use Case</td><td>Fire & forget</td><td>Return result</td></tr>
+    <tr><td>Example</td><td><code>launch { doTask() }</code></td><td><code>val result = async { getData() }.await()</code></td></tr>
+  </table>
+
+  <h4>8. Run 3 API Calls in Parallel</h4>
+  <pre><code class="language-kotlin">
+coroutineScope {
+    val a = async { api1() }
+    val b = async { api2() }
+    val c = async { api3() }
+
+    val results = listOf(a.await(), b.await(), c.await())
+}
+  </code></pre>
+
+  <h4>9. 200 Images on Server (Limit Requests)</h4>
+  <pre><code class="language-kotlin">
+val semaphore = Semaphore(10)
+imageIds.map { id ->
+    async {
+        semaphore.withPermit { downloadImage(id) }
+    }
+}.awaitAll()
+  </code></pre>
+
+  <h4>10. Auto Token Refresh When API Fails</h4>
+
+<p>
+  This <strong>TokenInterceptor</strong> automatically adds the authentication token to API requests 
+  and refreshes it if the server responds with <code>401 Unauthorized</code>.  
+  It ensures seamless user experience without manual token handling for each request.
+</p>
+
+<pre><code class="language-kotlin">
+class TokenInterceptor : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        // 1️⃣ Add current token to the request
+        var request = chain.request().newBuilder()
+            .addHeader("Authorization", "Bearer ${getToken()}")
+            .build()
+
+        // 2️⃣ Execute the request
+        val response = chain.proceed(request)
+
+        // 3️⃣ Check if token is expired or invalid
+        if (response.code == 401) {
+            // 4️⃣ Refresh the token
+            val newToken = refreshToken()
+
+            // 5️⃣ Retry the request with the new token
+            val newRequest = request.newBuilder()
+                .header("Authorization", "Bearer $newToken")
+                .build()
+
+            return chain.proceed(newRequest) // Retry request
+        }
+
+        // 6️⃣ Return the original response if token is valid
+        return response
+    }
+}
+</code></pre>
+
+<h5>How It Works:</h5>
+<ul>
+  <li><strong>Step 1:</strong> Adds the current token to the request header.</li>
+  <li><strong>Step 2:</strong> Sends the request to the server.</li>
+  <li><strong>Step 3:</strong> Checks if the server responds with <code>401</code>.</li>
+  <li><strong>Step 4:</strong> If unauthorized, calls <code>refreshToken()</code> to get a new token.</li>
+  <li><strong>Step 5:</strong> Builds a new request with the fresh token and retries it.</li>
+  <li><strong>Step 6:</strong> Returns the response (original or retried) to the caller.</li>
+</ul>
+
+<h5>Important Notes:</h5>
+<ul>
+  <li>Ensure <code>getToken()</code> and <code>refreshToken()</code> are thread-safe.</li>
+  <li>Handle refresh token failures (e.g., invalid or expired refresh token) to log out or show an error.</li>
+  <li>Prevent infinite loops: retry only once to avoid repeated <code>401</code> responses.</li>
+  <li>Works for all API calls automatically if added to OkHttp client.</li>
+</ul>
+
+<h5>Usage Example:</h5>
+<pre><code class="language-kotlin">
+// Add interceptor to OkHttpClient
+val okHttpClient = OkHttpClient.Builder()
+    .addInterceptor(TokenInterceptor())
+    .build()
+
+val retrofit = Retrofit.Builder()
+    .baseUrl("https://api.example.com/")
+    .client(okHttpClient)
+    .addConverterFactory(GsonConverterFactory.create())
+    .build()
+</code></pre>
+
+
+  <!-- ======================== -->
+  <!-- 🧩 PROBLEM SOLVING -->
+  <!-- ======================== -->
+
+  <h3>Problem Solving</h3>
+
+  <h4>1. Reverse a String Without Built-in Functions</h4>
+  <pre><code class="language-kotlin">
+fun reverseString(str: String): String {
+    var result = ""
+    for (i in str.length - 1 downTo 0) {
+        result += str[i]
+    }
+    return result
+}
+
+fun main() {
+    println(reverseString("Talha Abbas")) // ahlaT sabbA
+}
+  </code></pre>
+
+  <p><strong>Output:</strong> <code>ahlaT sabbA</code></p>
+
+  <h4>Summary</h4>
+  <ul>
+    <li>OOP: Understand inheritance, polymorphism, and overloading.</li>
+    <li>Android: Focus on ViewModel lifecycle, coroutines, and DI (Hilt).</li>
+    <li>Problem Solving: Practice logic and algorithms without built-ins.</li>
+  </ul>
+
+</section>
