@@ -1,0 +1,128 @@
+<section id="arrays" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Arrays — Complete Guide</h1>
+
+        <h3>1. Why Use Arrays in Kotlin?</h3>
+        <p>
+            Arrays in Kotlin are used when you need to store a fixed number of elements of the same data type 
+            under a single variable name. Instead of creating multiple variables like <code>num1</code>, <code>num2</code>, 
+            <code>num3</code>, you can store them all in one array such as <code>numbers</code>. 
+        </p>
+
+        <p>
+            Arrays make it easier to iterate, sort, and manipulate data efficiently — especially when the number of elements 
+            is known at compile time. They're memory efficient and provide direct index-based access.
+        </p>
+
+        <div class="example-box">
+            <h5>Example:</h5>
+            <pre><code class="language-kotlin">
+// Without arrays
+val num1 = 10
+val num2 = 20
+val num3 = 30
+
+// With array
+val numbers = arrayOf(10, 20, 30)
+println(numbers[1]) // Output: 20
+            </code></pre>
+        </div>
+
+        <hr class="my-5">
+
+        <h3>2. How to Declare and Use Arrays in Kotlin (with 5 Examples)</h3>
+
+        <h5>Example 1 — Using <code>arrayOf()</code></h5>
+        <pre><code class="language-kotlin">
+// Basic declaration
+val fruits = arrayOf("Apple", "Banana", "Cherry")
+
+// Access elements
+println(fruits[0])   // Apple
+println(fruits.size) // 3
+
+// Modify element
+fruits[1] = "Mango"
+println(fruits[1])   // Mango
+        </code></pre>
+
+        <h5>Example 2 — Using <code>Array()</code> Constructor</h5>
+        <pre><code class="language-kotlin">
+// Create an array of 5 integers, each initialized as their index * 2
+val numbers = Array(5) { i -> i * 2 }
+println(numbers.joinToString()) // Output: 0, 2, 4, 6, 8
+        </code></pre>
+
+        <h5>Example 3 — Using Typed Arrays (e.g., <code>IntArray</code>, <code>DoubleArray</code>)</h5>
+        <pre><code class="language-kotlin">
+// Type-specific array
+val marks = intArrayOf(85, 90, 78, 92)
+println(marks[2]) // Output: 78
+
+// Modify value
+marks[2] = 80
+println(marks.joinToString()) // Output: 85, 90, 80, 92
+        </code></pre>
+
+        <h5>Example 4 — Using <code>arrayOfNulls()</code></h5>
+        <pre><code class="language-kotlin">
+// Create array with null values
+val names = arrayOfNulls<String>(3)
+names[0] = "Talha"
+names[1] = "Ali"
+println(names.joinToString()) // Talha, Ali, null
+        </code></pre>
+
+        <h5>Example 5 — Using <code>list.toTypedArray()</code></h5>
+        <pre><code class="language-kotlin">
+// Convert List to Array
+val list = listOf("A", "B", "C")
+val arr = list.toTypedArray()
+
+for (item in arr) println(item) // Prints A, B, C
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>3. When and When Not to Use Arrays?</h3>
+
+        <h5>✅ When to Use Arrays:</h5>
+        <ul>
+            <li>When you know the number of elements beforehand.</li>
+            <li>When you need fast access using indexes.</li>
+            <li>When the elements are all of the same type (e.g., integers, strings).</li>
+            <li>When memory efficiency matters (e.g., in Android apps).</li>
+        </ul>
+
+        <h5>🚫 When Not to Use Arrays:</h5>
+        <ul>
+            <li>When the size of the data changes dynamically — use <code>MutableList</code> instead.</li>
+            <li>When you need advanced operations like filtering, sorting, or mapping frequently — use <code>List</code> or <code>MutableList</code>.</li>
+            <li>When working with mixed data types (use <code>List&lt;Any&gt;</code> or sealed classes instead).</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>4. Top 10 Interview Questions on Arrays in Kotlin</h3>
+        <ol>
+            <li>What is the difference between <code>arrayOf()</code> and <code>Array()</code> in Kotlin?</li>
+            <li>How can you create an array of null elements in Kotlin?</li>
+            <li>What’s the difference between <code>Array&lt;T&gt;</code> and <code>IntArray</code>?</li>
+            <li>How do you iterate through an array in Kotlin?</li>
+            <li>Can you store mixed types in a Kotlin array?</li>
+            <li>How to convert a List to an Array and vice versa?</li>
+            <li>What happens if you try to access an index outside the array bounds?</li>
+            <li>How do you check if an element exists in an array?</li>
+            <li>How to find the maximum or minimum element in an array?</li>
+            <li>Can arrays in Kotlin be resized after initialization?</li>
+        </ol>
+
+        <div class="example-box">
+            <h5>Bonus Tip 💡</h5>
+            <p>
+                In Kotlin, arrays are not dynamically resizable. If you need to add or remove elements frequently, 
+                prefer using <code>MutableList</code> instead.
+            </p>
+        </div>
+    </div>
+</section>

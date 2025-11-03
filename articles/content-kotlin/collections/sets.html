@@ -1,0 +1,186 @@
+<section id="sets" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Sets — Complete Guide</h1>
+
+        <h3>1. What is a Set in Kotlin?</h3>
+        <p>
+            A <strong>Set</strong> in Kotlin is a collection that <strong>contains unique elements</strong> — duplicates are automatically removed.
+            Use sets when you want to avoid storing duplicates or when order doesn’t matter.
+        </p>
+
+        <ul>
+            <li><code>Set</code> — Read-only (immutable)</li>
+            <li><code>MutableSet</code> — Allows adding and removing elements</li>
+            <li><code>LinkedHashSet</code> — Maintains insertion order</li>
+            <li><code>HashSet</code> — Does not guarantee order</li>
+        </ul>
+
+        <div class="example-box">
+            <h5>Example:</h5>
+            <pre><code class="language-kotlin">
+// Example: Set of fruits
+val fruits = setOf("Apple", "Banana", "Cherry", "Apple")
+println(fruits) // [Apple, Banana, Cherry] — duplicates removed
+            </code></pre>
+        </div>
+
+        <hr class="my-5">
+
+        <h3>2. How to Declare and Use Sets (with Examples)</h3>
+
+        <h5>Example 1 — Using <code>setOf()</code> (Immutable Set)</h5>
+        <pre><code class="language-kotlin">
+// Basic declaration
+val colors = setOf("Red", "Green", "Blue", "Red")
+println(colors) // [Red, Green, Blue]
+println("Red" in colors) // true
+        </code></pre>
+
+        <h5>Example 2 — Using <code>mutableSetOf()</code> (Mutable Set)</h5>
+        <pre><code class="language-kotlin">
+// Create a mutable set
+val cities = mutableSetOf("Lahore", "Karachi", "Islamabad")
+
+// Add or remove elements
+cities.add("Quetta")
+cities.add("Karachi") // duplicate ignored
+cities.remove("Lahore")
+
+println(cities) // [Karachi, Islamabad, Quetta]
+        </code></pre>
+
+        <h5>Example 3 — Using <code>LinkedHashSet</code> to Preserve Order</h5>
+        <pre><code class="language-kotlin">
+val linked = linkedSetOf("A", "B", "C", "A")
+println(linked) // [A, B, C] — maintains insertion order
+        </code></pre>
+
+        <h5>Example 4 — Using <code>HashSet</code></h5>
+        <pre><code class="language-kotlin">
+val hashSet = hashSetOf(10, 5, 20, 5)
+println(hashSet) // [10, 5, 20] — order not guaranteed
+        </code></pre>
+
+        <h5>Example 5 — Traversing, Filtering, and Mapping a Set</h5>
+        <pre><code class="language-kotlin">
+// Traversing
+val fruitsSet = setOf("Apple", "Banana", "Cherry")
+fruitsSet.forEach { println(it) }
+
+// Filtering
+val aFruits = fruitsSet.filter { it.startsWith("A") }
+println(aFruits) // [Apple]
+
+// Mapping / Transforming
+val lengths = fruitsSet.map { it.length }
+println(lengths) // [5, 6, 6]
+
+// Chaining
+val result = fruitsSet.filter { it.contains("a", ignoreCase = true) }
+                      .map { it.uppercase() }
+println(result) // [APPLE, BANANA, CHERRY]
+
+// Convert back to Set if needed
+val uniqueResult = result.toSet()
+println(uniqueResult)
+        </code></pre>
+
+        <h5>Example 6 — Common Set Operations</h5>
+        <pre><code class="language-kotlin">
+val setA = setOf(1, 2, 3, 4)
+val setB = setOf(3, 4, 5, 6)
+
+// Union (combine)
+println(setA union setB) // [1, 2, 3, 4, 5, 6]
+
+// Intersection (common)
+println(setA intersect setB) // [3, 4]
+
+// Difference
+println(setA subtract setB) // [1, 2]
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>3. When and When Not to Use Sets?</h3>
+
+        <h5>✅ When to Use Sets:</h5>
+        <ul>
+            <li>When you need to store <strong>unique elements</strong>.</li>
+            <li>When order doesn’t matter (or use <code>LinkedHashSet</code> for ordered results).</li>
+            <li>When you want to perform <strong>set operations</strong> like union, intersect, or difference.</li>
+            <li>When you want to traverse, filter, map, or apply functional operations without duplicates.</li>
+        </ul>
+
+        <h5>🚫 When Not to Use Sets:</h5>
+        <ul>
+            <li>When you need duplicates (use <code>List</code> instead).</li>
+            <li>When you need to access elements by index (use <code>List</code>).</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>4. Top 8 Interview Questions (With Answers)</h3>
+        <ol>
+            <li><strong>Q1:</strong> What is the main difference between <code>List</code> and <code>Set</code>?<br>
+                <strong>Ans:</strong> <code>List</code> allows duplicates and maintains order. <code>Set</code> contains unique elements only.
+            </li>
+
+            <li><strong>Q2:</strong> Can a <code>Set</code> contain duplicate elements?<br>
+                <strong>Ans:</strong> No. Duplicates are automatically removed.
+            </li>
+
+            <li><strong>Q3:</strong> How do you create a mutable set in Kotlin?<br>
+                <strong>Ans:</strong> Use <code>mutableSetOf()</code>.
+                <pre><code class="language-kotlin">
+val set = mutableSetOf(1, 2, 3)
+set.add(4)
+                </code></pre>
+            </li>
+
+            <li><strong>Q4:</strong> Does Kotlin’s <code>Set</code> maintain order?<br>
+                <strong>Ans:</strong> <code>HashSet</code> does not, but <code>LinkedHashSet</code> preserves insertion order.
+            </li>
+
+            <li><strong>Q5:</strong> How do you find common elements between two sets?<br>
+                <strong>Ans:</strong> Use <code>intersect()</code>.
+                <pre><code class="language-kotlin">
+val result = setA intersect setB
+                </code></pre>
+            </li>
+
+            <li><strong>Q6:</strong> How do you combine two sets in Kotlin?<br>
+                <strong>Ans:</strong> Use <code>union()</code>.
+            </li>
+
+            <li><strong>Q7:</strong> How do you check if an element exists in a Set?<br>
+                <strong>Ans:</strong> Use the <code>in</code> keyword or <code>contains()</code> method.
+                <pre><code class="language-kotlin">
+if ("Ali" in namesSet) println("Found!")
+                </code></pre>
+            </li>
+
+            <li><strong>Q8:</strong> How do you remove duplicates from a List using a Set?<br>
+                <strong>Ans:</strong>
+                <pre><code class="language-kotlin">
+val nums = listOf(1, 2, 2, 3)
+val unique = nums.toSet()
+println(unique) // [1, 2, 3]
+                </code></pre>
+            </li>
+        </ol>
+
+        <div class="example-box mt-5">
+            <h5>Bonus Tip 💡</h5>
+            <p>
+                In Android development, <code>Set</code> is great for storing <strong>unique user IDs, permissions, or tags</strong>
+                where duplication should be avoided.  
+            </p>
+            <pre><code class="language-kotlin">
+val userPermissions = mutableSetOf("READ", "WRITE")
+userPermissions.add("READ") // ignored automatically
+println(userPermissions) // [READ, WRITE]
+            </code></pre>
+        </div>
+    </div>
+</section>

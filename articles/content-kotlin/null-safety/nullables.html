@@ -1,0 +1,107 @@
+<section id="nullable-types" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Nullable Types — Complete Guide</h1>
+
+        <h3>1. What are Nullable Types in Kotlin?</h3>
+        <p>
+            In Kotlin, <strong>nullable types</strong> are used to explicitly allow a variable to hold a <code>null</code> value. 
+            By default, variables in Kotlin cannot be <code>null</code>. This feature helps prevent <strong>NullPointerException (NPE)</strong> at runtime.
+        </p>
+
+        <ul>
+            <li><code>String</code> — Non-nullable type. Cannot hold <code>null</code>.</li>
+            <li><code>String?</code> — Nullable type. Can hold a string or <code>null</code>.</li>
+        </ul>
+
+        <div class="example-box">
+            <h5>Example:</h5>
+            <pre><code class="language-kotlin">
+// Non-nullable variable
+val name: String = "Talha"
+// name = null // ❌ Compilation error
+
+// Nullable variable
+val nullableName: String? = null
+println(nullableName) // Output: null
+            </code></pre>
+        </div>
+
+        <hr class="my-5">
+
+        <h3>2. How to Work with Nullable Types</h3>
+
+        <h5>Example 1 — Safe Call Operator <code>?.</code></h5>
+        <pre><code class="language-kotlin">
+val length = nullableName?.length
+println(length) // Output: null (instead of throwing NPE)
+        </code></pre>
+
+        <h5>Example 2 — Elvis Operator <code>?:</code></h5>
+        <pre><code class="language-kotlin">
+val nameLength = nullableName?.length ?: 0
+println(nameLength) // Output: 0 if nullableName is null
+        </code></pre>
+
+        <h5>Example 3 — Safe Call with <code>let</code></h5>
+        <pre><code class="language-kotlin">
+nullableName?.let { 
+    println("Length is ${it.length}") 
+}
+// Will only execute if nullableName is not null
+        </code></pre>
+
+        <h5>Example 4 — Not-Null Assertion <code>!!</code></h5>
+        <pre><code class="language-kotlin">
+// Use with caution!
+val length2 = nullableName!!.length // Throws NPE if nullableName is null
+        </code></pre>
+
+        <h5>Example 5 — Nullable Collections</h5>
+        <pre><code class="language-kotlin">
+val names: List<String?> = listOf("Ali", null, "Ahmed")
+names.forEach { 
+    println(it?.length ?: "No value") 
+}
+// Prints lengths or "No value" for nulls
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>3. Common Patterns with Nullable Types</h3>
+        <ul>
+            <li>Use <code>?.</code> for safe calls to avoid NPE.</li>
+            <li>Use <code>?:</code> to provide a default value for nulls.</li>
+            <li>Use <code>let</code> to execute code only if the value is non-null.</li>
+            <li>Avoid <code>!!</code> unless you are 100% sure the value is not null.</li>
+            <li>Nullable collections are useful when some elements might be missing or optional.</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>4. Top 5 Interview Questions (With Answers)</h3>
+        <ol>
+            <li><strong>Q1:</strong> What is a nullable type in Kotlin?<br>
+                <strong>Ans:</strong> A variable that can hold <code>null</code> is declared with <code>?</code>, e.g., <code>String?</code>.
+            </li>
+            <li><strong>Q2:</strong> How do you safely access a nullable variable’s property?<br>
+                <strong>Ans:</strong> Use the safe call operator <code>?.</code>.
+            </li>
+            <li><strong>Q3:</strong> What does the Elvis operator <code>?:</code> do?<br>
+                <strong>Ans:</strong> It provides a default value if the left-hand side is null.
+            </li>
+            <li><strong>Q4:</strong> When should you use <code>!!</code> in Kotlin?<br>
+                <strong>Ans:</strong> Only when you are certain the variable is not null; otherwise, it throws a NullPointerException.
+            </li>
+            <li><strong>Q5:</strong> Can a list contain nullable elements?<br>
+                <strong>Ans:</strong> Yes, e.g., <code>List<String?></code> can hold null values.
+            </li>
+        </ol>
+
+        <div class="example-box mt-5">
+            <h5>Final Tip 💡</h5>
+            <p>
+                Kotlin’s nullable types are designed to make your code safer. Always prefer <code>?.</code> and <code>?:</code> instead of using <code>!!</code>, and leverage <code>let</code> for conditional execution on non-null values.
+            </p>
+        </div>
+    </div>
+</section>

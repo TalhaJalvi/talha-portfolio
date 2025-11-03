@@ -610,10 +610,7 @@ input[type='checkbox'] {
     border-radius: 4px;
 }
 
-/* Hover effect: rotate clockwise */
-.card.square-card:hover {
-    transform: rotate(30deg);
-}
+
 /* end of list of languages */
 
 /*******************/
