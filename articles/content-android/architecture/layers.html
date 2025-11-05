@@ -1,0 +1,94 @@
+<section id="clean-architecture-layers" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Data, Domain & UI Layers in Clean Architecture</h1>
+
+        <h3>1. Overview</h3>
+        <p>
+            Clean Architecture divides an application into distinct layers, each with a clear responsibility.  
+            Following these layers not only promotes <strong>clean code</strong> but also ensures <strong>maintainability, testability, and scalability</strong>.
+        </p>
+
+        <h3>2. The Three Core Layers</h3>
+        <ul>
+            <li><strong>Data Layer:</strong> Responsible for retrieving, caching, and persisting data.  
+                It interacts with databases, network APIs, or local storage. This layer should be completely unaware of business rules or UI details.</li>
+            <li><strong>Domain Layer:</strong> Contains the core business logic.  
+                It defines <strong>Use Cases / Interactors</strong> that orchestrate operations on Entities. This layer is completely framework-independent and focuses purely on <strong>business rules</strong>.</li>
+            <li><strong>UI Layer (Presentation Layer):</strong> Responsible for displaying data to the user and capturing user interactions.  
+                It observes state from the Domain layer (directly or via ViewModel) and sends user intents back. This layer should contain minimal logic.</li>
+        </ul>
+
+        <h3>3. Responsibilities and Clean Code Principles</h3>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Responsibility</th>
+                    <th>Clean Code Practices</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Layer</td>
+                    <td>Fetch and store data; handle network or database operations.</td>
+                    <td>
+                        <ul>
+                            <li>Use repository pattern for abstraction.</li>
+                            <li>Keep framework-specific code isolated.</li>
+                            <li>Return data as models or DTOs, not UI objects.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Domain Layer</td>
+                    <td>Execute business rules and orchestrate use cases.</td>
+                    <td>
+                        <ul>
+                            <li>Keep it framework-independent.</li>
+                            <li>Use immutable data structures for state.</li>
+                            <li>Design clear use case classes for each operation.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>UI Layer</td>
+                    <td>Display data, handle user interaction, and bind state to UI.</td>
+                    <td>
+                        <ul>
+                            <li>Keep it reactive (e.g., LiveData / StateFlow / Compose State).</li>
+                            <li>Minimal business logic — delegate to Domain / ViewModel.</li>
+                            <li>Follow separation of concerns and single responsibility principle.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4. Flow of Data Between Layers</h3>
+        <ol>
+            <li>User interacts with the UI Layer (e.g., button click).</li>
+            <li>UI Layer calls a <strong>Use Case</strong> in the Domain Layer.</li>
+            <li>Domain Layer executes business logic using Entities and communicates with the Data Layer if needed.</li>
+            <li>Data Layer fetches or stores data from database/network and returns results.</li>
+            <li>Domain Layer updates the UI Layer through observable state.</li>
+            <li>UI Layer reacts to state changes and updates the display.</li>
+        </ol>
+
+        <h3>5. Benefits of Following Layer Separation in Clean Code</h3>
+        <ul>
+            <li><strong>Maintainability:</strong> Changes in one layer do not break others.</li>
+            <li><strong>Testability:</strong> Business logic (Domain) can be tested independently of UI or data sources.</li>
+            <li><strong>Reusability:</strong> Domain logic can be reused across different UI frameworks or platforms.</li>
+            <li><strong>Scalability:</strong> Easy to extend the app by adding new features without disrupting existing layers.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                Proper separation of <strong>Data, Domain, and UI layers</strong> is a cornerstone of Clean Architecture.  
+                It ensures code is clean, readable, maintainable, and testable — all qualities that senior engineers and CTOs highly value.  
+                Following these principles allows Android applications to scale gracefully while keeping core business logic safe from UI or framework changes.
+            </p>
+        </div>
+    </div>
+</section>

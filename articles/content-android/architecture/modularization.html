@@ -1,0 +1,78 @@
+<section id="app-modularization" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">App Modularization in Android — Complete Guide</h1>
+
+        <h3>1. What is App Modularization?</h3>
+        <p>
+            App Modularization is the process of dividing a large Android application into smaller, 
+            self-contained modules with clear responsibilities. Each module is like a separate 
+            project with its own build logic, dependencies, and encapsulated functionality.
+        </p>
+        <p>
+            Modularization helps manage complexity, improve build times, and increase code reusability.
+        </p>
+
+        <h3>2. Types of Modules in Android</h3>
+        <ul>
+            <li><strong>App Module:</strong> The main module that depends on feature and library modules.</li>
+            <li><strong>Feature Modules:</strong> Encapsulate specific app features, such as login, payments, or profile. These modules can be independently developed and tested.</li>
+            <li><strong>Library Modules:</strong> Contain reusable code or components, such as UI components, networking, or utilities.</li>
+            <li><strong>Dynamic Feature Modules:</strong> Optional modules that can be downloaded on-demand (via Google Play Dynamic Delivery) to reduce APK size.</li>
+        </ul>
+
+        <h3>3. Benefits of Modularization</h3>
+        <ul>
+            <li><strong>Scalability:</strong> Large apps are easier to manage when divided into modules.</li>
+            <li><strong>Faster Build Times:</strong> Only changed modules need to be rebuilt.</li>
+            <li><strong>Reusability:</strong> Modules can be reused across different apps or projects.</li>
+            <li><strong>Independent Development:</strong> Teams can work on different modules simultaneously.</li>
+            <li><strong>Better Testability:</strong> Each module can be tested in isolation.</li>
+        </ul>
+
+        <h3>4. Approaches to Modularization</h3>
+        <ul>
+            <li><strong>By Feature:</strong> Divide modules based on features (e.g., login, dashboard, payments).</li>
+            <li><strong>By Layer:</strong> Divide modules based on layers like data, domain, and UI (aligned with Clean Architecture).</li>
+            <li><strong>Hybrid:</strong> Combine both feature and layer-based modularization for complex apps.</li>
+        </ul>
+
+        <h3>5. Best Practices for Modularization</h3>
+        <ul>
+            <li>Define clear responsibilities for each module.</li>
+            <li>Keep dependencies minimal and use interfaces for communication between modules.</li>
+            <li>Use Gradle <code>implementation</code> and <code>api</code> keywords wisely to control visibility.</li>
+            <li>Keep UI-related modules independent of data or domain layers.</li>
+            <li>Use dependency injection (like Hilt or Dagger) to manage dependencies across modules.</li>
+            <li>Consider dynamic feature modules for optional features to reduce APK size.</li>
+        </ul>
+
+        <h3>6. Example: Modular App Structure</h3>
+        <pre><code>
+        ├── app/                     # Main app module
+        ├── feature-login/           # Login feature module
+        ├── feature-profile/         # Profile feature module
+        ├── feature-dashboard/       # Dashboard feature module
+        ├── core/                    # Shared core module (utilities, network)
+        └── data/                    # Data module (repositories, database, API)
+        </code></pre>
+
+        <h3>7. Modularization with Clean Architecture</h3>
+        <p>
+            Combining modularization with Clean Architecture allows you to:
+        </p>
+        <ul>
+            <li>Keep <strong>Domain</strong> layer shared and independent across modules.</li>
+            <li>Implement <strong>feature-specific modules</strong> that encapsulate UI, domain, and data logic.</li>
+            <li>Promote <strong>reusability and testability</strong> by isolating modules.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                App Modularization is essential for large-scale Android applications.  
+                By separating features and layers into modules, you improve maintainability, scalability, and developer productivity.  
+                This is a key concept for CTOs when evaluating Android architectures and team workflows.
+            </p>
+        </div>
+    </div>
+</section>

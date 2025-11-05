@@ -1,0 +1,97 @@
+<section id="android-architecture" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Introduction to Android Architecture</h1>
+
+        <h3>1. What is Android Architecture?</h3>
+        <p>
+            Android architecture refers to the organized structure and design pattern used to build 
+            scalable, maintainable, and testable Android applications. 
+            It defines how different components of the app communicate and manage data — 
+            from user interface (UI) elements to the underlying data sources and APIs.
+        </p>
+        <p>
+            A well-structured architecture helps developers reduce bugs, improve code readability, 
+            and easily integrate new features without breaking existing functionality.
+        </p>
+
+        <h3>2. Key Layers of Android Architecture</h3>
+        <p>
+            The Android architecture can be thought of as a layered structure, where each layer 
+            has a specific responsibility. These layers include:
+        </p>
+
+        <ul>
+            <li><strong>Presentation Layer (UI Layer):</strong> Handles everything the user interacts with, 
+                including <code>Activities</code>, <code>Fragments</code>, <code>Jetpack Compose</code>, and UI logic.</li>
+            <li><strong>Domain Layer:</strong> Contains the core business logic — 
+                use cases or interactors that define what the app does, independent of frameworks.</li>
+            <li><strong>Data Layer:</strong> Responsible for data management. 
+                It includes repositories, data sources (API, Database), and caching mechanisms.</li>
+        </ul>
+
+        <h3>3. Common Android Architectural Patterns</h3>
+        <p>Android developers often use different architecture patterns depending on project size, 
+            team structure, and maintenance goals. The most common ones include:
+        </p>
+
+        <ul>
+            <li><strong>MVC (Model-View-Controller):</strong> The oldest pattern where 
+                the View handles UI, the Model manages data, and the Controller handles logic. 
+                However, it often leads to tightly coupled code in Android.</li>
+
+            <li><strong>MVP (Model-View-Presenter):</strong> Introduces a <em>Presenter</em> that mediates between 
+                the View and Model, improving testability and separation of concerns.</li>
+
+            <li><strong>MVVM (Model-View-ViewModel):</strong> The modern and most widely used pattern. 
+                It uses a <code>ViewModel</code> to manage UI-related data and lifecycle, often combined with 
+                <code>LiveData</code> or <code>StateFlow</code> to provide reactive updates.</li>
+
+            <li><strong>MVI (Model-View-Intent):</strong> A unidirectional data flow pattern 
+                that simplifies state management, often used with Kotlin Flow or RxJava.</li>
+        </ul>
+
+        <h3>4. Jetpack Architecture Components</h3>
+        <p>
+            Google introduced <strong>Jetpack Architecture Components</strong> to make Android development 
+            more structured and lifecycle-aware. These include:
+        </p>
+
+        <ul>
+            <li><code>ViewModel</code> – Stores and manages UI-related data.</li>
+            <li><code>LiveData</code> / <code>StateFlow</code> – Provides reactive data updates.</li>
+            <li><code>Room</code> – Simplifies local database management.</li>
+            <li><code>WorkManager</code> – Handles background tasks and scheduled work.</li>
+            <li><code>Navigation</code> – Manages in-app navigation and back-stack handling.</li>
+        </ul>
+
+        <h3>5. Benefits of a Good Architecture</h3>
+        <ul>
+            <li>Improves maintainability and scalability.</li>
+            <li>Enables better code reuse and testing.</li>
+            <li>Separates concerns (UI, business logic, data).</li>
+            <li>Ensures consistent and predictable app behavior.</li>
+        </ul>
+
+        <h3>6. Example Flow in MVVM Architecture</h3>
+        <p>Here’s a simple overview of how data flows in a modern MVVM-based Android app:</p>
+
+        <ol>
+            <li><strong>User Action:</strong> User clicks a button in the UI (View).</li>
+            <li><strong>ViewModel:</strong> Receives the event and triggers a use case or repository call.</li>
+            <li><strong>Repository:</strong> Fetches data from a local or remote source (API / Room DB).</li>
+            <li><strong>Data Return:</strong> Repository returns data to ViewModel.</li>
+            <li><strong>UI Update:</strong> ViewModel updates the <code>LiveData</code> or <code>StateFlow</code>, 
+                which automatically refreshes the UI.</li>
+        </ol>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                Android architecture isn’t just about writing code — it’s about organizing code in a way 
+                that ensures clarity, scalability, and long-term maintainability. 
+                Choosing the right architecture (like MVVM with Jetpack components) 
+                helps teams build robust, reliable, and easily testable Android applications.
+            </p>
+        </div>
+    </div>
+</section>

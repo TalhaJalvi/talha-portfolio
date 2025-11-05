@@ -1,0 +1,187 @@
+<section id="mvvm-architecture" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">MVVM Architecture in Android — Complete Guide with Example</h1>
+
+        <h3>1. What is MVVM Architecture?</h3>
+        <p>
+            MVVM stands for <strong>Model–View–ViewModel</strong>. 
+            It is a modern architectural pattern widely used in Android development. 
+            MVVM separates the UI logic from business logic and data handling, 
+            enabling **reactive UI updates** and **better testability**.
+        </p>
+
+        <h3>2. Key Components of MVVM</h3>
+        <ul>
+            <li><strong>Model:</strong> Manages data and business logic. It fetches data from APIs, databases, or repositories.</li>
+            <li><strong>View:</strong> Displays data to the user and observes data changes. It is “dumb” and contains minimal logic.</li>
+            <li><strong>ViewModel:</strong> Mediates between the Model and View. It exposes observable data (LiveData or StateFlow) and handles UI-related logic without referencing Android UI classes.</li>
+        </ul>
+
+        <h3>3. MVVM Data Flow</h3>
+        <ol>
+            <li>View observes LiveData / StateFlow in ViewModel.</li>
+            <li>User interacts with the UI (View), triggering events in ViewModel.</li>
+            <li>ViewModel calls the Model / Repository to fetch or update data.</li>
+            <li>Model returns data to ViewModel.</li>
+            <li>ViewModel updates LiveData / StateFlow.</li>
+            <li>View automatically observes the change and updates the UI.</li>
+        </ol>
+
+        <h3>4. Advantages of MVVM</h3>
+        <ul>
+            <li>Separation of concerns — UI and business logic are decoupled.</li>
+            <li>Reactive UI updates via LiveData / StateFlow.</li>
+            <li>Easy to unit test ViewModel without Android dependencies.</li>
+            <li>Improves maintainability and scalability for large projects.</li>
+        </ul>
+
+        <h3>5. Example: Simple Login Feature Using MVVM</h3>
+        <h4>📁 Folder Structure</h4>
+        <pre><code>
+        ├── model/
+        │   └── UserModel.kt
+        ├── repository/
+        │   └── UserRepository.kt
+        ├── viewmodel/
+        │   └── LoginViewModel.kt
+        ├── view/
+        │   └── LoginActivity.kt
+        └── activity_login.xml
+        </code></pre>
+
+        <h4>🧩 Model: UserModel.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvvm.model
+
+        data class UserModel(val username: String, val password: String) {
+            fun isValid(): Boolean {
+                return username.isNotEmpty() && password.length >= 6
+            }
+        }
+        </code></pre>
+
+        <h4>📦 Repository: UserRepository.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvvm.repository
+
+        import com.example.mvvm.model.UserModel
+
+        class UserRepository {
+            fun login(username: String, password: String): Boolean {
+                val user = UserModel(username, password)
+                return user.isValid()
+            }
+        }
+        </code></pre>
+
+        <h4>🧠 ViewModel: LoginViewModel.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvvm.viewmodel
+
+        import androidx.lifecycle.LiveData
+        import androidx.lifecycle.MutableLiveData
+        import androidx.lifecycle.ViewModel
+        import com.example.mvvm.repository.UserRepository
+
+        class LoginViewModel : ViewModel() {
+
+            private val repository = UserRepository()
+
+            private val _loginResult = MutableLiveData<String>()
+            val loginResult: LiveData<String> get() = _loginResult
+
+            fun login(username: String, password: String) {
+                if (username.isEmpty() || password.isEmpty()) {
+                    _loginResult.value = "Fields cannot be empty"
+                    return
+                }
+
+                val success = repository.login(username, password)
+                _loginResult.value = if (success) "Login successful!" else "Invalid credentials"
+            }
+        }
+        </code></pre>
+
+        <h4>🎨 View: activity_login.xml</h4>
+        <pre><code class="language-xml">
+        &lt;LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"&gt;
+
+            &lt;EditText
+                android:id="@+id/etUsername"
+                android:hint="Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;EditText
+                android:id="@+id/etPassword"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;Button
+                android:id="@+id/btnLogin"
+                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+        &lt;/LinearLayout&gt;
+        </code></pre>
+
+        <h4>🎬 Activity: LoginActivity.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvvm.view
+
+        import android.os.Bundle
+        import android.widget.Toast
+        import androidx.activity.viewModels
+        import androidx.appcompat.app.AppCompatActivity
+        import com.example.mvvm.R
+        import com.example.mvvm.viewmodel.LoginViewModel
+        import kotlinx.android.synthetic.main.activity_login.*
+
+        class LoginActivity : AppCompatActivity() {
+
+            private val viewModel: LoginViewModel by viewModels()
+
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_login)
+
+                btnLogin.setOnClickListener {
+                    val username = etUsername.text.toString()
+                    val password = etPassword.text.toString()
+                    viewModel.login(username, password)
+                }
+
+                viewModel.loginResult.observe(this) { result ->
+                    Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        </code></pre>
+
+        <h3>6. MVVM Advantages Over MVP / MVC</h3>
+        <ul>
+            <li>View is completely passive — UI updates reactively via LiveData / StateFlow.</li>
+            <li>ViewModel contains no Android framework dependencies — easier unit testing.</li>
+            <li>Supports lifecycle awareness out-of-the-box with Jetpack components.</li>
+            <li>Better separation of concerns for complex apps.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                MVVM is the recommended modern Android architecture pattern. 
+                Using ViewModel, LiveData, and Repository enables reactive, testable, 
+                and maintainable applications. MVVM is especially powerful for apps that 
+                require clean separation between UI, business logic, and data layers, 
+                making it highly preferred for large-scale Android projects and CTO-level discussions.
+            </p>
+        </div>
+    </div>
+</section>

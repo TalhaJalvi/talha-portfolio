@@ -1,0 +1,190 @@
+<section id="mvp-architecture" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">MVP Architecture in Android — Complete Guide with Example</h1>
+
+        <h3>1. What is MVP Architecture?</h3>
+        <p>
+            MVP stands for <strong>Model–View–Presenter</strong>. 
+            It evolved from the classic MVC pattern to solve Android’s problem of 
+            <em>tight coupling between the View and Controller</em>.
+            In MVP, the <em>Presenter</em> acts as the middle layer between the View and Model, 
+            making the architecture more testable, modular, and maintainable.
+        </p>
+
+        <h3>2. Key Components of MVP</h3>
+        <ul>
+            <li><strong>Model:</strong> Manages data and business logic. It can fetch data from a 
+                database, network, or API, and expose methods to the Presenter.</li>
+            <li><strong>View:</strong> Handles UI elements and user interactions. 
+                It’s passive — meaning it only displays data and sends user actions to the Presenter.</li>
+            <li><strong>Presenter:</strong> Connects the View and the Model. 
+                It retrieves data from the Model and updates the View accordingly. 
+                It contains no Android framework code, which makes it easy to test.</li>
+        </ul>
+
+        <h3>3. MVP Data Flow</h3>
+        <ol>
+            <li>User interacts with the <strong>View</strong> (e.g., clicks a button).</li>
+            <li>The <strong>View</strong> delegates the event to the <strong>Presenter</strong>.</li>
+            <li>The <strong>Presenter</strong> requests data or performs logic via the <strong>Model</strong>.</li>
+            <li>The <strong>Model</strong> returns data to the <strong>Presenter</strong>.</li>
+            <li>The <strong>Presenter</strong> updates the <strong>View</strong> with the new data.</li>
+        </ol>
+
+        <h3>4. Advantages of MVP</h3>
+        <ul>
+            <li>Improved <strong>testability</strong> since the Presenter doesn’t depend on Android SDK.</li>
+            <li>Better <strong>separation of concerns</strong> than MVC.</li>
+            <li><strong>Reusability</strong> — Presenter can be reused with different Views.</li>
+            <li>Clean and maintainable architecture for medium to large projects.</li>
+        </ul>
+
+        <h3>5. Example: Simple Login Feature Using MVP</h3>
+        <p>Below is an example implementation of MVP pattern for a login screen.</p>
+
+        <h4>📁 Folder Structure</h4>
+        <pre><code>
+        ├── model/
+        │   └── UserModel.kt
+        ├── presenter/
+        │   └── LoginPresenter.kt
+        ├── view/
+        │   ├── LoginView.kt
+        │   └── LoginActivity.kt
+        └── activity_login.xml
+        </code></pre>
+
+        <h4>🎨 View: activity_login.xml</h4>
+        <pre><code class="language-xml">
+        &lt;LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"&gt;
+
+            &lt;EditText
+                android:id="@+id/etUsername"
+                android:hint="Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;EditText
+                android:id="@+id/etPassword"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;Button
+                android:id="@+id/btnLogin"
+                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+        &lt;/LinearLayout&gt;
+        </code></pre>
+
+        <h4>🧩 Model: UserModel.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvp.model
+
+        class UserModel {
+            fun isValidUser(username: String, password: String): Boolean {
+                return username.isNotEmpty() && password.length >= 6
+            }
+        }
+        </code></pre>
+
+        <h4>🧠 Presenter: LoginPresenter.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvp.presenter
+
+        import com.example.mvp.model.UserModel
+        import com.example.mvp.view.LoginView
+
+        class LoginPresenter(private val view: LoginView) {
+
+            private val userModel = UserModel()
+
+            fun onLoginClicked(username: String, password: String) {
+                if (username.isEmpty() || password.isEmpty()) {
+                    view.showError("Fields cannot be empty")
+                    return
+                }
+
+                if (userModel.isValidUser(username, password)) {
+                    view.showSuccess("Login successful!")
+                } else {
+                    view.showError("Invalid username or password")
+                }
+            }
+        }
+        </code></pre>
+
+        <h4>🖥️ View Interface: LoginView.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvp.view
+
+        interface LoginView {
+            fun showSuccess(message: String)
+            fun showError(message: String)
+        }
+        </code></pre>
+
+        <h4>🎬 Activity: LoginActivity.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvp.view
+
+        import android.os.Bundle
+        import android.widget.Toast
+        import androidx.appcompat.app.AppCompatActivity
+        import com.example.mvp.R
+        import com.example.mvp.presenter.LoginPresenter
+        import kotlinx.android.synthetic.main.activity_login.*
+
+        class LoginActivity : AppCompatActivity(), LoginView {
+
+            private lateinit var presenter: LoginPresenter
+
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_login)
+
+                presenter = LoginPresenter(this)
+
+                btnLogin.setOnClickListener {
+                    val username = etUsername.text.toString()
+                    val password = etPassword.text.toString()
+                    presenter.onLoginClicked(username, password)
+                }
+            }
+
+            override fun showSuccess(message: String) {
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun showError(message: String) {
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        }
+        </code></pre>
+
+        <h3>6. Disadvantages of MVP</h3>
+        <ul>
+            <li>Can lead to a large number of interfaces and boilerplate code.</li>
+            <li>Presenter can grow too big if not managed properly (called “Massive Presenter”).</li>
+            <li>Still lacks lifecycle awareness compared to MVVM.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                The MVP pattern provides a clean and testable structure for Android apps. 
+                It improves upon MVC by decoupling business logic from UI logic, 
+                allowing for easier unit testing and modular development. 
+                However, in modern Android, developers often move towards <strong>MVVM</strong> 
+                and <strong>Clean Architecture</strong> using Jetpack components for even better lifecycle handling.
+            </p>
+        </div>
+    </div>
+</section>

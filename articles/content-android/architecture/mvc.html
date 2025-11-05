@@ -1,0 +1,173 @@
+<section id="mvc-architecture" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">MVC Architecture in Android — Explained with Example</h1>
+
+        <h3>1. What is MVC Architecture?</h3>
+        <p>
+            MVC stands for <strong>Model–View–Controller</strong>. 
+            It is one of the earliest and most fundamental software architecture patterns used to separate 
+            an application into three main logical components — <em>Model</em>, <em>View</em>, and <em>Controller</em>. 
+            The goal of MVC is to achieve <strong>separation of concerns</strong> so that each component handles a specific responsibility, 
+            improving modularity, scalability, and code maintainability.
+        </p>
+
+        <h3>2. The Three Components of MVC</h3>
+        <ul>
+            <li><strong>Model:</strong> Represents the data layer and business logic. 
+                It manages the data, performs CRUD operations, and defines how data is manipulated.</li>
+
+            <li><strong>View:</strong> Handles the UI — what the user sees and interacts with. 
+                It should be as “dumb” as possible, meaning it only displays the data given by the Controller.</li>
+
+            <li><strong>Controller:</strong> Acts as a bridge between the Model and the View. 
+                It listens to user input, processes it (possibly via the Model), 
+                and updates the View accordingly.</li>
+        </ul>
+
+        <h3>3. How MVC Works in Android</h3>
+        <p>
+            In traditional Android development, <code>Activity</code> or <code>Fragment</code> 
+            often serves as both the <em>View</em> and the <em>Controller</em>. 
+            While this works for small projects, it can quickly lead to the infamous 
+            <strong>“God Activity” problem</strong> — where one file handles too many responsibilities.
+        </p>
+        <p>
+            To implement MVC properly, you should try to separate:
+        </p>
+        <ul>
+            <li>The <strong>UI layout (View)</strong> — XML files and UI rendering.</li>
+            <li>The <strong>Controller</strong> — Activity or a separate class handling user actions.</li>
+            <li>The <strong>Model</strong> — classes for data management, APIs, or databases.</li>
+        </ul>
+
+        <h3>4. Example: Simple Login Screen using MVC</h3>
+        <p>Let’s walk through an example implementation of a basic login feature using MVC.</p>
+
+        <h4>📁 Folder Structure</h4>
+        <pre><code>
+        ├── model/
+        │   └── UserModel.kt
+        ├── view/
+        │   └── activity_login.xml
+        ├── controller/
+        │   └── LoginController.kt
+        ├── LoginActivity.kt
+        </code></pre>
+
+        <h4>🧩 Model: UserModel.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvc.model
+
+        data class UserModel(val username: String, val password: String) {
+
+            fun isValidUser(): Boolean {
+                // Example validation logic
+                return username.isNotEmpty() && password.length >= 6
+            }
+        }
+        </code></pre>
+
+        <h4>🎨 View: activity_login.xml</h4>
+        <pre><code class="language-xml">
+        &lt;LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"&gt;
+
+            &lt;EditText
+                android:id="@+id/etUsername"
+                android:hint="Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;EditText
+                android:id="@+id/etPassword"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+
+            &lt;Button
+                android:id="@+id/btnLogin"
+                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/&gt;
+        &lt;/LinearLayout&gt;
+        </code></pre>
+
+        <h4>🧠 Controller: LoginController.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvc.controller
+
+        import com.example.mvc.model.UserModel
+
+        class LoginController {
+            fun handleLogin(username: String, password: String): Boolean {
+                val user = UserModel(username, password)
+                return user.isValidUser()
+            }
+        }
+        </code></pre>
+
+        <h4>🎬 Activity (acts as View + Controller): LoginActivity.kt</h4>
+        <pre><code class="language-kotlin">
+        package com.example.mvc.view
+
+        import android.os.Bundle
+        import android.widget.Toast
+        import androidx.appcompat.app.AppCompatActivity
+        import com.example.mvc.R
+        import com.example.mvc.controller.LoginController
+        import kotlinx.android.synthetic.main.activity_login.*
+
+        class LoginActivity : AppCompatActivity() {
+
+            private lateinit var controller: LoginController
+
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_login)
+
+                controller = LoginController()
+
+                btnLogin.setOnClickListener {
+                    val username = etUsername.text.toString()
+                    val password = etPassword.text.toString()
+
+                    if (controller.handleLogin(username, password)) {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        </code></pre>
+
+        <h3>5. Advantages of MVC</h3>
+        <ul>
+            <li>Improved separation of concerns between UI, logic, and data.</li>
+            <li>Easier testing of Model and Controller logic independently.</li>
+            <li>Code is easier to maintain and scale for small to medium projects.</li>
+        </ul>
+
+        <h3>6. Limitations of MVC in Android</h3>
+        <ul>
+            <li><strong>Tight coupling</strong> between View and Controller — Activities often become bloated.</li>
+            <li><strong>Difficult testing</strong> when UI and Controller logic are mixed.</li>
+            <li><strong>Scalability issues</strong> for large or complex apps — often replaced by MVP or MVVM.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <h4>Conclusion</h4>
+            <p>
+                MVC was the foundation for structured app design and remains valuable for understanding 
+                architectural separation. However, in modern Android development, patterns like 
+                <strong>MVP</strong> and <strong>MVVM</strong> offer better lifecycle awareness, 
+                reactive data flow, and cleaner separation between UI and logic.
+            </p>
+        </div>
+    </div>
+</section>

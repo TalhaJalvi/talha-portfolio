@@ -1,0 +1,79 @@
+<section id="mvp-mvc-compose" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Using MVC and MVP in Jetpack Compose</h1>
+
+        <h3>1. Can we use MVC or MVP with Jetpack Compose?</h3>
+        <p>
+            Technically, <strong>yes</strong>, you can use MVC or MVP in Jetpack Compose because they are just 
+            <em>architecture patterns</em> — rules about how to separate UI, logic, and data. Compose itself doesn’t restrict the pattern.
+        </p>
+        <ul>
+            <li><strong>MVC:</strong> You could have a Controller class handle logic and update Composables (the View).</li>
+            <li><strong>MVP:</strong> You could have a Presenter class handle all the logic and tell Composables what to display.</li>
+        </ul>
+        <p><strong>But there are important caveats...</strong></p>
+
+        <h3>2. Why MVC/MVP is not recommended with Jetpack Compose</h3>
+        <ul>
+            <li><strong>Compose is reactive:</strong> Composables automatically recompose when data changes. MVC and MVP were designed for imperative UI (XML + Activity/Fragment). Manually updating UI from Controller or Presenter can be verbose and go against reactive patterns.</li>
+            <li><strong>View in Compose is not traditional:</strong> In MVP, the View is passive and updated by the Presenter. In Compose, the Composable itself can <em>observe state</em> (State, MutableState, LiveData, or StateFlow) and update automatically — making Presenter unnecessary.</li>
+            <li><strong>Boilerplate:</strong> Implementing MVP or MVC in Compose often leads to extra classes and interfaces that don’t add much value. You end up writing more code than necessary.</li>
+        </ul>
+
+        <h3>3. Recommended Approach for Jetpack Compose</h3>
+        <p>
+            Use <strong>MVVM</strong> or <strong>MVI</strong> patterns:
+        </p>
+        <ul>
+            <li>ViewModel holds the state.</li>
+            <li>Composables observe state and automatically update when it changes.</li>
+            <li>This leverages Compose’s reactive nature perfectly.</li>
+        </ul>
+        <p>Example with MVVM:</p>
+        <pre><code class="language-kotlin">
+val uiState by viewModel.uiState.collectAsState()
+Text(text = uiState.username)
+        </code></pre>
+        <p>No need for a Presenter or Controller — state drives the UI.</p>
+
+        <h3>4. TL;DR Comparison</h3>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Pattern</th>
+                    <th>Recommended with Compose?</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MVC</td>
+                    <td>❌ Not advised</td>
+                    <td>Imperative updates conflict with reactive Compose UI</td>
+                </tr>
+                <tr>
+                    <td>MVP</td>
+                    <td>⚠️ Possible but not ideal</td>
+                    <td>Presenter becomes unnecessary boilerplate</td>
+                </tr>
+                <tr>
+                    <td>MVVM</td>
+                    <td>✅ Strongly recommended</td>
+                    <td>Fits Compose’s reactive, state-driven design</td>
+                </tr>
+                <tr>
+                    <td>MVI</td>
+                    <td>✅ Optional</td>
+                    <td>Works well for unidirectional state flow</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Bottom Line</h3>
+        <p>
+            With Jetpack Compose, <strong>stick to MVVM or MVI</strong>. 
+            MVC/MVP is more suited for traditional XML + Activity/Fragment UI.
+        </p>
+
+    </div>
+</section>
