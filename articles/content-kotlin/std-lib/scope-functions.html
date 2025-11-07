@@ -1,196 +1,151 @@
 <section id="scope-functions" class="basic-1 bg-gray py-5">
     <div class="container">
-        <h1 class="text-center mb-5">Kotlin Scope Functions — Complete Guide</h1>
+        <h1 class="text-center mb-5">Kotlin Scope Functions — Detailed Explanation</h1>
 
-        <h3>1. What Are Scope Functions in Kotlin?</h3>
         <p>
-            In Kotlin, <strong>scope functions</strong> are special functions that let you execute a block of code within the context of an object.  
-            They help reduce boilerplate code, improve readability, and make initialization or transformation more expressive.
+            Scope functions in Kotlin are special functions that allow you to execute a block of code within the context of an object.  
+            They make your code more concise, readable, and expressive by reducing boilerplate when dealing with object initialization, transformations, or null checks.
         </p>
 
+        <h3>🔹 Why Use Scope Functions?</h3>
         <ul>
-            <li>Scope functions include <code>let</code>, <code>run</code>, <code>with</code>, <code>apply</code>, and <code>also</code>.</li>
-            <li>Each differs based on:
-                <ul>
-                    <li>How the object is referenced — using <code>this</code> or <code>it</code>.</li>
-                    <li>What the function returns — the <strong>object itself</strong> or the <strong>lambda result</strong>.</li>
-                </ul>
-            </li>
+            <li>To avoid repeating the object name multiple times.</li>
+            <li>To configure or initialize objects easily.</li>
+            <li>To execute code blocks safely (especially with nullable objects).</li>
+            <li>To perform transformations or chaining operations elegantly.</li>
         </ul>
 
-        <hr class="my-5">
+        <h3>🔹 Common Scope Functions in Kotlin</h3>
+        <p>Kotlin provides five main scope functions: <strong>let</strong>, <strong>run</strong>, <strong>with</strong>, <strong>apply</strong>, and <strong>also</strong>.</p>
 
-        <h3>2. Why Use Scope Functions?</h3>
-        <ul>
-            <li>To simplify code and avoid repeating the object name multiple times.</li>
-            <li>To configure, transform, or perform operations on objects easily.</li>
-            <li>To perform safe calls on nullable objects.</li>
-            <li>To chain functions in a clean and readable way.</li>
-        </ul>
-
-        <hr class="my-5">
-
-        <h3>3. How Scope Functions Work (with Examples)</h3>
-
-        <h5>Example 1 — <code>let</code></h5>
-        <p><strong>Used for:</strong> Executing code on non-null objects or transforming results.</p>
+        <h2>1️⃣ let</h2>
+        <p>
+            The <strong>let</strong> function is used to execute a block of code only if the object is non-null.  
+            It returns the result of the block, not the object itself.
+        </p>
         <pre><code class="language-kotlin">
 val name: String? = "Talha"
 name?.let {
-    println("Length: ${it.length}")
+    println("Hello, $it!")
+}
+// Output: Hello, Talha!
+        </code></pre>
+        <ul>
+            <li><strong>Context Object:</strong> It (implicit name)</li>
+            <li><strong>Returns:</strong> Result of the lambda block</li>
+            <li><strong>Use Case:</strong> Null-safety and transformations</li>
+        </ul>
+
+        <h2>2️⃣ run</h2>
+        <p>
+            The <strong>run</strong> function executes a block of code and returns the result.  
+            It’s useful when you want to compute and return a value after performing operations on an object.
+        </p>
+        <pre><code class="language-kotlin">
+val result = "Kotlin".run {
+    length + 5
+}
+println(result) // Output: 11
+        </code></pre>
+        <ul>
+            <li><strong>Context Object:</strong> this</li>
+            <li><strong>Returns:</strong> Lambda result</li>
+            <li><strong>Use Case:</strong> Object transformations</li>
+        </ul>
+
+        <h2>3️⃣ with</h2>
+        <p>
+            The <strong>with</strong> function is not an extension function but takes the context object as a parameter.  
+            It is ideal when you don’t need to chain multiple operations but want to operate on a single object multiple times.
+        </p>
+        <pre><code class="language-kotlin">
+val person = Person("Talha", 25)
+with(person) {
+    println(name)
+    println(age)
 }
         </code></pre>
-        <p><strong>Why:</strong> Safe way to execute code only if object is not null.<br>
-           <strong>When:</strong> Use for null checks or short variable scopes.</p>
+        <ul>
+            <li><strong>Context Object:</strong> this</li>
+            <li><strong>Returns:</strong> Lambda result</li>
+            <li><strong>Use Case:</strong> Operating on an object without chaining</li>
+        </ul>
 
-        <h5>Example 2 — <code>run</code></h5>
-        <p><strong>Used for:</strong> Operating on an object and returning a computed result.</p>
+        <h2>4️⃣ apply</h2>
+        <p>
+            The <strong>apply</strong> function runs a block of code on the object and returns the object itself.  
+            It’s most commonly used for object configuration or initialization.
+        </p>
         <pre><code class="language-kotlin">
-val message = "Hello"
-val result = message.run {
-    println("Length is $length")
-    uppercase()
-}
-println(result) // HELLO
-        </code></pre>
-        <p><strong>Why:</strong> Works with <code>this</code> reference for readability.<br>
-           <strong>When:</strong> Use when both computation and context access are needed.</p>
-
-        <h5>Example 3 — <code>with</code></h5>
-        <p><strong>Used for:</strong> Running multiple operations on an object.</p>
-        <pre><code class="language-kotlin">
-val builder = StringBuilder()
-val result = with(builder) {
-    append("Hello, ")
-    append("World!")
-    toString()
-}
-println(result)
-        </code></pre>
-        <p><strong>Why:</strong> Useful for configuring existing non-null objects.<br>
-           <strong>When:</strong> Use when you already have the object and don’t need null safety.</p>
-
-        <h5>Example 4 — <code>apply</code></h5>
-        <p><strong>Used for:</strong> Object configuration — modifies and returns the same object.</p>
-        <pre><code class="language-kotlin">
-val user = User().apply {
+val person = Person().apply {
     name = "Talha"
     age = 25
 }
-println(user.name)
+println(person.name) // Output: Talha
         </code></pre>
-        <p><strong>Why:</strong> Perfect for initializing or configuring objects.<br>
-           <strong>When:</strong> Use in builder-style code or setup functions.</p>
-
-        <h5>Example 5 — <code>also</code></h5>
-        <p><strong>Used for:</strong> Performing side actions (like logging) while returning the same object.</p>
-        <pre><code class="language-kotlin">
-val numbers = mutableListOf(1, 2, 3).also {
-    println("Before adding: $it")
-    it.add(4)
-}
-println(numbers)
-        </code></pre>
-        <p><strong>Why:</strong> Adds extra actions without changing the main chain.<br>
-           <strong>When:</strong> Use for debugging, logging, or additional operations.</p>
-
-        <hr class="my-5">
-
-        <h3>4. When to Use Each Scope Function</h3>
-        <table border="1" cellpadding="8" cellspacing="0" style="width:100%;">
-            <tr>
-                <th>Function</th>
-                <th>Object Reference</th>
-                <th>Returns</th>
-                <th>Best Used For</th>
-            </tr>
-            <tr>
-                <td><code>let</code></td>
-                <td><code>it</code></td>
-                <td>Lambda result</td>
-                <td>Nullable checks and transformations</td>
-            </tr>
-            <tr>
-                <td><code>run</code></td>
-                <td><code>this</code></td>
-                <td>Lambda result</td>
-                <td>Computation with object context</td>
-            </tr>
-            <tr>
-                <td><code>with</code></td>
-                <td><code>this</code></td>
-                <td>Lambda result</td>
-                <td>Operate on existing objects</td>
-            </tr>
-            <tr>
-                <td><code>apply</code></td>
-                <td><code>this</code></td>
-                <td>Object itself</td>
-                <td>Object initialization/configuration</td>
-            </tr>
-            <tr>
-                <td><code>also</code></td>
-                <td><code>it</code></td>
-                <td>Object itself</td>
-                <td>Side effects (logging/debugging)</td>
-            </tr>
-        </table>
-
-        <hr class="my-5">
-
-        <h3>5. Common Patterns with Scope Functions</h3>
         <ul>
-            <li>Use <code>apply</code> for initializing objects.</li>
-            <li>Use <code>also</code> for debugging or logging inside chains.</li>
-            <li>Use <code>let</code> for nullable checks.</li>
-            <li>Use <code>run</code> when you need both context and result.</li>
-            <li>Use <code>with</code> for operating on existing objects without null checks.</li>
+            <li><strong>Context Object:</strong> this</li>
+            <li><strong>Returns:</strong> The object itself</li>
+            <li><strong>Use Case:</strong> Object configuration and initialization</li>
         </ul>
 
-        <hr class="my-5">
+        <h2>5️⃣ also</h2>
+        <p>
+            The <strong>also</strong> function is used when you want to perform additional operations (like logging or debugging) without changing the object.
+        </p>
+        <pre><code class="language-kotlin">
+val numbers = mutableListOf(1, 2, 3).also {
+    println("List before adding: $it")
+}.apply {
+    add(4)
+}
+println(numbers) // Output: [1, 2, 3, 4]
+        </code></pre>
+        <ul>
+            <li><strong>Context Object:</strong> it</li>
+            <li><strong>Returns:</strong> The object itself</li>
+            <li><strong>Use Case:</strong> Side-effects like logging or debugging</li>
+        </ul>
 
-        <h3>6. Top 10 Interview Questions (With Answers)</h3>
-        <ol>
-            <li><strong>Q1:</strong> What are scope functions in Kotlin?<br>
-                <strong>Ans:</strong> Functions like <code>let</code>, <code>run</code>, <code>with</code>, <code>apply</code>, and <code>also</code> that execute code in the context of an object.
-            </li>
-            <li><strong>Q2:</strong> Which scope functions return the object itself?<br>
-                <strong>Ans:</strong> <code>apply</code> and <code>also</code>.
-            </li>
-            <li><strong>Q3:</strong> Which scope functions return the lambda result?<br>
-                <strong>Ans:</strong> <code>let</code>, <code>run</code>, and <code>with</code>.
-            </li>
-            <li><strong>Q4:</strong> What’s the main difference between <code>apply</code> and <code>also</code>?<br>
-                <strong>Ans:</strong> <code>apply</code> uses <code>this</code> and configures the object; <code>also</code> uses <code>it</code> and performs side actions.
-            </li>
-            <li><strong>Q5:</strong> When should you use <code>let</code>?<br>
-                <strong>Ans:</strong> When working with nullable variables or to limit variable scope.
-            </li>
-            <li><strong>Q6:</strong> What is the difference between <code>run</code> and <code>with</code>?<br>
-                <strong>Ans:</strong> <code>run</code> is an extension function that can be called on an object; <code>with</code> is not — it takes the object as a parameter.
-            </li>
-            <li><strong>Q7:</strong> Can scope functions be chained?<br>
-                <strong>Ans:</strong> Yes, especially <code>apply</code> and <code>also</code> since they return the object itself.
-            </li>
-            <li><strong>Q8:</strong> Which function is best for initializing objects?<br>
-                <strong>Ans:</strong> <code>apply</code>.
-            </li>
-            <li><strong>Q9:</strong> Which function is best for transformations?<br>
-                <strong>Ans:</strong> <code>let</code> or <code>run</code>, since they return results.
-            </li>
-            <li><strong>Q10:</strong> How do scope functions improve readability?<br>
-                <strong>Ans:</strong> They remove repetitive object references, making the code cleaner and more concise.
-            </li>
-        </ol>
+        <h3>🔹 Comparison Table</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Context Object</th>
+                    <th>Return Type</th>
+                    <th>Common Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>let</td><td>it</td><td>Lambda result</td><td>Null safety, transformations</td></tr>
+                <tr><td>run</td><td>this</td><td>Lambda result</td><td>Computation and transformation</td></tr>
+                <tr><td>with</td><td>this</td><td>Lambda result</td><td>Operate on object multiple times</td></tr>
+                <tr><td>apply</td><td>this</td><td>Object itself</td><td>Initialization or configuration</td></tr>
+                <tr><td>also</td><td>it</td><td>Object itself</td><td>Logging or debugging</td></tr>
+            </tbody>
+        </table>
 
-        <div class="example-box mt-5">
-            <h5>Final Tip 💡</h5>
-            <p>
-                Scope functions make your Kotlin code concise and readable.  
-                Remember this quick rule:  
-                <code>apply</code> and <code>also</code> → return object;  
-                <code>let</code>, <code>run</code>, <code>with</code> → return result.
-            </p>
-        </div>
+        <h3>💡 Practical Tips</h3>
+        <ul>
+            <li>Use <strong>let</strong> for null checks and transformations.</li>
+            <li>Use <strong>apply</strong> for initialization blocks (like Builders).</li>
+            <li>Use <strong>run</strong> when you need a result after performing operations.</li>
+            <li>Use <strong>also</strong> for debugging or logging without changing the object.</li>
+            <li>Use <strong>with</strong> for multiple operations on a single object without chaining.</li>
+        </ul>
+
+        <h3>📚 Source</h3>
+        <p>
+            Original concept inspired by:  
+            <a href="https://medium.com/@anandgaur2207/scope-functions-in-kotlin-ad2dc799223f" target="_blank">
+                Anand Gaur — Scope Functions in Kotlin (Medium)
+            </a>
+        </p>
+
+        <h3>🧠 Reason for Rewrite</h3>
+        <p>
+            This rewritten version expands the explanation with real-world use cases, structured formatting, and a comparison table for interview preparation and practical Kotlin development clarity.
+        </p>
     </div>
 </section>

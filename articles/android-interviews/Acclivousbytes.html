@@ -289,6 +289,161 @@ fun add(a: Double, b: Double) = a + b
   </code></pre>
 
   <!-- ======================== -->
+<!-- ⚙️ COMPOSITION vs AGGREGATION -->
+<!-- ======================== -->
+
+<h3>Composition vs Aggregation in OOP</h3>
+
+<h4>1. What Is Composition?</h4>
+<p>
+  <strong>Composition</strong> represents a <strong>“strong has-a” relationship</strong> between two classes.  
+  It means one class <em>owns</em> another class — if the parent object is destroyed, the child object also ceases to exist.  
+  This is also called a <strong>whole–part relationship</strong>.
+</p>
+
+<pre><code class="language-kotlin">
+class Engine {
+    fun start() = println("Engine started")
+}
+
+class Car {
+    private val engine = Engine() // Composition: Car owns Engine
+
+    fun startCar() {
+        engine.start()
+        println("Car is running")
+    }
+}
+
+fun main() {
+    val car = Car()
+    car.startCar()
+    // When Car is destroyed, Engine is destroyed too.
+}
+</code></pre>
+
+<p><strong>Key Points:</strong></p>
+<ul>
+  <li>Represents a <strong>strong ownership</strong>.</li>
+  <li>Child object’s lifecycle depends on the parent.</li>
+  <li>Used when the part cannot exist without the whole (e.g., Engine belongs to Car).</li>
+</ul>
+
+<h5>🧠 Real-life Example:</h5>
+<p>
+  A <strong>Human</strong> has a <strong>Heart</strong>.  
+  If the human dies, the heart cannot function independently.
+</p>
+
+<pre><code class="language-kotlin">
+class Heart {
+    fun beat() = println("Heart beating...")
+}
+
+class Human {
+    private val heart = Heart()
+    fun live() = heart.beat()
+}
+</code></pre>
+
+<hr/>
+
+<h4>2. What Is Aggregation?</h4>
+<p>
+  <strong>Aggregation</strong> represents a <strong>“weak has-a” relationship</strong>.  
+  It means one class <em>uses</em> another, but they can exist independently.  
+  The parent does not own the child’s lifecycle.
+</p>
+
+<pre><code class="language-kotlin">
+class Student(val name: String)
+
+class School(val name: String) {
+    private val students = mutableListOf&lt;Student&gt;()
+
+    fun addStudent(student: Student) {
+        students.add(student)
+    }
+}
+
+fun main() {
+    val student = Student("Talha")
+    val school = School("ABC School")
+    school.addStudent(student)
+    // Even if School is destroyed, Student can still exist.
+}
+</code></pre>
+
+<p><strong>Key Points:</strong></p>
+<ul>
+  <li>Represents a <strong>shared ownership</strong> or association.</li>
+  <li>Child can exist without the parent.</li>
+  <li>Used when objects can live independently (e.g., Student and School).</li>
+</ul>
+
+<h5>🧠 Real-life Example:</h5>
+<p>
+  A <strong>Library</strong> has many <strong>Books</strong>.  
+  If the library closes, the books can still exist elsewhere.
+</p>
+
+<pre><code class="language-kotlin">
+class Book(val title: String)
+
+class Library {
+    private val books = mutableListOf&lt;Book&gt;()
+    fun addBook(book: Book) = books.add(book)
+}
+</code></pre>
+
+<hr/>
+
+<h4>3. ⚖️ Composition vs Aggregation — Comparison Table</h4>
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Composition</th>
+      <th>Aggregation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Relationship Type</td>
+      <td><strong>Strong has-a</strong></td>
+      <td><strong>Weak has-a</strong></td>
+    </tr>
+    <tr>
+      <td>Object Dependency</td>
+      <td>Child cannot exist without parent</td>
+      <td>Child can exist independently</td>
+    </tr>
+    <tr>
+      <td>Ownership</td>
+      <td>Parent owns the child</td>
+      <td>Parent only references the child</td>
+    </tr>
+    <tr>
+      <td>Example</td>
+      <td>Car → Engine</td>
+      <td>School → Student</td>
+    </tr>
+    <tr>
+      <td>Lifetime Relationship</td>
+      <td>Parent and child share same lifecycle</td>
+      <td>Independent lifecycles</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>✅ Summary</h4>
+<ul>
+  <li><strong>Composition</strong> → Strong ownership; objects depend on each other’s existence.</li>
+  <li><strong>Aggregation</strong> → Loose coupling; objects can live independently.</li>
+  <li>Both represent <strong>“has-a” relationships</strong> but differ in lifecycle dependency.</li>
+</ul>
+
+  <!-- ======================== -->
   <!-- 📱 ANDROID SECTION -->
   <!-- ======================== -->
 
@@ -547,4 +702,161 @@ fun main() {
     <li>Problem Solving: Practice logic and algorithms without built-ins.</li>
   </ul>
 
+      <div class="container">
+        <h1 class="text-center mb-5">Problem Solving — Algorithmic Practice (Interview Prep)</h1>
+
+        <!-- 1️⃣ Equilibrium Index -->
+        <div class="mb-5">
+            <h2>1️⃣ Find Element Where Left Sum Equals Right Sum</h2>
+            <p>
+                <strong>Problem:</strong> Given an array <code>[10, 5, 1, 2, 3, 4]</code>, find an element such that the 
+                sum of elements on its left equals the sum of elements on its right. 
+                For example, <code>5</code> is such an element because left sum = 10 and right sum = 1+2+3+4.
+            </p>
+            <h3>💡 Verbal Explanation</h3>
+            <p>
+                The efficient approach is to calculate the <strong>total sum</strong> first. 
+                Then iterate through the array, keeping track of the <strong>left sum</strong>. 
+                For each element, compute right sum as <code>totalSum - leftSum - currentElement</code>.
+                If both are equal, that’s our equilibrium point.
+            </p>
+
+            <pre><code class="language-kotlin">
+fun findEquilibrium(arr: IntArray): Int? {
+    val totalSum = arr.sum()
+    var leftSum = 0
+
+    for (i in arr.indices) {
+        val rightSum = totalSum - leftSum - arr[i]
+        if (leftSum == rightSum) return arr[i]
+        leftSum += arr[i]
+    }
+    return null
+}
+
+fun main() {
+    val arr = intArrayOf(10, 5, 1, 2, 3, 4)
+    println(findEquilibrium(arr)) // Output: 5
+}
+            </code></pre>
+        </div>
+
+        <!-- 2️⃣ Next Fibonacci Number -->
+        <div class="mb-5">
+            <h2>2️⃣ Next Number in the Fibonacci Series</h2>
+            <p>
+                <strong>Problem:</strong> If a number like <code>8</code> is given, return the next number in the Fibonacci sequence, 
+                which is <code>13</code>.
+            </p>
+
+            <h3>💡 Verbal Explanation</h3>
+            <p>
+                We start from the base of the Fibonacci series (0, 1) and keep generating numbers 
+                until we reach the given number. Once found, we return the next one in sequence.
+            </p>
+
+            <pre><code class="language-kotlin">
+fun nextFibonacci(n: Int): Int {
+    var a = 0
+    var b = 1
+    while (b < n) {
+        val temp = a + b
+        a = b
+        b = temp
+    }
+    return if (b == n) a + b else -1
+}
+
+fun main() {
+    println(nextFibonacci(8))  // Output: 13
+}
+            </code></pre>
+        </div>
+
+        <!-- 3️⃣ Beaker Problem -->
+        <div class="mb-5">
+            <h2>3️⃣ Water Jug Problem — Measure 4 Litres (8L, 5L, 3L)</h2>
+            <p>
+                <strong>Problem:</strong> You have three jugs: 8L, 5L, and 3L with no scaling marks. 
+                The goal is to measure exactly <strong>4 litres</strong>.
+            </p>
+
+            <h3>💡 Verbal Explanation</h3>
+            <p>
+                This is a <strong>state-based search problem</strong>. You can think of each jug’s volume as a state. 
+                Pour water between jugs while following the capacity limits until one of them contains 4 litres.
+                You can either explain manually or solve algorithmically using <strong>BFS (Breadth-First Search)</strong>.
+            </p>
+
+            <h4>🧩 Step-by-Step Logical Solution</h4>
+            <table class="table table-bordered">
+                <thead><tr><th>Step</th><th>8L</th><th>5L</th><th>3L</th><th>Explanation</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>8</td><td>0</td><td>0</td><td>Start with 8L full</td></tr>
+                    <tr><td>2</td><td>3</td><td>5</td><td>0</td><td>Pour 5L into 5L jug</td></tr>
+                    <tr><td>3</td><td>3</td><td>2</td><td>3</td><td>Pour from 5L → 3L</td></tr>
+                    <tr><td>4</td><td>6</td><td>2</td><td>0</td><td>Pour from 3L → 8L</td></tr>
+                    <tr><td>5</td><td>6</td><td>0</td><td>2</td><td>Pour from 5L → 3L</td></tr>
+                    <tr><td>6</td><td>1</td><td>5</td><td>2</td><td>Pour from 8L → 5L</td></tr>
+                    <tr><td>7</td><td>1</td><td>4</td><td>3</td><td>Pour from 5L → 3L</td></tr>
+                    <tr><td>✅</td><td>4</td><td>4</td><td>0</td><td>Now 8L jug has 4L (Goal achieved)</td></tr>
+                </tbody>
+            </table>
+
+            <h4>💻 BFS Algorithmic Solution (Kotlin)</h4>
+            <pre><code class="language-kotlin">
+data class State(val a: Int, val b: Int, val c: Int)
+
+fun measure4L() {
+    val cap = intArrayOf(8, 5, 3)
+    val visited = mutableSetOf<State>()
+    val queue = ArrayDeque<State>()
+
+    queue.add(State(8, 0, 0))
+
+    while (queue.isNotEmpty()) {
+        val cur = queue.removeFirst()
+        if (cur.a == 4 || cur.b == 4 || cur.c == 4) {
+            println("Found solution: $cur")
+            return
+        }
+
+        if (cur in visited) continue
+        visited.add(cur)
+
+        val amounts = intArrayOf(cur.a, cur.b, cur.c)
+        for (i in 0..2) {
+            for (j in 0..2) {
+                if (i == j || amounts[i] == 0 || amounts[j] == cap[j]) continue
+                val new = amounts.copyOf()
+                val pour = minOf(amounts[i], cap[j] - amounts[j])
+                new[i] -= pour
+                new[j] += pour
+                queue.add(State(new[0], new[1], new[2]))
+            }
+        }
+    }
+    println("No solution found")
+}
+
+fun main() {
+    measure4L()
+}
+            </code></pre>
+        </div>
+
+        <div class="text-center mt-4">
+            <h3>📘 Summary Table</h3>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr><th>Problem</th><th>Concept</th><th>Approach</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Equilibrium Index</td><td>Arrays</td><td>Prefix Sum Optimization</td></tr>
+                    <tr><td>Next Fibonacci</td><td>Math / Series</td><td>Iterative Loop</td></tr>
+                    <tr><td>Beaker Problem</td><td>State Space Search</td><td>BFS Algorithm / Logic Steps</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
