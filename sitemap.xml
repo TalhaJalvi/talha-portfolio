@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url>
-		<loc>https://www.talhajalvi.github.io/talha-portfolio</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/articles-home.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/kotlin.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/oop_kotlin.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/jetpack-compose.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/android-core.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
-	<url>
-		<loc>https://talhajalvi.github.io/talha-portfolio/articles/interview-qas.html</loc>
-		<priority>0.83</priority>
-		<lastmod>2025-10-03</lastmod>
-	</url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/articles-home.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/kotlin.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/oop_kotlin.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/jetpack-compose.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/android-core.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talhajalvi.github.io/talha-portfolio/articles/interview-qas.html</loc>
+    <priority>0.83</priority>
+    <lastmod>2025-10-03</lastmod>
+  </url>
+
 </urlset>
