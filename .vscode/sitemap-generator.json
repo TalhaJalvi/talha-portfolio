@@ -1,7 +1,7 @@
 {
   "sitemap.xml": {
     "Protocol": "https",
-    "DomainName": "https://talhajalvi.github.io/",
+    "DomainName": "talhajalvi.github.io/talha-portfolio",
     "Root": "./",
     "IncludeExt": [
       ".html",
