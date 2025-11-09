@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://talhajalvi.github.io/talha-portfolio/sitemap.xml
+Sitemap: https://talhajalvi.github.io/talha-portfolio/tal-sitemap.xml
