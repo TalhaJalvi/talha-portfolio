@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+        <ul class="sidebar-menu">
+            <!-- Arrays -->
+            <li class="menu-title">Arrays</li>
+            <li><a href="#" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
+            <li><a href="#" class="nav-link">2. Find the largest and smallest number in an array</a></li>
+            <li><a href="#" class="nav-link">3. Find the second largest element in an array</a></li>
+            <li><a href="#" class="nav-link">4. Rotate array by k steps</a></li>
+            <li><a href="#" class="nav-link">5. Reverse an array</a></li>
+            <li><a href="#" class="nav-link">6. Move all zeros to the end</a></li>
+            <li><a href="#" class="nav-link">7. Sort array of 0s, 1s, and 2s (Dutch National Flag)</a></li>
+            <li><a href="#" class="nav-link">8. Find peak element</a></li>
+            <li><a href="#" class="nav-link">9. Find pair with given sum</a></li>
+            <li><a href="#" class="nav-link">10. Find triplet with given sum</a></li>
+            <li><a href="#" class="nav-link">11. Subarray with given sum</a></li>
+            <li><a href="#" class="nav-link">12. Maximum subarray sum (Kadane)</a></li>
+            <li><a href="#" class="nav-link">13. Merge two sorted arrays</a></li>
+            <li><a href="#" class="nav-link">14. Find majority element</a></li>
+            <li><a href="#" class="nav-link">15. Find missing and repeating numbers</a></li>
+            <li><a href="#" class="nav-link">16. Find equilibrium index</a></li>
+            <li><a href="#" class="nav-link">17. Count inversions in array</a></li>
+            <li><a href="#" class="nav-link">18. Maximum product subarray</a></li>
+            <li><a href="#" class="nav-link">19. Find missing numbers from array</a></li>
+            <li><a href="#" class="nav-link">20. Find duplicates without extra space (Floyd cycle)</a></li>
+            <li><a href="#" class="nav-link">21. Rainwater trapping problem</a></li>
+            <li><a href="#" class="nav-link">22. Maximum circular subarray sum</a></li>
+            <li><a href="#" class="nav-link">23. Check if array can be partitioned into equal sum</a></li>
+            <li><a href="#" class="nav-link">24. Minimum number of jumps to reach end</a></li>
+            <li><a href="#" class="nav-link">25. Count subarrays divisible by K</a></li>
+            <li><a href="#" class="nav-link">26. Maximum product subarray</a></li>
+            <li><a href="#" class="nav-link">27. Find duplicate in array of N+1 integers</a></li>
+            <li><a href="#" class="nav-link">28. Find all duplicates in array</a></li>
+            <li><a href="#" class="nav-link">29. Find missing number in array</a></li>
+            <li><a href="#" class="nav-link">30. Merge two sorted arrays without extra space</a></li>
+            <li><a href="#" class="nav-link">31. Maximum sum of non-adjacent elements</a></li>
+            <li><a href="#" class="nav-link">32. Rearrange array in alternating positive & negative</a></li>
+            <li><a href="#" class="nav-link">33. Dutch National Flag problem</a></li>
+            <li><a href="#" class="nav-link">34. Rotate array by K positions</a></li>
+            <li><a href="#" class="nav-link">35. Count inversions in array</a></li>
+            <!-- Strings -->
+            <li class="menu-title">Strings</li>
+            <li><a href="#" class="nav-link">36. Find first non-repeating character</a></li>
+            <li><a href="#" class="nav-link">37. Check if two strings are anagrams</a></li>
+            <li><a href="#" class="nav-link">38. Count vowels in a string</a></li>
+            <li><a href="#" class="nav-link">39. Reverse a string</a></li>
+            <li><a href="#" class="nav-link">40. Check palindrome</a></li>
+            <li><a href="#" class="nav-link">41. Longest common substring</a></li>
+            <li><a href="#" class="nav-link">42. Longest common subsequence</a></li>
+            <li><a href="#" class="nav-link">43. Edit distance problem</a></li>
+            <li><a href="#" class="nav-link">44. Minimum window substring</a></li>
+            <li><a href="#" class="nav-link">45. Word search in matrix</a></li>
+            <li><a href="#" class="nav-link">111. Longest palindromic substring</a></li>
+            <li><a href="#" class="nav-link">112. Check if two strings are rotations</a></li>
+            <li><a href="#" class="nav-link">113. Print all permutations of a string</a></li>
+            <li><a href="#" class="nav-link">114. Find smallest window containing all characters</a></li>
+            <li><a href="#" class="nav-link">115. First non-repeating character in stream</a></li>
+            <li><a href="#" class="nav-link">116. Group anagrams</a></li>
+            <li><a href="#" class="nav-link">117. Convert Roman numeral to integer</a></li>
+            <li><a href="#" class="nav-link">118. Longest common prefix</a></li>
+            <li><a href="#" class="nav-link">119. Validate parentheses</a></li>
+            <li><a href="#" class="nav-link">120. Count palindromic substrings</a></li>
+
+            <!-- Linked List -->
+            <li class="menu-title">Linked List</li>
+            <li><a href="#" class="nav-link">26. Reverse a linked list</a></li>
+            <li><a href="#" class="nav-link">27. Detect cycle in linked list</a></li>
+            <li><a href="#" class="nav-link">28. Find middle of linked list</a></li>
+            <li><a href="#" class="nav-link">29. Merge two sorted linked lists</a></li>
+            <li><a href="#" class="nav-link">30. Remove duplicates from linked list</a></li>
+            <li><a href="#" class="nav-link">31. Flatten a multilevel linked list</a></li>
+            <li><a href="#" class="nav-link">32. Intersection point of two linked lists</a></li>
+            <li><a href="#" class="nav-link">33. Add two numbers represented as linked lists</a></li>
+            <li><a href="#" class="nav-link">34. Partition linked list around a value</a></li>
+
+            <!-- Stack/Queue -->
+            <li class="menu-title">Stack & Queue</li>
+            <li><a href="#" class="nav-link">35. Implement stack using array</a></li>
+            <li><a href="#" class="nav-link">36. Implement queue using array</a></li>
+            <li><a href="#" class="nav-link">37. Implement stack using two queues</a></li>
+            <li><a href="#" class="nav-link">38. Implement queue using two stacks</a></li>
+            <li><a href="#" class="nav-link">39. Check balanced parentheses</a></li>
+            <li><a href="#" class="nav-link">40. Convert infix to postfix</a></li>
+            <li><a href="#" class="nav-link">41. Evaluate postfix expression</a></li>
+            <li><a href="#" class="nav-link">42. Largest rectangle in histogram</a></li>
+            <li><a href="#" class="nav-link">43. Next greater element</a></li>
+            <li><a href="#" class="nav-link">44. Sliding window maximum</a></li>
+
+            <!-- Trees -->
+            <li class="menu-title">Binary Trees & BST</li>
+            <li><a href="#" class="nav-link">45. Preorder traversal</a></li>
+            <li><a href="#" class="nav-link">46. Inorder traversal</a></li>
+            <li><a href="#" class="nav-link">47. Postorder traversal</a></li>
+            <li><a href="#" class="nav-link">48. Level order traversal</a></li>
+            <li><a href="#" class="nav-link">49. Height of binary tree</a></li>
+            <li><a href="#" class="nav-link">50. Diameter of binary tree</a></li>
+            <li><a href="#" class="nav-link">51. Check if tree is symmetric</a></li>
+            <li><a href="#" class="nav-link">52. Lowest common ancestor</a></li>
+            <li><a href="#" class="nav-link">53. Serialize tree</a></li>
+            <li><a href="#" class="nav-link">54. Deserialize tree</a></li>
+            <li><a href="#" class="nav-link">55. Zigzag traversal</a></li>
+
+            <!-- Graphs -->
+            <li class="menu-title">Graphs</li>
+            <li><a href="#" class="nav-link">56. BFS traversal</a></li>
+            <li><a href="#" class="nav-link">57. DFS traversal</a></li>
+            <li><a href="#" class="nav-link">58. Detect cycle in graph</a></li>
+            <li><a href="#" class="nav-link">59. Check if graph is bipartite</a></li>
+            <li><a href="#" class="nav-link">60. Dijkstra algorithm</a></li>
+            <li><a href="#" class="nav-link">61. Bellman-Ford algorithm</a></li>
+            <li><a href="#" class="nav-link">62. Floyd-Warshall algorithm</a></li>
+            <li><a href="#" class="nav-link">63. Clone a graph</a></li>
+            <li><a href="#" class="nav-link">64. Number of islands</a></li>
+            <li><a href="#" class="nav-link">65. Minimum spanning tree (Kruskal)</a></li>
+            <li><a href="#" class="nav-link">66. Minimum spanning tree (Prim)</a></li>
+
+            <!-- Heap -->
+            <li class="menu-title">Heap</li>
+            <li><a href="#" class="nav-link">67. Implement min heap</a></li>
+            <li><a href="#" class="nav-link">68. Implement max heap</a></li>
+            <li><a href="#" class="nav-link">69. Find kth largest element</a></li>
+            <li><a href="#" class="nav-link">70. Find kth smallest element</a></li>
+            <li><a href="#" class="nav-link">71. Heapify an array</a></li>
+            <li><a href="#" class="nav-link">72. Median of data stream</a></li>
+
+            <!-- Dynamic Programming -->
+            <li class="menu-title">Dynamic Programming</li>
+            <li><a href="#" class="nav-link">73. Fibonacci (DP)</a></li>
+            <li><a href="#" class="nav-link">74. 0/1 Knapsack</a></li>
+            <li><a href="#" class="nav-link">75. Coin change problem</a></li>
+            <li><a href="#" class="nav-link">76. Longest increasing subsequence</a></li>
+            <li><a href="#" class="nav-link">77. Longest common subsequence</a></li>
+            <li><a href="#" class="nav-link">78. Subset sum problem</a></li>
+            <li><a href="#" class="nav-link">79. Unique paths in grid</a></li>
+            <li><a href="#" class="nav-link">80. Minimum cost path</a></li>
+            <li><a href="#" class="nav-link">81. Rod cutting problem</a></li>
+
+            <!-- Sliding Window -->
+            <li class="menu-title">Sliding Window & Two Pointers</li>
+            <li><a href="#" class="nav-link">82. Longest substring without repeating characters</a></li>
+            <li><a href="#" class="nav-link">83. Minimum window substring</a></li>
+            <li><a href="#" class="nav-link">84. Sliding window maximum</a></li>
+            <li><a href="#" class="nav-link">85. Count occurrences of anagrams</a></li>
+
+            <!-- Backtracking -->
+            <li class="menu-title">Backtracking</li>
+            <li><a href="#" class="nav-link">86. N-Queens problem</a></li>
+            <li><a href="#" class="nav-link">87. Sudoku solver</a></li>
+            <li><a href="#" class="nav-link">88. Rat in a maze</a></li>
+            <li><a href="#" class="nav-link">89. Generate all subsets</a></li>
+            <li><a href="#" class="nav-link">90. Generate all permutations</a></li>
+
+            <!-- Misc. -->
+            <li class="menu-title">Advanced Problems</li>
+            <li><a href="#" class="nav-link">91. Largest rectangle in histogram</a></li>
+            <li><a href="#" class="nav-link">92. Maximal rectangle in binary matrix</a></li>
+            <li><a href="#" class="nav-link">93. Word break problem</a></li>
+            <li><a href="#" class="nav-link">94. Celebrity problem</a></li>
+            <li><a href="#" class="nav-link">95. Gas station circular tour</a></li>
+            <li><a href="#" class="nav-link">96. Repeated DNA sequences</a></li>
+            <li><a href="#" class="nav-link">97. Next permutation</a></li>
+            <li><a href="#" class="nav-link">98. Minimum number of platforms required</a></li>
+            <li><a href="#" class="nav-link">99. Merge intervals</a></li>
+            <li><a href="#" class="nav-link">100. Insert interval</a></li>
+
+
+        <!-- Linked List -->
+        <li class="menu-title">Linked List (Continued)</li>
+        <li><a href="#" class="nav-link">121. Delete node without head pointer</a></li>
+        <li><a href="#" class="nav-link">122. Reverse linked list in groups of K</a></li>
+        <li><a href="#" class="nav-link">123. Remove loop in linked list</a></li>
+        <li><a href="#" class="nav-link">124. Sort linked list using merge sort</a></li>
+        <li><a href="#" class="nav-link">125. Check if linked list is palindrome</a></li>
+        <li><a href="#" class="nav-link">126. Rotate linked list by K</a></li>
+        <li><a href="#" class="nav-link">127. Pairwise swap nodes</a></li>
+        <li><a href="#" class="nav-link">128. Convert binary linked list to integer</a></li>
+        <li><a href="#" class="nav-link">129. Add 1 to number represented by linked list</a></li>
+        <li><a href="#" class="nav-link">130. Split circular linked list into two halves</a></li>
+
+        <!-- Stack & Queue -->
+        <li class="menu-title">Stack & Queue (Continued)</li>
+        <li><a href="#" class="nav-link">131. Min stack implementation</a></li>
+        <li><a href="#" class="nav-link">132. Next smaller element</a></li>
+        <li><a href="#" class="nav-link">133. Reverse a stack using recursion</a></li>
+        <li><a href="#" class="nav-link">134. Sort stack using recursion</a></li>
+        <li><a href="#" class="nav-link">135. Largest rectangle in histogram</a></li>
+        <li><a href="#" class="nav-link">136. Online stock span</a></li>
+        <li><a href="#" class="nav-link">137. Reverse a queue</a></li>
+        <li><a href="#" class="nav-link">138. Implement circular queue</a></li>
+        <li><a href="#" class="nav-link">139. First non-repeating char using queue</a></li>
+        <li><a href="#" class="nav-link">140. Implement priority queue</a></li>
+
+        <!-- Trees -->
+        <li class="menu-title">Binary Trees & BST (Continued)</li>
+        <li><a href="#" class="nav-link">141. Validate a BST</a></li>
+        <li><a href="#" class="nav-link">142. Construct tree from preorder & inorder</a></li>
+        <li><a href="#" class="nav-link">143. Find LCA in binary tree</a></li>
+        <li><a href="#" class="nav-link">144. Vertical order traversal</a></li>
+        <li><a href="#" class="nav-link">145. Boundary traversal of tree</a></li>
+        <li><a href="#" class="nav-link">146. Maximum path sum</a></li>
+        <li><a href="#" class="nav-link">147. Sum of left leaves</a></li>
+        <li><a href="#" class="nav-link">148. Diagonal traversal</a></li>
+        <li><a href="#" class="nav-link">149. Flatten binary tree to linked list</a></li>
+        <li><a href="#" class="nav-link">150. Construct BST from sorted array</a></li>
+
+        <!-- ======================= -->
+<!--   STRING & PATTERN     -->
+<!-- ======================= -->
+
+<h3>String & Pattern Problems</h3>
+
+<ul>
+    <li><a href="#">201. Longest substring without repeating characters</a></li>
+    <li><a href="#">202. Check if two strings are rotations of each other</a></li>
+    <li><a href="#">203. Reverse each word in a string without changing word order</a></li>
+    <li><a href="#">204. Find the first non-repeating character in a string</a></li>
+    <li><a href="#">205. Convert string to zigzag pattern</a></li>
+    <li><a href="#">206. Validate IPv4 address</a></li>
+    <li><a href="#">207. Validate balanced parentheses</a></li>
+    <li><a href="#">208. Remove adjacent duplicates</a></li>
+    <li><a href="#">209. Count number of substrings with equal number of 0s and 1s</a></li>
+    <li><a href="#">210. Find smallest window containing all characters of another string</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--   HASHMAP / HASHING    -->
+<!-- ======================= -->
+
+<h3>Hashmap / Hashing Problems</h3>
+
+<ul>
+    <li><a href="#">211. Two-sum problem (classic)</a></li>
+    <li><a href="#">212. Counting frequency of elements</a></li>
+    <li><a href="#">213. Check if array contains duplicate within K distance</a></li>
+    <li><a href="#">214. Find intersection of two arrays</a></li>
+    <li><a href="#">215. Find longest consecutive sequence</a></li>
+    <li><a href="#">216. Find majority element (>50%)</a></li>
+    <li><a href="#">217. Group anagrams</a></li>
+    <li><a href="#">218. Find subarray with 0 sum</a></li>
+    <li><a href="#">219. Count distinct elements in every window of size K</a></li>
+    <li><a href="#">220. Find all pairs with given difference</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        GREEDY          -->
+<!-- ======================= -->
+
+<h3>Greedy Algorithm Problems</h3>
+
+<ul>
+    <li><a href="#">221. Activity selection problem</a></li>
+    <li><a href="#">222. Fractional knapsack</a></li>
+    <li><a href="#">223. Minimum number of coins for a value</a></li>
+    <li><a href="#">224. Arrange numbers to form the biggest number</a></li>
+    <li><a href="#">225. Minimum platforms for trains</a></li>
+    <li><a href="#">226. Gas station circular route</a></li>
+    <li><a href="#">227. Jump game (can reach end)</a></li>
+    <li><a href="#">228. Jump game II (min jumps)</a></li>
+    <li><a href="#">229. Candy distribution problem</a></li>
+    <li><a href="#">230. Choosing maximum number of events</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--   LINKED LIST FAST     -->
+<!-- ======================= -->
+
+<h3>Linked List Problems</h3>
+
+<ul>
+    <li><a href="#">231. Reverse a linked list</a></li>
+    <li><a href="#">232. Detect and remove cycle</a></li>
+    <li><a href="#">233. Find middle of linked list</a></li>
+    <li><a href="#">234. Merge two sorted linked lists</a></li>
+    <li><a href="#">235. Merge K sorted lists</a></li>
+    <li><a href="#">236. Add two numbers represented by linked lists</a></li>
+    <li><a href="#">237. Remove nth node from end</a></li>
+    <li><a href="#">238. Check if linked list is palindrome</a></li>
+    <li><a href="#">239. Partition list around a value</a></li>
+    <li><a href="#">240. Sort a linked list</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        TREES           -->
+<!-- ======================= -->
+
+<h3>Binary Tree / BST Problems</h3>
+
+<ul>
+    <li><a href="#">241. Inorder preorder postorder traversal</a></li>
+    <li><a href="#">242. Level order traversal</a></li>
+    <li><a href="#">243. Height of a binary tree</a></li>
+    <li><a href="#">244. Maximum depth of binary tree</a></li>
+    <li><a href="#">245. Validate BST</a></li>
+    <li><a href="#">246. Lowest common ancestor</a></li>
+    <li><a href="#">247. Invert/flip binary tree</a></li>
+    <li><a href="#">248. Check if two trees are identical</a></li>
+    <li><a href="#">249. Serialize and deserialize binary tree</a></li>
+    <li><a href="#">250. Boundary traversal</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        MATRIX          -->
+<!-- ======================= -->
+
+<h3>Matrix Problems</h3>
+
+<ul>
+    <li><a href="#">251. Search in sorted matrix</a></li>
+    <li><a href="#">252. Rotate matrix 90 degrees</a></li>
+    <li><a href="#">253. Set matrix zeroes</a></li>
+    <li><a href="#">254. Spiral order traversal</a></li>
+    <li><a href="#">255. Word search in matrix</a></li>
+    <li><a href="#">256. Count islands (DFS solution)</a></li>
+    <li><a href="#">257. Flood fill algorithm</a></li>
+    <li><a href="#">258. Matrix multiplication</a></li>
+    <li><a href="#">259. Path in matrix from top-left to bottom-right</a></li>
+    <li><a href="#">260. Transpose matrix</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        GRAPHS          -->
+<!-- ======================= -->
+
+<h3>Graph Problems</h3>
+
+<ul>
+    <li><a href="#">261. DFS traversal</a></li>
+    <li><a href="#">262. BFS traversal</a></li>
+    <li><a href="#">263. Detect cycle in undirected graph</a></li>
+    <li><a href="#">264. Detect cycle in directed graph</a></li>
+    <li><a href="#">265. Topological sorting</a></li>
+    <li><a href="#">266. Dijkstra's algorithm</a></li>
+    <li><a href="#">267. Bellman-Ford algorithm</a></li>
+    <li><a href="#">268. Prim’s minimum spanning tree</a></li>
+    <li><a href="#">269. Kruskal’s MST</a></li>
+    <li><a href="#">270. Count connected components</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        HEAPS           -->
+<!-- ======================= -->
+
+<h3>Heap / Priority Queue Problems</h3>
+
+<ul>
+    <li><a href="#">271. Find K largest elements</a></li>
+    <li><a href="#">272. K-th largest element in array</a></li>
+    <li><a href="#">273. Merge K sorted arrays using heap</a></li>
+    <li><a href="#">274. Reduce array sum by half</a></li>
+    <li><a href="#">275. Smallest range in K sorted lists</a></li>
+    <li><a href="#">276. Connect ropes to minimize cost</a></li>
+    <li><a href="#">277. Sliding window maximum using max heap</a></li>
+    <li><a href="#">278. Frequency sort</a></li>
+    <li><a href="#">279. K closest elements</a></li>
+    <li><a href="#">280. Last stone weight</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      BIT MANIPULATION  -->
+<!-- ======================= -->
+
+<h3>Bit Manipulation Problems</h3>
+
+<ul>
+    <li><a href="#">281. Count number of set bits</a></li>
+    <li><a href="#">282. Check if power of two</a></li>
+    <li><a href="#">283. XOR of all numbers</a></li>
+    <li><a href="#">284. Single number where all others appear twice</a></li>
+    <li><a href="#">285. Swap bits</a></li>
+    <li><a href="#">286. Reverse bits</a></li>
+    <li><a href="#">287. Find two unique numbers where others appear twice</a></li>
+    <li><a href="#">288. Find missing number in range 1..N</a></li>
+    <li><a href="#">289. Add two integers without + sign</a></li>
+    <li><a href="#">290. Divide integers without using division</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--    RECURSION / BACKTRACK -->
+<!-- ======================= -->
+
+<h3>Recursion & Backtracking Problems</h3>
+
+<ul>
+    <li><a href="#">291. Generate all permutations of array</a></li>
+    <li><a href="#">292. Generate subsets</a></li>
+    <li><a href="#">293. N-Queens problem</a></li>
+    <li><a href="#">294. Sudoku solver</a></li>
+    <li><a href="#">295. Rat in a maze</a></li>
+    <li><a href="#">296. Word break using recursion</a></li>
+    <li><a href="#">297. Print all valid parentheses</a></li>
+    <li><a href="#">298. Hamiltonian path problem</a></li>
+    <li><a href="#">299. Knight's tour problem</a></li>
+    <li><a href="#">300. Solve Maze with backtracking</a></li>
+</ul>
+<!-- ======================= -->
+<!--      DYNAMIC PROGRAMMING -->
+<!-- ======================= -->
+
+<h3>Dynamic Programming Problems</h3>
+
+<ul>
+    <li><a href="#">301. Fibonacci sequence using DP</a></li>
+    <li><a href="#">302. 0/1 Knapsack problem</a></li>
+    <li><a href="#">303. Unbounded Knapsack</a></li>
+    <li><a href="#">304. Longest Increasing Subsequence</a></li>
+    <li><a href="#">305. Longest Common Subsequence</a></li>
+    <li><a href="#">306. Minimum edit distance</a></li>
+    <li><a href="#">307. Coin change problem</a></li>
+    <li><a href="#">308. Minimum cost path in matrix</a></li>
+    <li><a href="#">309. Matrix chain multiplication</a></li>
+    <li><a href="#">310. Partition problem</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      SLIDING WINDOW & TWO POINTERS -->
+<!-- ======================= -->
+
+<h3>Sliding Window & Two Pointers</h3>
+
+<ul>
+    <li><a href="#">311. Maximum sum subarray of size K</a></li>
+    <li><a href="#">312. Longest substring without repeating characters</a></li>
+    <li><a href="#">313. Minimum window substring</a></li>
+    <li><a href="#">314. Count occurrences of anagrams</a></li>
+    <li><a href="#">315. Subarray with sum divisible by K</a></li>
+    <li><a href="#">316. Trapping rainwater</a></li>
+    <li><a href="#">317. Two sum in sorted array</a></li>
+    <li><a href="#">318. Three sum problem</a></li>
+    <li><a href="#">319. Four sum problem</a></li>
+    <li><a href="#">320. Maximum points in a line</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--          GRAPHS        -->
+<!-- ======================= -->
+
+<h3>Graph Problems (Advanced)</h3>
+
+<ul>
+    <li><a href="#">321. Shortest path in weighted graph</a></li>
+    <li><a href="#">322. Detect cycle in directed graph</a></li>
+    <li><a href="#">323. Detect cycle in undirected graph</a></li>
+    <li><a href="#">324. Topological sorting</a></li>
+    <li><a href="#">325. Strongly connected components (Kosaraju)</a></li>
+    <li><a href="#">326. Minimum spanning tree (Prim)</a></li>
+    <li><a href="#">327. Minimum spanning tree (Kruskal)</a></li>
+    <li><a href="#">328. Dijkstra's shortest path</a></li>
+    <li><a href="#">329. Bellman-Ford algorithm</a></li>
+    <li><a href="#">330. Floyd-Warshall algorithm</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        HEAP / PRIORITY QUEUE -->
+<!-- ======================= -->
+
+<h3>Heap / Priority Queue Problems</h3>
+
+<ul>
+    <li><a href="#">331. K largest elements</a></li>
+    <li><a href="#">332. K smallest elements</a></li>
+    <li><a href="#">333. Merge K sorted arrays</a></li>
+    <li><a href="#">334. Sliding window maximum using heap</a></li>
+    <li><a href="#">335. Connect ropes with minimum cost</a></li>
+    <li><a href="#">336. Sort nearly sorted array</a></li>
+    <li><a href="#">337. Find median from data stream</a></li>
+    <li><a href="#">338. Top K frequent elements</a></li>
+    <li><a href="#">339. Rearrange characters with distance K</a></li>
+    <li><a href="#">340. Merge K sorted linked lists</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      BACKTRACKING       -->
+<!-- ======================= -->
+
+<h3>Backtracking Problems</h3>
+
+<ul>
+    <li><a href="#">341. N-Queens problem</a></li>
+    <li><a href="#">342. Sudoku solver</a></li>
+    <li><a href="#">343. Rat in a maze</a></li>
+    <li><a href="#">344. Word search in grid</a></li>
+    <li><a href="#">345. Generate all permutations of string</a></li>
+    <li><a href="#">346. Generate all subsets of array</a></li>
+    <li><a href="#">347. Hamiltonian path</a></li>
+    <li><a href="#">348. Knight’s tour problem</a></li>
+    <li><a href="#">349. M Coloring problem</a></li>
+    <li><a href="#">350. Combination sum problem</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      MISCELLANEOUS      -->
+<!-- ======================= -->
+
+<h3>Advanced / Misc Problems</h3>
+
+<ul>
+    <li><a href="#">351. Celebrity problem</a></li>
+    <li><a href="#">352. Maximal rectangle in binary matrix</a></li>
+    <li><a href="#">353. Largest rectangle in histogram</a></li>
+    <li><a href="#">354. Trapping rainwater</a></li>
+    <li><a href="#">355. Sliding puzzle problem</a></li>
+    <li><a href="#">356. Repeated DNA sequences</a></li>
+    <li><a href="#">357. Minimum number of platforms required</a></li>
+    <li><a href="#">358. Merge intervals</a></li>
+    <li><a href="#">359. Insert interval</a></li>
+    <li><a href="#">360. Gas station circular tour</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      BIT MANIPULATION   -->
+<!-- ======================= -->
+
+<h3>Bit Manipulation Problems</h3>
+
+<ul>
+    <li><a href="#">361. Count set bits in an integer</a></li>
+    <li><a href="#">362. Check if number is power of two</a></li>
+    <li><a href="#">363. XOR of all elements in array</a></li>
+    <li><a href="#">364. Find single number (others appear twice)</a></li>
+    <li><a href="#">365. Reverse bits of a number</a></li>
+    <li><a href="#">366. Swap odd and even bits</a></li>
+    <li><a href="#">367. Find two numbers appearing once</a></li>
+    <li><a href="#">368. Missing number in 1..N</a></li>
+    <li><a href="#">369. Add two numbers without using + operator</a></li>
+    <li><a href="#">370. Count total set bits in all numbers from 1 to N</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      RECURSION          -->
+<!-- ======================= -->
+
+<h3>Recursion / Mathematical Problems</h3>
+
+<ul>
+    <li><a href="#">371. Tower of Hanoi</a></li>
+    <li><a href="#">372. Factorial of a number</a></li>
+    <li><a href="#">373. Fibonacci sequence recursively</a></li>
+    <li><a href="#">374. Sum of digits of a number</a></li>
+    <li><a href="#">375. Power of a number</a></li>
+    <li><a href="#">376. Count ways to reach Nth stair</a></li>
+    <li><a href="#">377. Print all subsets recursively</a></li>
+    <li><a href="#">378. Permutations of array using recursion</a></li>
+    <li><a href="#">379. Combinations of numbers</a></li>
+    <li><a href="#">380. Solve maze recursively</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      MATRIX / GRID      -->
+<!-- ======================= -->
+
+<h3>Matrix / Grid Problems</h3>
+
+<ul>
+    <li><a href="#">381. Rotate matrix 90 degrees</a></li>
+    <li><a href="#">382. Set matrix zeroes</a></li>
+    <li><a href="#">383. Spiral order traversal</a></li>
+    <li><a href="#">384. Search element in sorted matrix</a></li>
+    <li><a href="#">385. Count islands</a></li>
+    <li><a href="#">386. Flood fill algorithm</a></li>
+    <li><a href="#">387. Minimum path sum</a></li>
+    <li><a href="#">388. Unique paths in grid</a></li>
+    <li><a href="#">389. Maximum rectangle of 1s in binary matrix</a></li>
+    <li><a href="#">390. Transpose of matrix</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--      SLIDING WINDOW / TWO POINTER -->
+<!-- ======================= -->
+
+<h3>Sliding Window / Two Pointer Advanced</h3>
+
+<ul>
+    <li><a href="#">391. Max sum of subarray of size K</a></li>
+    <li><a href="#">392. Longest substring with at most K distinct characters</a></li>
+    <li><a href="#">393. Count subarrays with sum K</a></li>
+    <li><a href="#">394. Longest repeating character replacement</a></li>
+    <li><a href="#">395. Minimum window substring</a></li>
+    <li><a href="#">396. Longest substring with same letters after replacement</a></li>
+    <li><a href="#">397. Sliding window maximum</a></li>
+    <li><a href="#">398. Count occurrences of anagrams</a></li>
+    <li><a href="#">399. Subarray product less than K</a></li>
+    <li><a href="#">400. Maximum consecutive ones</a></li>
+</ul>
+
+
+<!-- ======================= -->
+<!--      STRINGS           -->
+<!-- ======================= -->
+
+<h3>String Problems</h3>
+
+<ul>
+    <li><a href="#">411. Check if string is palindrome</a></li>
+    <li><a href="#">412. Longest palindromic substring</a></li>
+    <li><a href="#">413. Count and say sequence</a></li>
+    <li><a href="#">414. Longest substring without repeating characters</a></li>
+    <li><a href="#">415. Implement strstr()</a></li>
+    <li><a href="#">416. Check anagrams</a></li>
+    <li><a href="#">417. Encode and decode string</a></li>
+    <li><a href="#">418. Reverse words in a string</a></li>
+    <li><a href="#">419. Group anagrams</a></li>
+    <li><a href="#">420. Minimum window substring</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       LINKED LIST      -->
+<!-- ======================= -->
+
+<h3>Linked List Problems</h3>
+
+<ul>
+    <li><a href="#">421. Reverse linked list recursively</a></li>
+    <li><a href="#">422. Detect cycle in linked list</a></li>
+    <li><a href="#">423. Remove cycle in linked list</a></li>
+    <li><a href="#">424. Merge two sorted linked lists</a></li>
+    <li><a href="#">425. Merge K sorted linked lists</a></li>
+    <li><a href="#">426. Remove duplicates from sorted linked list</a></li>
+    <li><a href="#">427. Remove duplicates from unsorted linked list</a></li>
+    <li><a href="#">428. Find intersection of two linked lists</a></li>
+    <li><a href="#">429. Add two numbers represented as linked lists</a></li>
+    <li><a href="#">430. Split linked list in parts</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       STACK / QUEUE     -->
+<!-- ======================= -->
+
+<h3>Stack & Queue Problems</h3>
+
+<ul>
+    <li><a href="#">431. Implement stack using array</a></li>
+    <li><a href="#">432. Implement queue using array</a></li>
+    <li><a href="#">433. Implement stack using two queues</a></li>
+    <li><a href="#">434. Implement queue using two stacks</a></li>
+    <li><a href="#">435. Next greater element</a></li>
+    <li><a href="#">436. Evaluate postfix expression</a></li>
+    <li><a href="#">437. Evaluate prefix expression</a></li>
+    <li><a href="#">438. Min stack (stack supporting getMin)</a></li>
+    <li><a href="#">439. Largest rectangle in histogram</a></li>
+    <li><a href="#">440. Sliding window maximum</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       TREES / BST       -->
+<!-- ======================= -->
+
+<h3>Binary Tree / BST Problems</h3>
+
+<ul>
+    <li><a href="#">441. Preorder, inorder, postorder traversal</a></li>
+    <li><a href="#">442. Level order traversal</a></li>
+    <li><a href="#">443. Height of binary tree</a></li>
+    <li><a href="#">444. Diameter of binary tree</a></li>
+    <li><a href="#">445. Check if tree is symmetric</a></li>
+    <li><a href="#">446. Lowest common ancestor of BST</a></li>
+    <li><a href="#">447. Serialize and deserialize tree</a></li>
+    <li><a href="#">448. Convert BST to sorted doubly linked list</a></li>
+    <li><a href="#">449. Construct tree from preorder & inorder</a></li>
+    <li><a href="#">450. Construct tree from postorder & inorder</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--        GRAPHS           -->
+<!-- ======================= -->
+
+<h3>Graph Problems</h3>
+
+<ul>
+    <li><a href="#">451. DFS traversal</a></li>
+    <li><a href="#">452. BFS traversal</a></li>
+    <li><a href="#">453. Detect cycle in directed graph</a></li>
+    <li><a href="#">454. Detect cycle in undirected graph</a></li>
+    <li><a href="#">455. Topological sort</a></li>
+    <li><a href="#">456. Dijkstra’s algorithm</a></li>
+    <li><a href="#">457. Bellman-Ford algorithm</a></li>
+    <li><a href="#">458. Floyd-Warshall algorithm</a></li>
+    <li><a href="#">459. Minimum spanning tree (Prim)</a></li>
+    <li><a href="#">460. Minimum spanning tree (Kruskal)</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       DYNAMIC PROGRAMMING -->
+<!-- ======================= -->
+
+<h3>Dynamic Programming Problems</h3>
+
+<ul>
+    <li><a href="#">461. Fibonacci series (DP)</a></li>
+    <li><a href="#">462. 0/1 Knapsack</a></li>
+    <li><a href="#">463. Longest increasing subsequence</a></li>
+    <li><a href="#">464. Longest common subsequence</a></li>
+    <li><a href="#">465. Minimum edit distance</a></li>
+    <li><a href="#">466. Maximum sum subarray (Kadane)</a></li>
+    <li><a href="#">467. Coin change problem</a></li>
+    <li><a href="#">468. Rod cutting problem</a></li>
+    <li><a href="#">469. Subset sum problem</a></li>
+    <li><a href="#">470. Unique paths in grid</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       BACKTRACKING      -->
+<!-- ======================= -->
+
+<h3>Backtracking Problems</h3>
+
+<ul>
+    <li><a href="#">471. N-Queens problem</a></li>
+    <li><a href="#">472. Sudoku solver</a></li>
+    <li><a href="#">473. Rat in a maze</a></li>
+    <li><a href="#">474. Generate all subsets</a></li>
+    <li><a href="#">475. Generate all permutations</a></li>
+    <li><a href="#">476. Word search problem</a></li>
+    <li><a href="#">477. Hamiltonian path</a></li>
+    <li><a href="#">478. Knight’s tour problem</a></li>
+    <li><a href="#">479. M coloring problem</a></li>
+    <li><a href="#">480. Combination sum problem</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       HEAP / PRIORITY QUEUE -->
+<!-- ======================= -->
+
+<h3>Heap / Priority Queue Problems</h3>
+
+<ul>
+    <li><a href="#">481. K largest elements</a></li>
+    <li><a href="#">482. K smallest elements</a></li>
+    <li><a href="#">483. Merge K sorted arrays</a></li>
+    <li><a href="#">484. Merge K sorted linked lists</a></li>
+    <li><a href="#">485. Sliding window maximum using heap</a></li>
+    <li><a href="#">486. Connect ropes with minimum cost</a></li>
+    <li><a href="#">487. Find median from data stream</a></li>
+    <li><a href="#">488. Top K frequent elements</a></li>
+    <li><a href="#">489. Rearrange characters with distance K</a></li>
+    <li><a href="#">490. Sort nearly sorted array</a></li>
+</ul>
+
+<!-- ======================= -->
+<!--       MISCELLANEOUS     -->
+<!-- ======================= -->
+
+<h3>Miscellaneous Advanced Problems</h3>
+
+<ul>
+    <li><a href="#">491. Celebrity problem</a></li>
+    <li><a href="#">492. Maximal rectangle in binary matrix</a></li>
+    <li><a href="#">493. Largest rectangle in histogram</a></li>
+    <li><a href="#">494. Trapping rainwater</a></li>
+    <li><a href="#">495. Repeated DNA sequences</a></li>
+    <li><a href="#">496. Gas station circular tour</a></li>
+    <li><a href="#">497. Merge intervals</a></li>
+    <li><a href="#">498. Insert interval</a></li>
+    <li><a href="#">499. Sliding puzzle problem</a></li>
+    <li><a href="#">500. Count number of islands</a></li>
+</ul>
+
+</nav>
+
+<main class="content">
+    <div id="content-display">
+    </div>
+</main>
+
+
+
+<script src="../js/kotlin.js"></script>
+</body>
+</html>

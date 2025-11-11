@@ -1,0 +1,124 @@
+<section id="android-coroutine-interview" class="basic-1 bg-gray py-5">
+  <div class="container">
+    <h1 class="text-center mb-5">🔥 Android Interview Q&A — AIO App Inc (Kotlin + Coroutines)</h1>
+
+    <h3>1. What is a Data Class?</h3>
+    <p>
+      A <strong>data class</strong> in Kotlin is used to hold data. It automatically provides 
+      <code>equals()</code>, <code>hashCode()</code>, <code>toString()</code>, <code>copy()</code>, 
+      and <code>componentN()</code> functions.
+    </p>
+    <pre><code>data class User(val name: String, val age: Int)</code></pre>
+
+    <h3>2. What is Enum? Can I use multiple instances?</h3>
+    <p>
+      <strong>Enum</strong> represents a fixed set of constants. Each enum constant is a singleton, 
+      meaning you <strong>cannot create multiple instances</strong> of it.
+    </p>
+    <pre><code>enum class Direction { NORTH, SOUTH, EAST, WEST }</code></pre>
+
+    <h3>3. Difference between View and ViewGroup</h3>
+    <ul>
+      <li><strong>View:</strong> Single UI element like Button or TextView</li>
+      <li><strong>ViewGroup:</strong> A container that holds multiple Views (e.g., LinearLayout)</li>
+    </ul>
+
+    <h3>4. <code>lateinit</code> vs <code>lazy</code></h3>
+    <table class="table table-bordered">
+      <tr><th>Feature</th><th>lateinit</th><th>lazy</th></tr>
+      <tr><td>Type</td><td>Mutable (var)</td><td>Immutable (val)</td></tr>
+      <tr><td>Init time</td><td>Later (manually)</td><td>On first access</td></tr>
+      <tr><td>Use case</td><td>Views, DI fields</td><td>Expensive objects</td></tr>
+    </table>
+
+    <h3>5. Coroutine Exception Handling (Without try-catch)</h3>
+    <p>
+      If a <code>NumberFormatException</code> occurs, the coroutine’s parent scope cancels — can crash the app.  
+      To avoid it, use <code>CoroutineExceptionHandler</code>:
+    </p>
+    <pre><code>
+val handler = CoroutineExceptionHandler { _, e -> println("Caught: $e") }
+GlobalScope.launch(handler) {
+    repeat(1000) {
+        println(it)
+        if (it == 500) throw NumberFormatException()
+    }
+}
+    </code></pre>
+
+    <h3>6. <code>async</code> vs <code>launch</code></h3>
+    <table class="table table-bordered">
+      <tr><th>Function</th><th>Returns</th><th>Purpose</th></tr>
+      <tr><td>launch</td><td>Job</td><td>Fire and forget</td></tr>
+      <tr><td>async</td><td>Deferred&lt;T&gt;</td><td>Returns result via <code>await()</code></td></tr>
+    </table>
+
+    <h3>7. Cancel Coroutine after 3 Seconds</h3>
+    <pre><code>
+val job = CoroutineScope(Dispatchers.Default).launch {
+    repeat(1000) {
+        println(it)
+        delay(1000)
+    }
+}
+delay(3000)
+job.cancel()
+    </code></pre>
+
+    <h3>8. Extension Function Example</h3>
+    <pre><code>
+fun String.capitalizeName(): String = replaceFirstChar { it.uppercase() }
+println("talha".capitalizeName()) // Output: Talha
+    </code></pre>
+    <p>
+      Extension functions let you <strong>add functionality</strong> to existing classes 
+      without inheritance or modifying their source code.
+    </p>
+
+    <h3>9. Hot Flow vs Cold Flow</h3>
+    <table class="table table-bordered">
+      <tr><th>Type</th><th>Behavior</th><th>Example</th></tr>
+      <tr><td>Cold Flow</td><td>Starts emitting when collected</td><td><code>flow { emit(1) }</code></td></tr>
+      <tr><td>Hot Flow</td><td>Emits regardless of collectors</td><td><code>StateFlow</code>, <code>SharedFlow</code></td></tr>
+    </table>
+
+    <h3>10. Why StateFlow has Initial Value, but SharedFlow doesn't?</h3>
+    <p>
+      <strong>StateFlow</strong> always holds a current state, so it needs an initial value.  
+      <strong>SharedFlow</strong> emits events, not state — no initial value required.
+    </p>
+
+    <h3>11. Collect Multiple Flows with One Collector</h3>
+    <pre><code>
+combine(flow1, flow2, flow3, flow4) { f1, f2, f3, f4 ->
+    listOf(f1, f2, f3, f4)
+}.collect { println(it) }
+    </code></pre>
+
+    <h3>12. Fastest Way to Store Large API Arrays in Room</h3>
+    <p>Use <strong>bulk insert</strong> with <code>@Insert(onConflict = REPLACE)</code> inside a transaction.</p>
+    <pre><code>
+@Dao
+interface CategoryDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(categories: List<Category>)
+}
+
+db.withTransaction {
+    dao.insertAll(bigList)
+}
+    </code></pre>
+
+    <h3>13. Print Only Category Names (Without Loop)</h3>
+    <pre><code>
+val categories = arrayListOf(
+  Category(1, "category1"),
+  Category(2, "category2"),
+  Category(3, "category3")
+)
+
+println(categories.joinToString(", ") { it.name })
+// Output: category1, category2, category3
+    </code></pre>
+  </div>
+</section>
