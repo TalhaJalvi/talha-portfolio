@@ -1,0 +1,97 @@
+<section id="coroutine-builders" class="card">
+  <h2>Coroutine Builders — <code>launch</code>, <code>async</code>, <code>runBlocking</code></h2>
+
+  <h3>Introduction</h3>
+  <p>In Kotlin, coroutine builders are functions that start new coroutines. The main builders are <code>launch</code>, <code>async</code>, and <code>runBlocking</code>. Each serves different purposes, return different types, and behave differently in terms of cancellation and threading.</p>
+
+  <h3><code>launch</code></h3>
+  <p><strong>What it does:</strong> Starts a coroutine for side-effects (fire-and-forget). Returns a <code>Job</code> to manage it.</p>
+  <pre><code class="kotlin">val job = CoroutineScope(Dispatchers.Default).launch {
+    repeat(5) { i ->
+        if (!isActive) return@launch  // cooperative cancellation
+        println("Working \$i on \${Thread.currentThread().name}")
+        delay(300)
+    }
+}
+
+// Cancel after 800ms
+CoroutineScope(Dispatchers.Default).launch {
+    delay(800)
+    job.cancel()
+    println("Job cancelled")
+}</code></pre>
+  <p><strong>Expected output:</strong></p>
+  <pre><code>
+Working 0 on DefaultDispatcher-worker-1
+Working 1 on DefaultDispatcher-worker-1
+Working 2 on DefaultDispatcher-worker-1
+Job cancelled
+</code></pre>
+
+  <h3><code>async</code></h3>
+  <p><strong>What it does:</strong> Starts a coroutine for computations and returns a <code>Deferred&lt;T&gt;</code> for the result. Use <code>await()</code> to get the value.</p>
+  <pre><code class="kotlin">runBlocking {
+    val d1 = async(Dispatchers.Default) {
+        delay(1000)
+        "Result 1"
+    }
+    val d2 = async(Dispatchers.Default) {
+        delay(1200)
+        "Result 2"
+    }
+
+    println("Waiting for results...")
+    val r1 = d1.await()
+    val r2 = d2.await()
+    println("Results: \$r1, \$r2")
+}</code></pre>
+  <p><strong>Expected output:</strong></p>
+  <pre><code>
+Waiting for results...
+Results: Result 1, Result 2
+</code></pre>
+
+  <h3><code>runBlocking</code></h3>
+  <p><strong>What it does:</strong> Blocks the current thread until the coroutine completes. Useful in <code>main()</code> or tests.</p>
+  <pre><code class="kotlin">fun main() = runBlocking {
+    launch {
+        delay(500)
+        println("Inside runBlocking")
+    }
+    println("runBlocking will wait for children before returning")
+}</code></pre>
+  <p><strong>Expected output:</strong></p>
+  <pre><code>
+runBlocking will wait for children before returning
+Inside runBlocking
+</code></pre>
+
+  <h3>Cancellation & Exception Handling</h3>
+  <ul>
+    <li><code>job.cancel()</code> — request cancellation</li>
+    <li><code>job.join()</code> — wait until coroutine finishes</li>
+    <li>Use <code>isActive</code> inside loops for cooperative cancellation</li>
+    <li>Use <code>CoroutineExceptionHandler</code> to handle uncaught exceptions in <code>launch</code> coroutines</li>
+    <li>Use <code>supervisorScope</code> or <code>SupervisorJob</code> to isolate child failures</li>
+  </ul>
+
+  <h3>Start Modes</h3>
+  <ul>
+    <li><code>DEFAULT</code> — starts immediately</li>
+    <li><code>LAZY</code> — starts only when <code>start()</code> or <code>join()</code> is called</li>
+    <li><code>ATOMIC</code> — cannot be cancelled until first suspension</li>
+    <li><code>UNDISPATCHED</code> — runs immediately in current thread until first suspension</li>
+  </ul>
+
+  <h3>Comparison Table</h3>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr><th>Builder</th><th>Returns</th><th>Use-case</th><th>Cancellation/Exception</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>launch</code></td><td><code>Job</code></td><td>Side-effects, fire-and-forget</td><td>Exceptions cancel parent; handle with <code>CoroutineExceptionHandler</code></td></tr>
+      <tr><td><code>async</code></td><td><code>Deferred&lt;T&gt;</code></td><td>Concurrent computations returning value</td><td>Exceptions via <code>await()</code>; cancels parent unless supervisor used</td></tr>
+      <tr><td><code>runBlocking</code></td><td>Result <code>T</code></td><td>Blocking bridge for main() or tests</td><td>Blocks thread; all children complete before return</td></tr>
+    </tbody>
+  </table>
+</section>

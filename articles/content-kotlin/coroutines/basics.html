@@ -1,0 +1,85 @@
+<section class="content-section">
+    <h2>Threads, Main Thread & Kotlin Coroutines</h2>
+    <a href="https://proandroiddev.com/kotlin-coroutines-101-async-programming-in-practice-062b359d502b">A very good article on coroutines</a>
+    <h3>1. Main Thread (UI Thread)</h3>
+    <p><strong>What:</strong> The main thread (also called the UI thread) is where Android executes UI-related tasks — drawing, event handling, and lifecycle methods.</p>
+    <p><strong>Why:</strong> It ensures that all UI operations happen sequentially and safely, avoiding race conditions or UI corruption.</p>
+    <p><strong>How:</strong> The main thread internally runs a <em>Looper</em> and <em>MessageQueue</em>. The Looper waits for tasks or messages in the queue and executes them one by one.</p>
+
+    <h3>2. Example of Blocking the UI Thread</h3>
+    <pre><code>fun doAction(view: View) {
+    executeLongRunningTask() // Blocks main thread
+}
+
+private fun executeLongRunningTask() {
+    for (i in 1..1_000_000_000L) {
+        // Long computation
+    }
+}</code></pre>
+    <p><strong>Effect:</strong> The UI freezes and may cause an Application Not Responding (ANR) error.</p>
+
+    <h3>3. Fix Using a Background Thread</h3>
+    <pre><code>fun doAction(view: View) {
+    Thread(start = true) {
+        executeLongRunningTask()
+    }
+}</code></pre>
+    <p><strong>Why Not Ideal:</strong></p>
+    <ul>
+        <li>Each thread consumes ~1–2 MB memory (OS-level resource).</li>
+        <li>Context switching is expensive for the CPU.</li>
+        <li>Managing threads manually can cause leaks and crashes.</li>
+    </ul>
+
+    <h3>4. Kotlin Coroutines</h3>
+    <p><strong>What:</strong> Lightweight, cooperative routines that can run multiple tasks on the same thread without blocking it.</p>
+    <p><strong>Why:</strong> Threads are limited and costly; coroutines are managed by Kotlin runtime and can run thousands of tasks concurrently.</p>
+    <p><strong>How:</strong> Coroutines suspend instead of blocking — when waiting, they yield control so other coroutines can run.</p>
+
+    <h3>5. Coroutine Scope & Context</h3>
+    <p>We need two things to run coroutine.</p>
+    <ul>
+        <li><strong>Coroutine Scope:</strong> Defines the lifespan of a coroutine. It gets canceled automatically when its parent (Activity, Fragment, or ViewModel) is destroyed.</li>
+        <li><strong>Coroutine Context:</strong> Defines which thread (dispatcher) the coroutine runs on.</li>
+    </ul>
+
+    <h3>6. Dispatchers</h3>
+    <p><strong>What:</strong> A dispatcher decides which thread(s) a coroutine will use for its execution.</p>
+    <ul>
+        <li><strong>Dispatchers.Main:</strong> Runs on the main/UI thread — for updating UI or lightweight operations.</li>
+        <li><strong>Dispatchers.IO:</strong> Optimized for I/O operations like network calls or database reads/writes.</li>
+        <li><strong>Dispatchers.Default:</strong> For CPU-intensive operations like sorting or calculations.</li>
+    </ul>
+
+    <h3>7. Example Using Dispatchers</h3>
+    <pre><code>fun doAction(view: View) {
+    CoroutineScope(Dispatchers.IO).launch {
+        Log.d(TAG, "Running on: ${Thread.currentThread().name}")
+    }
+
+    GlobalScope.launch(Dispatchers.Main) {
+        Log.d(TAG, "Running on: ${Thread.currentThread().name}")
+    }
+
+    MainScope().launch(Dispatchers.Default) {
+        Log.d(TAG, "Running on: ${Thread.currentThread().name}")
+    }
+}</code></pre>
+
+    <h3>8. Common Coroutine Scopes</h3>
+    <ul>
+        <li><strong>GlobalScope:</strong> Lifetime = entire app. Use rarely; can cause leaks.</li>
+        <li><strong>MainScope:</strong> Runs with Main dispatcher, often used for simple UI components.</li>
+        <li><strong>lifecycleScope:</strong> Automatically cancels coroutines when Activity/Fragment is destroyed.</li>
+        <li><strong>viewModelScope:</strong> Cancels coroutines when ViewModel is cleared.</li>
+        <li><strong>supervisorScope:</strong> Allows child coroutines to fail independently without canceling siblings.</li>
+    </ul>
+
+    <h3>9. Summary</h3>
+    <ul>
+        <li>Avoid long-running tasks on the main thread.</li>
+        <li>Use coroutines instead of raw threads for async work.</li>
+        <li>Choose appropriate dispatchers for I/O, CPU, or UI tasks.</li>
+        <li>Use structured scopes (<code>lifecycleScope</code>, <code>viewModelScope</code>) to prevent leaks.</li>
+    </ul>
+</section>

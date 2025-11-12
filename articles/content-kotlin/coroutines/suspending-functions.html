@@ -1,0 +1,117 @@
+<section id="suspending-functions-modifiers">
+    <h2>Suspending Functions & Modifiers</h2>
+    <p>Suspending functions in Kotlin are special functions that can be paused and resumed later without blocking the thread. They can only be called from another suspending function or within a coroutine.</p>
+
+    <h3>Example 1: Simple Delay</h3>
+    <pre><code class="kotlin">suspend fun printMessage() {
+    println("Task started")
+    delay(1000)
+    println("Task finished after 1 second")
+}
+
+GlobalScope.launch {
+    printMessage()
+}</code></pre>
+    <p><strong>Output:</strong><br>Task started<br>Task finished after 1 second</p>
+
+    <h3>Example 2: Using suspend function in coroutine</h3>
+    <pre><code class="kotlin">suspend fun fetchData(): String {
+    delay(2000)
+    return "Data fetched successfully"
+}
+
+GlobalScope.launch {
+    val result = fetchData()
+    println(result)
+}</code></pre>
+    <p><strong>Output:</strong><br>Data fetched successfully (after 2 seconds delay)</p>
+
+    <h3>Example 3: Sequential suspending calls</h3>
+    <pre><code class="kotlin">suspend fun taskOne() {
+    println("Task 1 started")
+    delay(1000)
+    println("Task 1 finished")
+}
+
+suspend fun taskTwo() {
+    println("Task 2 started")
+    delay(1000)
+    println("Task 2 finished")
+}
+
+GlobalScope.launch {
+    taskOne()
+    taskTwo()
+}</code></pre>
+    <p><strong>Output:</strong><br>Task 1 started<br>Task 1 finished<br>Task 2 started<br>Task 2 finished</p>
+
+    <h3>Example 4: Running Multiple Coroutines Concurrently</h3>
+    <pre><code class="kotlin">private val TAG: String = "KOTLINFUN"
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main2)
+
+    CoroutineScope(Dispatchers.Main).launch {
+        task1()
+    }
+
+    CoroutineScope(Dispatchers.Main).launch {
+        task2()
+    }
+}
+
+suspend fun task1() {
+    Log.d(TAG, "STARTING TASK 1")
+    delay(1000)
+    Log.d(TAG, "ENDING TASK 1")
+}
+
+suspend fun task2() {
+    Log.d(TAG, "STARTING TASK 2")
+    delay(2000)
+    Log.d(TAG, "ENDING TASK 2")
+}</code></pre>
+
+    <table border="1" cellspacing="0" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Line</th>
+                <th>Timestamp (Seconds)</th>
+                <th>Log Message</th>
+                <th>Duration of delay()</th>
+                <th>Conclusion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>28.227</td>
+                <td>STARTING TASK 1</td>
+                <td>1000ms (1 sec)</td>
+                <td>Task 1 starts.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>28.235</td>
+                <td>STARTING TASK 2</td>
+                <td>2000ms (2 sec)</td>
+                <td>Immediately after Task 1 starts, Task 2 starts. This shows the two launch calls do not wait for each other.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>29.235</td>
+                <td>ENDING TASK 1</td>
+                <td></td>
+                <td>Logged exactly 1 second after Task 1 started (28.227 + ~1.000 = 29.227).</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>30.243</td>
+                <td>ENDING TASK 2</td>
+                <td></td>
+                <td>Logged exactly 2 seconds after Task 2 started (28.235 + ~2.000 = 30.235).</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
