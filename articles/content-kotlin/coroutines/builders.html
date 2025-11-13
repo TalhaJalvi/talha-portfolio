@@ -68,30 +68,166 @@ Inside runBlocking
 
   <h3>Cancellation & Exception Handling</h3>
   <ul>
-    <li><code>job.cancel()</code> — request cancellation</li>
-    <li><code>job.join()</code> — wait until coroutine finishes</li>
-    <li>Use <code>isActive</code> inside loops for cooperative cancellation</li>
-    <li>Use <code>CoroutineExceptionHandler</code> to handle uncaught exceptions in <code>launch</code> coroutines</li>
-    <li>Use <code>supervisorScope</code> or <code>SupervisorJob</code> to isolate child failures</li>
+    <li><code>job.cancel()</code> — Requests cancellation of a coroutine.</li>
+    <li><code>job.join()</code> — Suspends until the coroutine completes (either normally or with an exception).</li>
+    <li><code>isActive</code> — Use inside loops to check for cooperative cancellation.</li>
+    <li><code>CoroutineExceptionHandler</code> — Handles uncaught exceptions in <code>launch</code> coroutines.</li>
+    <li><code>supervisorScope</code> / <code>SupervisorJob</code> — Prevents one child failure from cancelling siblings.</li>
   </ul>
+
+  <h4>Example 1: Basic Cancellation</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        repeat(5) { i ->
+            println("Working $i ...")
+            delay(300)
+        }
+    }
+
+    delay(700)
+    println("Cancelling job!")
+    job.cancel()
+    job.join() // waits for cancellation to complete
+    println("Job cancelled!")
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> <code>cancel()</code> sends a cancellation signal, and <code>join()</code> suspends until the coroutine actually stops. Always use both for proper cleanup.</p>
+
+  <h4>Example 2: Cooperative Cancellation</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        var i = 0
+        while (isActive) { // cooperative cancellation check
+            println("Processing item ${'$'}i")
+            i++
+            delay(200)
+        }
+    }
+    delay(600)
+    job.cancelAndJoin()
+    println("Gracefully stopped.")
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> If you don’t use <code>isActive</code>, CPU-bound loops won’t respond to <code>cancel()</code> immediately.</p>
+
+  <h4>Example 3: Exception Handling</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val handler = CoroutineExceptionHandler { _, ex ->
+        println("Caught exception: ${'$'}{ex.message}")
+    }
+
+    val scope = CoroutineScope(SupervisorJob() + handler)
+
+    with(scope) {
+        val job1 = launch {
+            println("Failing child")
+            throw RuntimeException("Something went wrong!")
+        }
+
+        val job2 = launch {
+            delay(500)
+            println("Sibling coroutine still running")
+        }
+
+        job1.join()
+        job2.join()
+    }
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> Using <code>SupervisorJob</code>, even if one child fails, the other continues.  
+  Without it, both coroutines would be cancelled.</p>
 
   <h3>Start Modes</h3>
   <ul>
-    <li><code>DEFAULT</code> — starts immediately</li>
-    <li><code>LAZY</code> — starts only when <code>start()</code> or <code>join()</code> is called</li>
-    <li><code>ATOMIC</code> — cannot be cancelled until first suspension</li>
-    <li><code>UNDISPATCHED</code> — runs immediately in current thread until first suspension</li>
+    <li><code>DEFAULT</code> — Starts immediately after creation.</li>
+    <li><code>LAZY</code> — Starts only when <code>start()</code>, <code>join()</code>, or <code>await()</code> is called.</li>
+    <li><code>ATOMIC</code> — Starts immediately and cannot be cancelled before first suspension.</li>
+    <li><code>UNDISPATCHED</code> — Executes immediately in the current thread until the first suspension point.</li>
   </ul>
+
+  <h4>Example 4: Start Modes Demo</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val lazyJob = launch(start = CoroutineStart.LAZY) {
+        println("Lazy job started in ${'$'}{Thread.currentThread().name}")
+    }
+
+    println("Job not started yet")
+    delay(300)
+    lazyJob.start() // or lazyJob.join()
+    println("Main finished")
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> The coroutine with <code>CoroutineStart.LAZY</code> won't start until explicitly requested.</p>
 
   <h3>Comparison Table</h3>
   <table border="1" cellpadding="6" cellspacing="0">
     <thead>
-      <tr><th>Builder</th><th>Returns</th><th>Use-case</th><th>Cancellation/Exception</th></tr>
+      <tr>
+        <th>Builder</th>
+        <th>Returns</th>
+        <th>Use-case</th>
+        <th>Cancellation / Exception Behavior</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td><code>launch</code></td><td><code>Job</code></td><td>Side-effects, fire-and-forget</td><td>Exceptions cancel parent; handle with <code>CoroutineExceptionHandler</code></td></tr>
-      <tr><td><code>async</code></td><td><code>Deferred&lt;T&gt;</code></td><td>Concurrent computations returning value</td><td>Exceptions via <code>await()</code>; cancels parent unless supervisor used</td></tr>
-      <tr><td><code>runBlocking</code></td><td>Result <code>T</code></td><td>Blocking bridge for main() or tests</td><td>Blocks thread; all children complete before return</td></tr>
+      <tr>
+        <td><code>launch</code></td>
+        <td><code>Job</code></td>
+        <td>Fire-and-forget tasks (e.g., network calls, saving data)</td>
+        <td>Exceptions cancel parent unless caught with <code>CoroutineExceptionHandler</code></td>
+      </tr>
+      <tr>
+        <td><code>async</code></td>
+        <td><code>Deferred&lt;T&gt;</code></td>
+        <td>Concurrent computations returning results</td>
+        <td>Exceptions rethrown on <code>await()</code>; cancels parent unless supervisor used</td>
+      </tr>
+      <tr>
+        <td><code>runBlocking</code></td>
+        <td><code>T</code></td>
+        <td>Blocking bridge for main functions and tests</td>
+        <td>Blocks the current thread until all child coroutines complete</td>
+      </tr>
     </tbody>
   </table>
-</section>
+
+  <h4>Example 5: launch vs async</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    // launch
+    val job = launch {
+        delay(500)
+        println("launch finished")
+    }
+
+    // async
+    val deferred = async {
+        delay(500)
+        "Result from async"
+    }
+
+    println("Async returned: ${'$'}{deferred.await()}")
+    job.join()
+    println("All done!")
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> <code>launch</code> returns a <code>Job</code> (no result), while <code>async</code> returns a <code>Deferred</code> which can produce a result using <code>await()</code>.</p>

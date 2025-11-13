@@ -1,0 +1,154 @@
+<section>
+  <h2>50 Android Kotlin Coroutine Interview Questions & Answers</h2>
+  <ul>
+    <li><strong>Q1:</strong> What is a coroutine in Kotlin?<br>
+        <strong>A:</strong> A coroutine is a lightweight thread-like construct for asynchronous programming in Kotlin. It allows writing non-blocking code sequentially.</li>
+
+    <li><strong>Q2:</strong> Difference between <code>launch</code> and <code>async</code>?<br>
+        <strong>A:</strong> <code>launch</code> returns a Job and is used for fire-and-forget tasks; <code>async</code> returns a Deferred and is used when you need a result.</li>
+
+    <li><strong>Q3:</strong> What is <code>runBlocking</code>?<br>
+        <strong>A:</strong> A blocking coroutine builder that blocks the current thread until all coroutines inside it complete, commonly used in <code>main()</code> or tests.</li>
+
+    <li><strong>Q4:</strong> What is <code>Dispatchers.Main</code>?<br>
+        <strong>A:</strong> Dispatcher for Android main/UI thread. Use it to update UI from coroutines.</li>
+
+    <li><strong>Q5:</strong> What is <code>Dispatchers.IO</code>?<br>
+        <strong>A:</strong> Dispatcher optimized for IO-bound tasks like network and database operations.</li>
+
+    <li><strong>Q6:</strong> What is <code>Dispatchers.Default</code>?<br>
+        <strong>A:</strong> Dispatcher optimized for CPU-intensive tasks like sorting, calculations, or parsing.</li>
+
+    <li><strong>Q7:</strong> How do you cancel a coroutine?<br>
+        <strong>A:</strong> By calling <code>job.cancel()</code>. If the coroutine is cooperative, it will stop at the next suspension point.</li>
+
+    <li><strong>Q8:</strong> What is <code>isActive</code> used for?<br>
+        <strong>A:</strong> To check if a coroutine is still active, usually inside loops for cooperative cancellation.</li>
+
+    <li><strong>Q9:</strong> What is <code>Job</code> in coroutines?<br>
+        <strong>A:</strong> A handle to manage coroutine lifecycle — it allows cancelling, checking status, or joining.</li>
+
+    <li><strong>Q10:</strong> Difference between <code>CoroutineScope</code> and <code>GlobalScope</code>?<br>
+        <strong>A:</strong> <code>CoroutineScope</code> is structured and tied to lifecycle; <code>GlobalScope</code> is global, lives until the app stops, and is not recommended for Android.</li>
+
+    <li><strong>Q11:</strong> What is structured concurrency?<br>
+        <strong>A:</strong> Parent coroutines manage children — when parent cancels, all children are cancelled automatically.</li>
+
+    <li><strong>Q12:</strong> What is <code>SupervisorJob</code>?<br>
+        <strong>A:</strong> A job where children are independent — failure of one child does not cancel siblings.</li>
+
+    <li><strong>Q13:</strong> Difference between <code>supervisorScope</code> and <code>coroutineScope</code>?<br>
+        <strong>A:</strong> <code>supervisorScope</code> isolates failures of children; <code>coroutineScope</code> cancels all children if one fails.</li>
+
+    <li><strong>Q14:</strong> How to handle uncaught exceptions in coroutines?<br>
+        <strong>A:</strong> Use <code>CoroutineExceptionHandler</code> for <code>launch</code> coroutines; for <code>async</code>, exceptions are thrown on <code>await()</code>.</li>
+
+    <li><strong>Q15:</strong> Difference between <code>cancel()</code> and <code>cancelAndJoin()</code>?<br>
+        <strong>A:</strong> <code>cancel()</code> requests cancellation; <code>cancelAndJoin()</code> requests cancellation and waits until the coroutine finishes.</li>
+
+    <li><strong>Q16:</strong> What is <code>withContext</code>?<br>
+        <strong>A:</strong> A suspending function that switches the coroutine context for a block of code and returns the result.</li>
+
+    <li><strong>Q17:</strong> Can you switch dispatchers inside a coroutine?<br>
+        <strong>A:</strong> Yes, using <code>withContext(Dispatchers.IO)</code> or any other dispatcher.</li>
+
+    <li><strong>Q18:</strong> Difference between <code>launch(start=LAZY)</code> and <code>launch(start=DEFAULT)</code>?<br>
+        <strong>A:</strong> LAZY starts only when <code>start()</code>, <code>join()</code> or <code>await()</code> is called; DEFAULT starts immediately.</li>
+
+    <li><strong>Q19:</strong> What is <code>yield()</code> in coroutines?<br>
+        <strong>A:</strong> Suspends the current coroutine to give other coroutines a chance to run.</li>
+
+    <li><strong>Q20:</strong> Difference between <code>async</code> and <code>runBlocking</code>?<br>
+        <strong>A:</strong> <code>async</code> runs concurrently and returns a Deferred; <code>runBlocking</code> blocks the current thread until coroutine finishes.</li>
+
+    <li><strong>Q21:</strong> How does coroutine cancellation propagate?<br>
+        <strong>A:</strong> Cancellation propagates from parent to children automatically in structured concurrency.</li>
+
+    <li><strong>Q22:</strong> Difference between <code>Unconfined</code> and <code>Main</code> dispatcher?<br>
+        <strong>A:</strong> <code>Unconfined</code> starts in caller thread and may resume in a different thread; <code>Main</code> always runs on UI thread.</li>
+
+    <li><strong>Q23:</strong> Can you cancel <code>async</code> coroutine?<br>
+        <strong>A:</strong> Yes, by calling <code>deferred.cancel()</code>. Exception occurs if <code>await()</code> is called after cancellation.</li>
+
+    <li><strong>Q24:</strong> Difference between <code>Job</code> and <code>Deferred</code>?<br>
+        <strong>A:</strong> <code>Job</code> is for lifecycle management; <code>Deferred</code> also returns a value via <code>await()</code>.</li>
+
+    <li><strong>Q25:</strong> How do you handle cancellation in loops?<br>
+        <strong>A:</strong> Check <code>isActive</code> periodically and exit the loop to stop gracefully.</li>
+
+    <li><strong>Q26:</strong> What are coroutine builders in Kotlin?<br>
+        <strong>A:</strong> <code>launch</code>, <code>async</code>, <code>runBlocking</code>, and <code>withContext</code> are main builders.</li>
+
+    <li><strong>Q27:</strong> Difference between <code>launch</code> and <code>launch { GlobalScope.launch { ... } }</code>?<br>
+        <strong>A:</strong> GlobalScope.launch is not tied to structured concurrency, may leak coroutines; normal launch is scoped and managed.</li>
+
+    <li><strong>Q28:</strong> What is <code>join()</code> used for?<br>
+        <strong>A:</strong> Suspends the calling coroutine until the target coroutine completes.</li>
+
+    <li><strong>Q29:</strong> Can you run multiple coroutines concurrently?<br>
+        <strong>A:</strong> Yes, launch multiple coroutines inside a scope; they run concurrently.</li>
+
+    <li><strong>Q30:</strong> Difference between <code>coroutineScope</code> and <code>runBlocking</code>?<br>
+        <strong>A:</strong> <code>coroutineScope</code> is suspending and non-blocking; <code>runBlocking</code> blocks the current thread.</li>
+
+    <li><strong>Q31:</strong> How do you propagate exceptions in coroutines?<br>
+        <strong>A:</strong> In launch, unhandled exceptions cancel the parent; in async, exceptions are propagated on <code>await()</code>.</li>
+
+    <li><strong>Q32:</strong> Can you launch a coroutine on a custom thread pool?<br>
+        <strong>A:</strong> Yes, using <code>newSingleThreadContext</code> or <code>Executor.asCoroutineDispatcher()</code>.</li>
+
+    <li><strong>Q33:</strong> Difference between <code>GlobalScope.launch</code> and <code>lifecycleScope.launch</code> in Android?<br>
+        <strong>A:</strong> <code>lifecycleScope</code> is tied to Activity/Fragment lifecycle; <code>GlobalScope</code> lives until app exits.</li>
+
+    <li><strong>Q34:</strong> What is <code>Dispatchers.Default</code> used for?<br>
+        <strong>A:</strong> For CPU-intensive operations like sorting, parsing, or heavy computation.</li>
+
+    <li><strong>Q35:</strong> Can you call <code>withContext</code> from <code>launch</code> coroutine?<br>
+        <strong>A:</strong> Yes, it suspends the coroutine and switches context for that block.</li>
+
+    <li><strong>Q36:</strong> How do you make a coroutine lazy?<br>
+        <strong>A:</strong> <code>launch(start=CoroutineStart.LAZY) { ... }</code></li>
+
+    <li><strong>Q37:</strong> Difference between <code>Atomic</code> and <code>Lazy</code> start modes?<br>
+        <strong>A:</strong> ATOMIC starts immediately and cannot be cancelled until first suspension; LAZY starts only on explicit start or join.</li>
+
+    <li><strong>Q38:</strong> Can coroutines replace RxJava?<br>
+        <strong>A:</strong> Yes, Kotlin coroutines with Flow can replace RxJava for asynchronous streams in modern Android apps.</li>
+
+    <li><strong>Q39:</strong> What is <code>flow</code> in coroutines?<br>
+        <strong>A:</strong> Cold asynchronous data stream that supports backpressure and can emit multiple values over time.</li>
+
+    <li><strong>Q40:</strong> Difference between <code>SharedFlow</code> and <code>StateFlow</code>?<br>
+        <strong>A:</strong> StateFlow holds a single state and emits updates; SharedFlow is hot and can have multiple subscribers.</li>
+
+    <li><strong>Q41:</strong> What is <code>Dispatchers.Unconfined</code>?<br>
+        <strong>A:</strong> Starts in the caller thread, resumes in the thread determined by the suspending function.</li>
+
+    <li><strong>Q42:</strong> Can coroutines be cancelled from outside?<br>
+        <strong>A:</strong> Yes, by cancelling the parent job or the coroutine’s Job object.</li>
+
+    <li><strong>Q43:</strong> Difference between blocking and suspending functions?<br>
+        <strong>A:</strong> Blocking functions block the thread; suspending functions suspend the coroutine without blocking the thread.</li>
+
+    <li><strong>Q44:</strong> How do you wait for multiple coroutines to finish?<br>
+        <strong>A:</strong> Use <code>joinAll(job1, job2, ...)</code> or <code>coroutineScope { ... }</code> to wait structuredly.</li>
+
+    <li><strong>Q45:</strong> Difference between <code>supervisorScope</code> and <code>SupervisorJob</code>?<br>
+        <strong>A:</strong> <code>supervisorScope</code> is a suspending function; <code>SupervisorJob</code> is a Job instance that can be added to a scope.</li>
+
+    <li><strong>Q46:</strong> Can you cancel a coroutine from inside itself?<br>
+        <strong>A:</strong> Yes, call <code>coroutineContext.cancel()</code> or <code>currentCoroutineContext().cancel()</code>.</li>
+
+    <li><strong>Q47:</strong> Difference between <code>Dispatchers.IO</code> and <code>Dispatchers.Default</code>?<br>
+        <strong>A:</strong> IO is optimized for blocking IO tasks; Default is optimized for CPU-intensive work.</li>
+
+    <li><strong>Q48:</strong> What is <code>yield()</code> used for?<br>
+        <strong>A:</strong> Suspends the current coroutine to allow other coroutines to execute.</li>
+
+    <li><strong>Q49:</strong> Difference between <code>Job.cancel()</code> and <code>Thread.interrupt()</code>?<br>
+        <strong>A:</strong> Job.cancel() is cooperative; Thread.interrupt() forces interruption at thread level.</li>
+
+    <li><strong>Q50:</strong> How do you handle exceptions in <code>async</code> coroutines?<br>
+        <strong>A:</strong> Exceptions are propagated when <code>await()</code> is called; can use try-catch around <code>await()</code> to handle them.</li>
+  </ul>
+</section>
