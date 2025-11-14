@@ -1,0 +1,90 @@
+<!-- Problem: Find Missing Number in Array -->
+<section>
+  <h2>Problem Statement</h2>
+  <p>
+    You are given an array of size <strong>N-1</strong> containing distinct integers 
+    from 1 to N. Exactly one number is missing from the array. Your task is to find 
+    that missing number.
+  </p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+Input: arr = [1, 2, 4, 5, 6], N = 6
+Output: 3
+Explanation: 3 is missing in the array.
+  </code></pre>
+
+    <p><strong>Example 2:</strong></p>
+  <pre><code>
+Input: arr = [2,3,1,5], N = 5
+Output: 4
+Explanation: 4 is missing in the array.
+  </code></pre>
+  <h2>Concept: Sum Formula (1 + 2 + … + N)</h2>
+  <p>
+    The sum of the first N natural numbers can be calculated using the formula:
+  </p>
+  <pre><code>
+Sum = N * (N + 1) / 2
+  </code></pre>
+  <p>
+    <strong>Why it works:</strong> The formula is derived from the idea of pairing numbers:
+  </p>
+  <ul>
+    <li>Consider numbers 1, 2, 3, ..., N.</li>
+    <li>Pair the first and last: 1 + N, 2 + (N-1), 3 + (N-2), ...</li>
+    <li>There are N/2 pairs (if N is even), each summing to N+1.</li>
+    <li>So the total sum = (N * (N + 1)) / 2</li>
+  </ul>
+  <p>This sum represents the total of numbers if none were missing.</p>
+
+  <h2>Solution Approach</h2>
+  <ol>
+    <li>Calculate the sum of first N natural numbers using the formula above.</li>
+    <li>Calculate the sum of all elements present in the given array.</li>
+    <li>The missing number is obtained by subtracting the array sum from the total sum.</li>
+  </ol>
+
+  <h2>Kotlin Solution</h2>
+  <pre><code class="kotlin">
+fun findMissingNumber(arr: IntArray, n: Int): Int {
+    val totalSum = n * (n + 1) / 2   // Step 1: Total sum of 1 to N
+    val arraySum = arr.sum()          // Step 2: Sum of array elements
+    return totalSum - arraySum        // Step 3: Subtract to get missing number
+}
+
+fun main() {
+    val arr = intArrayOf(1, 2, 4, 5, 6)
+    val n = 6
+    val missing = findMissingNumber(arr, n)
+    println("Missing number is: $missing") // Output: 3
+}
+  </code></pre>
+
+  <h2>Step-by-Step Example</h2>
+  <p>For <code>arr = [1, 2, 4, 5, 6]</code> and <code>N = 6</code>:</p>
+  <ol>
+    <li>Total sum using formula: 6 * (6+1)/2 = 21</li>
+    <li>Sum of array elements: 1+2+4+5+6 = 18</li>
+    <li>Missing number: 21 - 18 = 3</li>
+  </ol>
+
+  <h2>Explanation of Why it Works</h2>
+  <ul>
+    <li>The formula <code>N*(N+1)/2</code> gives the sum of all numbers from 1 to N.</li>
+    <li>The sum of the array gives the sum of present numbers only.</li>
+    <li>The difference between the total sum and array sum isolates the missing number.</li>
+  </ul>
+
+  <h2>Complexity Analysis</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(N) — Calculating the sum of array elements.</li>
+    <li><strong>Space Complexity:</strong> O(1) — Only a few extra variables are used.</li>
+  </ul>
+
+  <h2>Edge Cases</h2>
+  <ul>
+    <li>If the missing number is 1 or N, formula still works.</li>
+    <li>If array is empty (N=1), it returns 1.</li>
+    <li>For very large N, integer overflow can happen; use Long in Kotlin.</li>
+  </ul>
+</section>

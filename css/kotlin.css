@@ -217,6 +217,16 @@ code {
 body.dark-mode .error-message-container p {
     color: #ccc; /* Lighter color for dark mode */
 }
+h1 {
+  font-size: 32px; /* default for desktop */
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px; /* smaller on mobile */
+  }
+}
+
 
 /* --- Responsive Design (Mobile View) --- */
 @media (max-width: 768px) {
