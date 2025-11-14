@@ -1,0 +1,56 @@
+<!-- Problem: Reverse an Array -->
+<section>
+  <h2>Problem Statement</h2>
+  <p>
+    Given an array of integers, reverse the array so that the first element becomes the last, 
+    the second becomes the second last, and so on. The task is to return or print the array 
+    in reversed order.
+  </p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+Input: arr = [10, 20, 30, 5, 25]
+Output: [25, 5, 30, 20, 10]
+Explanation: The array elements are reversed.
+  </code></pre>
+
+  <h2>Solution Approach</h2>
+  <ol>
+    <li>Start iterating from the last index of the array to the first index.</li>
+    <li>Print or store each element to get the reversed order.</li>
+    <li>Alternatively, use built-in Kotlin functions like <code>reversedArray()</code> for simplicity.</li>
+  </ol>
+
+  <h2>Your Kotlin Solution</h2>
+  <pre><code class="kotlin">
+import kotlinx.coroutines.*
+
+fun main(){
+    val arrInput = arrayOf(10, 20, 30, 5, 25) // expected outcome = 25,5,30,20,10
+    for(i in arrInput.size-1 downTo 0){
+        print(arrInput[i])
+    }
+}
+  </code></pre>
+
+  <h2>Alternate Kotlin Solution Using Built-in Function</h2>
+  <pre><code class="kotlin">
+fun main() {
+    val arrInput = arrayOf(10, 20, 30, 5, 25)
+    val reversedArr = arrInput.reversedArray()
+    println(reversedArr.joinToString()) // Output: 25, 5, 30, 20, 10
+}
+  </code></pre>
+
+  <h2>Explanation</h2>
+  <ul>
+    <li>The first solution uses a <code>for</code> loop starting from the last index down to 0.</li>
+    <li>Elements are printed in reverse order, effectively reversing the array.</li>
+    <li>The built-in <code>reversedArray()</code> function is more concise and returns a new reversed array.</li>
+  </ul>
+
+  <h2>Complexity Analysis</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(N) — traversing the array once.</li>
+    <li><strong>Space Complexity:</strong> O(N) for <code>reversedArray()</code>, O(1) if printing directly.</li>
+  </ul>
+</section>

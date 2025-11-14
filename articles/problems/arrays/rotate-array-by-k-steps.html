@@ -1,0 +1,57 @@
+<section>
+    <h2>4. Rotate Array by K Steps</h2>
+
+    <h3>Problem Statement</h3>
+    <p>
+        Given an array of integers and a number <b>k</b>, rotate the array to the right by <b>k steps</b>. 
+        After rotation, each element should shift to its new position, and elements that move past the end 
+        should wrap around to the beginning.
+    </p>
+
+    <h3>Solution (Kotlin)</h3>
+    <pre><code class="kotlin">
+fun main() {
+    val arr = arrayOf(12, 35, 1, 10, 34, 1)
+    val kInput = 3
+
+    val n = arr.size
+    val k = kInput % n  // handle cases where k > n
+
+    if (k == 0) {
+        println(arr.joinToString())
+        return
+    }
+
+    val rotated = arrayListOf<Int>()
+
+    // Add last k elements
+    for (i in n - k until n) {
+        rotated.add(arr[i])
+    }
+
+    // Add remaining elements
+    for (i in 0 until n - k) {
+        rotated.add(arr[i])
+    }
+
+    println(rotated.joinToString())
+}
+    </code></pre>
+
+    <h3>Explanation</h3>
+    <p>
+        To rotate the array by <b>k steps</b>, we logically split the array into two parts:
+    </p>
+    <ul>
+        <li><b>Part 1:</b> The last <b>k</b> elements, which will move to the front</li>
+        <li><b>Part 2:</b> The first <b>n - k</b> elements, which will follow after</li>
+    </ul>
+
+    <p>
+        By taking the last <b>k</b> elements first and then appending the remaining elements, 
+        we construct the rotated array in <b>O(n)</b> time. 
+        The operation <code>k % n</code> ensures the rotation works even if <code>k</code> 
+        is larger than the array size (e.g., rotating 10 steps in a size-6 array is same as rotating 4 steps).
+        The final rotated array is printed as output.
+    </p>
+</section>

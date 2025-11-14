@@ -1,0 +1,91 @@
+<!-- Problem: Find Second Largest Element in Array -->
+<section>
+  <h2>Problem Statement</h2>
+  <p>
+    You are given an array of integers. Your task is to find the <strong>second largest element</strong> 
+    in the array. The array may contain duplicate elements.
+  </p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+Input: arr = [12, 35, 1, 10, 34, 1]
+Output: 34
+Explanation: The largest element is 35, the second largest is 34.
+  </code></pre>
+  <p><strong>Example 2:</strong></p>
+  <pre><code>
+Input: arr = [5, 5, 5, 2]
+Output: 2
+Explanation: The largest element is 5 (repeated), second largest is 2.
+  </code></pre>
+
+  <h2>Solution Approach</h2>
+  <ol>
+    <li>Initialize two variables: <code>largest</code> and <code>secondLargest</code> with <code>Int.MIN_VALUE</code>.</li>
+    <li>Traverse the array once.</li>
+    <li>
+      For each element:
+      <ul>
+        <li>If element is greater than <code>largest</code>, update <code>secondLargest</code> to <code>largest</code> and then update <code>largest</code> to the element.</li>
+        <li>Else if element is greater than <code>secondLargest</code> and not equal to <code>largest</code>, update <code>secondLargest</code>.</li>
+      </ul>
+    </li>
+    <li>After traversal, <code>secondLargest</code> contains the second largest element.</li>
+  </ol>
+
+  <h2>Kotlin Solution</h2>
+  <pre><code class="kotlin">
+fun findSecondLargest(arr: Array<Int>): Int {
+    var largest = Int.MIN_VALUE
+    var secondLargest = Int.MIN_VALUE
+
+    arr.forEach { num ->
+        if (num > largest) {
+            secondLargest = largest
+            largest = num
+        } else if (num > secondLargest && num != largest) {
+            secondLargest = num
+        }
+    }
+
+    return secondLargest
+}
+
+fun main() {
+    val arr = arrayOf(12, 35, 1, 10, 34, 1)
+    val secondLargest = findSecondLargest(arr)
+    println("Second largest element is: $secondLargest") // Output: 34
+}
+  </code></pre>
+
+  <h2>Step-by-Step Example</h2>
+  <p>For <code>arr = [12, 35, 1, 10, 34, 1]</code>:</p>
+  <ol>
+    <li>Start: <code>largest = MIN_VALUE</code>, <code>secondLargest = MIN_VALUE</code></li>
+    <li>12 → largest = 12, secondLargest = MIN_VALUE</li>
+    <li>35 → largest = 35, secondLargest = 12</li>
+    <li>1 → largest = 35, secondLargest = 12</li>
+    <li>10 → largest = 35, secondLargest = 12</li>
+    <li>34 → largest = 35, secondLargest = 34</li>
+    <li>1 → largest = 35, secondLargest = 34</li>
+  </ol>
+  <p>Result: <code>secondLargest = 34</code></p>
+
+  <h2>Explanation</h2>
+  <ul>
+    <li>This approach keeps track of the two largest numbers in a single pass.</li>
+    <li>No extra array or filtering is needed.</li>
+    <li>Handles duplicates correctly by checking <code>num != largest</code>.</li>
+  </ul>
+
+  <h2>Complexity Analysis</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(N) — Only one traversal of the array is needed.</li>
+    <li><strong>Space Complexity:</strong> O(1) — Only two variables are used.</li>
+  </ul>
+
+  <h2>Edge Cases</h2>
+  <ul>
+    <li>If the array has all elements the same, the second largest might not exist — you may return a special value or handle separately.</li>
+    <li>If the array has less than 2 distinct elements, handle accordingly.</li>
+  </ul>
+</section>

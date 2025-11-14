@@ -1,0 +1,77 @@
+<!-- Problem: Find Largest and Smallest Number in an Array -->
+<section>
+  <h2>Problem Statement</h2>
+  <p>
+    Given an array of integers, find the <strong>largest</strong> and <strong>smallest</strong> numbers in the array.
+  </p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+Input: arr = [1, 2, 510, 0, 20]
+Output: Smallest = 0, Largest = 510
+  </code></pre>
+
+  <h2>Solution Approach</h2>
+  <ol>
+    <li>Initialize two variables <code>smallest</code> and <code>largest</code> with the first element of the array.</li>
+    <li>Iterate through each element of the array.</li>
+    <li>For each element:
+      <ul>
+        <li>If the element is smaller than <code>smallest</code>, update <code>smallest</code>.</li>
+        <li>If the element is larger than <code>largest</code>, update <code>largest</code>.</li>
+      </ul>
+    </li>
+    <li>After the iteration, <code>smallest</code> and <code>largest</code> will hold the required values.</li>
+  </ol>
+
+  <h2>Kotlin Solution</h2>
+  <pre><code class="kotlin">
+fun main() {
+    val arr = arrayOf(1, 2, 510, 0, 20)
+    var smallest = arr[0]
+    var largest = arr[0]
+
+    arr.forEach { num ->
+        if (num < smallest) smallest = num
+        if (num > largest) largest = num
+    }
+
+    println("Smallest is \$smallest and Largest is \$largest")
+}
+  </code></pre>
+
+  <h2>Step-by-Step Example</h2>
+  <p>For <code>arr = [1, 2, 510, 0, 20]</code>:</p>
+  <ol>
+    <li>Initialize <code>smallest = 1</code> and <code>largest = 1</code>.</li>
+    <li>Compare 2: update <code>largest = 2</code>.</li>
+    <li>Compare 510: update <code>largest = 510</code>.</li>
+    <li>Compare 0: update <code>smallest = 0</code>.</li>
+    <li>Compare 20: no change.</li>
+    <li>Final result: Smallest = 0, Largest = 510.</li>
+  </ol>
+
+  <h2>Explanation</h2>
+  <ul>
+    <li>We iterate only once through the array, checking each element against current smallest and largest.</li>
+    <li>This guarantees that after the loop, we have the correct minimum and maximum values.</li>
+    <li>This is a linear scan algorithm with <strong>O(N)</strong> time complexity.</li>
+  </ul>
+
+  <h2>Complexity Analysis</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(N) — One pass through the array.</li>
+    <li><strong>Space Complexity:</strong> O(1) — Only two extra variables used.</li>
+  </ul>
+
+  <h2>Alternative Kotlin Approach</h2>
+  <pre><code class="kotlin">
+fun main() {
+    val arr = arrayOf(1, 2, 510, 0, 20)
+    val smallest = arr.minOrNull() ?: 0
+    val largest = arr.maxOrNull() ?: 0
+
+    println("Smallest is \$smallest and Largest is \$largest")
+}
+  </code></pre>
+  <p>This uses Kotlin built-in functions <code>minOrNull()</code> and <code>maxOrNull()</code> for a concise solution.</p>
+</section>
