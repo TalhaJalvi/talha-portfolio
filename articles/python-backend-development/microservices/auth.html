@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+<h2>Authentication in Modern APIs (JWT, OAuth2)</h2>
+
+<p>
+Authentication is the process of verifying a user’s identity before allowing access to protected resources.
+Modern APIs usually rely on token-based authentication systems like <strong>JWT (JSON Web Tokens)</strong> and
+<strong>OAuth 2.0</strong> because they are secure, scalable, and suitable for microservices and distributed systems.
+</p>
+
+<hr>
+
+<!-- JWT SECTION -->
+<h3>1. JWT Authentication (JSON Web Token)</h3>
+
+<p>
+JWT is a stateless token-based authentication mechanism used widely in REST APIs.
+A server issues a signed token to a user after login, and the user sends this token with every request.
+The server verifies the signature without storing session data.
+</p>
+
+<h4>Why JWT?</h4>
+<ul>
+    <li>No server-side session storage (stateless)</li>
+    <li>Fast verification using digital signatures</li>
+    <li>Easily used across microservices</li>
+    <li>Can store additional user claims (role, permissions)</li>
+</ul>
+
+<h4>Structure of a JWT</h4>
+<p>A JWT has three base64-encoded parts:</p>
+<pre><code>
+header.payload.signature
+</code></pre>
+
+<p>Example:</p>
+<pre><code>
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.
+eyJ1c2VyX2lkIjoxMiwicm9sZSI6ImFkbWluIn0
+.
+4hxZf4MzrgZJx6aZqGM-6Kf8l1LfPzWdq_i2K6pq5Fk
+</code></pre>
+
+<h4>Header Example (JSON)</h4>
+<pre><code>
+{
+    "alg": "HS256",
+    "typ": "JWT"
+}
+</code></pre>
+
+<h4>Payload Example</h4>
+<pre><code>
+{
+    "user_id": 12,
+    "role": "admin",
+    "exp": 1712345678
+}
+</code></pre>
+
+<h4>Signature</h4>
+<pre><code>
+HMACSHA256(
+    base64UrlEncode(header) + "." + base64UrlEncode(payload),
+    secret_key
+)
+</code></pre>
+
+<hr>
+
+<h3>How JWT Authentication Works (Flow)</h3>
+
+<ol>
+    <li>User sends username and password to login.</li>
+    <li>Server validates credentials.</li>
+    <li>Server generates JWT and sends it to the client.</li>
+    <li>Client stores the token (localStorage or mobile secure storage).</li>
+    <li>Client sends JWT in Authorization header with every request.</li>
+    <li>Server verifies signature and allows or denies access.</li>
+</ol>
+
+<h4>Client Request Example:</h4>
+<pre><code>
+GET /api/user
+Authorization: Bearer <token>
+</code></pre>
+
+<hr>
+
+<h3>Implementing JWT in Python (Django REST Framework)</h3>
+
+<h4>Install Required Packages</h4>
+<pre><code>
+pip install djangorestframework-simplejwt
+</code></pre>
+
+<h4>Settings</h4>
+<pre><code>
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+</code></pre>
+
+<h4>Token Endpoints</h4>
+<pre><code>
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+]
+</code></pre>
+
+<h4>Protected API View</h4>
+<pre><code>
+from rest_framework.permissions import IsAuthenticated
+
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": "Profile accessed"})
+</code></pre>
+
+<hr>
+
+<h3>Security Best Practices for JWT</h3>
+
+<ul>
+    <li>Use short expiration time (e.g., 5–15 minutes)</li>
+    <li>Use refresh tokens for long-term authentication</li>
+    <li>Store JWT in HTTP-only cookies or secure storage</li>
+    <li>Do not store sensitive data inside token</li>
+    <li>Use asymmetric signing for large systems (RS256)</li>
+</ul>
+
+<hr>
+
+<!-- OAUTH2 SECTION -->
+<h2>2. OAuth 2.0 (Authorization Framework)</h2>
+
+<p>
+OAuth 2.0 is an authorization framework used to allow third-party applications
+to access user data without exposing passwords. It is more advanced and secure
+than simple token-based systems and is used by Google, Facebook, GitHub, and major APIs.
+</p>
+
+<h4>Why OAuth2?</h4>
+<ul>
+    <li>Allows third-party access without sharing passwords</li>
+    <li>Supports scopes and permissions</li>
+    <li>Ideal for large-scale and public-facing APIs</li>
+    <li>Secure token lifecycle management</li>
+</ul>
+
+<hr>
+
+<h3>OAuth2 Key Concepts</h3>
+
+<h4>1. Resource Owner</h4>
+<p>The user who owns the data.</p>
+
+<h4>2. Client Application</h4>
+<p>App requesting access to the user's data.</p>
+
+<h4>3. Authorization Server</h4>
+<p>Server that issues tokens (Google, GitHub, etc.).</p>
+
+<h4>4. Resource Server</h4>
+<p>API that hosts protected data.</p>
+
+<hr>
+
+<h3>OAuth2 Grant Types (Flows)</h3>
+<p>Different flows depending on application type.</p>
+
+<ul>
+    <li>Authorization Code (most secure; used by web apps)</li>
+    <li>PKCE (secure version for mobile / SPA)</li>
+    <li>Client Credentials (machine-to-machine)</li>
+    <li>Password Grant (deprecated; insecure)</li>
+    <li>Refresh Token (used to renew access tokens)</li>
+</ul>
+
+<hr>
+
+<h3>OAuth2 Authorization Code Flow (Most Common)</h3>
+
+<ol>
+    <li>Client redirects user to Authorization Server login page.</li>
+    <li>User logs in and grants permission.</li>
+    <li>Authorization Server redirects back with an authorization code.</li>
+    <li>Client exchanges the code for an access token.</li>
+    <li>Client uses the access token to access protected APIs.</li>
+</ol>
+
+<h4>Example Authorization URL:</h4>
+<pre><code>
+https://accounts.google.com/o/oauth2/v2/auth?
+    client_id=YOUR_CLIENT_ID
+    &redirect_uri=https://yourapp.com/callback
+    &scope=email profile
+    &response_type=code
+</code></pre>
+
+<hr>
+
+<h3>Implementing OAuth2 in Python (FastAPI Example)</h3>
+
+<h4>Install</h4>
+<pre><code>
+pip install fastapi uvicorn python-jose
+</code></pre>
+
+<h4>OAuth2PasswordBearer</h4>
+<pre><code>
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+@app.get("/users/me")
+async def read_users_me(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
+</code></pre>
+
+<hr>
+
+<h3>Access Token vs Refresh Token</h3>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Access Token</th>
+        <th>Refresh Token</th>
+    </tr>
+    <tr>
+        <td>Short lifetime</td>
+        <td>Long lifetime</td>
+    </tr>
+    <tr>
+        <td>Sent with every request</td>
+        <td>Stored securely (never sent with normal API calls)</td>
+    </tr>
+    <tr>
+        <td>Used to access protected resources</td>
+        <td>Used to get new access tokens</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>OAuth2 Security Best Practices</h3>
+
+<ul>
+    <li>Always use HTTPS</li>
+    <li>Use PKCE for mobile and SPA apps</li>
+    <li>Rotate and revoke tokens</li>
+    <li>Use scopes to limit access</li>
+    <li>Keep client secrets private</li>
+</ul>
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>
+JWT is ideal for stateless authentication in microservices and REST APIs, while OAuth2 is perfect for large,
+secure, public-facing APIs that require delegated access. Understanding both helps developers choose the right
+authentication strategy depending on the architecture and security needs.
+</p>
+
+
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

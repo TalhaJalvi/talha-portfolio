@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+<h2>API Design Principles (Very Detailed Guide)</h2>
+
+<p>
+Designing a good API is essential for building scalable, maintainable, and secure applications.
+Whether you are building REST APIs, microservices, or internal service-to-service APIs,
+the principles below ensure long-term stability and developer satisfaction.
+</p>
+
+<hr>
+
+<h3>1. Simplicity & Consistency</h3>
+<p>
+A good API should be predictable, easy to understand, and consistent across all endpoints.
+Developers should be able to guess how a new endpoint works based on existing ones.
+</p>
+
+<h4>Guidelines:</h4>
+<ul>
+    <li>Use consistent naming conventions (snake_case or camelCase).</li>
+    <li>Keep endpoints readable and meaningful.</li>
+    <li>Avoid unnecessary complexity in request/response bodies.</li>
+</ul>
+
+<h4>Example:</h4>
+<pre><code>
+GET /api/v1/users
+GET /api/v1/users/12
+POST /api/v1/users
+</code></pre>
+
+<p>Bad example (inconsistent patterns):</p>
+<pre><code>
+GET /getAllUsers
+GET /user?id=12
+POST /createNewUserNow
+</code></pre>
+
+<hr>
+
+<h3>2. Proper Resource Modeling</h3>
+<p>
+REST APIs are centered around resources. A resource represents a real-world object such as User, Order, Product, etc.
+Always model resources cleanly and logically.
+</p>
+
+<h4>Guidelines:</h4>
+<ul>
+    <li>Use nouns for resources, not verbs.</li>
+    <li>Use plural nouns for collections.</li>
+    <li>Use sub-resources for hierarchical relationships.</li>
+</ul>
+
+<h4>Example (Sub-resources):</h4>
+<pre><code>
+GET /api/v1/users/12/orders
+POST /api/v1/users/12/orders
+</code></pre>
+
+<p>This shows orders belonging to a specific user.</p>
+
+<hr>
+
+<h3>3. Use Correct HTTP Methods</h3>
+<p>HTTP methods are not random — each has a specific meaning.</p>
+
+<table border="1" cellpadding="8">
+    <tr><th>Method</th><th>Purpose</th></tr>
+    <tr><td>GET</td><td>Retrieve a resource</td></tr>
+    <tr><td>POST</td><td>Create a new resource</td></tr>
+    <tr><td>PUT</td><td>Completely replace a resource</td></tr>
+    <tr><td>PATCH</td><td>Update part of a resource</td></tr>
+    <tr><td>DELETE</td><td>Remove a resource</td></tr>
+</table>
+
+<h4>Example:</h4>
+<pre><code>
+GET    /products          # Fetch all
+POST   /products          # Create new
+GET    /products/5        # Fetch one
+PATCH  /products/5        # Update partial
+DELETE /products/5        # Delete
+</code></pre>
+
+<hr>
+
+<h3>4. Meaningful HTTP Status Codes</h3>
+<p>
+Always return proper HTTP status codes to help the client understand the result.
+</p>
+
+<ul>
+    <li>200 OK – Request succeeded</li>
+    <li>201 Created – New resource created</li>
+    <li>204 No Content – Successful delete</li>
+    <li>400 Bad Request – Incorrect input</li>
+    <li>401 Unauthorized – Not logged in</li>
+    <li>403 Forbidden – Not allowed</li>
+    <li>404 Not Found – Resource does not exist</li>
+    <li>500 Internal Server Error – Unexpected error</li>
+</ul>
+
+<h4>Example JSON Error:</h4>
+<pre><code>
+{
+    "error": "Invalid email address.",
+    "code": 400
+}
+</code></pre>
+
+<hr>
+
+<h3>5. Versioning Your API</h3>
+
+<p>
+Versioning prevents breaking existing clients when you update endpoints.
+</p>
+
+<h4>Best Practices:</h4>
+<ul>
+    <li>Use URL-based versioning (most common): <code>/api/v1/</code></li>
+    <li>Never break old versions without proper migration period.</li>
+    <li>Deprecate versions slowly and transparently.</li>
+</ul>
+
+<h4>Example:</h4>
+<pre><code>
+/api/v1/users
+/api/v2/users
+</code></pre>
+
+<hr>
+
+<h3>6. Pagination, Filtering & Sorting</h3>
+<p>
+Never return extremely large datasets in a single response.
+</p>
+
+<h4>Pagination Parameters:</h4>
+<pre><code>
+GET /products?page=1&limit=30
+</code></pre>
+
+<h4>Filtering:</h4>
+<pre><code>
+GET /products?category=electronics&price_lt=500
+</code></pre>
+
+<h4>Sorting:</h4>
+<pre><code>
+GET /products?sort=-price
+</code></pre>
+
+<hr>
+
+<h3>7. Error Handling & Validation</h3>
+
+<p>
+Your API must never return raw stack traces or confusing messages.
+Provide structured and clear error responses.
+</p>
+
+<h4>Good Error Response Structure:</h4>
+<pre><code>
+{
+    "status": "error",
+    "message": "Email is already taken.",
+    "field": "email"
+}
+</code></pre>
+
+<h4>Validation Examples:</h4>
+<ul>
+    <li>Check required fields</li>
+    <li>Check data types</li>
+    <li>Check value ranges</li>
+    <li>Check uniqueness constraints</li>
+</ul>
+
+<hr>
+
+<h3>8. Authentication & Authorization</h3>
+<p>
+APIs must be secure — especially public ones.
+</p>
+
+<h4>Common Authentication Types:</h4>
+<ul>
+    <li>Token-based authentication</li>
+    <li>JWT (JSON Web Token)</li>
+    <li>OAuth2 (for large systems)</li>
+    <li>API Keys</li>
+</ul>
+
+<h4>Authorization Example:</h4>
+<pre><code>
+# User can only update their own profile
+if request.user.id != profile.owner_id:
+    return Response({"error": "Forbidden"}, status=403)
+</code></pre>
+
+<hr>
+
+<h3>9. Rate Limiting & Throttling</h3>
+
+<p>
+Rate limiting prevents abuse and protects your servers from overload.
+</p>
+
+<h4>Example (Django REST Framework):</h4>
+<pre><code>
+REST_FRAMEWORK = {
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.UserRateThrottle"
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "1000/day"
+    }
+}
+</code></pre>
+
+<hr>
+
+<h3>10. Caching for Performance</h3>
+
+<p>APIs serving heavy data should implement caching.</p>
+
+<h4>Example:</h4>
+<pre><code>
+@cache_page(60 * 2)
+def product_list(request):
+    ...
+</code></pre>
+
+<hr>
+
+<h3>11. Idempotency</h3>
+
+<p>Certain operations must produce the same result if executed multiple times.</p>
+
+<ul>
+    <li>GET — always safe</li>
+    <li>PUT — replace the resource (idempotent)</li>
+    <li>DELETE — same result even if run multiple times</li>
+</ul>
+
+<p>POST is not idempotent — it creates new data each time.</p>
+
+<hr>
+
+<h3>12. Documentation & Developer Experience</h3>
+<p>Good APIs have good documentation. Without it, even a perfect API will fail.</p>
+
+<h4>Documentation Tools:</h4>
+<ul>
+    <li>Swagger / OpenAPI</li>
+    <li>Redoc</li>
+    <li>Postman Collections</li>
+</ul>
+
+<h4>What to Document:</h4>
+<ul>
+    <li>All endpoints</li>
+    <li>All parameters</li>
+    <li>Error responses</li>
+    <li>Authentication method</li>
+</ul>
+
+<hr>
+
+<h3>13. Logging & Monitoring</h3>
+
+<p>
+Logging helps in debugging, monitoring performance, and detecting suspicious activity.
+</p>
+
+<h4>Log Examples:</h4>
+<ul>
+    <li>Request start and end times</li>
+    <li>Error stack traces</li>
+    <li>User actions</li>
+    <li>Resource access frequency</li>
+</ul>
+
+<hr>
+
+<h3>14. Backward Compatibility</h3>
+
+<p>
+Avoid changes that break existing clients.
+</p>
+
+<h4>Never Do:</h4>
+<ul>
+    <li>Remove fields from API responses suddenly</li>
+    <li>Rename or delete endpoints without notice</li>
+</ul>
+
+<hr>
+
+<h3>15. Security Best Practices</h3>
+
+<ul>
+    <li>Use HTTPS everywhere</li>
+    <li>Input sanitization</li>
+    <li>Prevent XSS & SQL injection</li>
+    <li>Use short-lived tokens</li>
+    <li>Disable debug mode in production</li>
+</ul>
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>
+Following these API design principles ensures your API is scalable, predictable, secure, and easy to integrate with.
+This leads to faster development, fewer bugs, and a better experience for consumers of your API.
+</p>
+
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

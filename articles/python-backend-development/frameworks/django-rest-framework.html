@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+<h2>Microservices Architecture in Python – A Complete Deep-Dive</h2>
+
+<p>
+Microservices is an architectural style where an application is broken into small, independent services.
+Each service focuses on a single business capability, runs independently, has its own database, and
+communicates with other services through lightweight protocols such as HTTP REST or message queues.
+</p>
+
+<hr>
+
+<h3>1. Why Microservices?</h3>
+
+<ul>
+    <li><b>Independent Deployment:</b> Each service can be deployed without affecting others.</li>
+    <li><b>Technology Flexibility:</b> Different teams can use Python, Go, Node.js, etc.</li>
+    <li><b>Scalability:</b> Only the heavy-load services need scaling.</li>
+    <li><b>Fault Isolation:</b> Failure in one service does not bring down the whole app.</li>
+    <li><b>Faster Development:</b> Smaller codebases → easier maintenance.</li>
+</ul>
+
+<hr>
+
+<h3>2. Microservices Architecture vs Monolith (Deep Comparison)</h3>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Monolith</th>
+        <th>Microservices</th>
+    </tr>
+    <tr>
+        <td>One large combined application</td>
+        <td>Multiple small independent services</td>
+    </tr>
+    <tr>
+        <td>Single database</td>
+        <td>Each service has its own database</td>
+    </tr>
+    <tr>
+        <td>Tight coupling</td>
+        <td>Loose coupling</td>
+    </tr>
+    <tr>
+        <td>Difficult to scale</td>
+        <td>Independent scalability</td>
+    </tr>
+    <tr>
+        <td>Entire app must deploy for small change</td>
+        <td>Service-level deployment</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>3. Core Principles of Microservices</h3>
+
+<ul>
+    <li><b>Single Responsibility:</b> Each service should do one thing well.</li>
+    <li><b>Decentralized Data Management:</b> No shared monolithic database.</li>
+    <li><b>API-based Communication:</b> REST, gRPC, or message queues.</li>
+    <li><b>Automation:</b> CI/CD is essential.</li>
+    <li><b>Fault Tolerance:</b> Circuit breakers, retries, timeouts.</li>
+    <li><b>Observability:</b> Logging, metrics, tracing.</li>
+</ul>
+
+<hr>
+
+<h3>4. Microservices in Python – Preferred Frameworks</h3>
+
+<ul>
+    <li><b>FastAPI</b> – Best for high-performance async APIs.</li>
+    <li><b>Flask</b> – Minimal and flexible.</li>
+    <li><b>Django REST Framework</b> – Good for enterprise business services (though heavier).</li>
+    <li><b>gRPC in Python</b> – For ultra-fast binary communication.</li>
+    <li><b>Nameko</b> – Python microservices framework with built-in RPC and event dispatching.</li>
+</ul>
+
+<hr>
+
+<h3>5. Example Microservice in FastAPI</h3>
+
+<pre><code>
+# user_service/main.py
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/users/{id}")
+def get_user(id: int):
+    return {"id": id, "name": "John Doe"}
+</code></pre>
+
+<p>You run each service independently (separate processes or containers).</p>
+
+<pre><code>uvicorn main:app --port 8001</code></pre>
+
+<hr>
+
+<h3>6. Service-to-Service Communication</h3>
+
+<h4>A. REST Call Example</h4>
+
+<pre><code>
+import requests
+
+def get_user(user_id):
+    response = requests.get(f"http://user-service:8001/users/{user_id}")
+    return response.json()
+</code></pre>
+
+<h4>B. Async Communication using Message Broker (RabbitMQ)</h4>
+
+<pre><code>
+import pika, json
+
+def publish_event(data):
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
+    channel = connection.channel()
+    channel.queue_declare(queue='orders')
+    channel.basic_publish(exchange='', routing_key='orders',
+                          body=json.dumps(data))
+</code></pre>
+
+<hr>
+
+<h3>7. API Gateway in Microservices</h3>
+
+<p>The API Gateway is the single entry point for all external clients.</p>
+
+<ul>
+    <li>Handles routing to services</li>
+    <li>Authentication & Authorization</li>
+    <li>Rate limiting & throttling</li>
+    <li>Response aggregation</li>
+</ul>
+
+<p>Popular Python Gateways:</p>
+<ul>
+    <li>Kong (not Python but commonly used)</li>
+    <li>Traefik</li>
+    <li>FastAPI Gateway (custom implementation)</li>
+</ul>
+
+<hr>
+
+<h3>8. Database Strategy in Microservices</h3>
+
+<p>
+Each microservice must have its <b>own database</b>. No shared schema.  
+Patterns:
+</p>
+
+<ul>
+    <li><b>Database per service (recommended)</b></li>
+    <li><b>Event sourcing</b></li>
+    <li><b>Shared read models</b></li>
+</ul>
+
+<h4>Example:</h4>
+
+<p>User Service → PostgreSQL  
+Order Service → MySQL  
+Payment Service → MongoDB</p>
+
+<p>Why? Independent scaling + no cross-service locks.</p>
+
+<hr>
+
+<h3>9. Inter-Service Data Sharing (Patterns)</h3>
+
+<ul>
+    <li><b>Event Driven Architecture</b> – Services communicate through events.</li>
+    <li><b>Data duplication</b> – Each service stores the data it needs.</li>
+    <li><b>API Composition</b> – Gateway merges responses from multiple services.</li>
+</ul>
+
+<hr>
+
+<h3>10. Fault Tolerance (Circuit Breaker Pattern)</h3>
+
+<p>Circuit breaker prevents cascading failures.</p>
+
+<pre><code>
+# Example using pybreaker library
+from pybreaker import CircuitBreaker
+import requests
+
+breaker = CircuitBreaker(fail_max=3, reset_timeout=10)
+
+@breaker
+def call_user_service(id):
+    return requests.get(f"http://user-service/users/{id}").json()
+</code></pre>
+
+<hr>
+
+<h3>11. Observability</h3>
+
+<h4>A. Centralized Logging</h4>
+<p>Use ELK Stack (Elasticsearch, Logstash, Kibana).</p>
+
+<h4>B. Metrics</h4>
+<p>Use Prometheus + Grafana.</p>
+
+<h4>C. Distributed Tracing</h4>
+<p>Use OpenTelemetry + Jaeger.</p>
+
+<pre><code>
+# Example OpenTelemetry FastAPI setup
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+FastAPIInstrumentor.instrument_app(app)
+</code></pre>
+
+<hr>
+
+<h3>12. Dockerizing Microservices</h3>
+
+<pre><code>
+# Dockerfile
+FROM python:3.11
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--port", "8001"]
+</code></pre>
+
+<p>Run with:</p>
+<pre><code>docker build -t user-service .  
+docker run -p 8001:8001 user-service
+</code></pre>
+
+<hr>
+
+<h3>13. Deployment Strategies</h3>
+
+<ul>
+    <li><b>Kubernetes (K8s)</b> — Best for large-scale microservices.</li>
+    <li><b>Docker Swarm</b> — Simpler setup.</li>
+    <li><b>AWS ECS / EKS</b> — Cloud-managed solutions.</li>
+    <li><b>GCP Cloud Run</b> — Serverless containers.</li>
+</ul>
+
+<hr>
+
+<h3>14. API Versioning in Microservices</h3>
+
+<ul>
+    <li>/v1/users</li>
+    <li>/v2/users</li>
+</ul>
+
+<p>Backward compatibility is critical in distributed systems.</p>
+
+<hr>
+
+<h3>15. Testing in Microservices</h3>
+
+<h4>Unit Testing</h4>
+<pre><code>
+def test_add_user():
+    assert add_user("Adam") == True
+</code></pre>
+
+<h4>Integration Testing</h4>
+<pre><code>
+def test_user_api(client):
+    response = client.get("/users/1")
+    assert response.status_code == 200
+</code></pre>
+
+<h4>Contract Testing (Important for microservices!)</h4>
+<p>Ensures that the API contract between services does not break.</p>
+
+<hr>
+
+<h3>16. Challenges of Microservices</h3>
+
+<ul>
+    <li>Complexity in distributed architecture</li>
+    <li>Network latency</li>
+    <li>Data consistency issues</li>
+    <li>Difficult debugging</li>
+    <li>Deployment overhead</li>
+</ul>
+
+<hr>
+
+<h3>17. When NOT to Use Microservices</h3>
+
+<ul>
+    <li>Small teams or projects</li>
+    <li>Simple applications where scaling is unnecessary</li>
+    <li>When you cannot afford DevOps overhead</li>
+</ul>
+
+<hr>
+
+<h3>18. When Microservices Are the Right Choice</h3>
+
+<ul>
+    <li>Large engineering teams</li>
+    <li>High traffic applications</li>
+    <li>Need for independent scaling</li>
+    <li>Complex domain-driven systems</li>
+</ul>
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>
+Microservices provide flexibility, scalability, and independent deployments, but also bring architectural complexity.  
+Python makes it easy to build microservices using FastAPI, Flask, and message brokers like RabbitMQ or Kafka.  
+Mastering concepts like API gateways, circuit breakers, event-driven architecture, and container orchestration is essential for real-world microservices.
+</p>
+
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>
