@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+    <div id="content-display">
+        <section class="article">
+            <h2>1. What is Django?</h2>
+            <p>Django is a high-level Python web framework that follows the <b>MVT (Model–View–Template)</b> architectural pattern. It helps developers build secure, scalable, and maintainable web applications quickly by providing built-in solutions for authentication, database ORM, routing, admin panel, forms, security, and caching.</p>
+
+            <p>Django philosophy:</p>
+            <ul>
+                <li><b>DRY — Don't Repeat Yourself</b></li>
+                <li><b>Convention over Configuration</b></li>
+                <li><b>Batteries Included</b> — Django provides everything out of the box</li>
+            </ul>
+
+            <hr>
+
+            <h2>2. Django Project Structure</h2>
+            <pre><code>myproject/
+            │── manage.py
+            │── myproject/
+            │     ├── __init__.py
+            │     ├── settings.py
+            │     ├── urls.py
+            │     ├── wsgi.py
+            │     └── asgi.py
+            └── app1/
+                ├── models.py
+                ├── views.py
+                ├── urls.py
+                ├── admin.py
+                ├── apps.py
+                ├── tests.py
+                └── templates/
+            </code></pre>
+
+            <p><b>manage.py</b>: Command utility for running the project.<br>
+            <b>settings.py</b>: Contains project configuration (DB, static files, middleware, installed apps).<br>
+            <b>urls.py</b>: Maps URLs to views.<br>
+            <b>wsgi.py/asgi.py</b>: Deployment entry points.</p>
+
+            <hr>
+
+            <h2>3. MVT Architecture (Core Concept)</h2>
+
+            <!-- <img src="" alt="MVT diagram (just imagine)"> -->
+            <p>Django uses MVT instead of MVC.</p>
+
+            <h3>3.1 Model</h3>
+            <p>Model represents database tables and handles business logic + ORM queries.</p>
+
+            <pre><code>class Student(models.Model):
+                name = models.CharField(max_length=100)
+                age = models.IntegerField()
+                enrolled = models.BooleanField(default=True)
+            </code></pre>
+
+            <h3>3.2 View</h3>
+            <p>View takes request, processes logic, returns a response (HTML/JSON).</p>
+            <pre><code>def home(request):
+                students = Student.objects.all()
+                return render(request, "home.html", {"students": students})
+            </code></pre>
+
+            <h3>3.3 Template</h3>
+            <p>Template controls UI (HTML + Django Template Language).</p>
+
+            <pre><code>&lt;h1&gt;Students List&lt;/h1&gt;
+            {% for s in students %}
+                &lt;p&gt;{{ s.name }} - {{ s.age }}&lt;/p&gt;
+            {% endfor %}
+            </code></pre>
+
+            <hr>
+
+            <h2>4. URL Routing System (urls.py)</h2>
+            <p>Django maps URLs to views using <b>path()</b> and <b>re_path()</b>.</p>
+
+            <pre><code>from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path("", views.home),
+                path("student/&lt;int:id&gt;/", views.student_detail),
+            ]
+            </code></pre>
+
+            <p>Types of URL converters:</p>
+            <ul>
+                <li>int</li>
+                <li>str</li>
+                <li>slug</li>
+                <li>uuid</li>
+                <li>path</li>
+            </ul>
+
+            <hr>
+
+            <h2>5. Django Models (Deep Explanation)</h2>
+            <p>Models define database structure using Django ORM. Think of ORM (Object Relational Mapping)as Python → SQL translator.</p>
+
+            <h3>5.1 Field Types</h3>
+            <ul>
+                <li><b>CharField</b></li>
+                <li><b>TextField</b></li>
+                <li><b>EmailField</b></li>
+                <li><b>IntegerField</b></li>
+                <li><b>BooleanField</b></li>
+                <li><b>DateTimeField(auto_now_add=True)</b></li>
+                <li><b>ForeignKey</b> (One-to-Many)</li>
+                <li><b>OneToOneField</b></li>
+                <li><b>ManyToManyField</b></li>
+            </ul>
+
+            <h3>5.2 ORM Queries</h3>
+            <pre><code>
+            Student.objects.create(name="Ali", age=22)
+
+            Student.objects.filter(age__gt=18)
+
+            Student.objects.get(id=1)
+
+            Student.objects.all().order_by("-age")
+
+            Student.objects.exclude(enrolled=False)
+            </code></pre>
+
+            <h3>5.3 Migrations</h3>
+            <pre><code>
+            python manage.py makemigrations
+            python manage.py migrate
+            </code></pre>
+
+            <hr>
+
+            <h2>6. Views in Django (Function & Class-Based Views)</h2>
+
+            <h3>6.1 Function-Based Views (FBV)</h3>
+            <pre><code>
+            def home(request):
+                return HttpResponse("Hello World")
+            </code></pre>
+
+            <h3>6.2 Class-Based Views (CBV)</h3>
+            <pre><code>
+            from django.views import View
+
+            class HomeView(View):
+                def get(self, request):
+                    return HttpResponse("Hello from CBV")
+            </code></pre>
+
+            <h3>6.3 Built-in CBVs</h3>
+            <ul>
+                <li><b>ListView</b></li>
+                <li><b>DetailView</b></li>
+                <li><b>CreateView</b></li>
+                <li><b>UpdateView</b></li>
+                <li><b>DeleteView</b></li>
+            </ul>
+
+            <hr>
+
+            <h2>7. Templates & Django Template Language (DTL)</h2>
+            <p>Django’s templating engine supports:</p>
+            <ul>
+                <li>Variables → <code>{{ name }}</code></li>
+                <li>Filters → <code>{{ name|upper }}</code></li>
+                <li>Loops → <code>{% for %}</code></li>
+                <li>Conditions → <code>{% if %}</code></li>
+            </ul>
+
+            <pre><code>
+            {% for item in items %}
+                &lt;p&gt;{{ item.name|upper }}&lt;/p&gt;
+            {% endfor %}
+            </code></pre>
+
+            <hr>
+
+            <h2>8. Forms in Django (Very Important for Interviews)</h2>
+            <p>Django provides two types of forms:</p>
+            <ul>
+                <li><b>Forms</b> – manually created</li>
+                <li><b>ModelForms</b> – automatically generated from models</li>
+            </ul>
+
+            <h3>8.1 Django Form Example</h3>
+            <pre><code>
+            class ContactForm(forms.Form):
+                name = forms.CharField(max_length=100)
+                email = forms.EmailField()
+            </code></pre>
+
+            <h3>8.2 ModelForm Example</h3>
+            <pre><code>
+            class StudentForm(forms.ModelForm):
+                class Meta:
+                    model = Student
+                    fields = "__all__"
+            </code></pre>
+
+            <hr>
+
+            <h2>9. Django Admin (Auto-generated CMS)</h2>
+            <p>Django provides a ready-made admin panel.</p>
+
+            <pre><code>
+            from .models import Student
+
+            admin.site.register(Student)
+            </code></pre>
+
+            <h4>Customizing Admin</h4>
+            <pre><code>
+            class StudentAdmin(admin.ModelAdmin):
+                list_display = ("name", "age")
+                search_fields = ("name",)
+            </code></pre>
+
+            <hr>
+
+            <h2>10. Middleware (Deep Explanation)</h2>
+            <p>Middleware is a lightweight plugin system for processing requests and responses.</p>
+
+            <p>Middleware runs in order:</p>
+            <ol>
+                <li>Request → Middleware 1 → Middleware 2 → View</li>
+                <li>Response → Middleware 2 → Middleware 1 → Client</li>
+            </ol>
+
+            <h3>Custom Middleware</h3>
+            <pre><code>
+            class SimpleMiddleware:
+                def __init__(self, get_response):
+                    self.get_response = get_response
+
+                def __call__(self, request):
+                    print("Before view")
+                    response = self.get_response(request)
+                    print("After view")
+                    return response
+            </code></pre>
+
+            <hr>
+
+            <h2>11. Authentication System</h2>
+
+            <h3>11.1 Built-in functionalities</h3>
+            <ul>
+                <li>User login/logout</li>
+                <li>Password hashing</li>
+                <li>Permissions</li>
+                <li>Groups and roles</li>
+            </ul>
+
+            <h3>Login Example</h3>
+            <pre><code>
+            from django.contrib.auth import authenticate, login
+
+            user = authenticate(username="talha", password="123")
+            if user:
+                login(request, user)
+            </code></pre>
+
+            <hr>
+
+            <h2>12. Static Files & Media Files</h2>
+            <p>Django separates user-uploaded files from static assets.</p>
+
+            <pre><code>
+            STATIC_URL = "/static/"
+            MEDIA_URL = "/media/"
+            MEDIA_ROOT = BASE_DIR / "media"
+            </code></pre>
+
+            <hr>
+
+            <h2>13. Django Signals (Observer Pattern)</h2>
+            <p>
+                Django Signals implement the <strong>Observer Pattern</strong>, allowing certain pieces of code 
+                (listeners/receivers) to get executed automatically when specific actions occur in the system.
+            </p>
+            <p>
+                They help different parts of your application communicate without tightly coupling their logic.
+                For example, when a user registers, you may want to automatically:
+            </p>
+            <ul>
+                <li>Create a profile</li>
+                <li>Send a welcome email</li>
+                <li>Update analytics or logs</li>
+            </ul>
+            <p>
+                Using signals, you can perform all these actions without modifying the original user creation code.
+            </p>
+
+            <hr>
+
+            <h3>Why Use Signals?</h3>
+            <ul>
+                <li>Decouple business logic</li>
+                <li>Trigger automated background tasks on DB events</li>
+                <li>Maintain cleaner models and views</li>
+                <li>Perfect for audit logs, notifications, profile creation, etc.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Common Built-in Django Signals:</h3>
+            <ul>
+                <li><strong>pre_save</strong> – runs before a model is saved</li>
+                <li><strong>post_save</strong> – runs after a model is saved</li>
+                <li><strong>pre_delete</strong> – before a model instance is deleted</li>
+                <li><strong>post_delete</strong> – after a model instance is deleted</li>
+                <li><strong>m2m_changed</strong> – runs when a ManyToManyField is modified</li>
+                <li><strong>pre_init</strong> / <strong>post_init</strong> – before/after __init__ of a model</li>
+                <li><strong>request_started</strong> / <strong>request_finished</strong></li>
+                <li><strong>user_logged_in</strong>, <strong>user_logged_out</strong></li>
+            </ul>
+
+            <hr>
+
+            <h3>Basic Example: post_save Signal</h3>
+            <p>This signal runs every time an object of a model is created or updated.</p>
+
+            <pre><code>
+            # signals.py
+            from django.db.models.signals import post_save
+            from django.dispatch import receiver
+            from .models import Student
+
+            @receiver(post_save, sender=Student)
+            def after_student_save(sender, instance, created, **kwargs):
+                if created:
+                    print("New student created:", instance)
+                else:
+                    print("Student updated:", instance)
+            </code></pre>
+
+            <p><strong>Note:</strong> Always import signals inside <code>apps.py</code> to ensure Django loads them.</p>
+
+            <pre><code>
+            # apps.py
+            from django.apps import AppConfig
+
+            class MyAppConfig(AppConfig):
+                name = "myapp"
+
+                def ready(self):
+                    import myapp.signals
+            </code></pre>
+
+            <hr>
+
+            <h3>pre_save Example: Modify Data Before Saving</h3>
+
+            <pre><code>
+            from django.db.models.signals import pre_save
+            from django.dispatch import receiver
+            from .models import Student
+
+            @receiver(pre_save, sender=Student)
+            def capitalize_name(sender, instance, **kwargs):
+                instance.name = instance.name.title()
+            </code></pre>
+
+            <p>This ensures every saved name is capitalized automatically.</p>
+
+            <hr>
+
+            <h3>post_delete Example: Clean Up Files</h3>
+
+            <pre><code>
+            from django.db.models.signals import post_delete
+            from django.dispatch import receiver
+            from .models import Document
+
+            @receiver(post_delete, sender=Document)
+            def delete_file(sender, instance, **kwargs):
+                if instance.file:
+                    instance.file.delete(save=False)
+            </code></pre>
+
+            <hr>
+
+            <h3>m2m_changed Example</h3>
+            <p>Runs when M2M relationships change (added, removed, cleared).</p>
+
+            <pre><code>
+            from django.db.models.signals import m2m_changed
+            from django.dispatch import receiver
+            from .models import Course
+
+            @receiver(m2m_changed, sender=Course.students.through)
+            def students_changed(sender, instance, action, **kwargs):
+                print("Students changed:", action)
+            </code></pre>
+
+            <hr>
+
+            <h3>How Signals Work Internally</h3>
+            <p>
+            Signals use the <strong>publish-subscribe mechanism</strong>:
+            </p>
+            <ol>
+                <li>A sender (e.g., model) publishes an event: <code>post_save.send()</code></li>
+                <li>All connected receivers are notified</li>
+                <li>Receivers execute code based on parameters (instance, created, etc.)</li>
+            </ol>
+
+            <hr>
+
+            <h3>Built-in Parameters in Signals</h3>
+            <ul>
+                <li><strong>sender</strong> — the model class</li>
+                <li><strong>instance</strong> — actual object saved/deleted</li>
+                <li><strong>created</strong> — true only during object creation</li>
+                <li><strong>raw</strong> — true for fixture loading</li>
+                <li><strong>kwargs</strong> — extra metadata</li>
+            </ul>
+
+            <hr>
+
+            <h3>Best Practices (VERY IMPORTANT FOR INTERVIEWS)</h3>
+            <ul>
+                <li>Use signals only for decoupled background tasks</li>
+                <li>Never put business-critical logic in signals (hard to debug)</li>
+                <li>Keep signals in <code>signals.py</code></li>
+                <li>Load signals inside <code>apps.py → ready()</code></li>
+                <li>Avoid circular imports by keeping logic separate</li>
+                <li>Prefer Celery tasks for heavy operations</li>
+            </ul>
+
+            <hr>
+
+            <h3>When to Use Signals?</h3>
+            <ul>
+                <li>Create profile after user signup</li>
+                <li>Send notification emails</li>
+                <li>Log database changes</li>
+                <li>Auto-update inventory or analytics</li>
+            </ul>
+
+            <h3>When NOT to Use Signals?</h3>
+            <ul>
+                <li>When the logic is core business logic</li>
+                <li>When maintainability matters (signals can hide logic)</li>
+                <li>When debugging complex flows</li>
+            </ul>
+
+            <hr>
+
+            <h3>Django Project Folder Structure</h3>
+            <pre>
+            project_root/
+            │
+            ├── app_name/
+            │   ├── migrations/
+            │   │   └── __init__.py
+            │   ├── __init__.py
+            │   ├── admin.py
+            │   ├── apps.py
+            │   ├── models.py => models go here
+            │   ├── forms.py => forms go here
+            │   ├── signals.py => signals go here
+            │   ├── views.py
+            │   ├── urls.py
+            │   └── templates/
+            │       └── app_name/
+            │           └── index.html
+            │
+            ├── media/
+            │   └── documents/
+            │       └── uploaded_file.pdf
+            │
+            ├── project_name/
+            │   ├── __init__.py
+            │   ├── settings.py
+            │   ├── urls.py
+            │   └── wsgi.py
+            │
+            ├── manage.py
+            └── requirements.txt
+            </pre>
+
+            <h2>14. Django Request-Response Lifecycle</h2>
+            <p>Very important for interviews!</p>
+
+            <ol>
+                <li>User sends request</li>
+                <li>WSGI/ASGI server receives it</li>
+                <li>Middleware processing</li>
+                <li>URL resolver matches the path</li>
+                <li>View executes business logic</li>
+                <li>Template rendered (if any)</li>
+                <li>Response passes back through middleware</li>
+                <li>Returned to user</li>
+            </ol>
+
+            <hr>
+
+            <h2>15. Django Security Features (Very Detailed)</h2>
+
+            <p>Django provides built-in security mechanisms to protect web applications from common vulnerabilities including CSRF, XSS, SQL Injection, Clickjacking, insecure passwords, open redirects, host header attacks, and unsafe file uploads. Below is a detailed explanation with examples.</p>
+
+            <!-- CSRF -->
+            <h3>1. CSRF Protection (Cross-Site Request Forgery)</h3>
+            <p>CSRF attacks trick logged-in users into submitting unwanted requests. Django generates a unique CSRF token for each session and validates it on POST requests.</p>
+
+            <h4>Usage in Forms</h4>
+            <pre><code>&lt;form method="POST"&gt;
+                {% csrf_token %}
+                &lt;input type="text" name="title"&gt;
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;</code></pre>
+
+            <h4>CSRF Exempt (Not Recommended)</h4>
+            <pre><code>from django.views.decorators.csrf import csrf_exempt
+
+            @csrf_exempt
+            def webhook(request):
+                return HttpResponse("OK")</code></pre>
+
+            <h4>CSRF Token for AJAX Requests</h4>
+            <pre><code>fetch("/save/", {
+                method: "POST",
+                headers: { "X-CSRFToken": "{{ csrf_token }}" },
+                body: JSON.stringify({ data: "test" })
+            })</code></pre>
+
+            <hr>
+
+            <!-- XSS -->
+            <h3>2. XSS Protection (Cross-Site Scripting)</h3>
+            <p>XSS occurs when attackers inject malicious JavaScript into web pages. Django escapes HTML automatically in templates.</p>
+
+            <h4>Safe Rendering</h4>
+            <pre><code>&lt;p&gt;{{ username }}&lt;/p&gt;</code></pre>
+
+            <h4>Unsafe Rendering (Only for Trusted Content)</h4>
+            <pre><code>{% autoescape off %}
+                {{ html_content }}
+            {% endautoescape %}</code></pre>
+
+            <h4>How to Protect</h4>
+            <ul>
+                <li>Always escape user input in templates.</li>
+                <li>Validate input using Django forms or custom validators.</li>
+                <li>Use HTML sanitizers like <code>bleach</code> for rich text inputs.</li>
+                <li>Enable Content Security Policy (CSP) headers to restrict script execution.</li>
+            </ul>
+
+            <hr>
+
+            <!-- SQL Injection -->
+            <h3>3. SQL Injection Protection</h3>
+            <p>Django ORM automatically escapes query parameters, preventing SQL injection.</p>
+
+            <h4>Safe ORM Query</h4>
+            <pre><code>User.objects.filter(username=request.GET['name'])</code></pre>
+
+            <h4>Unsafe Raw SQL (Do Not Use)</h4>
+            <pre><code>query = f"SELECT * FROM users WHERE username = '{name}';"</code></pre>
+
+            <h4>Safe Parameterized Raw SQL</h4>
+            <pre><code>from django.db import connection
+
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM users WHERE username = %s", [name])</code></pre>
+
+            <hr>
+
+            <!-- Clickjacking -->
+            <h3>4. Clickjacking Protection</h3>
+            <p>Clickjacking tricks users into clicking hidden elements. Django sets X-Frame-Options headers to prevent this.</p>
+
+            <h4>Deny All Embedding</h4>
+            <pre><code>X_FRAME_OPTIONS = "DENY"</code></pre>
+
+            <h4>Allow Only Same Domain</h4>
+            <pre><code>X_FRAME_OPTIONS = "SAMEORIGIN"</code></pre>
+
+            <h4>Decorator Example</h4>
+            <pre><code>from django.views.decorators.clickjacking import xframe_options_sameorigin
+
+            @xframe_options_sameorigin
+            def my_view(request):
+                return HttpResponse("OK")</code></pre>
+
+            <hr>
+
+            <!-- Session Security -->
+            <h3>5. Secure Session Management</h3>
+            <p>Django stores sessions on the server side for better security.</p>
+
+            <h4>Secure Session Cookies</h4>
+            <pre><code>SESSION_COOKIE_SECURE = True
+            SESSION_COOKIE_HTTPONLY = True
+            SESSION_COOKIE_SAMESITE = "Strict"</code></pre>
+
+            <h4>Signed Cookies</h4>
+            <pre><code>SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"</code></pre>
+
+            <hr>
+
+            <!-- Password Hashing -->
+            <h3>6. Password Hashing & Authentication Security</h3>
+            <p>Django hashes passwords using strong algorithms like PBKDF2, Argon2, and BCrypt.</p>
+
+            <h4>Create Hashed Password</h4>
+            <pre><code>from django.contrib.auth.hashers import make_password
+            hashed = make_password("mypassword123")</code></pre>
+
+            <h4>Verify Password</h4>
+            <pre><code>from django.contrib.auth.hashers import check_password
+            check_password("mypassword123", hashed)</code></pre>
+
+            <h4>Set Preferred Hashing Algorithms</h4>
+            <pre><code>PASSWORD_HASHERS = [
+                "django.contrib.auth.hashers.Argon2PasswordHasher",
+                "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+            ]</code></pre>
+
+            <hr>
+
+            <!-- HTTPS -->
+            <h3>7. HTTPS & SSL Security</h3>
+            <p>Always serve your site over HTTPS and enforce HSTS.</p>
+
+            <h4>Enable HSTS & Redirect HTTP to HTTPS</h4>
+            <pre><code>SECURE_HSTS_SECONDS = 31536000
+            SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+            SECURE_SSL_REDIRECT = True</code></pre>
+
+            <hr>
+
+            <!-- Open Redirect -->
+            <h3>8. Open Redirect Protection</h3>
+            <p>Django prevents unsafe redirects to external sites.</p>
+
+            <h4>Safe Redirect Example</h4>
+            <pre><code>from django.shortcuts import redirect
+
+            def login_success(request):
+                return redirect("dashboard")</code></pre>
+
+            <hr>
+
+            <!-- Host Header -->
+            <h3>9. Host Header Injection Protection</h3>
+            <p>Restrict allowed domains to avoid host header attacks.</p>
+            <pre><code>ALLOWED_HOSTS = ["yourdomain.com", "127.0.0.1"]</code></pre>
+
+            <hr>
+
+            <!-- File Upload Security -->
+            <h3>10. File Upload Security</h3>
+            <p>Always validate file type and store uploads securely.</p>
+
+            <h4>Validate File Type</h4>
+            <pre><code>def validate_file(file):
+                if not file.name.endswith(".pdf"):
+                    raise ValidationError("Only PDFs allowed!")</code></pre>
+
+            <h4>Store Files Outside Document Root</h4>
+            <p>Never allow direct execution of uploaded files; store them in a safe directory.</p>
+
+            <hr>
+
+            <!-- Summary Table -->
+            <h3>Summary Table of Django Security Features</h3>
+
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Feature</th>
+                    <th>Protection</th>
+                    <th>Example / Code</th>
+                </tr>
+                <tr>
+                    <td>CSRF</td>
+                    <td>Prevents forged POST requests</td>
+                    <td>{% csrf_token %}</td>
+                </tr>
+                <tr>
+                    <td>XSS</td>
+                    <td>Auto HTML escaping</td>
+                    <td>{{ user_input }}</td>
+                </tr>
+                <tr>
+                    <td>SQL Injection</td>
+                    <td>ORM sanitizes inputs</td>
+                    <td>.filter()</td>
+                </tr>
+                <tr>
+                    <td>Clickjacking</td>
+                    <td>X-Frame-Options headers</td>
+                    <td>X_FRAME_OPTIONS = "DENY"</td>
+                </tr>
+                <tr>
+                    <td>Password Hashing</td>
+                    <td>Strong hashing algorithms</td>
+                    <td>make_password()</td>
+                </tr>
+                <tr>
+                    <td>Session Security</td>
+                    <td>Secure cookies</td>
+                    <td>SESSION_COOKIE_SECURE = True</td>
+                </tr>
+                <tr>
+                    <td>HTTPS & SSL</td>
+                    <td>Encrypt communication</td>
+                    <td>SECURE_SSL_REDIRECT = True</td>
+                </tr>
+                <tr>
+                    <td>Open Redirect</td>
+                    <td>Prevents unsafe redirects</td>
+                    <td>redirect("dashboard")</td>
+                </tr>
+                <tr>
+                    <td>Host Header</td>
+                    <td>Restrict allowed hosts</td>
+                    <td>ALLOWED_HOSTS</td>
+                </tr>
+                <tr>
+                    <td>File Upload</td>
+                    <td>Validate & store safely</td>
+                    <td>validate_file()</td>
+                </tr>
+            </table>
+
+
+
+            <hr>
+
+            <h2>16. Deployment (WSGI / ASGI)</h2>
+
+            <ul>
+                <li><b>WSGI</b> → For synchronous Django (classic behavior)</li>
+                <li><b>ASGI</b> → Async support (WebSockets, long polling)</li>
+            </ul>
+
+            Examples:
+            <ul>
+                <li>Gunicorn + Nginx → WSGI</li>
+                <li>Daphne/Uvicorn → ASGI</li>
+            </ul>
+
+            <hr>
+
+            <h2>17. Caching in Django</h2>
+            <p>Caching improves performance by storing frequently accessed data or computation results so that future requests can be served faster without recalculating or querying the database repeatedly. Django provides multiple caching strategies suitable for different use cases.</p>
+
+            <h3>Why Use Caching?</h3>
+            <ul>
+                <li>Reduces database queries and expensive computations.</li>
+                <li>Speeds up response time for views and templates.</li>
+                <li>Reduces server load during high traffic.</li>
+            </ul>
+
+            <h4>Types of Caches in Django</h4>
+            <ul>
+                <li><b>In-memory cache:</b> Fastest cache stored in server memory. Example: LocMemCache.</li>
+                <li><b>File-based cache:</b> Stores cached data in files on disk. Suitable for small-scale or single-server apps.</li>
+                <li><b>Database cache:</b> Stores cache in a database table. Useful for persistent cache across servers.</li>
+                <li><b>Memcached:</b> Distributed in-memory cache, very fast, used in production for multiple servers.</li>
+                <li><b>Redis:</b> Advanced in-memory cache with persistence, pub/sub, and data structures.</li>
+            </ul>
+
+            <h3>1. Setting Up Cache in settings.py</h3>
+            <p>Example using in-memory cache:</p>
+            <pre><code>CACHES = {
+                'default': {
+                    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                    'LOCATION': 'unique-snowflake',
+                }
+            }</code></pre>
+
+            <h3>2. View-Level Caching (Cache Entire View)</h3>
+            <p>Use <code>@cache_page(timeout_in_seconds)</code> decorator to cache a whole view:</p>
+            <pre><code>from django.views.decorators.cache import cache_page
+            from django.http import HttpResponse
+
+            @cache_page(60)  # Cache this view for 60 seconds
+            def home(request):
+                return HttpResponse("Cached response")</code></pre>
+
+            <h3>3. Template Fragment Caching</h3>
+            <p>Cache only a part of the template to reduce rendering time.</p>
+            <pre><code>{% load cache %}
+            {% cache 300 sidebar %}
+                &lt;div class="sidebar"&gt;
+                    &lt;!-- Expensive rendering logic here --&gt;
+                &lt;/div&gt;
+            {% endcache %}</code></pre>
+
+            <h3>4. Low-Level Cache API</h3>
+            <p>Programmatically store and retrieve cached data:</p>
+            <pre><code>from django.core.cache import cache
+
+            # Set cache
+            cache.set('my_key', 'my_value', 60)  # Expires in 60 seconds
+
+            # Get cache
+            value = cache.get('my_key')
+            print(value)  # Output: my_value
+
+            # Delete cache
+            cache.delete('my_key')</code></pre>
+
+            <h3>5. Per-Site Cache</h3>
+            <p>Cache entire site using middleware:</p>
+            <pre><code>MIDDLEWARE = [
+                'django.middleware.cache.UpdateCacheMiddleware',
+                'django.middleware.common.CommonMiddleware',
+                'django.middleware.cache.FetchFromCacheMiddleware',
+            ]</code></pre>
+            <p>Settings:</p>
+            <pre><code>CACHE_MIDDLEWARE_SECONDS = 600  # Cache site for 10 minutes
+            CACHE_MIDDLEWARE_KEY_PREFIX = 'mysite'</code></pre>
+
+            <h3>6. Cache Backends Example (Redis)</h3>
+            <pre><code>CACHES = {
+                'default': {
+                    'BACKEND': 'django_redis.cache.RedisCache',
+                    'LOCATION': 'redis://127.0.0.1:6379/1',
+                    'OPTIONS': {
+                        'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                    }
+                }
+            }</code></pre>
+
+            <h3>7. Best Practices</h3>
+            <ul>
+                <li>Cache only expensive queries or computations.</li>
+                <li>Use short TTL (time-to-live) for frequently changing data.</li>
+                <li>Combine template fragment caching with view-level caching for better performance.</li>
+                <li>Use distributed cache (Redis or Memcached) for multi-server setups.</li>
+                <li>Invalidate cache properly when underlying data changes.</li>
+            </ul>
+
+
+            <pre><code>
+            from django.views.decorators.cache import cache_page
+
+            @cache_page(60)
+            def home(request):
+                return HttpResponse("Cached response")
+            </code></pre>
+
+            <hr>
+
+            <h2>18. Django Sessions</h2>
+            <p>Sessions store user-specific data on the server.</p>
+
+            <pre><code>
+            request.session["name"] = "Talha"
+            value = request.session.get("name")
+            </code></pre>
+
+            <hr>
+
+            <h2>19. Environment Management (.env)</h2>
+
+            <pre><code>
+            SECRET_KEY="abc"
+            DEBUG=False
+            DATABASE_URL="postgres://..."
+            </code></pre>
+
+            <hr>
+
+            <h2>20. Summary (For Fast Interview Revision)</h2>
+
+            <ul>
+                <li>Django uses MVT</li>
+                <li>ORM is used instead of raw SQL</li>
+                <li>URL dispatcher maps routes</li>
+                <li>Views handle request/response</li>
+                <li>Templates handle UI</li>
+                <li>Forms handle validation</li>
+                <li>Admin provides auto CMS</li>
+                <li>Middleware processes global logic</li>
+                <li>Signals = Observer pattern</li>
+                <li>Django is secure by default</li>
+            </ul>
+
+            </section>
+
+    </div>
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

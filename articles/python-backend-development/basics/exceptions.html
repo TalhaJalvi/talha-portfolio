@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+    <div id="content-display">
+        <!-- 9. Exception Handling -->
+        <h3>Exception Handling in Python</h3>
+        <p>
+        Exception Handling is a mechanism in Python that allows your program to continue running even when unexpected errors occur.  
+        Without handling, any runtime error <strong>stops the execution</strong> and prints a stack trace.
+        </p>
+
+        <p>
+        Python uses the following keywords for exception handling:
+        <ul>
+            <li><code>try</code> – code that may generate an exception</li>
+            <li><code>except</code> – handles the exception</li>
+            <li><code>else</code> – runs if no exception occurs</li>
+            <li><code>finally</code> – always runs (cleanup code)</li>
+        </ul>
+        </p>
+
+        <hr>
+
+        <!-- BASIC -->
+        <h4>1. Basic try-except</h4>
+        <p>
+        Use <code>try</code> when a block may cause an error, and <code>except</code> to handle it.
+        </p>
+
+        <pre><code>try:
+            num = int(input("Enter a number: "))
+            print("You entered:", num)
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+        </code></pre>
+
+        <p>
+        If the user inputs text like <strong>"abc"</strong>, <code>int("abc")</code> raises <strong>ValueError</strong>, and the program continues safely.
+        </p>
+
+        <hr>
+
+        <!-- MULTIPLE EXCEPTIONS -->
+        <h4>2. Handling Multiple Exceptions Separately</h4>
+        <p>
+        Each exception type can be handled independently.
+        Useful when different errors require different messages.
+        </p>
+
+        <pre><code>try:
+            a = int(input("Enter a number: "))
+            b = int(input("Enter another number: "))
+            result = a / b
+        except ValueError:
+            print("Invalid input! Please enter integers.")
+        except ZeroDivisionError:
+            print("Cannot divide by zero!")
+        </code></pre>
+
+        <p><strong>Best Practice:</strong> Always catch specific exceptions, not generic ones.</p>
+
+        <hr>
+
+        <!-- MULTIPLE EXCEPTIONS IN SAME LINE -->
+        <h4>3. Catching Multiple Exceptions in One Block</h4>
+        <pre><code>try:
+            result = int("abc") / 0
+        except (ValueError, ZeroDivisionError) as e:
+            print("Error occurred:", e)
+        </code></pre>
+
+        <p>Use this when the handling logic is the same for multiple exception types.</p>
+
+        <hr>
+
+        <!-- ELSE -->
+        <h4>4. Using <code>else</code> Block</h4>
+        <p>
+        The <code>else</code> block runs <strong>only when no exception occurs</strong>.
+        </p>
+
+        <pre><code>try:
+            result = 10 / 2
+        except ZeroDivisionError:
+            print("Division by zero!")
+        else:
+            print("Division successful, result:", result)
+        </code></pre>
+
+        <p><strong>Use Case:</strong> Code that should run only if no errors happened.</p>
+
+        <hr>
+
+        <!-- FINALLY -->
+        <h4>5. Using <code>finally</code> Block</h4>
+        <p>
+        <code>finally</code> always executes, exceptions or not.  
+        Useful for cleanup operations (closing files, releasing database connections, etc.).
+        </p>
+
+        <pre><code>try:
+            file = open("data.txt", "r")
+            data = file.read()
+        except FileNotFoundError:
+            print("File not found!")
+        finally:
+            print("Closing file if opened...")
+            try:
+                file.close()
+            except NameError:
+                pass
+        </code></pre>
+
+        <p><strong>Key Point:</strong> Even if exception occurs or <code>return</code> is executed, <code>finally</code> still runs.</p>
+
+        <hr>
+
+        <!-- RAISING ERRORS -->
+        <h4>6. Raising Exceptions Manually</h4>
+        <p>
+        Use <code>raise</code> to throw your own exceptions.
+        </p>
+
+        <pre><code>def check_age(age):
+            if age &lt; 18:
+                raise ValueError("Age must be at least 18")
+            return True
+
+        try:
+            check_age(15)
+        except ValueError as e:
+            print("Error:", e)
+        </code></pre>
+
+        <p>This is useful for validating input or enforcing business rules.</p>
+
+        <hr>
+
+        <!-- CUSTOM EXCEPTIONS -->
+        <h4>7. Creating Custom Exception Classes</h4>
+        <p>
+        You can create your own exception types by inheriting from <code>Exception</code>.
+        </p>
+
+        <pre><code>class NegativeNumberError(Exception):
+            """Raised when a negative number is encountered"""
+            pass
+
+        def sqrt(num):
+            if num &lt; 0:
+                raise NegativeNumberError("Cannot compute square root of negative number")
+            return num ** 0.5
+
+        try:
+            print(sqrt(-9))
+        except NegativeNumberError as e:
+            print("Custom Error:", e)
+        </code></pre>
+
+        <p>
+        Custom exceptions make error handling more meaningful and readable.
+        </p>
+
+        <hr>
+
+        <!-- BUILT-IN EXCEPTIONS -->
+        <h4>8. Common Built-In Exceptions</h4>
+        <ul>
+            <li><code>ValueError</code> – invalid value</li>
+            <li><code>TypeError</code> – wrong type</li>
+            <li><code>ZeroDivisionError</code></li>
+            <li><code>IndexError</code> – list index out of range</li>
+            <li><code>KeyError</code> – missing dict key</li>
+            <li><code>FileNotFoundError</code></li>
+            <li><code>AttributeError</code></li>
+        </ul>
+
+        <hr>
+
+        <!-- TRY-EXCEPT-FINALLY FLOW -->
+        <h4>9. Execution Flow Diagram</h4>
+
+        <pre><code>
+        try:
+            # risky code
+        except:
+            # runs when error occurs
+        else:
+            # runs ONLY if no exception occurs
+        finally:
+            # always runs
+        </code></pre>
+
+        <p><strong>Flowchart:</strong></p>
+
+        <pre><code>
+            +---------+
+            |  try    |
+            +----+----+
+                    |
+                    v
+        +---------+---------+
+        | Exception Occurred? |
+        +----+-----------+---+
+            |           |
+            Yes          No
+            |           |
+            v           v
+        +-----+----+   +--+-----+
+        |  except  |   |  else  |
+        +-----+----+   +--+-----+
+            \           /
+                \         /
+                \       /
+                v     v
+                +----+
+                |finally|
+                +-------+
+        </code></pre>
+
+        <hr>
+
+        <!-- NESTED EXCEPTIONS -->
+        <h4>10. Nested try-except Example</h4>
+        <pre><code>try:
+            num = int(input("Enter a number: "))
+            try:
+                print(10 / num)
+            except ZeroDivisionError:
+                print("Inner: cannot divide by zero!")
+        except ValueError:
+            print("Outer: invalid number!")
+        </code></pre>
+
+        <hr>
+
+        <!-- EXCEPTION CHAINING -->
+        <h4>11. Exception Chaining (raise from)</h4>
+        <p>
+        Use <code>raise ... from ...</code> to show the original cause of an error.
+        </p>
+
+        <pre><code>try:
+            value = int("abc")
+        except ValueError as e:
+            raise TypeError("Invalid type conversion") from e
+        </code></pre>
+
+        <hr>
+
+        <!-- BEST PRACTICES -->
+        <h4>12. Best Practices</h4>
+        <ul>
+            <li>Always catch specific exceptions, not <code>except:</code></li>
+            <li>Use <code>finally</code> for cleanup</li>
+            <li>Don't swallow exceptions silently</li>
+            <li>Create custom exceptions for domain-specific errors</li>
+            <li>Log exceptions in real applications</li>
+        </ul>
+
+    </div>
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+    <div id="content-display">
+    <section>
+        <h2>Object-Oriented Programming (OOP) in Python</h2>
+        <p>Python supports Object-Oriented Programming (OOP), which allows you to model real-world entities using <strong>classes</strong> and <strong>objects</strong>. OOP improves code organization, reusability, and maintainability.</p>
+
+        <!-- 1. Classes and Objects -->
+        <h3>1. Classes and Objects</h3>
+        <p>A <strong>class</strong> is a blueprint for creating objects, and an <strong>object</strong> is an instance of a class.</p>
+        <pre><code># Defining a class
+        class Person:
+            def __init__(self, name: str, age: int):
+                self.name = name  # Instance variable
+                self.age = age
+
+            def greet(self):
+                print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+        # Creating objects
+        person1 = Person("Talha", 25)
+        person2 = Person("Ali", 30)
+
+        person1.greet()  # Hello, my name is Talha and I am 25 years old.
+        person2.greet()  # Hello, my name is Ali and I am 30 years old.
+        </code></pre>
+
+        <!-- 2. Instance Variables vs Class Variables -->
+        <h3>2. Instance Variables vs Class Variables</h3>
+        <p>Instance variables belong to each object, while class (static) variables are shared among all objects.</p>
+        <pre><code>class Car:
+            wheels = 4  # Class variable
+
+            def __init__(self, brand: str, color: str):
+                self.brand = brand  # Instance variable
+                self.color = color
+
+        car1 = Car("Toyota", "Red")
+        car2 = Car("Honda", "Blue")
+
+        # Accessing instance and class variables
+        print(car1.brand, car1.wheels)  # Toyota 4
+        print(car2.brand, car2.wheels)  # Honda 4
+
+        # Modifying class variable via class
+        Car.wheels = 6
+        print(car1.wheels)  # 6
+        print(car2.wheels)  # 6
+
+        # Overriding class variable for an instance
+        car1.wheels = 8
+        print(car1.wheels)  # 8
+        print(car2.wheels)  # 6
+        </code></pre>
+
+        <!-- 3. Encapsulation -->
+        <h3>3. Encapsulation</h3>
+        <p>Encapsulation hides the internal state of objects. Prefix <code>_</code> or <code>__</code> for private variables.</p>
+        <pre><code>class BankAccount:
+            def __init__(self, balance: float):
+                self.__balance = balance  # Private variable
+
+            def deposit(self, amount: float):
+                if amount > 0:
+                    self.__balance += amount
+
+            def withdraw(self, amount: float):
+                if 0 < amount <= self.__balance:
+                    self.__balance -= amount
+
+            def get_balance(self):
+                return self.__balance
+
+        account = BankAccount(1000)
+        account.deposit(500)
+        account.withdraw(200)
+        print(account.get_balance())  # 1300
+
+        # Attempting direct access fails
+        # print(account.__balance)  # AttributeError
+
+        # Accessing via name mangling works
+        print(account._BankAccount__balance)  # 1300
+        </code></pre>
+
+        <p>Note: Python doesn’t have explicit private keywords; using <code>_</code> or <code>__</code> is a convention. The double underscore (<code>__</code>) triggers <strong>name mangling</strong>, which makes accidental access harder but does not prevent deliberate access.</p>
+
+        <h4>Public, Protected, and Pseudo-Private in Python</h4>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>Type</th>
+                <th>Prefix</th>
+                <th>Access</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Public</td>
+                <td>None</td>
+                <td>Accessible everywhere</td>
+                <td>Default in Python</td>
+            </tr>
+            <tr>
+                <td>Protected</td>
+                <td><code>_</code></td>
+                <td>Accessible, but intended for internal use</td>
+                <td>Convention only; no enforcement</td>
+            </tr>
+            <tr>
+                <td>Pseudo-Private</td>
+                <td><code>__</code></td>
+                <td>Accessible via name mangling <code>_ClassName__var</code></td>
+                <td>Makes accidental access harder; still not truly private</td>
+            </tr>
+        </table>
+
+
+        <!-- 4. Constructors and Destructors -->
+        <h3>4. Constructors & Destructors</h3>
+        <p><strong>Constructor (<code>__init__</code>)</strong> initializes an object when it’s created. <strong>Destructor (<code>__del__</code>)</strong> cleans up before the object is destroyed.</p>
+        <pre><code>class Sample:
+            def __init__(self, name):
+                self.name = name
+                print(f"{self.name} object created")
+
+            def __del__(self):
+                print(f"{self.name} object destroyed")
+
+        obj = Sample("Test")
+        print(obj.name)
+        </code></pre>
+        <p>If you don’t define <code>__init__</code>, Python provides a default constructor. If you don’t define <code>__del__</code>, Python handles cleanup automatically.</p>
+
+        <!-- 5. Static Variables & Methods -->
+        <h3>5. Static/Class Variables & Methods</h3>
+        <p>Class variables are shared across all objects. Static methods don’t require an instance and are defined using <code>@staticmethod</code>. Class methods use <code>@classmethod</code> and receive <code>cls</code> as the first parameter.</p>
+        <pre><code>class MathUtils:
+            pi = 3.14159  # Class variable
+
+            @staticmethod
+            def add(a, b):
+                return a + b
+
+            @classmethod
+            def set_pi(cls, new_pi):
+                cls.pi = new_pi
+
+        # Accessing class variable via class
+        print(MathUtils.pi)  # 3.14159
+
+        # Using static method
+        print(MathUtils.add(5, 10))  # 15
+
+        # Modifying class variable via class method
+        MathUtils.set_pi(3.14)
+        print(MathUtils.pi)  # 3.14
+        </code></pre>
+        <p>Accessing an uninitialized class variable will raise <code>AttributeError</code>.</p>
+
+        <!-- 6. Key Takeaways -->
+        <ul>
+            <li>Classes are blueprints; objects are instances.</li>
+            <li>Instance variables belong to objects; class variables are shared.</li>
+            <li>Encapsulation is done using <code>_</code> and <code>__</code> prefixes.</li>
+            <li>Python provides constructors/destructors, but defaults exist if not defined.</li>
+            <li>Static/class variables and methods are accessed via class name or instance, but uninitialized variables raise errors.</li>
+            <li>Python does not have strict <code>private</code> or <code>public</code> keywords like Java/C++.</li>
+            <li>Prefixing a variable with <code>__</code> triggers name mangling, making accidental access from outside harder.</li>
+            <li>Prefixing a variable with <code>_</code> is a soft convention to indicate "internal use only".</li>
+            <li>Best practice: access internal state via getter/setter methods rather than directly accessing "private" variables.</li>
+        </ul>
+
+        <!-- 6. Inheritance -->
+        <h3>6. Inheritance</h3>
+
+        <p>Inheritance is a core OOP concept that allows a class (the <strong>child</strong> or <strong>derived</strong> class) to inherit attributes and methods from another class (the <strong>parent</strong> or <strong>base</strong> class). Inheritance promotes code reuse and helps in modeling real-world relationships.</p>
+
+        <hr>
+
+        <h4>6.1 Why Use Inheritance?</h4>
+        <ul>
+        <li><strong>Code Reusability:</strong> Child classes can reuse functionality of parent classes.</li>
+        <li><strong>Extensibility:</strong> You can extend or customize inherited behavior in derived classes.</li>
+        <li><strong>Hierarchy Modeling:</strong> Helps represent “is‑a” relationships (e.g., Employee is a Person).</li>
+        </ul>
+
+        <hr>
+
+        <h4>6.2 Types of Inheritance in Python</h4>
+        <p>Python supports several types of inheritance depending on how classes are related:</p>
+
+        <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>Single Inheritance</td>
+            <td>A derived class inherits from exactly one base class.</td>
+            <td>
+            <pre><code>class Parent:
+            def say_hello(self):
+                print("Hello from Parent")
+
+        class Child(Parent):
+            def say_hi(self):
+                print("Hi from Child")
+
+        c = Child()
+        c.say_hello()  # Inherited method
+        c.say_hi()     # Child's method</code></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Multiple Inheritance</td>
+            <td>A class inherits from more than one base class.</td>
+            <td>
+            <pre><code>class A:
+            def method_a(self):
+                print("A")
+
+        class B:
+            def method_b(self):
+                print("B")
+
+        class C(A, B):  # Inherits from both
+            def method_c(self):
+                print("C")
+
+        c = C()
+        c.method_a()  # A
+        c.method_b()  # B
+        c.method_c()  # C</code></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Multilevel Inheritance</td>
+            <td>A class inherits from a class which is already derived from another class.</td>
+            <td>
+            <pre><code>class Grandparent:
+            def info(self):
+                print("Grandparent")
+
+        class Parent(Grandparent):
+            def info_parent(self):
+                print("Parent")
+
+        class Child(Parent):
+            def info_child(self):
+                print("Child")
+
+        c = Child()
+        c.info()           # Grandparent
+        c.info_parent()    # Parent
+        c.info_child()     # Child</code></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Hierarchical Inheritance</td>
+            <td>Multiple child classes inherit from the same base class.</td>
+            <td>
+            <pre><code>class Person:
+            def greet(self):
+                print("Hello, I am a Person")
+
+        class Student(Person):
+            def study(self):
+                print("I study")
+
+        class Employee(Person):
+            def work(self):
+                print("I work")
+
+        s = Student()
+        e = Employee()
+        s.greet()  # Hello, I am a Person
+        e.greet()  # Hello, I am a Person</code></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Hybrid Inheritance</td>
+            <td>A mix of two or more types of inheritance (e.g., multiple + multilevel).</td>
+            <td>
+            <pre><code>class A:
+            pass
+
+        class B(A):
+            pass
+
+        class C(A):
+            pass
+
+        class D(B, C):  # Hybrid: multiple + multilevel
+            pass</code></pre>
+            </td>
+        </tr>
+        </table>
+
+        <hr>
+
+        <h4>6.3 How Inheritance Is Implemented</h4>
+
+        <p>In Python, you define a child class by putting the parent class name(s) inside parentheses. You can use the built-in <code>super()</code> function to call base class methods (especially <code>__init__</code>) and to follow Python’s Method Resolution Order (MRO).</p>
+
+        <pre><code>class Person:
+            def __init__(self, name: str):
+                self.name = name
+
+        class Employee(Person):
+            def __init__(self, name: str, position: str):
+                super().__init__(name)  # Calls parent's __init__
+                self.position = position
+
+            def work(self):
+                print(f"{self.name} works as a {self.position}")
+
+        e = Employee("Talha", "Developer")
+        e.work()  # Talha works as a Developer</code></pre>
+
+        <hr>
+
+        <h4>6.4 Method Resolution Order (MRO)</h4>
+        <p>When using multiple inheritance, Python needs to decide which parent class to look at first for methods or attributes. This is handled by the <strong>Method Resolution Order</strong> (MRO). Python uses <em>C3 linearization</em> to compute MRO. :contentReference[oaicite:0]{index=0}</p>
+
+        <p>You can inspect the MRO of a class via <code>__mro__</code> or <code>.mro()</code>:</p>
+
+        <pre><code>class A:
+            def method(self):
+                print("A")
+
+        class B(A):
+            def method(self):
+                print("B")
+
+        class C(A):
+            def method(self):
+                print("C")
+
+        class D(B, C):
+            pass
+
+        print(D.__mro__)    # (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
+
+        d = D()
+        d.method()          # B.method(), because B comes before C in MRO</code></pre>
+
+        <hr>
+
+        <h4>6.5 Real-World Example: Employee Hierarchy</h4>
+
+        <pre><code>class Person:
+            def __init__(self, name: str, age: int):
+                self.name = name
+                self.age = age
+
+            def show_info(self):
+                print(f"Name: {self.name}, Age: {self.age}")
+
+        class Employee(Person):
+            def __init__(self, name: str, age: int, position: str, salary: float):
+                super().__init__(name, age)
+                self.position = position
+                self.salary = salary
+
+            def show_job(self):
+                print(f"{self.name} is a {self.position} earning ${self.salary}")
+
+        class Manager(Employee):
+            def __init__(self, name: str, age: int, salary: float, team_size: int):
+                super().__init__(name, age, "Manager", salary)
+                self.team_size = team_size
+
+            def show_team(self):
+                print(f"{self.name} manages a team of {self.team_size} people")
+
+        m = Manager("Talha", 30, 120000, 5)
+        m.show_info()   # Name: Talha, Age: 30
+        m.show_job()    # Talha is a Manager earning $120000
+        m.show_team()   # Talha manages a team of 5 people</code></pre>
+
+        <hr>
+        <h4>6.6 Diamond Problem in Python</h4>
+        <p>The <strong>diamond problem</strong> occurs in multiple inheritance when a class inherits from two classes that share a common base class. Python allows it but resolves method calls using the <strong>Method Resolution Order (MRO)</strong>.</p>
+
+        <pre><code>class A:
+            def method_a(self):
+                print("A")
+
+        class B:
+            def method_a(self):
+                print("B")
+
+        class C(A, B):  # Inherits from both A and B
+            def method_c(self):
+                print("C")
+
+        c = C()
+        c.method_a()  # Output: A, because A appears first in MRO
+        c.method_c()  # Output: C
+        </code></pre>
+
+        <p><strong>Explanation:</strong></p>
+        <ul>
+        <li>Even though both <code>A</code> and <code>B</code> have <code>method_a</code>, Python follows the <strong>MRO</strong> to decide which one to call.</li>
+        <li>Here, <code>C.__mro__</code> would be: <code>(C, A, B, object)</code>. So <code>method_a</code> from <code>A</code> is called first.</li>
+        <li>If you wanted <code>B</code>'s <code>method_a</code>, you could explicitly call it: <code>B.method_a(c)</code>.</li>
+        <li>This prevents ambiguity typical in the classic diamond problem seen in languages like C++.</li>
+        </ul>
+
+        <pre><code>print(C.__mro__)
+        # (<class '__main__.C'>, <class '__main__.A'>, <class '__main__.B'>, <class 'object'>)
+
+        # Calling B's method explicitly
+        B.method_a(c)  # Output: B
+        </code></pre>
+
+        <p><strong>Key Takeaway:</strong> Python supports multiple inheritance, including diamond-shaped hierarchies, but the <code>super()</code> function and MRO ensure a deterministic and safe method resolution.</p>
+
+        <h4>6.7 Key Points & Best Practices</h4>
+        <ul>
+        <li>Use inheritance only when there’s a real <code>is-a</code> relationship.</li>
+        <li>Don’t overuse inheritance — sometimes composition is a better alternative.</li>
+        <li>Use <code>super()</code> to ensure base classes are properly initialized, especially in complex hierarchies.</li>
+        <li>Be careful with multiple inheritance; always check the MRO.</li>
+        </ul>
+
+        <!-- 7. Polymorphism -->
+        <h3>7. Polymorphism in Python</h3>
+        <p>Polymorphism means "many forms". In Python, it allows objects of different classes to be treated as objects of a common superclass. The same interface can be used for different underlying forms (data types or classes).</p>
+
+        <h4>7.1 Types of Polymorphism</h4>
+        <ul>
+            <li><strong>Compile-time / Static-like Polymorphism:</strong> Python does not support method overloading by default as in Java or C++. However, we can achieve it using default arguments or variable-length arguments.</li>
+            <li><strong>Runtime / Dynamic Polymorphism:</strong> Method overriding allows a subclass to provide a specific implementation of a method already defined in the superclass. Python resolves the method at runtime.</li>
+        </ul>
+
+        ---
+
+        <h4>7.2 Method Overriding (Runtime Polymorphism)</h4>
+        <pre><code>class Animal:
+            def speak(self):
+                print("Generic sound")
+
+        class Dog(Animal):
+            def speak(self):
+                print("Woof!")
+
+        class Cat(Animal):
+            def speak(self):
+                print("Meow!")
+
+        # Runtime polymorphism in action
+        animals = [Dog(), Cat(), Animal()]
+
+        for animal in animals:
+            animal.speak()
+        # Output:
+        # Woof!
+        # Meow!
+        # Generic sound
+        </code></pre>
+        <p>Here, <code>speak()</code> is resolved at runtime based on the actual object type.</p>
+
+        ---
+
+        <h4>7.3 Method Overloading Using Default / Variable Arguments (Static-like)</h4>
+        <pre><code>class Calculator:
+            def add(self, a, b=0, c=0):  # Default arguments
+                return a + b + c
+
+        calc = Calculator()
+        print(calc.add(5))        # 5
+        print(calc.add(5, 10))    # 15
+        print(calc.add(5, 10, 15))# 30
+
+        # Using *args for variable-length arguments
+        class Calculator2:
+            def add(self, *numbers):
+                return sum(numbers)
+
+        calc2 = Calculator2()
+        print(calc2.add(1,2,3,4)) # 10
+        </code></pre>
+        <p>Python does not enforce traditional compile-time overloading, but this pattern mimics method overloading.</p>
+
+        ---
+
+        <h4>7.4 Operator Overloading (Polymorphism with Operators)</h4>
+        <pre><code>class Point:
+            def __init__(self, x, y):
+                self.x = x
+                self.y = y
+
+            def __add__(self, other):  # Overloading + operator
+                return Point(self.x + other.x, self.y + other.y)
+
+        p1 = Point(2, 3)
+        p2 = Point(4, 5)
+        p3 = p1 + p2
+        print(p3.x, p3.y)  # 6 8
+        </code></pre>
+        <p>Here, the <code>+</code> operator behaves differently based on the object types — another form of polymorphism.</p>
+
+        ---
+
+        <h4>7.5 Polymorphism with Functions</h4>
+        <p>Python functions can accept arguments of different types and behave accordingly:</p>
+        <pre><code>def add(a, b):
+            return a + b
+
+        print(add(5, 10))      # 15 (integers)
+        print(add("Hi", "Bye"))# HiBye (strings)
+        print(add([1,2], [3])) # [1,2,3] (lists)
+        </code></pre>
+        <p>This is polymorphism at the function level: same function name, different behavior based on argument type.</p>
+
+        ---
+        <h4>Method Overloading Attempt</h4>
+        <p>Changing the return type or input variable type does <strong>not</strong> create a new method in Python. Only the method name matters.</p>
+        <pre><code>class Example:
+            def greet(self):
+                return "Hello"
+
+            # Attempting to overload by changing return type
+            def greet(self) -> int:
+                return 123
+
+        obj = Example()
+        print(obj.greet())  # Output: 123
+        </code></pre>
+        <p>Explanation:</p>
+        <ul>
+            <li>Python keeps only the <strong>last definition</strong> of a method with the same name.</li>
+            <li>Changing the return type or input variable types has no effect.</li>
+            <li>“Overloading” based on input types must be handled manually using <code>*args</code> or <code>**kwargs</code>.</li>
+        </ul>
+
+        <h4>Proper Python Overloading with <code>*args</code> / <code>**kwargs</code></h4>
+        <pre><code>class Example:
+            def greet(self, *args):
+                if not args:
+                    return "Hello"
+                elif len(args) == 1:
+                    return f"Hello, {args[0]}"
+                else:
+                    return "Hello everyone"
+
+        obj = Example()
+        print(obj.greet())           # Hello
+        print(obj.greet("Talha"))    # Hello, Talha
+        print(obj.greet("Talha", "Ali"))  # Hello everyone</code></pre>
+        <h4>7.6 Key Points</h4>
+        <ul>
+            <li>Python supports polymorphism naturally due to dynamic typing.</li>
+            <li>Runtime polymorphism is achieved via method overriding.</li>
+            <li>Static-like polymorphism can be mimicked using default arguments or <code>*args / **kwargs</code>.</li>
+            <li>Operators can be overloaded to perform different operations based on object type.</li>
+            <li>Polymorphism allows flexibility and cleaner, more maintainable code.</li>
+        </ul>
+
+        <!-- 8. Abstraction and Abstract Classes -->
+        <h3>8. Abstraction and Abstract Classes</h3>
+        <p>Abstraction is an Object-Oriented Programming (OOP) concept that hides the implementation details of a class and shows only the essential features to the user. In Python, abstraction is achieved using <strong>abstract classes</strong> and <strong>abstract methods</strong> from the <code>abc</code> module.</p>
+
+        <h4>1. Abstract Classes</h4>
+        <p>An abstract class cannot be instantiated directly. It is meant to be inherited by other classes that implement the abstract methods.</p>
+        <pre><code>from abc import ABC, abstractmethod
+
+        # Abstract class
+        class Vehicle(ABC):
+            
+            @abstractmethod
+            def start_engine(self):
+                pass
+            
+            @abstractmethod
+            def stop_engine(self):
+                pass
+        </code></pre>
+
+        <h4>2. Implementing Abstract Methods</h4>
+        <p>Any subclass of an abstract class must implement all abstract methods; otherwise, it will also be considered abstract.</p>
+        <pre><code>class Car(Vehicle):
+            def start_engine(self):
+                print("Car engine started")
+            
+            def stop_engine(self):
+                print("Car engine stopped")
+
+        # Instantiating subclass
+        my_car = Car()
+        my_car.start_engine()  # Car engine started
+        my_car.stop_engine()   # Car engine stopped
+        </code></pre>
+
+        <h4>3. Interfaces in Python</h4>
+        <p>Python does not have a separate <strong>interface</strong> keyword like Java. Interfaces can be simulated using abstract classes that contain only abstract methods. Example:</p>
+        <pre><code>from abc import ABC, abstractmethod
+
+        class PrinterInterface(ABC):
+            
+            @abstractmethod
+            def print_document(self, doc):
+                pass
+            
+            @abstractmethod
+            def scan_document(self, doc):
+                pass
+
+        class Printer(PrinterInterface):
+            
+            def print_document(self, doc):
+                print(f"Printing {doc}")
+            
+            def scan_document(self, doc):
+                print(f"Scanning {doc}")
+
+        p = Printer()
+        p.print_document("Report.pdf")  # Printing Report.pdf
+        p.scan_document("Report.pdf")   # Scanning Report.pdf
+        </code></pre>
+
+        <h4>4. Difference Between Abstract Classes and Interfaces</h4>
+        <table border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Abstract Class</th>
+                    <th>Interface (Python)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Purpose</td>
+                    <td>Define common base functionality</td>
+                    <td>Define a contract with only abstract methods</td>
+                </tr>
+                <tr>
+                    <td>Methods</td>
+                    <td>Can have both abstract and concrete methods</td>
+                    <td>Only abstract methods (no implementation)</td>
+                </tr>
+                <tr>
+                    <td>Instantiation</td>
+                    <td>Cannot instantiate abstract class</td>
+                    <td>Cannot instantiate interface</td>
+                </tr>
+                <tr>
+                    <td>Multiple Inheritance</td>
+                    <td>Allowed</td>
+                    <td>Allowed (can implement multiple interfaces)</td>
+                </tr>
+                <tr>
+                    <td>Use Case</td>
+                    <td>When you want shared functionality and enforce some methods</td>
+                    <td>When you want only method signatures for multiple implementations</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>5. When to Use Abstract Classes vs Interfaces</h4>
+        <ul>
+            <li>Use <strong>abstract classes</strong> when you have common functionality that subclasses can share.</li>
+            <li>Use <strong>interfaces</strong> when you want to define a contract and enforce method implementation across unrelated classes.</li>
+            <li>Python allows multiple inheritance, so you can combine abstract classes and interfaces for flexible design.</li>
+        </ul>
+
+        <h4>6. Key Notes</h4>
+        <ul>
+            <li>Abstract methods must be implemented in subclasses.</li>
+            <li>Abstract classes can also contain normal methods with implementation.</li>
+            <li>Python interfaces are just abstract classes with only abstract methods.</li>
+            <li>Trying to instantiate an abstract class directly will raise <code>TypeError</code>.</li>
+        </ul>
+
+        <!-- 7. Special Methods / Magic Methods -->
+        <h3>7. Special Methods (Magic Methods)</h3>
+        <p>Special methods allow customization of object behavior, like printing or arithmetic operations.</p>
+        <pre><code>class Point:
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+
+        def __str__(self):
+            return f"Point({self.x}, {self.y})"
+
+        def __add__(self, other):
+            return Point(self.x + other.x, self.y + other.y)
+
+    p1 = Point(2, 3)
+    p2 = Point(4, 5)
+    print(p1)       # Point(2, 3)
+    p3 = p1 + p2
+    print(p3)       # Point(6, 8)
+    </code></pre>
+
+        <!-- 8. Class Methods and Static Methods -->
+        <h3>8. Class Methods & Static Methods</h3>
+        <p>Use <code>@classmethod</code> for methods that act on the class, and <code>@staticmethod</code> for methods independent of class/instance.</p>
+        <pre><code>class Circle:
+        pi = 3.1416
+
+        def __init__(self, radius):
+            self.radius = radius
+
+        @classmethod
+        def set_pi(cls, value):
+            cls.pi = value
+
+        @staticmethod
+        def area_formula(radius):
+            return Circle.pi * radius * radius
+
+    c = Circle(5)
+    print(Circle.area_formula(5))  # 78.54
+    Circle.set_pi(3.14)
+    print(Circle.area_formula(5))  # 78.5
+    </code></pre>
+
+        <!-- 9. Key Points -->
+        <h4>Key Points</h4>
+        <ul>
+            <li>OOP promotes modular, reusable, and maintainable code.</li>
+            <li>Encapsulation protects internal state.</li>
+            <li>Inheritance allows extending classes.</li>
+            <li>Polymorphism allows flexibility in method behavior.</li>
+            <li>Abstraction hides implementation details and exposes interfaces.</li>
+            <li>Special methods customize object behavior.</li>
+            <li>Class methods operate on the class; static methods operate independently.</li>
+        </ul>
+    </section>
+    </div>
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

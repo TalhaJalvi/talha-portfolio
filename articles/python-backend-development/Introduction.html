@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+
+    </nav>
+
+
+        <main class="content">
+            <div id="content-display">
+
+                <section class="article">
+                    <h1>Introduction to Python: When, Why, and How to Use It</h1>
+
+                    <p>
+                        Python is one of the most popular and versatile programming languages in the world today. 
+                        Known for its clean syntax, massive ecosystem, and strong community support, Python is widely 
+                        used across industries ranging from web development and automation to artificial intelligence, 
+                        data science, and cloud computing. Its ability to help developers build scalable solutions 
+                        quickly makes it a top choice for beginners and senior engineers alike.
+                    </p>
+
+                    <h2>When to Use Python</h2>
+                    <p>
+                        Python is ideal when you need rapid development, readability, and access to powerful libraries. 
+                        It is widely chosen for:
+                    </p>
+                    <ul>
+                        <li><strong>Web development</strong> – with frameworks like Django and FastAPI.</li>
+                        <li><strong>Automation & scripting</strong> – for task automation, bots, and system tools.</li>
+                        <li><strong>Data analysis & machine learning</strong> – thanks to libraries like Pandas, NumPy, and PyTorch.</li>
+                        <li><strong>Microservices architecture</strong> – lightweight APIs with FastAPI or Flask.</li>
+                        <li><strong>Cloud-native development</strong> – AWS Lambda, GCP Cloud Functions, and serverless workloads.</li>
+                        <li><strong>Testing & QA automation</strong> – Selenium, Playwright, and automation suites.</li>
+                    </ul>
+
+                    <p>
+                        Use Python whenever your project demands flexibility, fast iteration, and 
+                        a strong ecosystem of tools that simplify development.
+                    </p>
+
+                    <h2>Why Python?</h2>
+                    <p>
+                        Python's success comes from its ease of use and massive adoption in modern engineering teams.
+                        Some clear reasons why Python is preferred:
+                    </p>
+
+                    <ul>
+                        <li><strong>Readable and simple syntax</strong> – closer to English, easier to maintain.</li>
+                        <li><strong>Huge library ecosystem</strong> – supports nearly every domain.</li>
+                        <li><strong>Faster development time</strong> – fewer lines of code & rapid prototyping.</li>
+                        <li><strong>Excellent community and documentation</strong> – easy to learn and upgrade.</li>
+                        <li><strong>Cross-platform support</strong> – runs smoothly on Windows, Linux, and macOS.</li>
+                        <li><strong>Integrates well with other languages</strong> – C, C++, Java, Rust, etc.</li>
+                        <li><strong>Industry-wide adoption</strong> – from startups to enterprise-grade companies.</li>
+                    </ul>
+
+                    <p>
+                        These advantages make Python a top choice for projects where productivity, scalability,
+                        and maintainability are important.
+                    </p>
+
+                    <h2>How Python Works (From the Developer’s Perspective)</h2>
+                    <p>
+                        Python is an interpreted, high-level language that abstracts away low-level details,
+                        letting developers focus on logic rather than memory management or complex compilation steps.
+                    </p>
+
+                    <h3>1. Python Execution Flow</h3>
+                    <ul>
+                        <li>You write Python code in files ending with <code>.py</code>.</li>
+                        <li>The Python interpreter translates the code into bytecode.</li>
+                        <li>The Python Virtual Machine (PVM) executes this bytecode at runtime.</li>
+                        <li>Optional: For performance, tools like PyPy or Cython can optimize execution.</li>
+                    </ul>
+
+                    <h3>2. Installing and Running Python</h3>
+                    <p>You can set up Python using:</p>
+                    <ul>
+                        <li><strong>Official Python Installer</strong> – from python.org.</li>
+                        <li><strong>Anaconda</strong> – for data science, with pre-installed libraries.</li>
+                        <li><strong>Virtual environments</strong> – using <code>venv</code> or <code>conda</code> to isolate dependencies.</li>
+                    </ul>
+
+                    <p>Running Python scripts is simple:</p>
+                    <pre><code>python3 app.py</code></pre>
+
+                    <h3>3. Python’s Package Management</h3>
+                    <p>
+                        Python uses <code>pip</code> to install and manage external libraries.
+                    </p>
+
+                    <pre><code>pip install django fastapi numpy</code></pre>
+
+                    <p>
+                        For larger projects, developers store dependencies in a 
+                        <code>requirements.txt</code> file or a <code>pyproject.toml</code>.
+                    </p>
+
+                    <h3>4. Python Frameworks and Ecosystem</h3>
+                    <p>
+                        Python’s true power comes from its frameworks:
+                    </p>
+                    <ul>
+                        <li><strong>Django</strong> – full-stack framework for enterprise apps.</li>
+                        <li><strong>FastAPI</strong> – ultra-fast microservices & APIs.</li>
+                        <li><strong>Selenium</strong> – automation & testing.</li>
+                        <li><strong>Pandas / NumPy</strong> – data processing.</li>
+                        <li><strong>TensorFlow, PyTorch</strong> – machine learning.</li>
+                        <li><strong>Requests, Asyncio</strong> – networking, async microservices.</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>
+                        Python remains one of the most powerful and beginner-friendly languages available.
+                        Whether you are building cloud-native microservices, automating a workflow, or scaling a 
+                        complex enterprise application, Python provides the tools, performance, and ecosystem to 
+                        deliver high-quality software efficiently.
+                    </p>
+
+                </section>
+
+            </div>
+        </main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>

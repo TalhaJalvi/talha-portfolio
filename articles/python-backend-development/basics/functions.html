@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Python</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+        <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+  <!-- PYTHON INTERVIEW PREP SIDEBAR MENU -->
+
+        <ul class="sidebar-menu">
+            <li class="menu-title">Python Interview Prep</li>
+
+            <!-- 1. Python Fundamentals -->
+            <li class="menu-section">Python Basics</li>
+            <li><a href="../basics/syntax.html" class="nav-link">Python Syntax</a></li>
+            <li><a href="../basics/data-types.html" class="nav-link">Data Types</a></li>
+            <li><a href="../basics/variables.html" class="nav-link">Variables</a></li>
+            <li><a href="../basics/conditions.html" class="nav-link">Conditions & Loops</a></li>
+            <li><a href="../basics/functions.html" class="nav-link">Functions</a></li>
+            <li><a href="../basics/oop.html" class="nav-link">Object-Oriented Programming</a></li>
+            <li><a href="../basics/exceptions.html" class="nav-link">Exception Handling</a></li>
+
+            <!-- 2. Python Frameworks -->
+            <li class="menu-section">Python Frameworks</li>
+            <li><a href="../frameworks/django.html" class="nav-link">Django Core Concepts</a></li>
+            <li><a href="../frameworks/django-rest-framework.html" class="nav-link">Django REST Framework</a></li>
+            <li><a href="../frameworks/fastapi.html" class="nav-link">FastAPI Core Concepts</a></li>
+            <li><a href="../frameworks/asgi-wsgi.html" class="nav-link">ASGI vs WSGI</a></li>
+            <li><a href="../frameworks/pydantic.html" class="nav-link">Pydantic & Validation</a></li>
+
+            <!-- 3. Microservices -->
+            <li class="menu-section">Microservices Architecture</li>
+            <li><a href="../microservices/introduction.html" class="nav-link">Microservices Basics</a></li>
+            <li><a href="../microservices/api-design.html" class="nav-link">API Design Principles</a></li>
+            <li><a href="../microservices/auth.html" class="nav-link">Authentication (JWT, OAuth2)</a></li>
+            <li><a href="../microservices/service-discovery.html" class="nav-link">Service Discovery</a></li>
+            <li><a href="../microservices/load-balancing.html" class="nav-link">Load Balancing</a></li>
+            <li><a href="../microservices/caching.html" class="nav-link">Caching (Redis)</a></li>
+            <li><a href="../microservices/design-patterns.html" class="nav-link">Microservice Design Patterns</a></li>
+
+            <!-- 4. Selenium / Automation -->
+            <li class="menu-section">Selenium & Automation</li>
+            <li><a href="../automation/selenium-basics.html" class="nav-link">Selenium Basics</a></li>
+            <li><a href="../automation/locators.html" class="nav-link">Locators & XPath</a></li>
+            <li><a href="../automation/waits.html" class="nav-link">Waits (Implicit, Explicit)</a></li>
+            <li><a href="../automation/iframes.html" class="nav-link">Handling iFrames</a></li>
+            <li><a href="../automation/headless.html" class="nav-link">Headless Browser Automation</a></li>
+            <li><a href="../automation/selenium-interview.html" class="nav-link">Selenium Interview Q/A</a></li>
+
+            <!-- 5. Bot Development -->
+            <li class="menu-section">Bot Development</li>
+            <li><a href="../bots/intro.html" class="nav-link">Introduction to Bots</a></li>
+            <li><a href="../bots/telegram-bot.html" class="nav-link">Telegram Bots</a></li>
+            <li><a href="../bots/discord-bot.html" class="nav-link">Discord Bots</a></li>
+            <li><a href="../bots/scheduler.html" class="nav-link">Schedulers & Cron Jobs</a></li>
+            <li><a href="../bots/webhooks.html" class="nav-link">Webhooks & Event Handling</a></li>
+
+            <!-- 6. Data Extraction & Scraping -->
+            <li class="menu-section">Data Extraction</li>
+            <li><a href="../scraping/bs4.html" class="nav-link">BeautifulSoup</a></li>
+            <li><a href="../scraping/requests.html" class="nav-link">Requests & Sessions</a></li>
+            <li><a href="../scraping/playwright.html" class="nav-link">Playwright Automation</a></li>
+            <li><a href="../scraping/proxies.html" class="nav-link">Proxies & Rotating User Agents</a></li>
+            <li><a href="../scraping/pagination.html" class="nav-link">Pagination Handling</a></li>
+            <li><a href="../scraping/scraping-architecture.html" class="nav-link">Scraper Architecture</a></li>
+
+            <!-- 7. Docker & Containerization -->
+            <li class="menu-section">Docker</li>
+            <li><a href="../docker/intro.html" class="nav-link">Docker Basics</a></li>
+            <li><a href="../docker/dockerfile.html" class="nav-link">Dockerfile Explained</a></li>
+            <li><a href="../docker/volumes.html" class="nav-link">Volumes & Bind Mounts</a></li>
+            <li><a href="../docker/networking.html" class="nav-link">Docker Networking</a></li>
+            <li><a href="../docker/docker-compose.html" class="nav-link">Docker Compose</a></li>
+            <li><a href="../docker/debugging.html" class="nav-link">Debugging Containers</a></li>
+
+            <!-- 8. Pub-Sub Systems -->
+            <li class="menu-section">Pub-Sub Systems</li>
+            <li><a href="../pubsub/kafka-basics.html" class="nav-link">Kafka Basics</a></li>
+            <li><a href="../pubsub/redis-streams.html" class="nav-link">Redis Streams</a></li>
+            <li><a href="../pubsub/sqs-sns.html" class="nav-link">AWS SQS / SNS</a></li>
+            <li><a href="../pubsub/producer-consumer.html" class="nav-link">Producer / Consumer Pattern</a></li>
+            <li><a href="../pubsub/pubsub-interview.html" class="nav-link">Pub-Sub Interview Q/A</a></li>
+
+            <!-- 9. CI/CD & DevOps -->
+            <li class="menu-section">CI/CD & DevOps</li>
+            <li><a href="../cicd/github-actions.html" class="nav-link">GitHub Actions</a></li>
+            <li><a href="../cicd/gitlab-ci.html" class="nav-link">GitLab CI/CD</a></li>
+            <li><a href="../cicd/docker-deploy.html" class="nav-link">Docker Deployments</a></li>
+            <li><a href="../cicd/env-management.html" class="nav-link">Environment Variables</a></li>
+            <li><a href="../cicd/logging-monitoring.html" class="nav-link">Logging & Monitoring</a></li>
+
+            <!-- 10. System Design -->
+            <li class="menu-section">System Design</li>
+            <li><a href="../system-design/intro.html" class="nav-link">System Design Basics</a></li>
+            <li><a href="../system-design/rate-limiting.html" class="nav-link">Rate Limiting</a></li>
+            <li><a href="../system-design/circuit-breaker.html" class="nav-link">Circuit Breaker Pattern</a></li>
+            <li><a href="../system-design/caching.html" class="nav-link">Caching Strategies</a></li>
+            <li><a href="../system-design/design-problems.html" class="nav-link">Design Problems (API, Microservices)</a></li>
+
+            <!-- 11. Interview Questions -->
+            <li class="menu-section">Interview Questions</li>
+            <li><a href="../interview/python-core.html" class="nav-link">Python Core Q/A</a></li>
+            <li><a href="../interview/backends.html" class="nav-link">Backend Q/A</a></li>
+            <li><a href="../interview/frameworks.html" class="nav-link">Frameworks Q/A</a></li>
+            <li><a href="../interview/docker.html" class="nav-link">Docker Q/A</a></li>
+            <li><a href="../interview/devops.html" class="nav-link">DevOps Q/A</a></li>
+            <li><a href="../interview/microservices.html" class="nav-link">Microservices Q/A</a></li>
+        </ul>
+    </nav>
+
+
+<main class="content">
+    <div id="content-display">
+    <section class="article">
+
+        <h1>Python Functions</h1>
+        <p>Functions in Python are blocks of reusable code that perform a specific task. They help organize code, reduce repetition, and improve readability.</p>
+
+        ---
+
+        <h2>1. Defining a Function</h2>
+        <p>Use the <code>def</code> keyword followed by the function name and parentheses. The body of the function is indented.</p>
+        <pre><code>def greet():
+            print("Hello, World!")
+
+        greet()  # Calling the function
+        </code></pre>
+
+        ---
+
+        <h2>2. Function Parameters</h2>
+        <p>Functions can accept inputs (parameters) to work with dynamic data.</p>
+        <pre><code>def greet_user(name):
+            print(f"Hello, {name}!")
+
+        greet_user("Talha")
+        </code></pre>
+
+        <h3>2.1 Default Parameters</h3>
+        <pre><code>def greet_user(name="Guest"):
+            print(f"Hello, {name}!")
+
+        greet_user()       # Hello, Guest!
+        greet_user("Ali")  # Hello, Ali!
+        </code></pre>
+
+        <h3>2.2 Keyword Arguments</h3>
+        <p>You can specify arguments by name, in any order:</p>
+        <pre><code>def describe_pet(name, species):
+            print(f"{name} is a {species}")
+
+        describe_pet(species="dog", name="Buddy")
+        </code></pre>
+
+        <h3>2.3 Variable-length Arguments</h3>
+        <p>Python allows you to define functions that can accept a variable number of arguments. This is useful when you don't know in advance how many arguments might be passed.</p>
+
+        <ul>
+            <li><code>*args</code> → used to pass multiple <strong>positional arguments</strong> as a tuple.</li>
+            <li><code>**kwargs</code> → used to pass multiple <strong>keyword arguments</strong> as a dictionary.</li>
+        </ul>
+
+        <h4>Using <code>*args</code> (Positional Arguments)</h4>
+        <pre><code>def sum_all(*numbers):
+            """
+            Accepts any number of numbers and returns their sum.
+            *numbers collects all positional arguments as a tuple.
+            """
+            print("Numbers received:", numbers)
+            return sum(numbers)
+
+        # Calling with different numbers of arguments
+        print(sum_all(1, 2, 3))        # Output: Numbers received: (1, 2, 3) → 6
+        print(sum_all(5, 10, 15, 20))  # Output: Numbers received: (5, 10, 15, 20) → 50
+        </code></pre>
+
+        <h4>Using <code>**kwargs</code> (Keyword Arguments)</h4>
+        <pre><code>def print_info(**info):
+            """
+            Accepts any number of keyword arguments.
+            **info collects them into a dictionary.
+            """
+            print("Info dictionary:", info)
+            for key, value in info.items():
+                print(f"{key}: {value}")
+
+        # Calling with different keyword arguments
+        print_info(name="Talha", age=25, city="Karachi")
+        # Output:
+        # Info dictionary: {'name': 'Talha', 'age': 25, 'city': 'Karachi'}
+        # name: Talha
+        # age: 25
+        # city: Karachi
+        </code></pre>
+
+        <h4>Combining <code>*args</code> and <code>**kwargs</code></h4>
+        <p>You can combine both to accept arbitrary positional and keyword arguments:</p>
+        <pre><code>def display(*args, **kwargs):
+            print("Positional args:", args)
+            print("Keyword args:", kwargs)
+
+        display(1, 2, 3, name="Talha", age=25)
+        # Output:
+        # Positional args: (1, 2, 3)
+        # Keyword args: {'name': 'Talha', 'age': 25}
+        </code></pre>
+
+        <h4>Unpacking Arguments</h4>
+        <p>You can also <strong>unpack lists/tuples and dictionaries</strong> into functions using <code>*</code> and <code>**</code>:</p>
+        <pre><code>nums = [1, 2, 3, 4]
+        print(sum_all(*nums))  # Equivalent to sum_all(1,2,3,4) → 10
+
+        info = {"name": "Talha", "age": 25}
+        print_info(**info)
+        # Equivalent to print_info(name="Talha", age=25)
+        </code></pre>
+
+        <h4>Key Points:</h4>
+        <ul>
+            <li><code>*args</code> must appear before <code>**kwargs</code> in the function definition.</li>
+            <li>You can combine regular parameters with <code>*args</code> and <code>**kwargs</code>:</li>
+        </ul>
+        <pre><code>def example(a, b, *args, **kwargs):
+            print(a, b)
+            print("Additional args:", args)
+            print("Additional kwargs:", kwargs)
+
+        example(1, 2, 3, 4, name="Talha", city="Karachi")
+        # Output:
+        # 1 2
+        # Additional args: (3, 4)
+        # Additional kwargs: {'name': 'Talha', 'city': 'Karachi'}
+        </code></pre>
+
+        <h2>3. Return Values</h2>
+        <p>Functions can return values using the <code>return</code> keyword. Without <code>return</code>, a Python function returns <code>None</code> by default. You can also optionally use <strong>type hints</strong> to indicate the expected return type.</p>
+
+        <h4>Basic Example</h4>
+        <pre><code>def add(a: int, b: int) -> int:
+            """Returns the sum of two numbers"""
+            return a + b
+
+        result = add(5, 10)
+        print(result)  # Output: 15
+        </code></pre>
+
+        <h4>Returning Multiple Values</h4>
+        <p>You can return multiple values as a tuple, and type hints can specify this:</p>
+        <pre><code>from typing import Tuple
+
+        def get_user_info() -> Tuple[str, int]:
+            name = "Talha"
+            age = 25
+            return name, age
+
+        user_name, user_age = get_user_info()
+        print(user_name)  # Talha
+        print(user_age)   # 25
+        </code></pre>
+
+        <h4>Returning Collections</h4>
+        <p>Functions can return lists, tuples, dictionaries, etc. Type hints make this explicit:</p>
+        <pre><code>from typing import List, Tuple
+
+        # Returning a list of integers
+        def get_numbers() -> List[int]:
+            return [1, 2, 3, 4, 5]
+
+        numbers = get_numbers()
+        print(numbers)  # [1, 2, 3, 4, 5]
+
+        # Returning a tuple of integers
+        def get_numbers_tuple() -> Tuple[int, ...]:
+            return (1, 2, 3, 4, 5)
+
+        numbers_tuple = get_numbers_tuple()
+        print(numbers_tuple)  # (1, 2, 3, 4, 5)
+        </code></pre>
+
+        <h4>Key Notes</h4>
+        <ul>
+            <li>Functions without <code>return</code> return <code>None</code> by default.</li>
+            <li>You can return any Python object: numbers, strings, lists, dictionaries, tuples, or even functions.</li>
+            <li>Returning multiple values actually returns a <strong>tuple</strong>.</li>
+            <li>Type hints (<code>-> int</code>, <code>-> List[int]</code>, etc.) improve readability and help IDEs, but are <strong>not enforced</strong> at runtime.</li>
+        </ul>
+
+        <hr>
+
+
+        <h2>4. Lambda Functions (Anonymous Functions)</h2>
+        <p>Lambda functions are small, one-line anonymous functions that are often used for short tasks. They are defined using the <code>lambda</code> keyword.</p>
+
+        <h4>Basic Example</h4>
+        <pre><code>square = lambda x: x**2
+        print(square(5))  # 25
+        </code></pre>
+
+        <h4>Lambda with Multiple Arguments</h4>
+        <pre><code>add = lambda a, b: a + b
+        print(add(3, 4))  # 7
+        </code></pre>
+
+        <h4>Lambda in Functions</h4>
+        <p>Can be used as a quick callback or in functions like <code>map()</code>, <code>filter()</code>, and <code>sorted()</code>:</p>
+        <pre><code>numbers = [1, 2, 3, 4, 5]
+
+        squared = list(map(lambda x: x**2, numbers))
+        print(squared)  # [1, 4, 9, 16, 25]
+
+        even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+        print(even_numbers)  # [2, 4]
+        </code></pre>
+
+        <h4>Key Notes</h4>
+        <ul>
+            <li>Lambda functions are limited to a single expression.</li>
+            <li>They are useful for short, throwaway functions.</li>
+            <li>Cannot contain statements, only expressions.</li>
+        </ul>
+
+        ---
+
+        <h2>5. Scope of Variables in Functions</h2>
+        <p>Python uses the <strong>LEGB rule</strong> to determine variable scope:</p>
+        <ul>
+            <li><strong>Local</strong> – inside the function</li>
+            <li><strong>Enclosing</strong> – inside an enclosing function</li>
+            <li><strong>Global</strong> – outside all functions</li>
+            <li><strong>Built-in</strong> – Python built-in names</li>
+        </ul>
+
+        <h4>Example of Local vs Global</h4>
+        <pre><code>x = 10  # Global variable
+
+        def func():
+            x = 5  # Local variable
+            print("Inside function:", x)
+
+        func()           # Inside function: 5
+        print("Outside function:", x)  # Outside function: 10
+        </code></pre>
+
+        <h4>Using the Global Keyword</h4>
+        <p>Modify a global variable inside a function:</p>
+        <pre><code>x = 10
+
+        def update():
+            global x
+            x = 20
+
+        update()
+        print(x)  # 20
+        </code></pre>
+
+        <h4>Enclosing Scope Example (Nested Functions)</h4>
+        <pre><code>def outer():
+            x = "Outer Variable"
+            
+            def inner():
+                print("Inner sees:", x)  # Accesses enclosing scope variable
+            inner()
+
+        outer()  # Inner sees: Outer Variable
+        </code></pre>
+
+        <h4>Key Notes</h4>
+        <ul>
+            <li>Local variables exist only inside their function.</li>
+            <li>Global variables can be accessed inside functions but need <code>global</code> to modify.</li>
+            <li>Enclosing variables are available to nested functions (closures).</li>
+        </ul>
+
+        ---
+
+        <h2>6. Nested Functions</h2>
+        <p>Functions can be defined inside other functions. The inner function can access variables from the enclosing function, creating closures.</p>
+
+        <h4>Basic Example</h4>
+        <pre><code>def outer():
+            x = "Hello"
+            
+            def inner():
+                print(x)  # Accesses outer function variable
+            
+            inner()
+
+        outer()  # Hello
+        </code></pre>
+
+        <h4>Returning a Nested Function</h4>
+        <p>Nested functions can also be returned from their enclosing function:</p>
+        <pre><code>def outer_func(msg):
+            def inner_func():
+                print(msg)
+            return inner_func
+
+        func = outer_func("Hi Talha!")
+        func()  # Hi Talha!
+        </code></pre>
+
+        <h4>Use Cases of Nested Functions</h4>
+        <ul>
+            <li>Encapsulation – keeping helper functions private.</li>
+            <li>Closures – preserving state between function calls.</li>
+            <li>Decorators – modifying functions dynamically.</li>
+        </ul>
+
+
+        ---
+
+        <h2>7. Best Practices</h2>
+        <ul>
+            <li>Use meaningful function names</li>
+            <li>Keep functions small and focused on one task</li>
+            <li>Use docstrings to describe function behavior</li>
+            <li>Use default arguments and keyword arguments for clarity</li>
+        </ul>
+
+        ---
+
+        <h2>8. Interview Questions</h2>
+        <h3>Q1. What is a function in Python?</h3>
+        <p>A block of code that performs a specific task and can be reused.</p>
+
+        <h3>Q2. Difference between local and global variable in a function?</h3>
+        <p>Local variables exist inside a function, global variables exist outside and can be accessed anywhere.</p>
+
+        <h3>Q3. What is a lambda function?</h3>
+        <p>A small anonymous function defined using the <code>lambda</code> keyword, usually for short operations.</p>
+
+        <h3>Q4. Can functions return multiple values?</h3>
+        <p>Yes, by returning a tuple: <code>return a, b, c</code></p>
+    </section>
+    </div>
+</main>
+
+
+    <!-- <script src="../../js/python.js"></script> -->
+</body>
+</html>
