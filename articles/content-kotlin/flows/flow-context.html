@@ -1,0 +1,213 @@
+<section>
+  <h2>1. Introduction</h2>
+  <p>
+    Kotlin Flow provides asynchronous, reactive streams that can emit multiple values over time.
+    While building flows, two very important topics must be understood:
+  </p>
+  <ul>
+    <li><strong>Context Switching</strong> – deciding which dispatcher the flow uses for production and consumption.</li>
+    <li><strong>Exception Handling</strong> – handling errors using <code>try/catch</code>, <code>catch()</code>, and <code>onCompletion()</code>.</li>
+  </ul>
+  <p>
+    This article explains both in detail with examples.
+  </p>
+</section>
+
+<section>
+  <h2>2. Context Switching in Flows</h2>
+  <p>
+    In coroutines, context switching determines whether code runs on <code>Dispatchers.IO</code>,
+    <code>Dispatchers.Default</code>, or <code>Dispatchers.Main</code>. 
+    With Flow, you can choose:
+  </p>
+
+  <ul>
+    <li><strong>The context for producing values</strong> → using <code>flowOn()</code></li>
+    <li><strong>The context for collecting values</strong> → using <code>withContext()</code> or collectors on Main</li>
+  </ul>
+
+  <h3>Why flowOn()?</h3>
+  <p>
+    <code>flowOn()</code> changes the context of upstream operations (the producer).
+    It moves heavy tasks like API calls, file reads, or computation off the main thread.
+  </p>
+
+  <h3>Important Point</h3>
+  <p>
+    <code>flowOn()</code> affects only the flow builder (producer), not the collector.
+  </p>
+
+  <h3>Example 1 – Switching Producer Context</h3>
+  <pre><code>
+val numbers = flow {
+    println("Producing on: " + Thread.currentThread().name)
+    for (i in 1..3) {
+        delay(300)
+        emit(i)
+    }
+}.flowOn(Dispatchers.IO)
+
+withContext(Dispatchers.Main) {
+    numbers.collect {
+        println("Collected $it on: " + Thread.currentThread().name)
+    }
+}
+  </code></pre>
+
+  <h4>Output (example)</h4>
+  <pre><code>
+Producing on: DefaultDispatcher-worker-1
+Collected 1 on: main
+Collected 2 on: main
+Collected 3 on: main
+  </code></pre>
+
+  <p>The producer runs on IO, consumer runs on Main safely.</p>
+
+  <h3>Example 2 – Heavy computation with flowOn</h3>
+  <pre><code>
+val flowData = flow {
+    println("Generating on: " + Thread.currentThread().name)
+    emit((1..1_000_000).sum())
+}.flowOn(Dispatchers.Default)
+
+flowData.collect {
+    println("Result = $it, collected on: " + Thread.currentThread().name)
+}
+  </code></pre>
+
+  <h4>Output</h4>
+  <pre><code>
+Generating on: DefaultDispatcher-worker-2
+Result = 500000500000, collected on: main
+  </code></pre>
+</section>
+
+<section>
+  <h2>3. Exception Handling in Flow</h2>
+  <p>
+    Exceptions can occur during:
+  </p>
+  <ul>
+    <li>Emission (producer)</li>
+    <li>Operators (map, filter, reduce, etc.)</li>
+    <li>Collection (consumer)</li>
+  </ul>
+
+  <p>Flow provides three ways to handle exceptions:</p>
+  <ol>
+    <li><strong>try/catch</strong> – around the <code>collect</code> block</li>
+    <li><strong>catch()</strong> operator – inside the flow chain</li>
+    <li><strong>onCompletion()</strong> – runs whether success or failure</li>
+  </ol>
+</section>
+
+<section>
+  <h2>4. Using try/catch with Flow</h2>
+  <p>
+    The simplest way: wrap the <code>collect</code> call in a <code>try/catch</code>.
+    This catches all exceptions thrown inside the flow.
+  </p>
+
+  <h3>Example</h3>
+  <pre><code>
+val myFlow = flow {
+    emit(1)
+    emit(2)
+    emit(3 / 0) // Error
+    emit(4)
+}
+
+try {
+    myFlow.collect { println(it) }
+} catch (e: Exception) {
+    println("Caught error: ${'$'}e")
+}
+  </code></pre>
+
+  <h4>Output</h4>
+  <pre><code>
+1
+2
+Caught error: java.lang.ArithmeticException: / by zero
+  </code></pre>
+
+  <p><strong>Note:</strong> Flow stops immediately when an exception occurs.</p>
+</section>
+
+<section>
+  <h2>5. Handling Exceptions Using catch()</h2>
+  <p>
+    <code>catch()</code> is a flow operator that catches upstream errors and allows fallback values.
+  </p>
+
+  <h3>Example – Using catch() inside Flow</h3>
+  <pre><code>
+flow {
+    emit("Loading...")
+    emit(10)
+    emit(10 / 0)  // Exception
+    emit(20)
+}.catch { e ->
+    emit("Error occurred: ${'$'}e")
+}.collect {
+    println(it)
+}
+  </code></pre>
+
+  <h4>Output</h4>
+  <pre><code>
+Loading...
+10
+Error occurred: java.lang.ArithmeticException: / by zero
+  </code></pre>
+
+  <p>
+    Here flow doesn't crash — it emits an error message instead of stopping.
+  </p>
+</section>
+
+<section>
+  <h2>6. Using onCompletion() for Final Tasks</h2>
+  <p>
+    <code>onCompletion()</code> runs after the flow finishes.
+    It tells whether the flow completed normally or with an exception.
+  </p>
+
+  <h3>Example</h3>
+  <pre><code>
+flow {
+    emit(1)
+    emit(2)
+    emit(3 / 0) // Crash
+}.onCompletion { cause ->
+    if (cause == null)
+        println("Flow completed successfully")
+    else
+        println("Flow finished with error: ${'$'}cause")
+}.catch { e ->
+    println("Caught: ${'$'}e")
+}.collect {
+    println("Collected: ${'$'}it")
+}
+  </code></pre>
+
+  <h4>Output</h4>
+  <pre><code>
+Collected: 1
+Collected: 2
+Flow finished with error: java.lang.ArithmeticException: / by zero
+Caught: java.lang.ArithmeticException: / by zero
+  </code></pre>
+</section>
+
+<section>
+  <h2>7. Summary</h2>
+  <ul>
+    <li><code>flowOn()</code> changes producer thread, not consumer.</li>
+    <li><code>try/catch</code> catches exceptions around <code>collect</code>.</li>
+    <li><code>catch()</code> catches upstream flow exceptions.</li>
+    <li><code>onCompletion()</code> runs after flow ends and tells if error occurred.</li>
+    <li>All three are used together for robust flow design.</li>
+  </ul>
+</section>

@@ -1,0 +1,315 @@
+<section>
+  <h2>1. Introduction – What is SharedFlow?</h2>
+  <p>
+    <code>SharedFlow</code> is a hot, broadcast-style flow in Kotlin used to send events or data to multiple collectors at the same time. 
+    Unlike cold flows, <strong>SharedFlow does not depend on a single collector</strong>. 
+    It keeps emitting values even when no one is listening.
+  </p>
+
+  <h3>Key Properties</h3>
+  <ul>
+    <li><strong>Hot Flow</strong> – producers never stop, regardless of collectors.</li>
+    <li><strong>Multicast</strong> – multiple collectors receive the same values.</li>
+    <li><strong>Supports replay</strong> – can replay previously emitted items to new collectors.</li>
+    <li><strong>Does not complete</strong> – SharedFlow never ends.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. SharedFlow vs Cold Flow</h2>
+  <p>
+    A cold flow starts producing values <strong>only when collected</strong>.  
+    But SharedFlow starts emitting immediately after creation.
+  </p>
+
+  <h3>Cold Flow Example</h3>
+  <pre><code>
+val coldFlow = flow {
+    emit(1)
+    emit(2)
+    emit(3)
+}
+coldFlow.collect { println("Collector: $it") } // Starts fresh
+  </code></pre>
+
+  <h3>SharedFlow Example</h3>
+  <pre><code>
+val shared = MutableSharedFlow<Int>()
+shared.emit(1)
+shared.emit(2)
+shared.collect { println("A: $it") } // Does NOT receive past values
+  </code></pre>
+
+  <p><strong>Output:</strong> (collector A receives nothing because no replay is set)</p>
+</section>
+
+<section>
+  <h2>3. Basic SharedFlow Example (Hot Behavior)</h2>
+  <pre><code>
+val sf = MutableSharedFlow<Int>()
+
+launch {
+    delay(500)
+    sf.collect { println("Collector 1: $it") }
+}
+
+launch {
+    repeat(3) {
+        delay(300)
+        println("Emitting $it")
+        sf.emit(it)
+    }
+}
+  </code></pre>
+
+  <h3>Output</h3>
+  <pre><code>
+Emitting 0
+Emitting 1
+Collector 1: 1
+Emitting 2
+Collector 1: 2
+  </code></pre>
+
+  <p>
+    <strong>Explanation:</strong> Collector starts late, so it misses older emissions.
+  </p>
+</section>
+
+<section>
+  <h2>4. Multiple Collectors on SharedFlow</h2>
+  <pre><code>
+val sf = MutableSharedFlow<Int>()
+
+launch {
+    sf.collect { println("Collector A: $it") }
+}
+
+launch {
+    sf.collect { println("Collector B: $it") }
+}
+
+launch {
+    repeat(3) {
+        sf.emit(it)
+    }
+}
+  </code></pre>
+
+  <h3>Output</h3>
+  <pre><code>
+Collector A: 0
+Collector B: 0
+Collector A: 1
+Collector B: 1
+Collector A: 2
+Collector B: 2
+  </code></pre>
+
+  <p>
+    Both collectors receive the same values simultaneously. SharedFlow broadcasts items.
+  </p>
+</section>
+
+<section>
+  <h2>5. Impact of Delay in One Consumer</h2>
+  <p>
+    SharedFlow does <strong>not slow down producers</strong>.  
+    If one collector is slow, the other collectors continue normally.
+  </p>
+
+  <pre><code>
+val sf = MutableSharedFlow<Int>()
+
+launch {
+    sf.collect { 
+        delay(300)
+        println("Slow Collector: $it")
+    }
+}
+
+launch {
+    sf.collect { 
+        println("Fast Collector: $it")
+    }
+}
+
+launch {
+    repeat(3) {
+        println("Emit $it")
+        sf.emit(it)
+    }
+}
+  </code></pre>
+
+  <h3>Output</h3>
+  <pre><code>
+Emit 0
+Fast Collector: 0
+Emit 1
+Fast Collector: 1
+Emit 2
+Fast Collector: 2
+Slow Collector: 0
+Slow Collector: 1
+Slow Collector: 2
+  </code></pre>
+
+  <p>
+    The slow collector lags behind, but SharedFlow stores nothing unless replay is set.  
+    All emissions are delivered, but slow collectors may process late.
+  </p>
+</section>
+<h2>Does the Slow Collector Miss Values in SharedFlow?</h2>
+
+<p>No, in this case the slow collector does not miss any values. Even though <code>MutableSharedFlow</code> has <code>replay = 0</code>, it still delivers all emissions to all actively collecting collectors.</p>
+
+<h3>Code Example</h3>
+
+<pre>
+<code>
+val sf = MutableSharedFlow()
+
+launch {
+    sf.collect { 
+        delay(300)
+        println("Slow Collector: $it")
+    }
+}
+
+launch {
+    sf.collect { 
+        println("Fast Collector: $it")
+    }
+}
+
+launch {
+    repeat(3) {
+        println("Emit $it")
+        sf.emit(it)
+    }
+}
+</code>
+</pre>
+
+<h3>Output</h3>
+
+<pre>
+Emit 0
+Fast Collector: 0
+Emit 1
+Fast Collector: 1
+Emit 2
+Fast Collector: 2
+Slow Collector: 0
+Slow Collector: 1
+Slow Collector: 2
+</pre>
+
+<h3>Explanation</h3>
+
+<p>
+Even though the slow collector processes each value with a delay, it does not lose values.
+A <code>SharedFlow</code> without replay does not store values for future collectors, but it does deliver emissions to all currently active collectors.
+</p>
+
+<p>
+Because both collectors are already collecting when emissions start, both receive all values. The fast collector prints immediately, while the slow collector prints later due to its delay.
+</p>
+
+<p>
+If you start collecting <strong>after</strong> the emissions, then without replay you would miss values. But in this example, both collectors are active before emission, so no value is lost.
+</p>
+
+
+<section>
+  <h2>6. SharedFlow Replay (Replaying Old Items)</h2>
+  <p>
+    You can replay the last <code>n</code> values using:
+    <code>MutableSharedFlow(replay = n)</code>
+  </p>
+
+  <h3>Example – replay = 1</h3>
+  <pre><code>
+val sf = MutableSharedFlow<Int>(replay = 1)
+
+sf.emit(10)
+sf.emit(20)
+
+sf.collect { println("Collector A: $it") }
+  </code></pre>
+
+  <h3>Output</h3>
+  <pre><code>
+Collector A: 20
+  </code></pre>
+
+  <p>
+    New collectors receive the last emission automatically.
+  </p>
+</section>
+
+<section>
+  <h2>7. Encapsulation of SharedFlow in ViewModel</h2>
+  <p>
+    SharedFlow is commonly used in MVVM for UI events such as:
+  </p>
+  <ul>
+    <li>Navigation</li>
+    <li>Toasts</li>
+    <li>One-time events</li>
+    <li>Loading indicators</li>
+  </ul>
+
+  <p>
+    ViewModels use encapsulation to expose <strong>read-only SharedFlow</strong> to the UI.
+  </p>
+
+  <h3>ViewModel Example</h3>
+  <pre><code>
+class MyViewModel : ViewModel() {
+
+    private val _events = MutableSharedFlow<String>(replay = 0)
+    val events: SharedFlow<String> get() = _events
+
+    fun sendEvent(msg: String) {
+        viewModelScope.launch {
+            _events.emit(msg)
+        }
+    }
+}
+  </code></pre>
+
+  <h3>UI Collection</h3>
+  <pre><code>
+lifecycleScope.launch {
+    viewModel.events.collect { 
+        println("UI Event: $it")
+    }
+}
+
+viewModel.sendEvent("Login Successful")
+  </code></pre>
+
+  <h3>Output</h3>
+  <pre><code>
+UI Event: Login Successful
+  </code></pre>
+
+  <p>
+    The UI cannot modify the SharedFlow directly because the setter is private.  
+    This is perfect encapsulation.
+  </p>
+</section>
+
+<section>
+  <h2>8. Summary</h2>
+  <ul>
+    <li><strong>SharedFlow is a hot, broadcast flow.</strong></li>
+    <li>It emits values even without collectors.</li>
+    <li>Multiple collectors receive the same values.</li>
+    <li>Slow collectors process items late but do not affect others.</li>
+    <li><code>replay</code> allows sending old values to new collectors.</li>
+    <li>Used in ViewModels for one-time UI events with encapsulation.</li>
+  </ul>
+</section>
