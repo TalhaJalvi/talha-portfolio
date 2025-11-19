@@ -1,0 +1,447 @@
+<section>
+
+  <h1>Kotlin Flow Operators — Detailed Guide</h1>
+  <p>
+    Flow operators help you transform, combine, control, and manage data streams.  
+    Operators are divided into:
+  </p>
+
+  <h3>1. Terminal Operators</h3>
+  <ul>
+    <li>Start the flow</li>
+    <li>Are <strong>suspend</strong> functions</li>
+    <li>Examples: <code>collect</code>, <code>toList</code>, <code>first</code>, <code>reduce</code>, <code>fold</code></li>
+  </ul>
+
+  <h3>2. Non-Terminal Operators</h3>
+  <ul>
+    <li>Transform the flow</li>
+    <li>Return a new Flow</li>
+    <li>Examples: <code>map</code>, <code>filter</code>, <code>onEach</code>, <code>take</code>, <code>drop</code></li>
+  </ul>
+
+  <hr>
+
+  <h2>Common Flow Operators (Detailed with Examples)</h2>
+
+  <!-- onStart -->
+  <h3>1. onStart</h3>
+  <p>Runs BEFORE the flow starts emitting values. Useful for loading states, logs, or counters.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>flow {
+    emit(1)
+    emit(2)
+}.onStart {
+    println("Flow started")
+}.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Flow started
+1
+2</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>fun fetchData() = flow {
+    delay(300)
+    emit("Data Loaded")
+}
+
+fetchData()
+    .onStart { println("Loading...") }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Loading...
+Data Loaded</code></pre>
+
+  <hr>
+
+  <!-- onCompletion -->
+  <h3>2. onCompletion</h3>
+  <p>Runs AFTER the flow completes — even if an exception occurs.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>flow {
+    emit(10)
+    emit(20)
+}
+.onCompletion { println("Finished") }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>10
+20
+Finished</code></pre>
+
+  <h4>Example 2 (exception)</h4>
+  <pre><code>flow {
+    emit(1)
+    throw RuntimeException("Boom!")
+}
+.onCompletion { println("Completed (error or success)") }
+.catch { println("Caught: ${'$'}it") }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+Completed (error or success)
+Caught: java.lang.RuntimeException: Boom!</code></pre>
+
+  <hr>
+
+  <!-- catch -->
+  <h3>3. catch</h3>
+  <p>Catches upstream exceptions. Does NOT catch exceptions inside <code>collect</code>.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>flow {
+    emit(1)
+    throw Exception("Error")
+}.catch { emit(0) }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+0</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flow<Int> {
+    throw IllegalStateException("Invalid")
+}
+.catch { println("Caught: ${'$'}it") }
+.collect()</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Caught: java.lang.IllegalStateException: Invalid</code></pre>
+
+  <hr>
+
+  <!-- collectLatest -->
+  <h3>4. collectLatest</h3>
+  <p>Cancels previous collector block when a new value arrives. Useful for search boxes, typing events.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..3).asFlow()
+    .onEach { delay(200) }
+    .collectLatest { 
+        println("Collecting ${'$'}it")
+        delay(300)
+    }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Collecting 1   (cancelled by 2)
+Collecting 2   (cancelled by 3)
+Collecting 3</code></pre>
+
+  <h4>Example 2 (typing simulation)</h4>
+  <pre><code>flowOf("h", "he", "hel", "hell", "hello")
+    .onEach { delay(100) }
+    .collectLatest { println("Searching for: ${'$'}it") }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Searching for: h   (cancelled)
+Searching for: he  (cancelled)
+Searching for: hel (cancelled)
+Searching for: hell(cancelled)
+Searching for: hello</code></pre>
+
+  <hr>
+
+  <!-- zip -->
+  <h3>5. zip</h3>
+  <p>Combines two flows by pairing items by index. Stops when shorter flow ends.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>val f1 = flowOf(1, 2, 3)
+val f2 = flowOf("A", "B")
+
+f1.zip(f2) { n, c -> "${'$'}n -> ${'$'}c" }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1 -> A
+2 -> B</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>(1..3).asFlow().zip((10..30 step 10).asFlow()) { a, b ->
+    a + b
+}.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>11
+22
+33</code></pre>
+
+  <hr>
+
+  <!-- combine -->
+  <h3>6. combine</h3>
+  <p>
+    Emits whenever ANY flow emits, using the latest values from both.  
+    Unlike zip, combine does NOT require equal lengths.
+  </p>
+
+  <h4>Example 1</h4>
+  <pre><code>val f1 = flowOf(1, 2)
+val f2 = flowOf("A", "B", "C")
+
+f1.combine(f2) { a, b -> "${'$'}a + ${'$'}b" }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1 + A
+1 + B
+1 + C
+2 + C</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>val numbers = (1..3).asFlow().onEach { delay(100) }
+val letters = flowOf("X", "Y").onEach { delay(200) }
+
+numbers.combine(letters) { a, b -> "${'$'}a & ${'$'}b" }
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1 & X
+2 & X
+3 & X
+3 & Y</code></pre>
+
+  <hr>
+
+  <!-- flattenMerge -->
+  <h3>7. flattenMerge</h3>
+  <p>Merges inner flows concurrently, emitting as soon as values are available.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>flowOf(
+    flow { delay(200); emit("A") },
+    flow { delay(100); emit("B") }
+).flattenMerge()
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>B
+A</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>listOf(1, 2, 3).map {
+    flow {
+        delay(300 - it * 50)
+        emit("Flow ${'$'}it")
+    }
+}.asFlow().flattenMerge()
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Flow 3
+Flow 2
+Flow 1</code></pre>
+
+  <hr>
+
+  <!-- flattenConcat -->
+  <h3>8. flattenConcat</h3>
+  <p>Collects flows sequentially. Unlike merge, it waits for one to finish before starting the next.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>flowOf(
+    flow { emit("A1"); emit("A2") },
+    flow { emit("B1") }
+).flattenConcat()
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>A1
+A2
+B1</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>listOf(
+    flow { delay(100); emit(1) },
+    flow { delay(50); emit(2) }
+).asFlow().flattenConcat()
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+2</code></pre>
+
+  <hr>
+
+  <!-- map -->
+  <h3>9. map</h3>
+  <p>Transforms each emitted value.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..3).asFlow()
+    .map { it * 2 }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>2
+4
+6</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flowOf("a", "bb", "ccc")
+    .map { it.length }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+2
+3</code></pre>
+
+  <hr>
+
+  <!-- filter -->
+  <h3>10. filter</h3>
+  <p>Filters out unwanted values.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..5).asFlow()
+    .filter { it % 2 == 0 }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>2
+4</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flowOf("Dog", "Cat", "Apple")
+    .filter { it.startsWith("A") }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Apple</code></pre>
+
+  <hr>
+
+  <!-- take -->
+  <h3>11. take</h3>
+  <p>Stops after emitting N values.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..5).asFlow().take(3)
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+2
+3</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flow {
+    emit("A")
+    emit("B")
+    emit("C")
+}.take(2)
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>A
+B</code></pre>
+
+  <hr>
+
+  <!-- drop -->
+  <h3>12. drop</h3>
+  <p>Skips first N values.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..5).asFlow().drop(2)
+.collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>3
+4
+5</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flowOf("A", "B", "C", "D")
+    .drop(1)
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>B
+C
+D</code></pre>
+
+  <hr>
+
+  <!-- reduce -->
+  <h3>13. reduce (Terminal Operator)</h3>
+  <p>Reduces the flow into a single value.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..4).asFlow()
+    .reduce { acc, value -> acc + value }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>10</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flowOf("A", "B", "C")
+    .reduce { acc, value -> acc + value }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>ABC</code></pre>
+
+  <hr>
+
+  <!-- fold -->
+  <h3>14. fold (Terminal Operator)</h3>
+  <p>Same as reduce but starts with an initial value.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>(1..3).asFlow()
+    .fold(10) { acc, value -> acc + value }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>16</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>flowOf("A", "B")
+    .fold("Start: ") { acc, value -> acc + value }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>Start: AB</code></pre>
+
+  <hr>
+
+  <!-- asFlow -->
+  <h3>15. asFlow</h3>
+  <p>Converts collections, ranges, or sequences into flows.</p>
+
+  <h4>Example 1</h4>
+  <pre><code>listOf(1, 2, 3).asFlow()
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>1
+2
+3</code></pre>
+
+  <h4>Example 2</h4>
+  <pre><code>(10..15).asFlow()
+    .filter { it > 12 }
+    .collect { println(it) }</code></pre>
+
+  <strong>Output:</strong>
+  <pre><code>13
+14
+15</code></pre>
+
+  <hr>
+
+  <h2>Summary</h2>
+  <p>This article covered:</p>
+  <ul>
+    <li>Terminal operators</li>
+    <li>Non-terminal operators</li>
+    <li>20+ operators with examples & output</li>
+  </ul>
+
+</section>

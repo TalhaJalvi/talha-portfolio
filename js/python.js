@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDisplay = document.querySelector('.content #content-display'); // Target div where content is loaded
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
-    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    // const navLinks = document.querySelectorAll('.sidebar .nav-link');
     const themeSwitcher = document.getElementById('theme-switcher');
     const body = document.body;
 
@@ -25,57 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * Fetches content from a URL and injects it into the display area.
-     * @param {string} url - The path to the HTML content file (e.g., 'content/intro.html')
-     */
-   /**
- * Fetches content from a URL and injects it into the display area.
- * @param {string} url - The path to the HTML content file (e.g., 'content/intro.html')
- */
-function loadContent(url) {
-    if (!contentDisplay) return;
 
-    // Use fetch and chain Promises with .then()
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                // Throw an error if the HTTP status is not successful
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            // Return the promise for the response text to the next .then()
-            return response.text();
-        })
-        .then(htmlContent => {
-            // 2. Inject the content
-            contentDisplay.innerHTML = htmlContent;
-
-            // 3. Update the URL hash
-            const fileName = url.split('/').pop().replace('.html', '');
-            const newHash = '#' + fileName;
-
-            if (window.history.pushState) {
-                 window.history.pushState(null, '', newHash);
-            } else {
-                 window.location.hash = newHash;
-            }
-
-            // 4. Update the active link
-            setActiveLink(url);
-        })
-        .catch(error => {
-            console.error('Could not load content:', error);
-            // Apply a dedicated class for styling the error message container
-            contentDisplay.innerHTML = `
-                <div class="error-message-container">
-                    <img src="../../images/no_data_found.png" alt="Content not found">
-                    <p>Oops! We couldn't fetch the content.</p>
-                </div>
-            `;
-            // max-width:100% is better handled in CSS for the class
-        });
-        }
-    
 // --- Sidebar Toggle Logic (Original, slightly optimized) ---
     
     // Toggle the sidebar open/closed on button click
@@ -121,10 +71,6 @@ function loadContent(url) {
         }
     }
 
-    // Load content and set active link on page start
-    if (initialUrl) {
-        loadContent(initialUrl);
-    }
 
 // --- Theme Switcher (Original) ---
 
