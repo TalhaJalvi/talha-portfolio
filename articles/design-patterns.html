@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Patterns</title>
+    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Design Patterns</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+  <!-- Design Patterns Topics -->
+<nav class="sidebar">
+    <ul class="sidebar-menu">
+
+        <!-- Introduction -->
+        <li class="menu-title">Introduction</li>
+        <li><a href="design-patterns/intro/what-are-design-patterns.html" class="nav-link">What are Design Patterns and Why They Matter?</a></li>
+        <li><a href="design-patterns/intro/types-of-design-patterns.html" class="nav-link">3 Types of Design Patterns (Creational, Structural, Behavioral)</a></li>
+        <li><a href="design-patterns/intro/when-to-use-patterns.html" class="nav-link">When to Use & When NOT to Use Design Patterns</a></li>
+
+        <!-- Creational Patterns -->
+        <li class="menu-title">Creational Patterns</li>
+        <li><a href="design-patterns/creational/singleton-pattern.html" class="nav-link">1. Singleton Pattern</a></li>
+        <li><a href="design-patterns/creational/factory-method-pattern.html" class="nav-link">2. Factory Method Pattern</a></li>
+        <li><a href="design-patterns/creational/abstract-factory-pattern.html" class="nav-link">3. Abstract Factory Pattern</a></li>
+        <li><a href="design-patterns/creational/builder-pattern.html" class="nav-link">4. Builder Pattern</a></li>
+        <li><a href="design-patterns/creational/prototype-pattern.html" class="nav-link">5. Prototype Pattern</a></li>
+        <li><a href="design-patterns/creational/object-pool-pattern.html" class="nav-link">6. Object Pool Pattern</a></li>
+
+        <!-- Structural Patterns -->
+        <li class="menu-title">Structural Patterns</li>
+        <li><a href="design-patterns/structural/adapter-pattern.html" class="nav-link">7. Adapter Pattern</a></li>
+        <li><a href="design-patterns/structural/facade-pattern.html" class="nav-link">8. Facade Pattern</a></li>
+        <li><a href="design-patterns/structural/decorator-pattern.html" class="nav-link">9. Decorator Pattern</a></li>
+        <li><a href="design-patterns/structural/proxy-pattern.html" class="nav-link">10. Proxy Pattern</a></li>
+        <li><a href="design-patterns/structural/composite-pattern.html" class="nav-link">11. Composite Pattern</a></li>
+        <li><a href="design-patterns/structural/bridge-pattern.html" class="nav-link">12. Bridge Pattern</a></li>
+        <li><a href="design-patterns/structural/flyweight-pattern.html" class="nav-link">13. Flyweight Pattern</a></li>
+
+        <!-- Behavioral Patterns -->
+        <li class="menu-title">Behavioral Patterns</li>
+        <li><a href="design-patterns/behavioral/observer-pattern.html" class="nav-link">14. Observer Pattern</a></li>
+        <li><a href="design-patterns/behavioral/strategy-pattern.html" class="nav-link">15. Strategy Pattern</a></li>
+        <li><a href="design-patterns/behavioral/command-pattern.html" class="nav-link">16. Command Pattern</a></li>
+        <li><a href="design-patterns/behavioral/state-pattern.html" class="nav-link">17. State Pattern</a></li>
+        <li><a href="design-patterns/behavioral/iterator-pattern.html" class="nav-link">18. Iterator Pattern</a></li>
+        <li><a href="design-patterns/behavioral/template-method-pattern.html" class="nav-link">19. Template Method Pattern</a></li>
+        <li><a href="design-patterns/behavioral/chain-of-responsibility.html" class="nav-link">20. Chain of Responsibility</a></li>
+        <li><a href="design-patterns/behavioral/mediator-pattern.html" class="nav-link">21. Mediator Pattern</a></li>
+        <li><a href="design-patterns/behavioral/memento-pattern.html" class="nav-link">22. Memento Pattern</a></li>
+        <li><a href="design-patterns/behavioral/visitor-pattern.html" class="nav-link">23. Visitor Pattern</a></li>
+        <li><a href="design-patterns/behavioral/interpreter-pattern.html" class="nav-link">24. Interpreter Pattern</a></li>
+        <li><a href="design-patterns/behavioral/observer-pattern-android-example.html" class="nav-link">25. Observer Pattern in Android (LiveData, Flow)</a></li>
+
+        <!-- Android-specific Patterns -->
+        <li class="menu-title">Android-Specific Patterns</li>
+        <li><a href="design-patterns/android/mvvm-pattern.html" class="nav-link">26. MVVM Architecture</a></li>
+        <li><a href="design-patterns/android/mvc-pattern.html" class="nav-link">27. MVC Architecture</a></li>
+        <li><a href="design-patterns/android/mvp-pattern.html" class="nav-link">28. MVP Architecture</a></li>
+        <li><a href="design-patterns/android/repository-pattern.html" class="nav-link">29. Repository Pattern</a></li>
+        <li><a href="design-patterns/android/dependency-injection.html" class="nav-link">30. Dependency Injection (Hilt / Dagger)</a></li>
+        <li><a href="design-patterns/android/use-case-interactor-pattern.html" class="nav-link">31. UseCase / Interactor Pattern</a></li>
+        <li><a href="design-patterns/android/viewmodel-pattern.html" class="nav-link">32. ViewModel Pattern</a></li>
+        <li><a href="design-patterns/android/observer-with-livedata-flow.html" class="nav-link">33. LiveData / StateFlow Observer Pattern</a></li>
+
+        <!-- Advanced Patterns -->
+        <li class="menu-title">Advanced Patterns</li>
+        <li><a href="design-patterns/advanced/clean-architecture.html" class="nav-link">34. Clean Architecture</a></li>
+        <li><a href="design-patterns/advanced/hexagonal-architecture.html" class="nav-link">35. Hexagonal Architecture (Ports & Adapters)</a></li>
+        <li><a href="design-patterns/advanced/event-driven-architecture.html" class="nav-link">36. Event Driven Architecture</a></li>
+        <li><a href="design-patterns/advanced/redux-pattern.html" class="nav-link">37. Redux Pattern (MVI)</a></li>
+        <li><a href="design-patterns/advanced/publish-subscribe-pattern.html" class="nav-link">38. Publish-Subscribe Pattern</a></li>
+        <li><a href="design-patterns/advanced/reactive-programming-patterns.html" class="nav-link">39. Reactive Programming Patterns (Flow, RxJava)</a></li>
+
+        <!-- SOLID Principles -->
+        <li class="menu-title">SOLID Principles</li>
+        <li><a href="design-patterns/solid/single-responsibility.html" class="nav-link">40. Single Responsibility Principle</a></li>
+        <li><a href="design-patterns/solid/open-closed.html" class="nav-link">41. Open/Closed Principle</a></li>
+        <li><a href="design-patterns/solid/liskov-substitution.html" class="nav-link">42. Liskov Substitution Principle</a></li>
+        <li><a href="design-patterns/solid/interface-segregation.html" class="nav-link">43. Interface Segregation Principle</a></li>
+        <li><a href="design-patterns/solid/dependency-inversion.html" class="nav-link">44. Dependency Inversion Principle</a></li>
+
+        <!-- Extras -->
+        <li class="menu-title">Extras</li>
+        <li><a href="design-patterns/extras/common-mistakes.html" class="nav-link">45. Common Mistakes When Using Design Patterns</a></li>
+        <li><a href="design-patterns/extras/how-to-choose-pattern.html" class="nav-link">46. How to Choose the Right Design Pattern</a></li>
+        <li><a href="design-patterns/extras/patterns-used-in-android-sdk.html" class="nav-link">47. Design Patterns Used in Android SDK</a></li>
+        <li><a href="design-patterns/extras/patterns-used-in-kotlin.html" class="nav-link">48. Design Patterns Used in Kotlin Language</a></li>
+        <li><a href="design-patterns/extras/practical-interview-questions.html" class="nav-link">49. Practical Interview Questions on Design Patterns</a></li>
+
+    </ul>
+</nav>
+
+
+<main class="content">
+    <div id="content-display">
+        <section>
+            <h1>What Are Design Patterns and Why They Matter?</h1>
+
+            <p>
+                Software development is full of recurring challenges. Whether you are building an Android app, a backend service,
+                or a distributed system, you repeatedly face similar problems such as object creation, communication between
+                components, handling state, or structuring code. Design patterns provide proven, reusable solutions to these
+                common problems.
+            </p>
+
+            <h2>1. Understanding Design Patterns</h2>
+            <p>
+                A design pattern is a general and reusable solution to a commonly occurring problem in software design.
+                It does not tell you exactly what code to write; instead, it provides a blueprint or strategy for structuring
+                objects, classes, and interactions.
+            </p>
+
+            <p>
+                Design patterns help developers write cleaner, more maintainable, and more scalable software by encouraging
+                structure and reducing the need to reinvent solutions repeatedly.
+            </p>
+
+            <h2>2. Why Design Patterns Exist</h2>
+            <p>
+                As developers worked on thousands of real-world applications, they noticed that similar problems kept repeating.
+                The best solutions were also similar. Design patterns were documented to capture these recurring solutions and
+                provide a shared vocabulary for teams to communicate more effectively.
+            </p>
+
+            <h2>3. Why Not Just “Write Code That Works”?</h2>
+            <p>
+                Many codebases work initially but fail as they grow. Without patterns, projects often become:
+            </p>
+            <ul>
+                <li>Hard to maintain</li>
+                <li>Full of duplicate logic</li>
+                <li>Tightly coupled and brittle</li>
+                <li>Impossible to scale</li>
+                <li>Very difficult to test</li>
+            </ul>
+
+            <p>
+                Design patterns help avoid these problems by providing structure and clear separation of responsibilities.
+            </p>
+
+            <h2>4. What Design Patterns Are NOT</h2>
+            <p>Design patterns are often misunderstood. They are not:</p>
+            <ul>
+                <li>Frameworks</li>
+                <li>Libraries</li>
+                <li>Strict rules</li>
+                <li>Copy/paste code snippets</li>
+            </ul>
+
+            <p>
+                Patterns are flexible tools, applied only when they solve an actual problem.
+            </p>
+
+            <h2>5. Categories of Design Patterns</h2>
+
+            <h3>A. Creational Patterns</h3>
+            <p>Deal with object creation in controlled ways.</p>
+            <ul>
+                <li>Singleton</li>
+                <li>Factory Method</li>
+                <li>Builder</li>
+                <li>Abstract Factory</li>
+                <li>Prototype</li>
+            </ul>
+
+            <h3>B. Structural Patterns</h3>
+            <p>Explain how to organize and combine objects/classes.</p>
+            <ul>
+                <li>Adapter</li>
+                <li>Facade</li>
+                <li>Composite</li>
+                <li>Decorator</li>
+                <li>Proxy</li>
+            </ul>
+
+            <h3>C. Behavioral Patterns</h3>
+            <p>Define communication and responsibility sharing between objects.</p>
+            <ul>
+                <li>Observer</li>
+                <li>Strategy</li>
+                <li>Command</li>
+                <li>State</li>
+                <li>Iterator</li>
+            </ul>
+
+            <h2>6. Why Design Patterns Matter</h2>
+
+            <h3>1. Code Becomes Easier to Understand</h3>
+            <p>
+                When a developer sees a known pattern (e.g., MVVM, Singleton, Repository), they immediately understand the system
+                structure. Patterns create a common language.
+            </p>
+
+            <h3>2. Code Reusability</h3>
+            <p>
+                Patterns help avoid writing the same logic repeatedly by providing general solutions that can be adapted across
+                the project.
+            </p>
+
+            <h3>3. Scalability</h3>
+            <p>
+                As apps grow, adding new features becomes easier because patterns separate responsibilities and decouple modules.
+            </p>
+
+            <h3>4. Easier Testing</h3>
+            <p>
+                Many patterns (Dependency Injection, Repository, Observer) make unit testing straightforward by isolating logic
+                and reducing dependencies.
+            </p>
+
+            <h3>5. Maintainability</h3>
+            <p>
+                Patterns promote clear boundaries, predictable behavior, and easier refactoring. This keeps long-term projects
+                stable and clean.
+            </p>
+
+            <h3>6. Better Engineering Skills</h3>
+            <p>
+                Understanding patterns improves your architectural thinking and helps you avoid anti-patterns such as god
+                classes, tight coupling, or unnecessary repetition.
+            </p>
+
+            <h2>7. Real-World Examples (Android)</h2>
+
+            <h3>MVVM Architecture</h3>
+            <p>
+                MVVM combines multiple patterns: ViewModel for state, LiveData/StateFlow for Observer pattern, and Repository
+                for data abstraction.
+            </p>
+
+            <h3>Retrofit</h3>
+            <p>Uses:</p>
+            <ul>
+                <li>Builder Pattern</li>
+                <li>Proxy Pattern</li>
+                <li>Adapter Pattern</li>
+            </ul>
+
+            <h3>Room Database</h3>
+            <p>Uses:</p>
+            <ul>
+                <li>DAO Pattern</li>
+                <li>Repository Pattern</li>
+            </ul>
+
+            <h3>Coroutines & Flow</h3>
+            <p>
+                Implements reactive and observer-based patterns for asynchronous and stream-based programming.
+            </p>
+
+            <h2>8. When NOT to Use a Design Pattern</h2>
+            <p>Do not use patterns when:</p>
+            <ul>
+                <li>The project is small and simple</li>
+                <li>The pattern adds unnecessary complexity</li>
+                <li>You do not fully understand the problem yet</li>
+                <li>You are applying a pattern just for the sake of it</li>
+            </ul>
+
+            <h2>9. Summary</h2>
+            <p>
+                Design patterns matter because they improve readability, scalability, maintainability, and testing. They provide
+                reusable solutions, reduce complexity, and help teams communicate clearly. They form the foundation for clean,
+                stable, and professional software architectures.
+            </p>
+
+        </section>
+
+    </div>
+</main>
+
+
+
+<script src="../js/python.js"></script>
+</body>
+</html>
