@@ -1,190 +1,306 @@
-<section id="mvp-architecture" class="basic-1 bg-gray py-5">
-    <div class="container">
-        <h1 class="text-center mb-5">MVP Architecture in Android — Complete Guide with Example</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <h3>1. What is MVP Architecture?</h3>
-        <p>
-            MVP stands for <strong>Model–View–Presenter</strong>. 
-            It evolved from the classic MVC pattern to solve Android’s problem of 
-            <em>tight coupling between the View and Controller</em>.
-            In MVP, the <em>Presenter</em> acts as the middle layer between the View and Model, 
-            making the architecture more testable, modular, and maintainable.
-        </p>
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-        <h3>2. Key Components of MVP</h3>
-        <ul>
-            <li><strong>Model:</strong> Manages data and business logic. It can fetch data from a 
-                database, network, or API, and expose methods to the Presenter.</li>
-            <li><strong>View:</strong> Handles UI elements and user interactions. 
-                It’s passive — meaning it only displays data and sends user actions to the Presenter.</li>
-            <li><strong>Presenter:</strong> Connects the View and the Model. 
-                It retrieves data from the Model and updates the View accordingly. 
-                It contains no Android framework code, which makes it easy to test.</li>
-        </ul>
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
 
-        <h3>3. MVP Data Flow</h3>
-        <ol>
-            <li>User interacts with the <strong>View</strong> (e.g., clicks a button).</li>
-            <li>The <strong>View</strong> delegates the event to the <strong>Presenter</strong>.</li>
-            <li>The <strong>Presenter</strong> requests data or performs logic via the <strong>Model</strong>.</li>
-            <li>The <strong>Model</strong> returns data to the <strong>Presenter</strong>.</li>
-            <li>The <strong>Presenter</strong> updates the <strong>View</strong> with the new data.</li>
-        </ol>
+        <!-- 1. App Architecture -->
+        <li class="menu-section">App Architecture</li>
+        <li><a href="../../../articles/android-core.html" class="nav-link">Introduction to Architecture</a></li>
+        <li><a href="../../content-android/architecture/mvc.html" class="nav-link">MVC Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp.html" class="nav-link">MVP Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvvm.html" class="nav-link">MVVM Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvi.html" class="nav-link">MVI Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp-mvc-in-compose.html" class="nav-link">Using MVP and MVC in Compose</a></li>
+        <li><a href="../../content-android/architecture/clean-architecture.html" class="nav-link">Clean Architecture</a></li>
+        <li><a href="../../content-android/architecture/layers.html" class="nav-link">Data, Domain & UI Layers</a></li>
+        <li><a href="../../content-android/architecture/repository-pattern.html" class="nav-link">Repository Pattern</a></li>
+        <li><a href="../../content-android/architecture/modularization.html" class="nav-link">App Modularization</a></li>
 
-        <h3>4. Advantages of MVP</h3>
-        <ul>
-            <li>Improved <strong>testability</strong> since the Presenter doesn’t depend on Android SDK.</li>
-            <li>Better <strong>separation of concerns</strong> than MVC.</li>
-            <li><strong>Reusability</strong> — Presenter can be reused with different Views.</li>
-            <li>Clean and maintainable architecture for medium to large projects.</li>
-        </ul>
+        <!-- 2. Dependency Injection -->
+        <li class="menu-section">Dependency Injection (DI)</li>
+        <li><a href="../../content-android/di/intro.html" class="nav-link">Introduction to DI</a></li>
+        <li><a href="../../content-android/di/hilt.html" class="nav-link">Hilt Basics</a></li>
+        <li><a href="../../content-android/di/dagger.html" class="nav-link">Dagger 2 Overview</a></li>
+        <li><a href="../../content-android/di/koin.html" class="nav-link">Koin Framework</a></li>
+        <li><a href="../../content-android/di/scopes-components.html" class="nav-link">Scopes & Components</a></li>
+        <li><a href="../../content-android/di/testing.html" class="nav-link">Testing with DI</a></li>
 
-        <h3>5. Example: Simple Login Feature Using MVP</h3>
-        <p>Below is an example implementation of MVP pattern for a login screen.</p>
+        <!-- 3. Data Persistence -->
+        <li class="menu-section">Data Persistence</li>
+        <li><a href="../../content-android/persistence/overview.html" class="nav-link">Overview of Data Persistence</a></li>
+        <li><a href="../../content-android/persistence/sharedpreferences.html" class="nav-link">SharedPreferences</a></li>
+        <li><a href="../../content-android/persistence/datastore.html" class="nav-link">DataStore (Proto & Preferences)</a></li>
+        <li><a href="../../content-android/persistence/room.html" class="nav-link">Room Database</a></li>
+        <li><a href="../../content-android/persistence/sqlite.html" class="nav-link">SQLite Database</a></li>
+        <li><a href="../../content-android/persistence/repository.html" class="nav-link">Repository Pattern in Persistence</a></li>
+        <li><a href="../../content-android/persistence/offline-sync.html" class="nav-link">Offline-First & Sync Strategies</a></li>
 
-        <h4>📁 Folder Structure</h4>
-        <pre><code>
-        ├── model/
-        │   └── UserModel.kt
-        ├── presenter/
-        │   └── LoginPresenter.kt
-        ├── view/
-        │   ├── LoginView.kt
-        │   └── LoginActivity.kt
-        └── activity_login.xml
-        </code></pre>
+        <!-- 4. Networking & Data Layer -->
+        <li class="menu-section">Networking & Data Layer</li>
+        <li><a href="../../content-android/networking/retrofit.html" class="nav-link">Retrofit & OkHttp</a></li>
+        <li><a href="../../content-android/networking/interceptors.html" class="nav-link">Interceptors & Logging</a></li>
+        <li><a href="../../content-android/networking/error-handling.html" class="nav-link">Error Handling</a></li>
+        <li><a href="../../content-android/networking/caching.html" class="nav-link">Caching & Pagination</a></li>
+        <li><a href="../../content-android/networking/api-layer.html" class="nav-link">API Layer & Repository Integration</a></li>
 
-        <h4>🎨 View: activity_login.xml</h4>
-        <pre><code class="language-xml">
-        &lt;LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"&gt;
+        <!-- 5. State Management -->
+        <li class="menu-section">State Management</li>
+        <li><a href="../../content-android/state/livedata.html" class="nav-link">LiveData</a></li>
+        <li><a href="../../content-android/state/flow.html" class="nav-link">StateFlow & SharedFlow</a></li>
+        <li><a href="../../content-android/state/uistate.html" class="nav-link">UI State & Events</a></li>
+        <li><a href="../../content-android/state/uimodel.html" class="nav-link">UI Model (ViewState + Actions)</a></li>
+        <li><a href="../../content-android/state/compose-state.html" class="nav-link">Compose State & UDF</a></li>
 
-            &lt;EditText
-                android:id="@+id/etUsername"
-                android:hint="Username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/&gt;
+        <!-- 6. Background Work -->
+        <li class="menu-section">Background Work</li>
+        <li><a href="../../content-android/background/workmanager.html" class="nav-link">WorkManager</a></li>
+        <li><a href="../../content-android/background/services.html" class="nav-link">Foreground & Background Services</a></li>
+        <li><a href="../../content-android/background/threads.html" class="nav-link">Threads & Executors</a></li>
+        <li><a href="../../content-android/background/coroutines.html" class="nav-link">Coroutines in Background</a></li>
 
-            &lt;EditText
-                android:id="@+id/etPassword"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/&gt;
+        <!-- 7. Testing & Debugging -->
+        <li class="menu-section">Testing & Debugging</li>
+        <li><a href="../../content-android/testing/unit-testing.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="../../content-android/testing/ui-testing.html" class="nav-link">UI Testing</a></li>
+        <li><a href="../../content-android/testing/integration.html" class="nav-link">Integration Testing</a></li>
+        <li><a href="../../content-android/testing/mock.html" class="nav-link">Mocking & Dependency Injection</a></li>
+        <li><a href="../../content-android/testing/debugging.html" class="nav-link">Debugging & Profiling</a></li>
 
-            &lt;Button
-                android:id="@+id/btnLogin"
-                android:text="Login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/&gt;
-        &lt;/LinearLayout&gt;
-        </code></pre>
+        <!-- 8. Security & Data Protection -->
+        <li class="menu-section">Security & Data Protection</li>
+        <li><a href="../../content-android/security/encryption.html" class="nav-link">Encryption & Decryption</a></li>
+        <li><a href="../../content-android/security/keystore.html" class="nav-link">Android Keystore</a></li>
+        <li><a href="../../content-android/security/secure-storage.html" class="nav-link">Secure Local Storage</a></li>
+        <li><a href="../../content-android/security/network-security.html" class="nav-link">Network Security Config</a></li>
 
-        <h4>🧩 Model: UserModel.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvp.model
+        <!-- 9. Performance & Optimization -->
+        <li class="menu-section">Performance & Optimization</li>
+        <li><a href="../../content-android/performance/memory.html" class="nav-link">Memory Optimization</a></li>
+        <li><a href="../../content-android/performance/startup.html" class="nav-link">App Startup Time</a></li>
+        <li><a href="../../content-android/performance/rendering.html" class="nav-link">Rendering & Overdraw</a></li>
+        <li><a href="../../content-android/performance/battery.html" class="nav-link">Battery & CPU Efficiency</a></li>
+    </ul>
+    </nav>
 
-        class UserModel {
-            fun isValidUser(username: String, password: String): Boolean {
-                return username.isNotEmpty() && password.length >= 6
-            }
-        }
-        </code></pre>
 
-        <h4>🧠 Presenter: LoginPresenter.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvp.presenter
+    <main class="content">
+        <div id="content-display">
+            <section id="mvp-architecture" class="basic-1 bg-gray py-5">
+                <div class="container">
+                    <h1 class="text-center mb-5">MVP Architecture in Android — Complete Guide with Example</h1>
 
-        import com.example.mvp.model.UserModel
-        import com.example.mvp.view.LoginView
+                    <h3>1. What is MVP Architecture?</h3>
+                    <p>
+                        MVP stands for <strong>Model–View–Presenter</strong>. 
+                        It evolved from the classic MVC pattern to solve Android’s problem of 
+                        <em>tight coupling between the View and Controller</em>.
+                        In MVP, the <em>Presenter</em> acts as the middle layer between the View and Model, 
+                        making the architecture more testable, modular, and maintainable.
+                    </p>
 
-        class LoginPresenter(private val view: LoginView) {
+                    <h3>2. Key Components of MVP</h3>
+                    <ul>
+                        <li><strong>Model:</strong> Manages data and business logic. It can fetch data from a 
+                            database, network, or API, and expose methods to the Presenter.</li>
+                        <li><strong>View:</strong> Handles UI elements and user interactions. 
+                            It’s passive — meaning it only displays data and sends user actions to the Presenter.</li>
+                        <li><strong>Presenter:</strong> Connects the View and the Model. 
+                            It retrieves data from the Model and updates the View accordingly. 
+                            It contains no Android framework code, which makes it easy to test.</li>
+                    </ul>
 
-            private val userModel = UserModel()
+                    <h3>3. MVP Data Flow</h3>
+                    <ol>
+                        <li>User interacts with the <strong>View</strong> (e.g., clicks a button).</li>
+                        <li>The <strong>View</strong> delegates the event to the <strong>Presenter</strong>.</li>
+                        <li>The <strong>Presenter</strong> requests data or performs logic via the <strong>Model</strong>.</li>
+                        <li>The <strong>Model</strong> returns data to the <strong>Presenter</strong>.</li>
+                        <li>The <strong>Presenter</strong> updates the <strong>View</strong> with the new data.</li>
+                    </ol>
 
-            fun onLoginClicked(username: String, password: String) {
-                if (username.isEmpty() || password.isEmpty()) {
-                    view.showError("Fields cannot be empty")
-                    return
-                }
+                    <h3>4. Advantages of MVP</h3>
+                    <ul>
+                        <li>Improved <strong>testability</strong> since the Presenter doesn’t depend on Android SDK.</li>
+                        <li>Better <strong>separation of concerns</strong> than MVC.</li>
+                        <li><strong>Reusability</strong> — Presenter can be reused with different Views.</li>
+                        <li>Clean and maintainable architecture for medium to large projects.</li>
+                    </ul>
 
-                if (userModel.isValidUser(username, password)) {
-                    view.showSuccess("Login successful!")
-                } else {
-                    view.showError("Invalid username or password")
-                }
-            }
-        }
-        </code></pre>
+                    <h3>5. Example: Simple Login Feature Using MVP</h3>
+                    <p>Below is an example implementation of MVP pattern for a login screen.</p>
 
-        <h4>🖥️ View Interface: LoginView.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvp.view
+                    <h4>📁 Folder Structure</h4>
+                    <pre><code>
+                    ├── model/
+                    │   └── UserModel.kt
+                    ├── presenter/
+                    │   └── LoginPresenter.kt
+                    ├── view/
+                    │   ├── LoginView.kt
+                    │   └── LoginActivity.kt
+                    └── activity_login.xml
+                    </code></pre>
 
-        interface LoginView {
-            fun showSuccess(message: String)
-            fun showError(message: String)
-        }
-        </code></pre>
+                    <h4>🎨 View: activity_login.xml</h4>
+                    <pre><code class="language-xml">
+                    &lt;LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="24dp"&gt;
 
-        <h4>🎬 Activity: LoginActivity.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvp.view
+                        &lt;EditText
+                            android:id="@+id/etUsername"
+                            android:hint="Username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/&gt;
 
-        import android.os.Bundle
-        import android.widget.Toast
-        import androidx.appcompat.app.AppCompatActivity
-        import com.example.mvp.R
-        import com.example.mvp.presenter.LoginPresenter
-        import kotlinx.android.synthetic.main.activity_login.*
+                        &lt;EditText
+                            android:id="@+id/etPassword"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/&gt;
 
-        class LoginActivity : AppCompatActivity(), LoginView {
+                        &lt;Button
+                            android:id="@+id/btnLogin"
+                            android:text="Login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/&gt;
+                    &lt;/LinearLayout&gt;
+                    </code></pre>
 
-            private lateinit var presenter: LoginPresenter
+                    <h4>🧩 Model: UserModel.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvp.model
 
-            override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContentView(R.layout.activity_login)
+                    class UserModel {
+                        fun isValidUser(username: String, password: String): Boolean {
+                            return username.isNotEmpty() && password.length >= 6
+                        }
+                    }
+                    </code></pre>
 
-                presenter = LoginPresenter(this)
+                    <h4>🧠 Presenter: LoginPresenter.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvp.presenter
 
-                btnLogin.setOnClickListener {
-                    val username = etUsername.text.toString()
-                    val password = etPassword.text.toString()
-                    presenter.onLoginClicked(username, password)
-                }
-            }
+                    import com.example.mvp.model.UserModel
+                    import com.example.mvp.view.LoginView
 
-            override fun showSuccess(message: String) {
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            }
+                    class LoginPresenter(private val view: LoginView) {
 
-            override fun showError(message: String) {
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            }
-        }
-        </code></pre>
+                        private val userModel = UserModel()
 
-        <h3>6. Disadvantages of MVP</h3>
-        <ul>
-            <li>Can lead to a large number of interfaces and boilerplate code.</li>
-            <li>Presenter can grow too big if not managed properly (called “Massive Presenter”).</li>
-            <li>Still lacks lifecycle awareness compared to MVVM.</li>
-        </ul>
+                        fun onLoginClicked(username: String, password: String) {
+                            if (username.isEmpty() || password.isEmpty()) {
+                                view.showError("Fields cannot be empty")
+                                return
+                            }
 
-        <div class="text-center mt-5">
-            <h4>Conclusion</h4>
-            <p>
-                The MVP pattern provides a clean and testable structure for Android apps. 
-                It improves upon MVC by decoupling business logic from UI logic, 
-                allowing for easier unit testing and modular development. 
-                However, in modern Android, developers often move towards <strong>MVVM</strong> 
-                and <strong>Clean Architecture</strong> using Jetpack components for even better lifecycle handling.
-            </p>
-        </div>
-    </div>
-</section>
+                            if (userModel.isValidUser(username, password)) {
+                                view.showSuccess("Login successful!")
+                            } else {
+                                view.showError("Invalid username or password")
+                            }
+                        }
+                    }
+                    </code></pre>
+
+                    <h4>🖥️ View Interface: LoginView.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvp.view
+
+                    interface LoginView {
+                        fun showSuccess(message: String)
+                        fun showError(message: String)
+                    }
+                    </code></pre>
+
+                    <h4>🎬 Activity: LoginActivity.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvp.view
+
+                    import android.os.Bundle
+                    import android.widget.Toast
+                    import androidx.appcompat.app.AppCompatActivity
+                    import com.example.mvp.R
+                    import com.example.mvp.presenter.LoginPresenter
+                    import kotlinx.android.synthetic.main.activity_login.*
+
+                    class LoginActivity : AppCompatActivity(), LoginView {
+
+                        private lateinit var presenter: LoginPresenter
+
+                        override fun onCreate(savedInstanceState: Bundle?) {
+                            super.onCreate(savedInstanceState)
+                            setContentView(R.layout.activity_login)
+
+                            presenter = LoginPresenter(this)
+
+                            btnLogin.setOnClickListener {
+                                val username = etUsername.text.toString()
+                                val password = etPassword.text.toString()
+                                presenter.onLoginClicked(username, password)
+                            }
+                        }
+
+                        override fun showSuccess(message: String) {
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun showError(message: String) {
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    </code></pre>
+
+                    <h3>6. Disadvantages of MVP</h3>
+                    <ul>
+                        <li>Can lead to a large number of interfaces and boilerplate code.</li>
+                        <li>Presenter can grow too big if not managed properly (called “Massive Presenter”).</li>
+                        <li>Still lacks lifecycle awareness compared to MVVM.</li>
+                    </ul>
+
+                    <div class="text-center mt-5">
+                        <h4>Conclusion</h4>
+                        <p>
+                            The MVP pattern provides a clean and testable structure for Android apps. 
+                            It improves upon MVC by decoupling business logic from UI logic, 
+                            allowing for easier unit testing and modular development. 
+                            However, in modern Android, developers often move towards <strong>MVVM</strong> 
+                            and <strong>Clean Architecture</strong> using Jetpack components for even better lifecycle handling.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            </div>
+    </main>
+
+    <script src="../../../js/python.js"></script>
+</body>
+</html>
+

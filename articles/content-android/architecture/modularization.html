@@ -1,78 +1,194 @@
-<section id="app-modularization" class="basic-1 bg-gray py-5">
-    <div class="container">
-        <h1 class="text-center mb-5">App Modularization in Android — Complete Guide</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <h3>1. What is App Modularization?</h3>
-        <p>
-            App Modularization is the process of dividing a large Android application into smaller, 
-            self-contained modules with clear responsibilities. Each module is like a separate 
-            project with its own build logic, dependencies, and encapsulated functionality.
-        </p>
-        <p>
-            Modularization helps manage complexity, improve build times, and increase code reusability.
-        </p>
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-        <h3>2. Types of Modules in Android</h3>
-        <ul>
-            <li><strong>App Module:</strong> The main module that depends on feature and library modules.</li>
-            <li><strong>Feature Modules:</strong> Encapsulate specific app features, such as login, payments, or profile. These modules can be independently developed and tested.</li>
-            <li><strong>Library Modules:</strong> Contain reusable code or components, such as UI components, networking, or utilities.</li>
-            <li><strong>Dynamic Feature Modules:</strong> Optional modules that can be downloaded on-demand (via Google Play Dynamic Delivery) to reduce APK size.</li>
-        </ul>
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
 
-        <h3>3. Benefits of Modularization</h3>
-        <ul>
-            <li><strong>Scalability:</strong> Large apps are easier to manage when divided into modules.</li>
-            <li><strong>Faster Build Times:</strong> Only changed modules need to be rebuilt.</li>
-            <li><strong>Reusability:</strong> Modules can be reused across different apps or projects.</li>
-            <li><strong>Independent Development:</strong> Teams can work on different modules simultaneously.</li>
-            <li><strong>Better Testability:</strong> Each module can be tested in isolation.</li>
-        </ul>
+        <!-- 1. App Architecture -->
+        <li class="menu-section">App Architecture</li>
+        <li><a href="../../../articles/android-core.html" class="nav-link">Introduction to Architecture</a></li>
+        <li><a href="../../content-android/architecture/mvc.html" class="nav-link">MVC Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp.html" class="nav-link">MVP Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvvm.html" class="nav-link">MVVM Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvi.html" class="nav-link">MVI Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp-mvc-in-compose.html" class="nav-link">Using MVP and MVC in Compose</a></li>
+        <li><a href="../../content-android/architecture/clean-architecture.html" class="nav-link">Clean Architecture</a></li>
+        <li><a href="../../content-android/architecture/layers.html" class="nav-link">Data, Domain & UI Layers</a></li>
+        <li><a href="../../content-android/architecture/repository-pattern.html" class="nav-link">Repository Pattern</a></li>
+        <li><a href="../../content-android/architecture/modularization.html" class="nav-link">App Modularization</a></li>
 
-        <h3>4. Approaches to Modularization</h3>
-        <ul>
-            <li><strong>By Feature:</strong> Divide modules based on features (e.g., login, dashboard, payments).</li>
-            <li><strong>By Layer:</strong> Divide modules based on layers like data, domain, and UI (aligned with Clean Architecture).</li>
-            <li><strong>Hybrid:</strong> Combine both feature and layer-based modularization for complex apps.</li>
-        </ul>
+        <!-- 2. Dependency Injection -->
+        <li class="menu-section">Dependency Injection (DI)</li>
+        <li><a href="../../content-android/di/intro.html" class="nav-link">Introduction to DI</a></li>
+        <li><a href="../../content-android/di/hilt.html" class="nav-link">Hilt Basics</a></li>
+        <li><a href="../../content-android/di/dagger.html" class="nav-link">Dagger 2 Overview</a></li>
+        <li><a href="../../content-android/di/koin.html" class="nav-link">Koin Framework</a></li>
+        <li><a href="../../content-android/di/scopes-components.html" class="nav-link">Scopes & Components</a></li>
+        <li><a href="../../content-android/di/testing.html" class="nav-link">Testing with DI</a></li>
 
-        <h3>5. Best Practices for Modularization</h3>
-        <ul>
-            <li>Define clear responsibilities for each module.</li>
-            <li>Keep dependencies minimal and use interfaces for communication between modules.</li>
-            <li>Use Gradle <code>implementation</code> and <code>api</code> keywords wisely to control visibility.</li>
-            <li>Keep UI-related modules independent of data or domain layers.</li>
-            <li>Use dependency injection (like Hilt or Dagger) to manage dependencies across modules.</li>
-            <li>Consider dynamic feature modules for optional features to reduce APK size.</li>
-        </ul>
+        <!-- 3. Data Persistence -->
+        <li class="menu-section">Data Persistence</li>
+        <li><a href="../../content-android/persistence/overview.html" class="nav-link">Overview of Data Persistence</a></li>
+        <li><a href="../../content-android/persistence/sharedpreferences.html" class="nav-link">SharedPreferences</a></li>
+        <li><a href="../../content-android/persistence/datastore.html" class="nav-link">DataStore (Proto & Preferences)</a></li>
+        <li><a href="../../content-android/persistence/room.html" class="nav-link">Room Database</a></li>
+        <li><a href="../../content-android/persistence/sqlite.html" class="nav-link">SQLite Database</a></li>
+        <li><a href="../../content-android/persistence/repository.html" class="nav-link">Repository Pattern in Persistence</a></li>
+        <li><a href="../../content-android/persistence/offline-sync.html" class="nav-link">Offline-First & Sync Strategies</a></li>
 
-        <h3>6. Example: Modular App Structure</h3>
-        <pre><code>
-        ├── app/                     # Main app module
-        ├── feature-login/           # Login feature module
-        ├── feature-profile/         # Profile feature module
-        ├── feature-dashboard/       # Dashboard feature module
-        ├── core/                    # Shared core module (utilities, network)
-        └── data/                    # Data module (repositories, database, API)
-        </code></pre>
+        <!-- 4. Networking & Data Layer -->
+        <li class="menu-section">Networking & Data Layer</li>
+        <li><a href="../../content-android/networking/retrofit.html" class="nav-link">Retrofit & OkHttp</a></li>
+        <li><a href="../../content-android/networking/interceptors.html" class="nav-link">Interceptors & Logging</a></li>
+        <li><a href="../../content-android/networking/error-handling.html" class="nav-link">Error Handling</a></li>
+        <li><a href="../../content-android/networking/caching.html" class="nav-link">Caching & Pagination</a></li>
+        <li><a href="../../content-android/networking/api-layer.html" class="nav-link">API Layer & Repository Integration</a></li>
 
-        <h3>7. Modularization with Clean Architecture</h3>
-        <p>
-            Combining modularization with Clean Architecture allows you to:
-        </p>
-        <ul>
-            <li>Keep <strong>Domain</strong> layer shared and independent across modules.</li>
-            <li>Implement <strong>feature-specific modules</strong> that encapsulate UI, domain, and data logic.</li>
-            <li>Promote <strong>reusability and testability</strong> by isolating modules.</li>
-        </ul>
+        <!-- 5. State Management -->
+        <li class="menu-section">State Management</li>
+        <li><a href="../../content-android/state/livedata.html" class="nav-link">LiveData</a></li>
+        <li><a href="../../content-android/state/flow.html" class="nav-link">StateFlow & SharedFlow</a></li>
+        <li><a href="../../content-android/state/uistate.html" class="nav-link">UI State & Events</a></li>
+        <li><a href="../../content-android/state/uimodel.html" class="nav-link">UI Model (ViewState + Actions)</a></li>
+        <li><a href="../../content-android/state/compose-state.html" class="nav-link">Compose State & UDF</a></li>
 
-        <div class="text-center mt-5">
-            <h4>Conclusion</h4>
-            <p>
-                App Modularization is essential for large-scale Android applications.  
-                By separating features and layers into modules, you improve maintainability, scalability, and developer productivity.  
-                This is a key concept for CTOs when evaluating Android architectures and team workflows.
-            </p>
-        </div>
-    </div>
-</section>
+        <!-- 6. Background Work -->
+        <li class="menu-section">Background Work</li>
+        <li><a href="../../content-android/background/workmanager.html" class="nav-link">WorkManager</a></li>
+        <li><a href="../../content-android/background/services.html" class="nav-link">Foreground & Background Services</a></li>
+        <li><a href="../../content-android/background/threads.html" class="nav-link">Threads & Executors</a></li>
+        <li><a href="../../content-android/background/coroutines.html" class="nav-link">Coroutines in Background</a></li>
+
+        <!-- 7. Testing & Debugging -->
+        <li class="menu-section">Testing & Debugging</li>
+        <li><a href="../../content-android/testing/unit-testing.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="../../content-android/testing/ui-testing.html" class="nav-link">UI Testing</a></li>
+        <li><a href="../../content-android/testing/integration.html" class="nav-link">Integration Testing</a></li>
+        <li><a href="../../content-android/testing/mock.html" class="nav-link">Mocking & Dependency Injection</a></li>
+        <li><a href="../../content-android/testing/debugging.html" class="nav-link">Debugging & Profiling</a></li>
+
+        <!-- 8. Security & Data Protection -->
+        <li class="menu-section">Security & Data Protection</li>
+        <li><a href="../../content-android/security/encryption.html" class="nav-link">Encryption & Decryption</a></li>
+        <li><a href="../../content-android/security/keystore.html" class="nav-link">Android Keystore</a></li>
+        <li><a href="../../content-android/security/secure-storage.html" class="nav-link">Secure Local Storage</a></li>
+        <li><a href="../../content-android/security/network-security.html" class="nav-link">Network Security Config</a></li>
+
+        <!-- 9. Performance & Optimization -->
+        <li class="menu-section">Performance & Optimization</li>
+        <li><a href="../../content-android/performance/memory.html" class="nav-link">Memory Optimization</a></li>
+        <li><a href="../../content-android/performance/startup.html" class="nav-link">App Startup Time</a></li>
+        <li><a href="../../content-android/performance/rendering.html" class="nav-link">Rendering & Overdraw</a></li>
+        <li><a href="../../content-android/performance/battery.html" class="nav-link">Battery & CPU Efficiency</a></li>
+    </ul>
+    </nav>
+
+
+    <main class="content">
+        <div id="content-display">
+            <section id="app-modularization" class="basic-1 bg-gray py-5">
+                <div class="container">
+                    <h1 class="text-center mb-5">App Modularization in Android — Complete Guide</h1>
+
+                    <h3>1. What is App Modularization?</h3>
+                    <p>
+                        App Modularization is the process of dividing a large Android application into smaller, 
+                        self-contained modules with clear responsibilities. Each module is like a separate 
+                        project with its own build logic, dependencies, and encapsulated functionality.
+                    </p>
+                    <p>
+                        Modularization helps manage complexity, improve build times, and increase code reusability.
+                    </p>
+
+                    <h3>2. Types of Modules in Android</h3>
+                    <ul>
+                        <li><strong>App Module:</strong> The main module that depends on feature and library modules.</li>
+                        <li><strong>Feature Modules:</strong> Encapsulate specific app features, such as login, payments, or profile. These modules can be independently developed and tested.</li>
+                        <li><strong>Library Modules:</strong> Contain reusable code or components, such as UI components, networking, or utilities.</li>
+                        <li><strong>Dynamic Feature Modules:</strong> Optional modules that can be downloaded on-demand (via Google Play Dynamic Delivery) to reduce APK size.</li>
+                    </ul>
+
+                    <h3>3. Benefits of Modularization</h3>
+                    <ul>
+                        <li><strong>Scalability:</strong> Large apps are easier to manage when divided into modules.</li>
+                        <li><strong>Faster Build Times:</strong> Only changed modules need to be rebuilt.</li>
+                        <li><strong>Reusability:</strong> Modules can be reused across different apps or projects.</li>
+                        <li><strong>Independent Development:</strong> Teams can work on different modules simultaneously.</li>
+                        <li><strong>Better Testability:</strong> Each module can be tested in isolation.</li>
+                    </ul>
+
+                    <h3>4. Approaches to Modularization</h3>
+                    <ul>
+                        <li><strong>By Feature:</strong> Divide modules based on features (e.g., login, dashboard, payments).</li>
+                        <li><strong>By Layer:</strong> Divide modules based on layers like data, domain, and UI (aligned with Clean Architecture).</li>
+                        <li><strong>Hybrid:</strong> Combine both feature and layer-based modularization for complex apps.</li>
+                    </ul>
+
+                    <h3>5. Best Practices for Modularization</h3>
+                    <ul>
+                        <li>Define clear responsibilities for each module.</li>
+                        <li>Keep dependencies minimal and use interfaces for communication between modules.</li>
+                        <li>Use Gradle <code>implementation</code> and <code>api</code> keywords wisely to control visibility.</li>
+                        <li>Keep UI-related modules independent of data or domain layers.</li>
+                        <li>Use dependency injection (like Hilt or Dagger) to manage dependencies across modules.</li>
+                        <li>Consider dynamic feature modules for optional features to reduce APK size.</li>
+                    </ul>
+
+                    <h3>6. Example: Modular App Structure</h3>
+                    <pre><code>
+                    ├── app/                     # Main app module
+                    ├── feature-login/           # Login feature module
+                    ├── feature-profile/         # Profile feature module
+                    ├── feature-dashboard/       # Dashboard feature module
+                    ├── core/                    # Shared core module (utilities, network)
+                    └── data/                    # Data module (repositories, database, API)
+                    </code></pre>
+
+                    <h3>7. Modularization with Clean Architecture</h3>
+                    <p>
+                        Combining modularization with Clean Architecture allows you to:
+                    </p>
+                    <ul>
+                        <li>Keep <strong>Domain</strong> layer shared and independent across modules.</li>
+                        <li>Implement <strong>feature-specific modules</strong> that encapsulate UI, domain, and data logic.</li>
+                        <li>Promote <strong>reusability and testability</strong> by isolating modules.</li>
+                    </ul>
+
+                    <div class="text-center mt-5">
+                        <h4>Conclusion</h4>
+                        <p>
+                            App Modularization is essential for large-scale Android applications.  
+                            By separating features and layers into modules, you improve maintainability, scalability, and developer productivity.  
+                            This is a key concept for CTOs when evaluating Android architectures and team workflows.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            </div>
+    </main>
+
+    <script src="../../../js/python.js"></script>
+</body>
+</html>
+

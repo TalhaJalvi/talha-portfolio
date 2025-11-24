@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Problem Solving</title>
-    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="stylesheet" href="../../../css/kotlin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,16 +24,16 @@
     <nav class="sidebar">
         <ul class="sidebar-menu">
         <li class="menu-title">Basics</li>
-        <li><a href="../articles/problem-solving-qas.html" class="nav-link">What is Problem Solving and Why its Important ?</a></li>
-        <li><a href="problems/basics/what-is-time-and-space-complexity.html" class="nav-link">Criteria for better approach ? Time and Space Complexity !</a></li>
-        <li><a href="problems/basics/calculate-time-and-space-complexity.html" class="nav-link">How do we calculate Time and Space Complexity ? </a></li>
+        <li><a href="../../../articles/problem-solving-qas.html" class="nav-link">What is Problem Solving and Why its Important ?</a></li>
+        <li><a href="../../problems/basics/what-is-time-and-space-complexity.html" class="nav-link">Criteria for better approach ? Time and Space Complexity !</a></li>
+        <li><a href="../../problems/basics/calculate-time-and-space-complexity.html" class="nav-link">How do we calculate Time and Space Complexity ? </a></li>
 
         <!-- Arrays -->
         <li class="menu-title">Arrays</li>
-        <li><a href="problems/arrays/find-the-missing-number-in-an-array-from-1-to-n.html" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
-        <li><a href="problems/arrays/find-the-largest-and-smallest-number-in-an-array.html" class="nav-link">2. Find the largest and smallest number in an array</a></li>
-        <li><a href="problems/arrays/find-the-second-largest-element-in-an-array.html" class="nav-link">3. Find the second largest element in an array</a></li>
-        <li><a href="problems/arrays/rotate-array-by-k-steps.html" class="nav-link">4. Rotate array by k steps</a></li>
+        <li><a href="../../problems/arrays/find-the-missing-number-in-an-array-from-1-to-n.html" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
+        <li><a href="../../problems/arrays/find-the-largest-and-smallest-number-in-an-array.html" class="nav-link">2. Find the largest and smallest number in an array</a></li>
+        <li><a href="../../problems/arrays/find-the-second-largest-element-in-an-array.html" class="nav-link">3. Find the second largest element in an array</a></li>
+        <li><a href="../../problems/arrays/rotate-array-by-k-steps.html" class="nav-link">4. Rotate array by k steps</a></li>
         <li><a href="problems/arrays/reverse-an-array.html" class="nav-link">5. Reverse an array</a></li>
         <li><a href="problems/arrays/move-all-zeros-to-the-end.html" class="nav-link">6. Move all zeros to the end</a></li>
         <li><a href="problems/arrays/sort-array-of-0s-1s-and-2s-dutch-national-flag.html" class="nav-link">7. Sort array of 0s, 1s, and 2s (Dutch National Flag)</a></li>
@@ -411,127 +411,362 @@
 
 <main class="content">
     <div id="content-display">
-                <section id="problem-solving-intro">
-            <h1>Problem Solving in Programming</h1>
-            <p>
-                Problem solving is the process of understanding a challenge, breaking it down, 
-                selecting the right tools such as data structures and algorithms, and designing an effective solution.
-                It is the foundation of software development, whether you are building applications, 
-                optimizing performance, or preparing for technical interviews.
-            </p>
-        </section>
+       <section id="complexity-intro">
+    <h1>Time and Space Complexity in Algorithms</h1>
+    <p>
+        Time and space complexity are measures used to analyze the efficiency of algorithms. 
+        They help us understand how an algorithm will behave as the size of the input grows. 
+        Instead of measuring performance on a specific machine, we use mathematical notations 
+        such as Big O to describe how the algorithm's resource usage increases relative to input size.
+    </p>
+</section>
 
-        <section id="importance">
-            <h2>Why Problem Solving is Important for Programmers</h2>
+<section id="why-complexity-matters">
+    <h2>Why Complexity Analysis Matters</h2>
+    <p>
+        Efficient algorithms save processing time, reduce memory consumption, and scale better when handling 
+        large datasets. Complexity analysis allows developers to compare different approaches and choose 
+        the most optimal one for a given problem.
+    </p>
 
-            <h3>1. Improves Logical Thinking</h3>
-            <p>
-                Strong problem solving enhances your ability to think clearly and logically. 
-                Your programming ability depends far more on logical reasoning than on memorizing syntax.
-            </p>
+    <ul>
+        <li><strong>Predict performance:</strong> Helps estimate execution time before running the code.</li>
+        <li><strong>Compare algorithms:</strong> Provides a standard way to analyze efficiency.</li>
+        <li><strong>Avoid bottlenecks:</strong> Prevents slowdowns when input size grows rapidly.</li>
+        <li><strong>Optimize systems:</strong> Guides design decisions for scalable software.</li>
+    </ul>
+</section>
 
-            <h3>2. Helps Build Efficient and Scalable Systems</h3>
-            <p>
-                Efficient solutions rely on choosing the right algorithm and data structure. 
-                Good problem solvers can reduce time complexity, improve performance, and build scalable applications.
-            </p>
+<section id="big-o-intro">
+    <h1>What Time Complexity Really Means</h1>
+    <p>
+        Time complexity describes how the number of operations an algorithm performs grows
+        as the size of the input (n) increases. It is not a measurement in seconds — instead,
+        we use Big O notation to classify how the work grows so we can compare algorithms
+        independent of hardware, language, or micro-optimizations.
+    </p>
+</section>
 
-            <h3>3. Essential for Technical Interviews</h3>
-            <p>
-                Companies evaluate your ability to analyze and solve problems. 
-                Strong problem-solving skills significantly increase your chances of success in coding interviews.
-            </p>
+<section id="why-not-seconds">
+    <h2>Why we do not use seconds</h2>
+    <p>
+        The same program runs in different amounts of time on different machines (slow phone,
+        fast laptop, cloud server). Measuring seconds mixes algorithmic behavior with machine
+        speed. By counting operations (comparisons, assignments, loop iterations), we get a
+        machine-independent view of the algorithm's growth.
+    </p>
+</section>
 
-            <h3>4. Speeds Up Debugging</h3>
-            <p>
-                Debugging is a form of problem solving. 
-                When you can break down complex issues into smaller parts, you identify and fix bugs much faster.
-            </p>
+<section id="what-is-big-o">
+    <h2>What is Big O?</h2>
+    <p>
+        Big O notation expresses the relationship between input size (n) and the number of
+        operations an algorithm needs. It captures the growth trend:
+    </p>
+    <ul>
+        <li>O(1): constant growth</li>
+        <li>O(log n): logarithmic growth</li>
+        <li>O(n): linear growth</li>
+        <li>O(n log n): linearithmic growth</li>
+        <li>O(n²): quadratic growth</li>
+        <li>O(2ⁿ), O(n!): exponential or factorial growth</li>
+    </ul>
+</section>
 
-            <h3>5. Leads to Better Architecture Decisions</h3>
-            <p>
-                When you understand how different data structures and techniques work, you naturally start 
-                designing cleaner and more maintainable architectures.
-            </p>
-        </section>
+<section id="o-n-meaning">
+    <h2>What O(n) means</h2>
+    <p>
+        O(n) means the number of operations grows roughly in direct proportion to n.
+        If n doubles, the number of operations approximately doubles. Typical examples:
+        iterating over an array, summing elements, or scanning for a value.
+    </p>
+    <pre><code>for (i = 0; i &lt; n; i++) {
+    // constant work
+}</code></pre>
+    <p>Operations ≈ n → O(n)</p>
+</section>
 
-        <section id="types-of-problems">
-            <h2>Types of Problems Programmers Commonly Encounter</h2>
+<section id="o-n2-meaning">
+    <h2>What O(n²) means</h2>
+    <p>
+        O(n²) means the number of operations grows proportionally to n squared. Doubling n
+        increases work by four times. This commonly appears when you have nested loops
+        each iterating over the same input.
+    </p>
+    <pre><code>for (i = 0; i &lt; n; i++) {
+    for (j = 0; j &lt; n; j++) {
+        // constant work
+    }
+}</code></pre>
+    <p>Operations ≈ n × n = n² → O(n²)</p>
+</section>
 
-            <p>
-                Programming challenges fall into well-known categories and patterns. 
-                Understanding these patterns helps you recognize the structure of new problems 
-                and solve them more efficiently.
-            </p>
+<section id="numeric-comparison">
+    <h2>Numeric comparison (example)</h2>
+    <p>
+        Assume each operation takes 1 microsecond.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>n</th>
+                <th>O(n) operations</th>
+                <th>O(n) time</th>
+                <th>O(n²) operations</th>
+                <th>O(n²) time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1,000</td>
+                <td>1,000</td>
+                <td>1 ms</td>
+                <td>1,000,000</td>
+                <td>1 s</td>
+            </tr>
+            <tr>
+                <td>10,000</td>
+                <td>10,000</td>
+                <td>10 ms</td>
+                <td>100,000,000</td>
+                <td>100 s</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        For small n the difference may be acceptable; for large n the quadratic algorithm becomes
+        impractical.
+    </p>
+</section>
 
-            <h3>1. Array Problems</h3>
-            <p>
-                Arrays form the basis of many problem-solving techniques.  
-                They teach iteration, sorting, searching, prefix sums, frequency mapping, and two-pointer techniques.  
-                Common tasks include reversing arrays, finding duplicates, and calculating maximum subarray sums.
-            </p>
+<section id="key-point">
+    <h2>Key point</h2>
+    <p>
+        Big O describes growth shape, not exact counts. Constants and lower-order terms are ignored:
+        5n + 20 is O(n). Two algorithms can both be O(n) but differ by constants — they scale the same
+        as input grows, but one may be faster on small inputs.
+    </p>
+</section>
 
-            <h3>2. String Problems</h3>
-            <p>
-                Strings are sequences of characters and often involve pattern matching, parsing, 
-                hashing, or substring operations.  
-                Techniques such as sliding window and hash maps are frequently used to solve string problems.
-            </p>
+<section id="real-life-analogy">
+    <h2>Simple analogy</h2>
+    <p>
+        Imagine two tasks:
+    </p>
+    <ol>
+        <li>
+            Place one chair per person. If the number of people doubles, chairs needed double → O(n).
+        </li>
+        <li>
+            Every person shakes hands with every other person. Doubling people multiplies handshakes by four → O(n²).
+        </li>
+    </ol>
+</section>
 
-            <h3>3. Linked List Problems</h3>
-            <p>
-                Linked lists help deepen understanding of memory, pointers, and dynamic structures.  
-                Typical problems include reversing a list, detecting cycles, merging lists, 
-                and using fast-slow pointer patterns.
-            </p>
+<section id="how-to-calc">
+    <h2>How to calculate time complexity (rules of thumb)</h2>
+    <ul>
+        <li>Single loop from 0 to n → O(n).</li>
+        <li>Two nested loops each from 0 to n → O(n²).</li>
+        <li>Loop that halves the problem each step (n, n/2, n/4, ...) → O(log n).</li>
+        <li>Recurrence T(n) = 2T(n/2) + n is O(n log n) (common for divide-and-conquer).</li>
+        <li>Ignore constants and lower-order terms when writing the final Big O.</li>
+    </ul>
+</section>
 
-            <h3>4. Stack and Queue Problems</h3>
-            <p>
-                Stacks and queues model real-world processing flows.  
-                They are used for expression evaluation, tracking states (undo/redo), 
-                and solving next-greater-element or sliding window maximum problems.
-            </p>
+<section id="summary">
+    <h2>Summary</h2>
+    <p>
+        Big O notation is a tool to reason about how algorithms scale. It tells you how the cost
+        (in operations) increases with input size, allowing fair comparisons across environments.
+        Use Big O to choose algorithms that remain practical as data grows.
+    </p>
+</section>
 
-            <h3>5. HashMap and HashSet Based Problems</h3>
-            <p>
-                These structures are essential for fast lookups and frequency counting.  
-                They are used in problems involving duplicates, grouping, unique elements, and efficient filtering.
-            </p>
+<section id="asymptotic-notations">
+    <h1>Understanding Big O, Big Omega, and Big Theta</h1>
+    <p>
+        When analyzing algorithms, we often describe how the number of operations grows as the input size increases.
+        There are three common asymptotic notations used to describe this growth.
+    </p>
+</section>
 
-            <h3>6. Sliding Window Problems</h3>
-            <p>
-                Sliding window techniques solve subarray or substring problems more efficiently by 
-                maintaining a moving range instead of recalculating results repeatedly.  
-                Common examples include finding the longest substring without repetition or maximum sum windows.
-            </p>
+<section id="big-o">
+    <h2>Big O Notation (O)</h2>
+    <p>
+        Big O describes the <strong>upper bound</strong> of an algorithm's growth. 
+        It tells us the <em>maximum number of steps an algorithm will take</em> in the worst-case scenario as input size grows.
+    </p>
+    <ul>
+        <li>Represents worst-case behavior</li>
+        <li>Focuses on maximum growth rate</li>
+        <li>Ignores constants and lower-order terms</li>
+    </ul>
+    <pre><code>for (i = 0; i &lt; n; i++) {
+    for (j = 0; j &lt; n; j++) {
+        // constant work
+    }
+}</code></pre>
+    <p>Big O = O(n²) — In the worst case, the algorithm will take at most proportional to n² steps.</p>
+</section>
 
-            <h3>7. Recursion and Backtracking</h3>
-            <p>
-                Recursion is used for breaking complex tasks into smaller ones.  
-                Backtracking helps in exploring all possible combinations or configurations, 
-                such as in puzzles, permutations, and subset generation.
-            </p>
+<section id="big-omega">
+    <h2>Big Omega Notation (Ω)</h2>
+    <p>
+        Big Omega describes the <strong>lower bound</strong> of an algorithm's growth. 
+        It tells us the <em>minimum number of steps an algorithm will take</em> in the best-case scenario as input size grows.
+    </p>
+    <ul>
+        <li>Represents best-case behavior</li>
+        <li>Focuses on minimum growth rate</li>
+        <li>Gives a guarantee that the algorithm cannot do better than Ω(n)</li>
+    </ul>
+    <pre><code>for (i = 0; i &lt; n; i++) {
+    // constant work
+}</code></pre>
+    <p>Big Omega = Ω(n) — Even in the best case, the algorithm must perform n steps.</p>
+</section>
 
-            <h3>8. Tree Problems</h3>
-            <p>
-                Trees represent hierarchical data.  
-                Tree problems involve depth-first search (DFS), breadth-first search (BFS), 
-                computing heights, and finding relationships like lowest common ancestors.
-            </p>
+<section id="big-theta">
+    <h2>Big Theta Notation (Θ)</h2>
+    <p>
+        Big Theta describes the <strong>tight bound</strong> of an algorithm's growth. 
+        It gives <em>both the upper and lower bounds</em>, meaning the algorithm grows exactly at this rate.
+    </p>
+    <ul>
+        <li>Represents typical or exact growth</li>
+        <li>Guarantees growth proportional to n² (or another expression)</li>
+        <li>Combines Big O and Big Omega</li>
+    </ul>
+    <pre><code>for (i = 0; i &lt; n; i++) {
+    for (j = 0; j &lt; n; j++) {
+        // constant work
+    }
+}</code></pre>
+    <p>Big Theta = Θ(n²) — The algorithm always grows proportionally to n².</p>
+</section>
 
-            <h3>9. Graph Problems</h3>
-            <p>
-                Graphs model relationships and networks.  
-                Graph problems include traversal algorithms, cycle detection, shortest paths, 
-                and dependency ordering using topological sorting.
-            </p>
+<section id="comparison">
+    <h2>Comparison Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Notation</th>
+                <th>Bound Type</th>
+                <th>Focus</th>
+                <th>Typical Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>O(n)</td>
+                <td>Upper bound</td>
+                <td>Worst-case</td>
+                <td>Guarantees algorithm won’t exceed this growth</td>
+            </tr>
+            <tr>
+                <td>Ω(n)</td>
+                <td>Lower bound</td>
+                <td>Best-case</td>
+                <td>Guarantees algorithm will take at least this growth</td>
+            </tr>
+            <tr>
+                <td>Θ(n)</td>
+                <td>Tight bound</td>
+                <td>Exact / typical</td>
+                <td>Represents the actual growth rate</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
-            <h3>10. Dynamic Programming</h3>
-            <p>
-                Dynamic programming is used for optimization problems with overlapping subproblems.  
-                Examples include knapsack, longest common subsequence, coin change, and pathfinding challenges.
-            </p>
-        </section>
+<section id="visual-intuition">
+    <h2>Visual Intuition</h2>
+    <p>
+        Imagine runtime plotted against input size:
+    </p>
+    <pre>
+Runtime
+  ^
+  |       / Upper bound (O)
+  |     /
+  |   /
+  |  / Actual runtime (Θ)
+  | /
+  |/ Lower bound (Ω)
+  +-----------------> Input size
+    </pre>
+</section>
+
+<section id="practical-example">
+    <h2>Practical Example: Linear Search</h2>
+    <ul>
+        <li>Best case (first element matches): 1 comparison → Ω(1)</li>
+        <li>Worst case (last element matches or not found): n comparisons → O(n)</li>
+        <li>Average case: n/2 comparisons → Θ(n)</li>
+    </ul>
+</section>
+
+<section id="summary">
+    <h2>Key Takeaways</h2>
+    <ul>
+        <li>Big O: Maximum steps the algorithm might take (worst-case)</li>
+        <li>Big Omega: Minimum steps the algorithm will take (best-case)</li>
+        <li>Big Theta: Exact or typical growth rate (both bounds)</li>
+        <li>Big O is most commonly used, but knowing Ω and Θ gives complete insight</li>
+    </ul>
+</section>
+
+
+<section id="space-complexity">
+    <h2>What is Space Complexity?</h2>
+    <p>
+        Space complexity measures how much extra memory an algorithm uses relative to input size. 
+        This includes variables, data structures, recursion stack space, and allocated memory.
+    </p>
+
+    <h3>Types of Space Usage</h3>
+    <ul>
+        <li><strong>Fixed space:</strong> Memory used by constants and simple variables, independent of input size.</li>
+        <li><strong>Variable space:</strong> Memory used by arrays, objects, recursion stacks, and dynamic structures.</li>
+    </ul>
+
+    <h3>Common Space Complexities</h3>
+    <ul>
+        <li><strong>O(1):</strong> Constant extra space (no additional data structures).</li>
+        <li><strong>O(n):</strong> Linear space (creating arrays or lists proportional to input).</li>
+        <li><strong>O(log n):</strong> Recursion stack space in divide-and-conquer algorithms.</li>
+        <li><strong>O(n²):</strong> 2D matrices or nested data structures.</li>
+    </ul>
+
+    <h3>How to Calculate Space Complexity</h3>
+
+    <h4>1. Count Additional Variables</h4>
+    <p>
+        A few integers or booleans do not scale with input, so they contribute O(1) space.
+    </p>
+
+    <h4>2. Count Data Structures</h4>
+    <p>
+        If an algorithm creates an array of size n, it uses O(n) extra memory.
+    </p>
+
+    <h4>3. Include Recursion Stack Space</h4>
+    <p>
+        Each recursive call adds a frame to the stack. 
+        For example, a simple DFS on a tree takes O(h) space where h is tree height.
+    </p>
+</section>
+
+<section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+        Time and space complexity provide a universal way to evaluate algorithm efficiency without 
+        depending on hardware or programming language. By understanding how to measure operations 
+        and memory usage, developers can build faster, more scalable, and more reliable software.
+    </p>
+</section>
+
 
     </div>
 </main>

@@ -1,165 +1,281 @@
-<section id="clean-architecture" class="basic-1 bg-gray py-5">
-    <div class="container">
-        <h1 class="text-center mb-5">Clean Architecture in Android — Complete Guide</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <h3>1. What is Clean Architecture?</h3>
-        <p>
-            Clean Architecture is a design pattern proposed by <strong>Robert C. Martin (Uncle Bob)</strong> 
-            that emphasizes **separation of concerns**, **testability**, and **maintainability**.  
-            It divides the codebase into layers where dependencies always point **inward**, ensuring that core business logic is independent of frameworks, UI, or external systems.
-        </p>
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-        <h3>2. Core Layers of Clean Architecture</h3>
-        <ul>
-            <li><strong>Entities:</strong> Encapsulate the core business rules. They are independent of frameworks and external dependencies.</li>
-            <li><strong>Use Cases / Interactors:</strong> Contain application-specific business rules. They orchestrate the flow of data to and from the Entities.</li>
-            <li><strong>Interface Adapters / Presenters:</strong> Convert data from the use cases into a form suitable for the UI, database, or external services.</li>
-            <li><strong>Frameworks & Drivers:</strong> Outer layer containing Android SDK, databases, network libraries, and UI components (Compose or XML).</li>
-        </ul>
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
 
-        <h3>3. Key Principles</h3>
-        <ul>
-            <li><strong>Dependency Rule:</strong> Source code dependencies always point inward, never outward.</li>
-            <li><strong>Separation of Concerns:</strong> Each layer has a single responsibility and does not rely on outer layers.</li>
-            <li><strong>Testability:</strong> Core business logic can be tested independently of the Android framework.</li>
-        </ul>
+        <!-- 1. App Architecture -->
+        <li class="menu-section">App Architecture</li>
+        <li><a href="../../../articles/android-core.html" class="nav-link">Introduction to Architecture</a></li>
+        <li><a href="../../content-android/architecture/mvc.html" class="nav-link">MVC Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp.html" class="nav-link">MVP Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvvm.html" class="nav-link">MVVM Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvi.html" class="nav-link">MVI Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp-mvc-in-compose.html" class="nav-link">Using MVP and MVC in Compose</a></li>
+        <li><a href="../../content-android/architecture/clean-architecture.html" class="nav-link">Clean Architecture</a></li>
+        <li><a href="../../content-android/architecture/layers.html" class="nav-link">Data, Domain & UI Layers</a></li>
+        <li><a href="../../content-android/architecture/repository-pattern.html" class="nav-link">Repository Pattern</a></li>
+        <li><a href="../../content-android/architecture/modularization.html" class="nav-link">App Modularization</a></li>
 
-        <h3>4. Advantages of Clean Architecture</h3>
-        <ul>
-            <li>Highly maintainable and scalable for large apps.</li>
-            <li>Easy to test core business logic.</li>
-            <li>Allows swapping frameworks or UI without affecting business rules.</li>
-            <li>Decouples UI, data, and business logic effectively.</li>
-        </ul>
+        <!-- 2. Dependency Injection -->
+        <li class="menu-section">Dependency Injection (DI)</li>
+        <li><a href="../../content-android/di/intro.html" class="nav-link">Introduction to DI</a></li>
+        <li><a href="../../content-android/di/hilt.html" class="nav-link">Hilt Basics</a></li>
+        <li><a href="../../content-android/di/dagger.html" class="nav-link">Dagger 2 Overview</a></li>
+        <li><a href="../../content-android/di/koin.html" class="nav-link">Koin Framework</a></li>
+        <li><a href="../../content-android/di/scopes-components.html" class="nav-link">Scopes & Components</a></li>
+        <li><a href="../../content-android/di/testing.html" class="nav-link">Testing with DI</a></li>
 
-        <h3>5. Example: Simple Login Feature Using Clean Architecture</h3>
+        <!-- 3. Data Persistence -->
+        <li class="menu-section">Data Persistence</li>
+        <li><a href="../../content-android/persistence/overview.html" class="nav-link">Overview of Data Persistence</a></li>
+        <li><a href="../../content-android/persistence/sharedpreferences.html" class="nav-link">SharedPreferences</a></li>
+        <li><a href="../../content-android/persistence/datastore.html" class="nav-link">DataStore (Proto & Preferences)</a></li>
+        <li><a href="../../content-android/persistence/room.html" class="nav-link">Room Database</a></li>
+        <li><a href="../../content-android/persistence/sqlite.html" class="nav-link">SQLite Database</a></li>
+        <li><a href="../../content-android/persistence/repository.html" class="nav-link">Repository Pattern in Persistence</a></li>
+        <li><a href="../../content-android/persistence/offline-sync.html" class="nav-link">Offline-First & Sync Strategies</a></li>
 
-        <h4>📁 Folder Structure</h4>
-        <pre><code>
-        ├── domain/
-        │   ├── model/User.kt
-        │   └── usecase/LoginUseCase.kt
-        ├── data/
-        │   ├── repository/UserRepositoryImpl.kt
-        │   └── source/UserDataSource.kt
-        ├── presentation/
-        │   ├── view/LoginActivity.kt
-        │   └── viewmodel/LoginViewModel.kt
-        └── di/
-            └── AppModule.kt
-        </code></pre>
+        <!-- 4. Networking & Data Layer -->
+        <li class="menu-section">Networking & Data Layer</li>
+        <li><a href="../../content-android/networking/retrofit.html" class="nav-link">Retrofit & OkHttp</a></li>
+        <li><a href="../../content-android/networking/interceptors.html" class="nav-link">Interceptors & Logging</a></li>
+        <li><a href="../../content-android/networking/error-handling.html" class="nav-link">Error Handling</a></li>
+        <li><a href="../../content-android/networking/caching.html" class="nav-link">Caching & Pagination</a></li>
+        <li><a href="../../content-android/networking/api-layer.html" class="nav-link">API Layer & Repository Integration</a></li>
 
-        <h4>🧩 Domain Layer — Entities & Use Case</h4>
-        <pre><code class="language-kotlin">
-// User Entity
-package com.example.cleanarchitecture.domain.model
+        <!-- 5. State Management -->
+        <li class="menu-section">State Management</li>
+        <li><a href="../../content-android/state/livedata.html" class="nav-link">LiveData</a></li>
+        <li><a href="../../content-android/state/flow.html" class="nav-link">StateFlow & SharedFlow</a></li>
+        <li><a href="../../content-android/state/uistate.html" class="nav-link">UI State & Events</a></li>
+        <li><a href="../../content-android/state/uimodel.html" class="nav-link">UI Model (ViewState + Actions)</a></li>
+        <li><a href="../../content-android/state/compose-state.html" class="nav-link">Compose State & UDF</a></li>
 
-data class User(val username: String, val password: String) {
-    fun isValid(): Boolean = username.isNotEmpty() && password.length >= 6
-}
+        <!-- 6. Background Work -->
+        <li class="menu-section">Background Work</li>
+        <li><a href="../../content-android/background/workmanager.html" class="nav-link">WorkManager</a></li>
+        <li><a href="../../content-android/background/services.html" class="nav-link">Foreground & Background Services</a></li>
+        <li><a href="../../content-android/background/threads.html" class="nav-link">Threads & Executors</a></li>
+        <li><a href="../../content-android/background/coroutines.html" class="nav-link">Coroutines in Background</a></li>
 
-// Login Use Case
-package com.example.cleanarchitecture.domain.usecase
+        <!-- 7. Testing & Debugging -->
+        <li class="menu-section">Testing & Debugging</li>
+        <li><a href="../../content-android/testing/unit-testing.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="../../content-android/testing/ui-testing.html" class="nav-link">UI Testing</a></li>
+        <li><a href="../../content-android/testing/integration.html" class="nav-link">Integration Testing</a></li>
+        <li><a href="../../content-android/testing/mock.html" class="nav-link">Mocking & Dependency Injection</a></li>
+        <li><a href="../../content-android/testing/debugging.html" class="nav-link">Debugging & Profiling</a></li>
 
-import com.example.cleanarchitecture.domain.model.User
-import com.example.cleanarchitecture.domain.repository.UserRepository
+        <!-- 8. Security & Data Protection -->
+        <li class="menu-section">Security & Data Protection</li>
+        <li><a href="../../content-android/security/encryption.html" class="nav-link">Encryption & Decryption</a></li>
+        <li><a href="../../content-android/security/keystore.html" class="nav-link">Android Keystore</a></li>
+        <li><a href="../../content-android/security/secure-storage.html" class="nav-link">Secure Local Storage</a></li>
+        <li><a href="../../content-android/security/network-security.html" class="nav-link">Network Security Config</a></li>
 
-class LoginUseCase(private val repository: UserRepository) {
-    fun execute(username: String, password: String): Boolean {
-        val user = User(username, password)
-        return if (user.isValid()) repository.login(user) else false
-    }
-}
-        </code></pre>
+        <!-- 9. Performance & Optimization -->
+        <li class="menu-section">Performance & Optimization</li>
+        <li><a href="../../content-android/performance/memory.html" class="nav-link">Memory Optimization</a></li>
+        <li><a href="../../content-android/performance/startup.html" class="nav-link">App Startup Time</a></li>
+        <li><a href="../../content-android/performance/rendering.html" class="nav-link">Rendering & Overdraw</a></li>
+        <li><a href="../../content-android/performance/battery.html" class="nav-link">Battery & CPU Efficiency</a></li>
+    </ul>
+    </nav>
 
-        <h4>📦 Data Layer — Repository & Data Source</h4>
-        <pre><code class="language-kotlin">
-package com.example.cleanarchitecture.data.repository
 
-import com.example.cleanarchitecture.domain.model.User
-import com.example.cleanarchitecture.domain.repository.UserRepository
-import com.example.cleanarchitecture.data.source.UserDataSource
+    <main class="content">
+        <div id="content-display">
+            <section id="clean-architecture" class="basic-1 bg-gray py-5">
+                <div class="container">
+                    <h1 class="text-center mb-5">Clean Architecture in Android — Complete Guide</h1>
 
-class UserRepositoryImpl(private val dataSource: UserDataSource) : UserRepository {
-    override fun login(user: User): Boolean {
-        return dataSource.login(user)
-    }
-}
+                    <h3>1. What is Clean Architecture?</h3>
+                    <p>
+                        Clean Architecture is a design pattern proposed by <strong>Robert C. Martin (Uncle Bob)</strong> 
+                        that emphasizes **separation of concerns**, **testability**, and **maintainability**.  
+                        It divides the codebase into layers where dependencies always point **inward**, ensuring that core business logic is independent of frameworks, UI, or external systems.
+                    </p>
 
-// Simulated Data Source
-package com.example.cleanarchitecture.data.source
+                    <h3>2. Core Layers of Clean Architecture</h3>
+                    <ul>
+                        <li><strong>Entities:</strong> Encapsulate the core business rules. They are independent of frameworks and external dependencies.</li>
+                        <li><strong>Use Cases / Interactors:</strong> Contain application-specific business rules. They orchestrate the flow of data to and from the Entities.</li>
+                        <li><strong>Interface Adapters / Presenters:</strong> Convert data from the use cases into a form suitable for the UI, database, or external services.</li>
+                        <li><strong>Frameworks & Drivers:</strong> Outer layer containing Android SDK, databases, network libraries, and UI components (Compose or XML).</li>
+                    </ul>
 
-import com.example.cleanarchitecture.domain.model.User
+                    <h3>3. Key Principles</h3>
+                    <ul>
+                        <li><strong>Dependency Rule:</strong> Source code dependencies always point inward, never outward.</li>
+                        <li><strong>Separation of Concerns:</strong> Each layer has a single responsibility and does not rely on outer layers.</li>
+                        <li><strong>Testability:</strong> Core business logic can be tested independently of the Android framework.</li>
+                    </ul>
 
-class UserDataSource {
-    fun login(user: User): Boolean {
-        // Simulate authentication
-        return user.username == "admin" && user.password == "123456"
-    }
-}
-        </code></pre>
+                    <h3>4. Advantages of Clean Architecture</h3>
+                    <ul>
+                        <li>Highly maintainable and scalable for large apps.</li>
+                        <li>Easy to test core business logic.</li>
+                        <li>Allows swapping frameworks or UI without affecting business rules.</li>
+                        <li>Decouples UI, data, and business logic effectively.</li>
+                    </ul>
 
-        <h4>🖥️ Presentation Layer — ViewModel & Activity</h4>
-        <pre><code class="language-kotlin">
-package com.example.cleanarchitecture.presentation.viewmodel
+                    <h3>5. Example: Simple Login Feature Using Clean Architecture</h3>
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.cleanarchitecture.domain.usecase.LoginUseCase
+                    <h4>📁 Folder Structure</h4>
+                    <pre><code>
+                    ├── domain/
+                    │   ├── model/User.kt
+                    │   └── usecase/LoginUseCase.kt
+                    ├── data/
+                    │   ├── repository/UserRepositoryImpl.kt
+                    │   └── source/UserDataSource.kt
+                    ├── presentation/
+                    │   ├── view/LoginActivity.kt
+                    │   └── viewmodel/LoginViewModel.kt
+                    └── di/
+                        └── AppModule.kt
+                    </code></pre>
 
-class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
-    private val _loginResult = MutableLiveData<String>()
-    val loginResult: LiveData<String> get() = _loginResult
+                    <h4>🧩 Domain Layer — Entities & Use Case</h4>
+                    <pre><code class="language-kotlin">
+            // User Entity
+            package com.example.cleanarchitecture.domain.model
 
-    fun login(username: String, password: String) {
-        val success = loginUseCase.execute(username, password)
-        _loginResult.value = if (success) "Login Successful" else "Invalid Credentials"
-    }
-}
+            data class User(val username: String, val password: String) {
+                fun isValid(): Boolean = username.isNotEmpty() && password.length >= 6
+            }
 
-// Activity (XML or Compose)
-package com.example.cleanarchitecture.presentation.view
+            // Login Use Case
+            package com.example.cleanarchitecture.domain.usecase
 
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.example.cleanarchitecture.presentation.viewmodel.LoginViewModel
+            import com.example.cleanarchitecture.domain.model.User
+            import com.example.cleanarchitecture.domain.repository.UserRepository
 
-class LoginActivity : AppCompatActivity() {
-    private val viewModel: LoginViewModel by viewModels() 
+            class LoginUseCase(private val repository: UserRepository) {
+                fun execute(username: String, password: String): Boolean {
+                    val user = User(username, password)
+                    return if (user.isValid()) repository.login(user) else false
+                }
+            }
+                    </code></pre>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_login)
+                    <h4>📦 Data Layer — Repository & Data Source</h4>
+                    <pre><code class="language-kotlin">
+            package com.example.cleanarchitecture.data.repository
 
-        viewModel.loginResult.observe(this) { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
+            import com.example.cleanarchitecture.domain.model.User
+            import com.example.cleanarchitecture.domain.repository.UserRepository
+            import com.example.cleanarchitecture.data.source.UserDataSource
 
-        // On button click:
-        // viewModel.login(username, password)
-    }
-}
-        </code></pre>
+            class UserRepositoryImpl(private val dataSource: UserDataSource) : UserRepository {
+                override fun login(user: User): Boolean {
+                    return dataSource.login(user)
+                }
+            }
 
-        <h3>6. Summary</h3>
-        <ul>
-            <li>Clean Architecture separates code into layers: <strong>Domain → Data → Presentation → Framework</strong>.</li>
-            <li>Dependencies always point inward, making the core business logic independent of Android frameworks.</li>
-            <li>Highly maintainable, testable, and scalable for large projects.</li>
-            <li>Works perfectly with MVVM or MVI in the Presentation layer.</li>
-        </ul>
+            // Simulated Data Source
+            package com.example.cleanarchitecture.data.source
 
-        <div class="text-center mt-5">
-            <h4>Conclusion</h4>
-            <p>
-                Clean Architecture is the gold standard for professional Android applications. 
-                It ensures a clean separation between business logic, data, and UI, 
-                allowing for easier testing, maintenance, and future-proofing of your app. 
-                This architecture is highly favored in CTO-level interviews.
-            </p>
-        </div>
-    </div>
-</section>
+            import com.example.cleanarchitecture.domain.model.User
+
+            class UserDataSource {
+                fun login(user: User): Boolean {
+                    // Simulate authentication
+                    return user.username == "admin" && user.password == "123456"
+                }
+            }
+                    </code></pre>
+
+                    <h4>🖥️ Presentation Layer — ViewModel & Activity</h4>
+                    <pre><code class="language-kotlin">
+            package com.example.cleanarchitecture.presentation.viewmodel
+
+            import androidx.lifecycle.LiveData
+            import androidx.lifecycle.MutableLiveData
+            import androidx.lifecycle.ViewModel
+            import com.example.cleanarchitecture.domain.usecase.LoginUseCase
+
+            class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+                private val _loginResult = MutableLiveData<String>()
+                val loginResult: LiveData<String> get() = _loginResult
+
+                fun login(username: String, password: String) {
+                    val success = loginUseCase.execute(username, password)
+                    _loginResult.value = if (success) "Login Successful" else "Invalid Credentials"
+                }
+            }
+
+            // Activity (XML or Compose)
+            package com.example.cleanarchitecture.presentation.view
+
+            import android.os.Bundle
+            import android.widget.Toast
+            import androidx.activity.viewModels
+            import androidx.appcompat.app.AppCompatActivity
+            import com.example.cleanarchitecture.presentation.viewmodel.LoginViewModel
+
+            class LoginActivity : AppCompatActivity() {
+                private val viewModel: LoginViewModel by viewModels() 
+
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    // setContentView(R.layout.activity_login)
+
+                    viewModel.loginResult.observe(this) { message ->
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    // On button click:
+                    // viewModel.login(username, password)
+                }
+            }
+                    </code></pre>
+
+                    <h3>6. Summary</h3>
+                    <ul>
+                        <li>Clean Architecture separates code into layers: <strong>Domain → Data → Presentation → Framework</strong>.</li>
+                        <li>Dependencies always point inward, making the core business logic independent of Android frameworks.</li>
+                        <li>Highly maintainable, testable, and scalable for large projects.</li>
+                        <li>Works perfectly with MVVM or MVI in the Presentation layer.</li>
+                    </ul>
+
+                    <div class="text-center mt-5">
+                        <h4>Conclusion</h4>
+                        <p>
+                            Clean Architecture is the gold standard for professional Android applications. 
+                            It ensures a clean separation between business logic, data, and UI, 
+                            allowing for easier testing, maintenance, and future-proofing of your app. 
+                            This architecture is highly favored in CTO-level interviews.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            </div>
+    </main>
+
+    <script src="../../../js/python.js"></script>
+</body>
+</html>
+

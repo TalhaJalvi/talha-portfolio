@@ -1,56 +1,569 @@
-<!-- Problem: Reverse an Array -->
-<section>
-  <h2>Problem Statement</h2>
-  <p>
-    Given an array of integers, reverse the array so that the first element becomes the last, 
-    the second becomes the second last, and so on. The task is to return or print the array 
-    in reversed order.
-  </p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-Input: arr = [10, 20, 30, 5, 25]
-Output: [25, 5, 30, 20, 10]
-Explanation: The array elements are reversed.
-  </code></pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Solving</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-  <h2>Solution Approach</h2>
-  <ol>
-    <li>Start iterating from the last index of the array to the first index.</li>
-    <li>Print or store each element to get the reversed order.</li>
-    <li>Alternatively, use built-in Kotlin functions like <code>reversedArray()</code> for simplicity.</li>
-  </ol>
+    <header class="header">
+        <header class="header">
+        <h1>Problem Solving</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-  <h2>Your Kotlin Solution</h2>
-  <pre><code class="kotlin">
-import kotlinx.coroutines.*
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+        <ul class="sidebar-menu">
+        <li class="menu-title">Basics</li>
+        <li><a href="../../../articles/problem-solving-qas.html" class="nav-link">What is Problem Solving and Why its Important ?</a></li>
+        <li><a href="../../problems/basics/what-is-time-and-space-complexity.html" class="nav-link">Criteria for better approach ? Time and Space Complexity !</a></li>
+        <li><a href="../../problems/basics/calculate-time-and-space-complexity.html" class="nav-link">How do we calculate Time and Space Complexity ? </a></li>
 
-fun main(){
-    val arrInput = arrayOf(10, 20, 30, 5, 25) // expected outcome = 25,5,30,20,10
-    for(i in arrInput.size-1 downTo 0){
-        print(arrInput[i])
-    }
-}
-  </code></pre>
+        <!-- Arrays -->
+        <li class="menu-title">Arrays</li>
+        <li><a href="problems/arrays/find-the-missing-number-in-an-array-from-1-to-n.html" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
+        <li><a href="../../problems/arrays/find-the-largest-and-smallest-number-in-an-array.html" class="nav-link">2. Find the largest and smallest number in an array</a></li>
+        <li><a href="../../problems/arrays/find-the-second-largest-element-in-an-array.html" class="nav-link">3. Find the second largest element in an array</a></li>
+        <li><a href="../../problems/arrays/rotate-array-by-k-steps.html" class="nav-link">4. Rotate array by k steps</a></li>
+        <li><a href="problems/arrays/reverse-an-array.html" class="nav-link">5. Reverse an array</a></li>
+        <li><a href="problems/arrays/move-all-zeros-to-the-end.html" class="nav-link">6. Move all zeros to the end</a></li>
+        <li><a href="problems/arrays/sort-array-of-0s-1s-and-2s-dutch-national-flag.html" class="nav-link">7. Sort array of 0s, 1s, and 2s (Dutch National Flag)</a></li>
+        <li><a href="problems/arrays/find-peak-element.html" class="nav-link">8. Find peak element</a></li>
+        <li><a href="problems/arrays/find-pair-with-given-sum.html" class="nav-link">9. Find pair with given sum</a></li>
+        <li><a href="problems/arrays/find-triplet-with-given-sum.html" class="nav-link">10. Find triplet with given sum</a></li>
+        <li><a href="problems/arrays/subarray-with-given-sum.html" class="nav-link">11. Subarray with given sum</a></li>
+        <li><a href="problems/arrays/maximum-subarray-sum-kadane.html" class="nav-link">12. Maximum subarray sum (Kadane)</a></li>
+        <li><a href="problems/arrays/merge-two-sorted-arrays.html" class="nav-link">13. Merge two sorted arrays</a></li>
+        <li><a href="problems/arrays/find-majority-element.html" class="nav-link">14. Find majority element</a></li>
+        <li><a href="problems/arrays/find-missing-and-repeating-numbers.html" class="nav-link">15. Find missing and repeating numbers</a></li>
+        <li><a href="problems/arrays/find-equilibrium-index.html" class="nav-link">16. Find equilibrium index</a></li>
+        <li><a href="problems/arrays/count-inversions-in-array.html" class="nav-link">17. Count inversions in array</a></li>
+        <li><a href="problems/arrays/maximum-product-subarray.html" class="nav-link">18. Maximum product subarray</a></li>
+        <li><a href="problems/arrays/find-missing-numbers-from-array.html" class="nav-link">19. Find missing numbers from array</a></li>
+        <li><a href="problems/arrays/find-duplicates-without-extra-space-floyd-cycle.html" class="nav-link">20. Find duplicates without extra space (Floyd cycle)</a></li>
+        <li><a href="problems/arrays/rainwater-trapping-problem.html" class="nav-link">21. Rainwater trapping problem</a></li>
+        <li><a href="problems/arrays/maximum-circular-subarray-sum.html" class="nav-link">22. Maximum circular subarray sum</a></li>
+        <li><a href="problems/arrays/check-if-array-can-be-partitioned-into-equal-sum.html" class="nav-link">23. Check if array can be partitioned into equal sum</a></li>
+        <li><a href="problems/arrays/minimum-number-of-jumps-to-reach-end.html" class="nav-link">24. Minimum number of jumps to reach end</a></li>
+        <li><a href="problems/arrays/count-subarrays-divisible-by-k.html" class="nav-link">25. Count subarrays divisible by K</a></li>
+        <li><a href="problems/arrays/maximum-product-subarray.html" class="nav-link">26. Maximum product subarray</a></li>
+        <li><a href="problems/arrays/find-duplicate-in-array-of-n-plus-1-integers.html" class="nav-link">27. Find duplicate in array of N+1 integers</a></li>
+        <li><a href="problems/arrays/find-all-duplicates-in-array.html" class="nav-link">28. Find all duplicates in array</a></li>
+        <li><a href="problems/arrays/find-missing-number-in-array.html" class="nav-link">29. Find missing number in array</a></li>
+        <li><a href="problems/arrays/merge-two-sorted-arrays-without-extra-space.html" class="nav-link">30. Merge two sorted arrays without extra space</a></li>
+        <li><a href="problems/arrays/maximum-sum-of-non-adjacent-elements.html" class="nav-link">31. Maximum sum of non-adjacent elements</a></li>
+        <li><a href="problems/arrays/rearrange-array-in-alternating-positive-and-negative.html" class="nav-link">32. Rearrange array in alternating positive & negative</a></li>
+        <li><a href="problems/arrays/dutch-national-flag-problem.html" class="nav-link">33. Dutch National Flag problem</a></li>
+        <li><a href="problems/arrays/rotate-array-by-k-positions.html" class="nav-link">34. Rotate array by K positions</a></li>
+        <li><a href="problems/arrays/count-inversions-in-array.html" class="nav-link">35. Count inversions in array</a></li>
 
-  <h2>Alternate Kotlin Solution Using Built-in Function</h2>
-  <pre><code class="kotlin">
-fun main() {
-    val arrInput = arrayOf(10, 20, 30, 5, 25)
-    val reversedArr = arrInput.reversedArray()
-    println(reversedArr.joinToString()) // Output: 25, 5, 30, 20, 10
-}
-  </code></pre>
+        <!-- Strings -->
+        <li class="menu-title">Strings</li>
+        <li><a href="problems/strings/find-first-non-repeating-character.html" class="nav-link">36. Find first non-repeating character</a></li>
+        <li><a href="problems/strings/check-if-two-strings-are-anagrams.html" class="nav-link">37. Check if two strings are anagrams</a></li>
+        <li><a href="problems/strings/count-vowels-in-a-string.html" class="nav-link">38. Count vowels in a string</a></li>
+        <li><a href="problems/strings/reverse-a-string.html" class="nav-link">39. Reverse a string</a></li>
+        <li><a href="problems/strings/check-palindrome.html" class="nav-link">40. Check palindrome</a></li>
+        <li><a href="problems/strings/longest-common-substring.html" class="nav-link">41. Longest common substring</a></li>
+        <li><a href="problems/strings/longest-common-subsequence.html" class="nav-link">42. Longest common subsequence</a></li>
+        <li><a href="problems/strings/edit-distance-problem.html" class="nav-link">43. Edit distance problem</a></li>
+        <li><a href="problems/strings/minimum-window-substring.html" class="nav-link">44. Minimum window substring</a></li>
+        <li><a href="problems/strings/word-search-in-matrix.html" class="nav-link">45. Word search in matrix</a></li>
+        <li><a href="problems/strings/longest-palindromic-substring.html" class="nav-link">46. Longest palindromic substring</a></li>
+        <li><a href="problems/strings/check-if-two-strings-are-rotations.html" class="nav-link">47. Check if two strings are rotations</a></li>
+        <li><a href="problems/strings/print-all-permutations-of-a-string.html" class="nav-link">48. Print all permutations of a string</a></li>
+        <li><a href="problems/strings/find-smallest-window-containing-all-characters.html" class="nav-link">49. Find smallest window containing all characters</a></li>
+        <li><a href="problems/strings/first-non-repeating-character-in-stream.html" class="nav-link">50. First non-repeating character in stream</a></li>
+        <li><a href="problems/strings/group-anagrams.html" class="nav-link">51. Group anagrams</a></li>
+        <li><a href="problems/strings/convert-roman-numeral-to-integer.html" class="nav-link">52. Convert Roman numeral to integer</a></li>
+        <li><a href="problems/strings/longest-common-prefix.html" class="nav-link">53. Longest common prefix</a></li>
+        <li><a href="problems/strings/validate-parentheses.html" class="nav-link">54. Validate parentheses</a></li>
+        <li><a href="problems/strings/count-palindromic-substrings.html" class="nav-link">55. Count palindromic substrings</a></li>
+        <li><a href="problems/strings/longest-substring-without-repeating-characters.html" class="nav-link">56. Longest substring without repeating characters</a></li>
+        <li><a href="problems/strings/check-if-two-strings-are-rotations-of-each-other.html" class="nav-link">57. Check if two strings are rotations of each other</a></li>
+        <li><a href="problems/strings/reverse-each-word-in-a-string-without-changing-word-order.html" class="nav-link">58. Reverse each word in a string without changing word order</a></li>
+        <li><a href="problems/strings/find-the-first-non-repeating-character-in-a-string.html" class="nav-link">59. Find the first non-repeating character in a string</a></li>
+        <li><a href="problems/strings/convert-string-to-zigzag-pattern.html" class="nav-link">60. Convert string to zigzag pattern</a></li>
+        <li><a href="problems/strings/validate-ipv4-address.html" class="nav-link">61. Validate IPv4 address</a></li>
+        <li><a href="problems/strings/validate-balanced-parentheses.html" class="nav-link">62. Validate balanced parentheses</a></li>
+        <li><a href="problems/strings/remove-adjacent-duplicates.html" class="nav-link">63. Remove adjacent duplicates</a></li>
+        <li><a href="problems/strings/count-number-of-substrings-with-equal-number-of-0s-and-1s.html" class="nav-link">64. Count number of substrings with equal number of 0s and 1s</a></li>
+        <li><a href="problems/strings/find-smallest-window-containing-all-characters-of-another-string.html" class="nav-link">65. Find smallest window containing all characters of another string</a></li>
+        <li><a href="problems/strings/check-if-string-is-palindrome.html" class="nav-link">66. Check if string is palindrome</a></li>
+        <li><a href="problems/strings/longest-palindromic-substring.html" class="nav-link">67. Longest palindromic substring</a></li>
+        <li><a href="problems/strings/count-and-say-sequence.html" class="nav-link">68. Count and say sequence</a></li>
+        <li><a href="problems/strings/longest-substring-without-repeating-characters.html" class="nav-link">69. Longest substring without repeating characters</a></li>
+        <li><a href="problems/strings/implement-strstr.html" class="nav-link">70. Implement strstr()</a></li>
+        <li><a href="problems/strings/check-anagrams.html" class="nav-link">71. Check anagrams</a></li>
+        <li><a href="problems/strings/encode-and-decode-string.html" class="nav-link">72. Encode and decode string</a></li>
+        <li><a href="problems/strings/reverse-words-in-a-string.html" class="nav-link">73. Reverse words in a string</a></li>
+        <li><a href="problems/strings/group-anagrams.html" class="nav-link">74. Group anagrams</a></li>
+        <li><a href="problems/strings/minimum-window-substring.html" class="nav-link">75. Minimum window substring</a></li>
 
-  <h2>Explanation</h2>
-  <ul>
-    <li>The first solution uses a <code>for</code> loop starting from the last index down to 0.</li>
-    <li>Elements are printed in reverse order, effectively reversing the array.</li>
-    <li>The built-in <code>reversedArray()</code> function is more concise and returns a new reversed array.</li>
-  </ul>
 
-  <h2>Complexity Analysis</h2>
-  <ul>
-    <li><strong>Time Complexity:</strong> O(N) — traversing the array once.</li>
-    <li><strong>Space Complexity:</strong> O(N) for <code>reversedArray()</code>, O(1) if printing directly.</li>
-  </ul>
-</section>
+        <!-- Linked List -->
+        <li class="menu-title">Linked List</li>
+        <li><a href="problems/linked-list/reverse-a-linked-list.html" class="nav-link">76. Reverse a linked list</a></li>
+        <li><a href="problems/linked-list/detect-cycle-in-linked-list.html" class="nav-link">77. Detect cycle in linked list</a></li>
+        <li><a href="problems/linked-list/find-middle-of-linked-list.html" class="nav-link">78. Find middle of linked list</a></li>
+        <li><a href="problems/linked-list/merge-two-sorted-linked-lists.html" class="nav-link">79. Merge two sorted linked lists</a></li>
+        <li><a href="problems/linked-list/remove-duplicates-from-linked-list.html" class="nav-link">80. Remove duplicates from linked list</a></li>
+        <li><a href="problems/linked-list/flatten-a-multilevel-linked-list.html" class="nav-link">81. Flatten a multilevel linked list</a></li>
+        <li><a href="problems/linked-list/intersection-point-of-two-linked-lists.html" class="nav-link">82. Intersection point of two linked lists</a></li>
+        <li><a href="problems/linked-list/add-two-numbers-represented-as-linked-lists.html" class="nav-link">83. Add two numbers represented as linked lists</a></li>
+        <li><a href="problems/linked-list/partition-linked-list-around-a-value.html" class="nav-link">84. Partition linked list around a value</a></li>
+        <li><a href="problems/linked-list/delete-node-without-head-pointer.html" class="nav-link">85. Delete node without head pointer</a></li>
+        <li><a href="problems/linked-list/reverse-linked-list-in-groups-of-k.html" class="nav-link">86. Reverse linked list in groups of K</a></li>
+        <li><a href="problems/linked-list/remove-loop-in-linked-list.html" class="nav-link">87. Remove loop in linked list</a></li>
+        <li><a href="problems/linked-list/sort-linked-list-using-merge-sort.html" class="nav-link">88. Sort linked list using merge sort</a></li>
+        <li><a href="problems/linked-list/check-if-linked-list-is-palindrome.html" class="nav-link">89. Check if linked list is palindrome</a></li>
+        <li><a href="problems/linked-list/rotate-linked-list-by-k.html" class="nav-link">90. Rotate linked list by K</a></li>
+        <li><a href="problems/linked-list/pairwise-swap-nodes.html" class="nav-link">91. Pairwise swap nodes</a></li>
+        <li><a href="problems/linked-list/convert-binary-linked-list-to-integer.html" class="nav-link">92. Convert binary linked list to integer</a></li>
+        <li><a href="problems/linked-list/add-1-to-number-represented-by-linked-list.html" class="nav-link">93. Add 1 to number represented by linked list</a></li>
+        <li><a href="problems/linked-list/split-circular-linked-list-into-two-halves.html" class="nav-link">94. Split circular linked list into two halves</a></li>
+        <li><a href="problems/linked-list/reverse-linked-list-recursively.html" class="nav-link">95. Reverse linked list recursively</a></li>
+        <li><a href="problems/linked-list/detect-cycle-in-linked-list.html" class="nav-link">96. Detect cycle in linked list</a></li>
+        <li><a href="problems/linked-list/remove-cycle-in-linked-list.html" class="nav-link">97. Remove cycle in linked list</a></li>
+        <li><a href="problems/linked-list/merge-two-sorted-linked-lists.html" class="nav-link">98. Merge two sorted linked lists</a></li>
+        <li><a href="problems/linked-list/merge-k-sorted-linked-lists.html" class="nav-link">99. Merge K sorted linked lists</a></li>
+        <li><a href="problems/linked-list/remove-duplicates-from-sorted-linked-list.html" class="nav-link">100. Remove duplicates from sorted linked list</a></li>
+        <li><a href="problems/linked-list/remove-duplicates-from-unsorted-linked-list.html" class="nav-link">101. Remove duplicates from unsorted linked list</a></li>
+        <li><a href="problems/linked-list/find-intersection-of-two-linked-lists.html" class="nav-link">102. Find intersection of two linked lists</a></li>
+        <li><a href="problems/linked-list/add-two-numbers-represented-as-linked-lists.html" class="nav-link">103. Add two numbers represented as linked lists</a></li>
+        <li><a href="problems/linked-list/split-linked-list-in-parts.html" class="nav-link">104. Split linked list in parts</a></li>
+        <li><a href="problems/linked-list/reverse-a-linked-list.html" class="nav-link">105. Reverse a linked list</a></li>
+        <li><a href="problems/linked-list/detect-and-remove-cycle.html" class="nav-link">106. Detect and remove cycle</a></li>
+        <li><a href="problems/linked-list/find-middle-of-linked-list.html" class="nav-link">107. Find middle of linked list</a></li>
+        <li><a href="problems/linked-list/merge-two-sorted-linked-lists.html" class="nav-link">108. Merge two sorted linked lists</a></li>
+        <li><a href="problems/linked-list/merge-k-sorted-lists.html" class="nav-link">109. Merge K sorted lists</a></li>
+        <li><a href="problems/linked-list/add-two-numbers-represented-by-linked-lists.html" class="nav-link">110. Add two numbers represented by linked lists</a></li>
+        <li><a href="problems/linked-list/remove-nth-node-from-end.html" class="nav-link">111. Remove nth node from end</a></li>
+        <li><a href="problems/linked-list/check-if-linked-list-is-palindrome.html" class="nav-link">112. Check if linked list is palindrome</a></li>
+        <li><a href="problems/linked-list/partition-list-around-a-value.html" class="nav-link">113. Partition list around a value</a></li>
+        <li><a href="problems/linked-list/sort-a-linked-list.html" class="nav-link">114. Sort a linked list</a></li>
+
+        <!-- Stack & Queue -->
+        <li class="menu-title">Stack & Queue</li>
+        <li><a href="problems/stack-queue/implement-stack-using-array.html" class="nav-link">115. Implement stack using array</a></li>
+        <li><a href="problems/stack-queue/implement-queue-using-array.html" class="nav-link">116. Implement queue using array</a></li>
+        <li><a href="problems/stack-queue/implement-stack-using-two-queues.html" class="nav-link">117. Implement stack using two queues</a></li>
+        <li><a href="problems/stack-queue/implement-queue-using-two-stacks.html" class="nav-link">118. Implement queue using two stacks</a></li>
+        <li><a href="problems/stack-queue/check-balanced-parentheses.html" class="nav-link">119. Check balanced parentheses</a></li>
+        <li><a href="problems/stack-queue/convert-infix-to-postfix.html" class="nav-link">120. Convert infix to postfix</a></li>
+        <li><a href="problems/stack-queue/evaluate-postfix-expression.html" class="nav-link">121. Evaluate postfix expression</a></li>
+        <li><a href="problems/stack-queue/largest-rectangle-in-histogram.html" class="nav-link">122. Largest rectangle in histogram</a></li>
+        <li><a href="problems/stack-queue/next-greater-element.html" class="nav-link">123. Next greater element</a></li>
+        <li><a href="problems/stack-queue/sliding-window-maximum.html" class="nav-link">124. Sliding window maximum</a></li>
+        <li><a href="problems/stack-queue/min-stack-implementation.html" class="nav-link">125. Min stack implementation</a></li>
+        <li><a href="problems/stack-queue/next-smaller-element.html" class="nav-link">126. Next smaller element</a></li>
+        <li><a href="problems/stack-queue/reverse-stack-using-recursion.html" class="nav-link">127. Reverse a stack using recursion</a></li>
+        <li><a href="problems/stack-queue/sort-stack-using-recursion.html" class="nav-link">128. Sort stack using recursion</a></li>
+        <li><a href="problems/stack-queue/largest-rectangle-in-histogram.html" class="nav-link">129. Largest rectangle in histogram</a></li>
+        <li><a href="problems/stack-queue/online-stock-span.html" class="nav-link">130. Online stock span</a></li>
+        <li><a href="problems/stack-queue/reverse-a-queue.html" class="nav-link">131. Reverse a queue</a></li>
+        <li><a href="problems/stack-queue/implement-circular-queue.html" class="nav-link">132. Implement circular queue</a></li>
+        <li><a href="problems/stack-queue/first-non-repeating-char-using-queue.html" class="nav-link">133. First non-repeating char using queue</a></li>
+        <li><a href="problems/stack-queue/implement-priority-queue.html" class="nav-link">134. Implement priority queue</a></li>
+        <li><a href="problems/stack-queue/implement-stack-using-array.html" class="nav-link">135. Implement stack using array</a></li>
+        <li><a href="problems/stack-queue/implement-queue-using-array.html" class="nav-link">136. Implement queue using array</a></li>
+        <li><a href="problems/stack-queue/implement-stack-using-two-queues.html" class="nav-link">137. Implement stack using two queues</a></li>
+        <li><a href="problems/stack-queue/implement-queue-using-two-stacks.html" class="nav-link">138. Implement queue using two stacks</a></li>
+        <li><a href="problems/stack-queue/next-greater-element.html" class="nav-link">139. Next greater element</a></li>
+        <li><a href="problems/stack-queue/evaluate-postfix-expression.html" class="nav-link">140. Evaluate postfix expression</a></li>
+        <li><a href="problems/stack-queue/evaluate-prefix-expression.html" class="nav-link">141. Evaluate prefix expression</a></li>
+        <li><a href="problems/stack-queue/min-stack-stack-supporting-getmin.html" class="nav-link">142. Min stack (stack supporting getMin)</a></li>
+        <li><a href="problems/stack-queue/largest-rectangle-in-histogram.html" class="nav-link">143. Largest rectangle in histogram</a></li>
+        <li><a href="problems/stack-queue/sliding-window-maximum.html" class="nav-link">144. Sliding window maximum</a></li>
+
+        <!-- Binary Trees & BST -->
+        <li class="menu-title">Binary Trees & BST</li>
+        <li><a href="problems/binary-trees/preorder-traversal.html" class="nav-link">145. Preorder traversal</a></li>
+        <li><a href="problems/binary-trees/inorder-traversal.html" class="nav-link">146. Inorder traversal</a></li>
+        <li><a href="problems/binary-trees/postorder-traversal.html" class="nav-link">147. Postorder traversal</a></li>
+        <li><a href="problems/binary-trees/level-order-traversal.html" class="nav-link">148. Level order traversal</a></li>
+        <li><a href="problems/binary-trees/height-of-binary-tree.html" class="nav-link">149. Height of binary tree</a></li>
+        <li><a href="problems/binary-trees/diameter-of-binary-tree.html" class="nav-link">150. Diameter of binary tree</a></li>
+        <li><a href="problems/binary-trees/check-if-tree-is-symmetric.html" class="nav-link">151. Check if tree is symmetric</a></li>
+        <li><a href="problems/binary-trees/lowest-common-ancestor.html" class="nav-link">152. Lowest common ancestor</a></li>
+        <li><a href="problems/binary-trees/serialize-tree.html" class="nav-link">153. Serialize tree</a></li>
+        <li><a href="problems/binary-trees/deserialize-tree.html" class="nav-link">154. Deserialize tree</a></li>
+        <li><a href="problems/binary-trees/zigzag-traversal.html" class="nav-link">155. Zigzag traversal</a></li>
+        <li><a href="problems/binary-trees/validate-a-bst.html" class="nav-link">156. Validate a BST</a></li>
+        <li><a href="problems/binary-trees/construct-tree-from-preorder-inorder.html" class="nav-link">157. Construct tree from preorder & inorder</a></li>
+        <li><a href="problems/binary-trees/find-lca-in-binary-tree.html" class="nav-link">158. Find LCA in binary tree</a></li>
+        <li><a href="problems/binary-trees/vertical-order-traversal.html" class="nav-link">159. Vertical order traversal</a></li>
+        <li><a href="problems/binary-trees/boundary-traversal-of-tree.html" class="nav-link">160. Boundary traversal of tree</a></li>
+        <li><a href="problems/binary-trees/maximum-path-sum.html" class="nav-link">161. Maximum path sum</a></li>
+        <li><a href="problems/binary-trees/sum-of-left-leaves.html" class="nav-link">162. Sum of left leaves</a></li>
+        <li><a href="problems/binary-trees/diagonal-traversal.html" class="nav-link">163. Diagonal traversal</a></li>
+        <li><a href="problems/binary-trees/flatten-binary-tree-to-linked-list.html" class="nav-link">164. Flatten binary tree to linked list</a></li>
+        <li><a href="problems/binary-trees/construct-bst-from-sorted-array.html" class="nav-link">165. Construct BST from sorted array</a></li>
+        <li><a href="problems/binary-trees/inorder-preorder-postorder-traversal.html" class="nav-link">166. Inorder preorder postorder traversal</a></li>
+        <li><a href="problems/binary-trees/level-order-traversal.html" class="nav-link">167. Level order traversal</a></li>
+        <li><a href="problems/binary-trees/height-of-binary-tree.html" class="nav-link">168. Height of a binary tree</a></li>
+        <li><a href="problems/binary-trees/maximum-depth-of-binary-tree.html" class="nav-link">169. Maximum depth of binary tree</a></li>
+        <li><a href="problems/binary-trees/validate-bst.html" class="nav-link">170. Validate BST</a></li>
+        <li><a href="problems/binary-trees/lowest-common-ancestor.html" class="nav-link">171. Lowest common ancestor</a></li>
+        <li><a href="problems/binary-trees/invert-flip-binary-tree.html" class="nav-link">172. Invert/flip binary tree</a></li>
+        <li><a href="problems/binary-trees/check-if-two-trees-are-identical.html" class="nav-link">173. Check if two trees are identical</a></li>
+        <li><a href="problems/binary-trees/serialize-and-deserialize-binary-tree.html" class="nav-link">174. Serialize and deserialize binary tree</a></li>
+        <li><a href="problems/binary-trees/boundary-traversal.html" class="nav-link">175. Boundary traversal</a></li>
+        <li><a href="problems/binary-trees/preorder-inorder-postorder-traversal.html" class="nav-link">176. Preorder, inorder, postorder traversal</a></li>
+        <li><a href="problems/binary-trees/level-order-traversal.html" class="nav-link">177. Level order traversal</a></li>
+        <li><a href="problems/binary-trees/height-of-binary-tree.html" class="nav-link">178. Height of binary tree</a></li>
+        <li><a href="problems/binary-trees/diameter-of-binary-tree.html" class="nav-link">179. Diameter of binary tree</a></li>
+        <li><a href="problems/binary-trees/check-if-tree-is-symmetric.html" class="nav-link">180. Check if tree is symmetric</a></li>
+        <li><a href="problems/binary-trees/lowest-common-ancestor-of-bst.html" class="nav-link">181. Lowest common ancestor of BST</a></li>
+        <li><a href="problems/binary-trees/serialize-and-deserialize-tree.html" class="nav-link">182. Serialize and deserialize tree</a></li>
+        <li><a href="problems/binary-trees/convert-bst-to-sorted-doubly-linked-list.html" class="nav-link">183. Convert BST to sorted doubly linked list</a></li>
+        <li><a href="problems/binary-trees/construct-tree-from-preorder-inorder.html" class="nav-link">184. Construct tree from preorder & inorder</a></li>
+        <li><a href="problems/binary-trees/construct-tree-from-postorder-inorder.html" class="nav-link">185. Construct tree from postorder & inorder</a></li>
+
+        <!-- Graphs -->
+        <li class="menu-title">Graphs</li>
+        <li><a href="problems/graphs/bfs-traversal.html" class="nav-link">186. BFS traversal</a></li>
+        <li><a href="problems/graphs/dfs-traversal.html" class="nav-link">187. DFS traversal</a></li>
+        <li><a href="problems/graphs/detect-cycle-in-graph.html" class="nav-link">188. Detect cycle in graph</a></li>
+        <li><a href="problems/graphs/check-if-graph-is-bipartite.html" class="nav-link">189. Check if graph is bipartite</a></li>
+        <li><a href="problems/graphs/dijkstra-algorithm.html" class="nav-link">190. Dijkstra algorithm</a></li>
+        <li><a href="problems/graphs/bellman-ford-algorithm.html" class="nav-link">191. Bellman-Ford algorithm</a></li>
+        <li><a href="problems/graphs/floyd-warshall-algorithm.html" class="nav-link">192. Floyd-Warshall algorithm</a></li>
+        <li><a href="problems/graphs/clone-a-graph.html" class="nav-link">193. Clone a graph</a></li>
+        <li><a href="problems/graphs/number-of-islands.html" class="nav-link">194. Number of islands</a></li>
+        <li><a href="problems/graphs/minimum-spanning-tree-kruskal.html" class="nav-link">195. Minimum spanning tree (Kruskal)</a></li>
+        <li><a href="problems/graphs/minimum-spanning-tree-prim.html" class="nav-link">196. Minimum spanning tree (Prim)</a></li>
+        <li><a href="problems/graphs/detect-cycle-undirected.html" class="nav-link">197. Detect cycle in undirected graph</a></li>
+        <li><a href="problems/graphs/detect-cycle-directed.html" class="nav-link">198. Detect cycle in directed graph</a></li>
+        <li><a href="problems/graphs/topological-sorting.html" class="nav-link">199. Topological sorting</a></li>
+        <li><a href="problems/graphs/prims-mst.html" class="nav-link">200. Prim’s minimum spanning tree</a></li>
+        <li><a href="problems/graphs/kruskals-mst.html" class="nav-link">201. Kruskal’s MST</a></li>
+        <li><a href="problems/graphs/count-connected-components.html" class="nav-link">202. Count connected components</a></li>
+        <li><a href="problems/graphs/shortest-path-weighted.html" class="nav-link">203. Shortest path in weighted graph</a></li>
+        <li><a href="problems/graphs/strongly-connected-components-kosaraju.html" class="nav-link">204. Strongly connected components (Kosaraju)</a></li>
+
+        <!-- Heap -->
+        <li class="menu-title">Heap</li>
+        <li><a href="problems/heap/implement-min-heap.html" class="nav-link">205. Implement min heap</a></li>
+        <li><a href="problems/heap/implement-max-heap.html" class="nav-link">206. Implement max heap</a></li>
+        <li><a href="problems/heap/find-kth-largest-element.html" class="nav-link">207. Find kth largest element</a></li>
+        <li><a href="problems/heap/find-kth-smallest-element.html" class="nav-link">208. Find kth smallest element</a></li>
+        <li><a href="problems/heap/heapify-an-array.html" class="nav-link">209. Heapify an array</a></li>
+        <li><a href="problems/heap/median-of-data-stream.html" class="nav-link">210. Median of data stream</a></li>
+        <li><a href="problems/heap/kth-largest-element-in-array.html" class="nav-link">211. K-th largest element in array</a></li>
+        <li><a href="problems/heap/merge-k-sorted-arrays-using-heap.html" class="nav-link">212. Merge K sorted arrays using heap</a></li>
+        <li><a href="problems/heap/reduce-array-sum-by-half.html" class="nav-link">213. Reduce array sum by half</a></li>
+        <li><a href="problems/heap/smallest-range-in-k-sorted-lists.html" class="nav-link">214. Smallest range in K sorted lists</a></li>
+        <li><a href="problems/heap/connect-ropes-to-minimize-cost.html" class="nav-link">215. Connect ropes to minimize cost</a></li>
+        <li><a href="problems/heap/sliding-window-maximum-using-max-heap.html" class="nav-link">216. Sliding window maximum using max heap</a></li>
+        <li><a href="problems/heap/frequency-sort.html" class="nav-link">217. Frequency sort</a></li>
+        <li><a href="problems/heap/k-closest-elements.html" class="nav-link">218. K closest elements</a></li>
+        <li><a href="problems/heap/last-stone-weight.html" class="nav-link">219. Last stone weight</a></li>
+        <li><a href="problems/heap/sort-nearly-sorted-array.html" class="nav-link">220. Sort nearly sorted array</a></li>
+        <li><a href="problems/heap/find-median-from-data-stream.html" class="nav-link">221. Find median from data stream</a></li>
+        <li><a href="problems/heap/top-k-frequent-elements.html" class="nav-link">222. Top K frequent elements</a></li>
+        <li><a href="problems/heap/rearrange-characters-with-distance-k.html" class="nav-link">223. Rearrange characters with distance K</a></li>
+        <li><a href="problems/heap/merge-k-sorted-linked-lists.html" class="nav-link">224. Merge K sorted linked lists</a></li>
+
+        <!-- Dynamic Programming -->
+        <li class="menu-title">Dynamic Programming</li>
+        <li><a href="problems/dp/fibonacci.html" class="nav-link">225. Fibonacci (DP)</a></li>
+        <li><a href="problems/dp/0-1-knapsack.html" class="nav-link">226. 0/1 Knapsack</a></li>
+        <li><a href="problems/dp/coin-change-problem.html" class="nav-link">227. Coin change problem</a></li>
+        <li><a href="problems/dp/longest-increasing-subsequence.html" class="nav-link">228. Longest increasing subsequence</a></li>
+        <li><a href="problems/dp/longest-common-subsequence.html" class="nav-link">229. Longest common subsequence</a></li>
+        <li><a href="problems/dp/subset-sum-problem.html" class="nav-link">230. Subset sum problem</a></li>
+        <li><a href="problems/dp/unique-paths-in-grid.html" class="nav-link">231. Unique paths in grid</a></li>
+        <li><a href="problems/dp/minimum-cost-path.html" class="nav-link">232. Minimum cost path</a></li>
+        <li><a href="problems/dp/rod-cutting-problem.html" class="nav-link">233. Rod cutting problem</a></li>
+        <li><a href="problems/dp/unbounded-knapsack.html" class="nav-link">234. Unbounded Knapsack</a></li>
+        <li><a href="problems/dp/minimum-edit-distance.html" class="nav-link">235. Minimum edit distance</a></li>
+        <li><a href="problems/dp/matrix-chain-multiplication.html" class="nav-link">236. Matrix chain multiplication</a></li>
+        <li><a href="problems/dp/partition-problem.html" class="nav-link">237. Partition problem</a></li>
+        <li><a href="problems/dp/maximum-sum-subarray-kadane.html" class="nav-link">238. Maximum sum subarray (Kadane)</a></li>
+
+
+        <!-- Sliding Window & Two Pointers -->
+        <li class="menu-title">Sliding Window & Two Pointers</li>
+        <li><a href="problems/sliding-window/longest-substring-without-repeating-characters.html" class="nav-link">239. Longest substring without repeating characters</a></li>
+        <li><a href="problems/sliding-window/minimum-window-substring.html" class="nav-link">240. Minimum window substring</a></li>
+        <li><a href="problems/sliding-window/sliding-window-maximum.html" class="nav-link">241. Sliding window maximum</a></li>
+        <li><a href="problems/sliding-window/count-occurrences-of-anagrams.html" class="nav-link">242. Count occurrences of anagrams</a></li>
+        <li><a href="problems/sliding-window/maximum-sum-subarray-of-size-k.html" class="nav-link">243. Maximum sum subarray of size K</a></li>
+        <li><a href="problems/sliding-window/subarray-with-sum-divisible-by-k.html" class="nav-link">244. Subarray with sum divisible by K</a></li>
+        <li><a href="problems/sliding-window/trapping-rainwater.html" class="nav-link">245. Trapping rainwater</a></li>
+        <li><a href="problems/sliding-window/two-sum-in-sorted-array.html" class="nav-link">246. Two sum in sorted array</a></li>
+        <li><a href="problems/sliding-window/three-sum-problem.html" class="nav-link">247. Three sum problem</a></li>
+        <li><a href="problems/sliding-window/four-sum-problem.html" class="nav-link">248. Four sum problem</a></li>
+        <li><a href="problems/sliding-window/maximum-points-in-a-line.html" class="nav-link">249. Maximum points in a line</a></li>
+        <li><a href="problems/sliding-window/longest-substring-with-at-most-k-distinct-characters.html" class="nav-link">250. Longest substring with at most K distinct characters</a></li>
+        <li><a href="problems/sliding-window/count-subarrays-with-sum-k.html" class="nav-link">251. Count subarrays with sum K</a></li>
+        <li><a href="problems/sliding-window/longest-repeating-character-replacement.html" class="nav-link">252. Longest repeating character replacement</a></li>
+        <li><a href="problems/sliding-window/longest-substring-with-same-letters-after-replacement.html" class="nav-link">253. Longest substring with same letters after replacement</a></li>
+        <li><a href="problems/sliding-window/subarray-product-less-than-k.html" class="nav-link">254. Subarray product less than K</a></li>
+        <li><a href="problems/sliding-window/maximum-consecutive-ones.html" class="nav-link">255. Maximum consecutive ones</a></li>
+
+        <!-- Backtracking -->
+        <li class="menu-title">Backtracking</li>
+        <li><a href="problems/backtracking/n-queens.html" class="nav-link">256. N-Queens problem</a></li>
+        <li><a href="problems/backtracking/sudoku-solver.html" class="nav-link">257. Sudoku solver</a></li>
+        <li><a href="problems/backtracking/rat-in-a-maze.html" class="nav-link">258. Rat in a maze</a></li>
+        <li><a href="problems/backtracking/generate-all-subsets.html" class="nav-link">259. Generate all subsets</a></li>
+        <li><a href="problems/backtracking/generate-all-permutations.html" class="nav-link">260. Generate all permutations</a></li>
+        <li><a href="problems/backtracking/word-search-in-grid.html" class="nav-link">261. Word search in grid</a></li>
+        <li><a href="problems/backtracking/generate-all-permutations-of-string.html" class="nav-link">262. Generate all permutations of string</a></li>
+        <li><a href="problems/backtracking/generate-all-subsets-of-array.html" class="nav-link">263. Generate all subsets of array</a></li>
+        <li><a href="problems/backtracking/hamiltonian-path.html" class="nav-link">264. Hamiltonian path</a></li>
+        <li><a href="problems/backtracking/knights-tour.html" class="nav-link">265. Knight’s tour problem</a></li>
+        <li><a href="problems/backtracking/m-coloring-problem.html" class="nav-link">266. M Coloring problem</a></li>
+        <li><a href="problems/backtracking/combination-sum.html" class="nav-link">267. Combination sum problem</a></li>
+        <li><a href="problems/backtracking/word-break-recursion.html" class="nav-link">268. Word break using recursion</a></li>
+        <li><a href="problems/backtracking/print-all-valid-parentheses.html" class="nav-link">269. Print all valid parentheses</a></li>
+        <li><a href="problems/backtracking/solve-maze.html" class="nav-link">270. Solve maze with backtracking</a></li>
+        <li><a href="problems/backtracking/word-search-problem.html" class="nav-link">271. Word search problem</a></li>
+
+        <!-- Advanced Problems -->
+        <li class="menu-title">Advanced Problems</li>
+        <li><a href="problems/advanced/largest-rectangle-in-histogram.html" class="nav-link">272. Largest rectangle in histogram</a></li>
+        <li><a href="problems/advanced/maximal-rectangle-in-binary-matrix.html" class="nav-link">273. Maximal rectangle in binary matrix</a></li>
+        <li><a href="problems/advanced/word-break-problem.html" class="nav-link">274. Word break problem</a></li>
+        <li><a href="problems/advanced/celebrity-problem.html" class="nav-link">275. Celebrity problem</a></li>
+        <li><a href="problems/advanced/gas-station-circular-tour.html" class="nav-link">276. Gas station circular tour</a></li>
+        <li><a href="problems/advanced/repeated-dna-sequences.html" class="nav-link">277. Repeated DNA sequences</a></li>
+        <li><a href="problems/advanced/next-permutation.html" class="nav-link">278. Next permutation</a></li>
+        <li><a href="problems/advanced/minimum-number-of-platforms-required.html" class="nav-link">279. Minimum number of platforms required</a></li>
+        <li><a href="problems/advanced/merge-intervals.html" class="nav-link">280. Merge intervals</a></li>
+        <li><a href="problems/advanced/insert-interval.html" class="nav-link">281. Insert interval</a></li>
+        <li><a href="problems/advanced/trapping-rainwater.html" class="nav-link">282. Trapping rainwater</a></li>
+        <li><a href="problems/advanced/sliding-puzzle-problem.html" class="nav-link">283. Sliding puzzle problem</a></li>
+        <li><a href="problems/advanced/count-number-of-islands.html" class="nav-link">284. Count number of islands</a></li>
+
+        <!-- Greedy Algorithm Problems -->
+        <li class="menu-title">Greedy Algorithm Problems</li>
+        <li><a href="problems/greedy/activity-selection.html" class="nav-link">285. Activity selection problem</a></li>
+        <li><a href="problems/greedy/fractional-knapsack.html" class="nav-link">286. Fractional knapsack</a></li>
+        <li><a href="problems/greedy/minimum-number-of-coins.html" class="nav-link">287. Minimum number of coins for a value</a></li>
+        <li><a href="problems/greedy/arrange-numbers-to-form-biggest.html" class="nav-link">288. Arrange numbers to form the biggest number</a></li>
+        <li><a href="problems/greedy/minimum-platforms-for-trains.html" class="nav-link">289. Minimum platforms for trains</a></li>
+        <li><a href="problems/greedy/gas-station-circular-route.html" class="nav-link">290. Gas station circular route</a></li>
+        <li><a href="problems/greedy/jump-game.html" class="nav-link">291. Jump game (can reach end)</a></li>
+        <li><a href="problems/greedy/jump-game-ii.html" class="nav-link">292. Jump game II (min jumps)</a></li>
+        <li><a href="problems/greedy/candy-distribution.html" class="nav-link">293. Candy distribution problem</a></li>
+        <li><a href="problems/greedy/choosing-maximum-number-of-events.html" class="nav-link">294. Choosing maximum number of events</a></li>
+
+        <!-- Matrix Problems -->
+        <li class="menu-title">Matrix Problems</li>
+        <li><a href="problems/matrix/search-in-sorted-matrix.html" class="nav-link">295. Search in sorted matrix</a></li>
+        <li><a href="problems/matrix/rotate-matrix-90-degrees.html" class="nav-link">296. Rotate matrix 90 degrees</a></li>
+        <li><a href="problems/matrix/set-matrix-zeroes.html" class="nav-link">297. Set matrix zeroes</a></li>
+        <li><a href="problems/matrix/spiral-order-traversal.html" class="nav-link">298. Spiral order traversal</a></li>
+        <li><a href="problems/matrix/word-search-in-matrix.html" class="nav-link">299. Word search in matrix</a></li>
+        <li><a href="problems/matrix/count-islands-dfs.html" class="nav-link">300. Count islands (DFS)</a></li>
+        <li><a href="problems/matrix/flood-fill.html" class="nav-link">301. Flood fill algorithm</a></li>
+        <li><a href="problems/matrix/matrix-multiplication.html" class="nav-link">302. Matrix multiplication</a></li>
+        <li><a href="problems/matrix/path-in-matrix.html" class="nav-link">303. Path in matrix (top-left → bottom-right)</a></li>
+        <li><a href="problems/matrix/transpose-matrix.html" class="nav-link">304. Transpose matrix</a></li>
+        <li><a href="problems/matrix/minimum-path-sum.html" class="nav-link">305. Minimum path sum</a></li>
+        <li><a href="problems/matrix/unique-paths-in-grid.html" class="nav-link">306. Unique paths in grid</a></li>
+        <li><a href="problems/matrix/maximum-rectangle-of-1s.html" class="nav-link">307. Maximum rectangle of 1s in binary matrix</a></li>
+        <li><a href="problems/matrix/search-element-in-sorted-matrix.html" class="nav-link">308. Search element in sorted matrix</a></li>
+
+        <!-- Bit Manipulation Problems -->
+        <li class="menu-title">Bit Manipulation Problems</li>
+        <li><a href="problems/bit-manipulation/count-set-bits.html" class="nav-link">309. Count number of set bits</a></li>
+        <li><a href="problems/bit-manipulation/check-power-of-two.html" class="nav-link">310. Check if power of two</a></li>
+        <li><a href="problems/bit-manipulation/xor-of-all-numbers.html" class="nav-link">311. XOR of all numbers</a></li>
+        <li><a href="problems/bit-manipulation/single-number.html" class="nav-link">312. Single number (others appear twice)</a></li>
+        <li><a href="problems/bit-manipulation/swap-bits.html" class="nav-link">313. Swap bits</a></li>
+        <li><a href="problems/bit-manipulation/reverse-bits.html" class="nav-link">314. Reverse bits</a></li>
+        <li><a href="problems/bit-manipulation/find-two-unique-numbers.html" class="nav-link">315. Find two unique numbers</a></li>
+        <li><a href="problems/bit-manipulation/find-missing-number.html" class="nav-link">316. Find missing number (1..N)</a></li>
+        <li><a href="problems/bit-manipulation/add-two-integers-without-plus.html" class="nav-link">317. Add two integers without +</a></li>
+        <li><a href="problems/bit-manipulation/divide-integers-without-division.html" class="nav-link">318. Divide integers without division</a></li>
+        <li><a href="problems/bit-manipulation/swap-odd-even-bits.html" class="nav-link">319. Swap odd and even bits</a></li>
+        <li><a href="problems/bit-manipulation/count-total-set-bits-1-to-n.html" class="nav-link">320. Count total set bits from 1 to N</a></li>
+
+        <!-- Recursion / Mathematical Problems -->
+        <li class="menu-title">Recursion / Mathematical Problems</li>
+        <li><a href="problems/recursion/tower-of-hanoi.html" class="nav-link">329. Tower of Hanoi</a></li>
+        <li><a href="problems/recursion/factorial.html" class="nav-link">330. Factorial of a number</a></li>
+        <li><a href="problems/recursion/fibonacci-recursive.html" class="nav-link">331. Fibonacci sequence recursively</a></li>
+        <li><a href="problems/recursion/sum-of-digits.html" class="nav-link">332. Sum of digits of a number</a></li>
+        <li><a href="problems/recursion/power-of-number.html" class="nav-link">333. Power of a number</a></li>
+        <li><a href="problems/recursion/count-ways-to-reach-nth-stair.html" class="nav-link">334. Count ways to reach Nth stair</a></li>
+        <li><a href="problems/recursion/print-all-subsets.html" class="nav-link">335. Print all subsets recursively</a></li>
+        <li><a href="problems/recursion/permutations-of-array.html" class="nav-link">336. Permutations of array (recursive)</a></li>
+        <li><a href="problems/recursion/combinations-of-numbers.html" class="nav-link">337. Combinations of numbers</a></li>
+        <li><a href="problems/recursion/solve-maze-recursively.html" class="nav-link">338. Solve maze recursively</a></li>
+
+
+
+</nav>
+
+<main class="content">
+    <div id="content-display">
+      <!-- Problem: Reverse an Array -->
+      <section>
+        <h2>Problem Statement</h2>
+        <p>
+          Given an array of integers, reverse the array so that the first element becomes the last, 
+          the second becomes the second last, and so on. The task is to return or print the array 
+          in reversed order.
+        </p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+      Input: arr = [10, 20, 30, 5, 25]
+      Output: [25, 5, 30, 20, 10]
+      Explanation: The array elements are reversed.
+        </code></pre>
+
+        <h2>Solution Approach</h2>
+        <ol>
+          <li>Start iterating from the last index of the array to the first index.</li>
+          <li>Print or store each element to get the reversed order.</li>
+          <li>Alternatively, use built-in Kotlin functions like <code>reversedArray()</code> for simplicity.</li>
+        </ol>
+
+        <h2>Your Kotlin Solution</h2>
+        <pre><code class="kotlin">
+      import kotlinx.coroutines.*
+
+      fun main(){
+          val arrInput = arrayOf(10, 20, 30, 5, 25) // expected outcome = 25,5,30,20,10
+          for(i in arrInput.size-1 downTo 0){
+              print(arrInput[i])
+          }
+      }
+        </code></pre>
+
+        <h2>Alternate Kotlin Solution Using Built-in Function</h2>
+        <pre><code class="kotlin">
+      fun main() {
+          val arrInput = arrayOf(10, 20, 30, 5, 25)
+          val reversedArr = arrInput.reversedArray()
+          println(reversedArr.joinToString()) // Output: 25, 5, 30, 20, 10
+      }
+        </code></pre>
+
+        <h2>Explanation</h2>
+        <ul>
+          <li>The first solution uses a <code>for</code> loop starting from the last index down to 0.</li>
+          <li>Elements are printed in reverse order, effectively reversing the array.</li>
+          <li>The built-in <code>reversedArray()</code> function is more concise and returns a new reversed array.</li>
+        </ul>
+
+        <h2>Complexity Analysis</h2>
+        <ul>
+          <li><strong>Time Complexity:</strong> O(N) — traversing the array once.</li>
+          <li><strong>Space Complexity:</strong> O(N) for <code>reversedArray()</code>, O(1) if printing directly.</li>
+        </ul>
+      </section>
+
+      <!-- Problem: Find Second Largest Element in Array -->
+      <section>
+        <h2>Problem Statement</h2>
+        <p>
+          You are given an array of integers. Your task is to find the <strong>second largest element</strong> 
+          in the array. The array may contain duplicate elements.
+        </p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+      Input: arr = [12, 35, 1, 10, 34, 1]
+      Output: 34
+      Explanation: The largest element is 35, the second largest is 34.
+        </code></pre>
+        <p><strong>Example 2:</strong></p>
+        <pre><code>
+      Input: arr = [5, 5, 5, 2]
+      Output: 2
+      Explanation: The largest element is 5 (repeated), second largest is 2.
+        </code></pre>
+
+        <h2>Solution Approach</h2>
+        <ol>
+          <li>Initialize two variables: <code>largest</code> and <code>secondLargest</code> with <code>Int.MIN_VALUE</code>.</li>
+          <li>Traverse the array once.</li>
+          <li>
+            For each element:
+            <ul>
+              <li>If element is greater than <code>largest</code>, update <code>secondLargest</code> to <code>largest</code> and then update <code>largest</code> to the element.</li>
+              <li>Else if element is greater than <code>secondLargest</code> and not equal to <code>largest</code>, update <code>secondLargest</code>.</li>
+            </ul>
+          </li>
+          <li>After traversal, <code>secondLargest</code> contains the second largest element.</li>
+        </ol>
+
+        <h2>Kotlin Solution</h2>
+        <pre><code class="kotlin">
+      fun findSecondLargest(arr: Array<Int>): Int {
+          var largest = Int.MIN_VALUE
+          var secondLargest = Int.MIN_VALUE
+
+          arr.forEach { num ->
+              if (num > largest) {
+                  secondLargest = largest
+                  largest = num
+              } else if (num > secondLargest && num != largest) {
+                  secondLargest = num
+              }
+          }
+
+          return secondLargest
+      }
+
+      fun main() {
+          val arr = arrayOf(12, 35, 1, 10, 34, 1)
+          val secondLargest = findSecondLargest(arr)
+          println("Second largest element is: $secondLargest") // Output: 34
+      }
+        </code></pre>
+
+        <h2>Step-by-Step Example</h2>
+        <p>For <code>arr = [12, 35, 1, 10, 34, 1]</code>:</p>
+        <ol>
+          <li>Start: <code>largest = MIN_VALUE</code>, <code>secondLargest = MIN_VALUE</code></li>
+          <li>12 → largest = 12, secondLargest = MIN_VALUE</li>
+          <li>35 → largest = 35, secondLargest = 12</li>
+          <li>1 → largest = 35, secondLargest = 12</li>
+          <li>10 → largest = 35, secondLargest = 12</li>
+          <li>34 → largest = 35, secondLargest = 34</li>
+          <li>1 → largest = 35, secondLargest = 34</li>
+        </ol>
+        <p>Result: <code>secondLargest = 34</code></p>
+
+        <h2>Explanation</h2>
+        <ul>
+          <li>This approach keeps track of the two largest numbers in a single pass.</li>
+          <li>No extra array or filtering is needed.</li>
+          <li>Handles duplicates correctly by checking <code>num != largest</code>.</li>
+        </ul>
+
+        <h2>Complexity Analysis</h2>
+        <ul>
+          <li><strong>Time Complexity:</strong> O(N) — Only one traversal of the array is needed.</li>
+          <li><strong>Space Complexity:</strong> O(1) — Only two variables are used.</li>
+        </ul>
+
+        <h2>Edge Cases</h2>
+        <ul>
+          <li>If the array has all elements the same, the second largest might not exist — you may return a special value or handle separately.</li>
+          <li>If the array has less than 2 distinct elements, handle accordingly.</li>
+        </ul>
+      </section>
+    </div>
+</main>
+
+
+
+<script src="../js/python.js"></script>
+</body>
+</html>

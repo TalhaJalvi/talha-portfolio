@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Problem Solving</title>
-    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="stylesheet" href="../../../css/kotlin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,16 +24,16 @@
     <nav class="sidebar">
         <ul class="sidebar-menu">
         <li class="menu-title">Basics</li>
-        <li><a href="../articles/problem-solving-qas.html" class="nav-link">What is Problem Solving and Why its Important ?</a></li>
-        <li><a href="problems/basics/what-is-time-and-space-complexity.html" class="nav-link">Criteria for better approach ? Time and Space Complexity !</a></li>
-        <li><a href="problems/basics/calculate-time-and-space-complexity.html" class="nav-link">How do we calculate Time and Space Complexity ? </a></li>
+        <li><a href="../../../articles/problem-solving-qas.html" class="nav-link">What is Problem Solving and Why its Important ?</a></li>
+        <li><a href="../../problems/basics/what-is-time-and-space-complexity.html" class="nav-link">Criteria for better approach ? Time and Space Complexity !</a></li>
+        <li><a href="../../problems/basics/calculate-time-and-space-complexity.html" class="nav-link">How do we calculate Time and Space Complexity ? </a></li>
 
         <!-- Arrays -->
         <li class="menu-title">Arrays</li>
-        <li><a href="problems/arrays/find-the-missing-number-in-an-array-from-1-to-n.html" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
-        <li><a href="problems/arrays/find-the-largest-and-smallest-number-in-an-array.html" class="nav-link">2. Find the largest and smallest number in an array</a></li>
-        <li><a href="problems/arrays/find-the-second-largest-element-in-an-array.html" class="nav-link">3. Find the second largest element in an array</a></li>
-        <li><a href="problems/arrays/rotate-array-by-k-steps.html" class="nav-link">4. Rotate array by k steps</a></li>
+        <li><a href="../../problems/arrays/find-the-missing-number-in-an-array-from-1-to-n.html" class="nav-link">1. Find the missing number in an array from 1 to N</a></li>
+        <li><a href="../../problems/arrays/find-the-largest-and-smallest-number-in-an-array.html" class="nav-link">2. Find the largest and smallest number in an array</a></li>
+        <li><a href="../../problems/arrays/find-the-second-largest-element-in-an-array.html" class="nav-link">3. Find the second largest element in an array</a></li>
+        <li><a href="../../problems/arrays/rotate-array-by-k-steps.html" class="nav-link">4. Rotate array by k steps</a></li>
         <li><a href="problems/arrays/reverse-an-array.html" class="nav-link">5. Reverse an array</a></li>
         <li><a href="problems/arrays/move-all-zeros-to-the-end.html" class="nav-link">6. Move all zeros to the end</a></li>
         <li><a href="problems/arrays/sort-array-of-0s-1s-and-2s-dutch-national-flag.html" class="nav-link">7. Sort array of 0s, 1s, and 2s (Dutch National Flag)</a></li>
@@ -411,127 +411,355 @@
 
 <main class="content">
     <div id="content-display">
-                <section id="problem-solving-intro">
-            <h1>Problem Solving in Programming</h1>
-            <p>
-                Problem solving is the process of understanding a challenge, breaking it down, 
-                selecting the right tools such as data structures and algorithms, and designing an effective solution.
-                It is the foundation of software development, whether you are building applications, 
-                optimizing performance, or preparing for technical interviews.
-            </p>
-        </section>
+<section>
+  <h1>Time Complexity — Fastest to Slowest (With Detailed Examples)</h1>
+  <p>This section explains each time complexity in detail, arranged from fastest to slowest, with practical examples.</p>
 
-        <section id="importance">
-            <h2>Why Problem Solving is Important for Programmers</h2>
+  <h2>O(1) — Constant Time</h2>
+  <p><strong>Meaning:</strong> Execution time does not change with the size of the input.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Accessing an element in an array: <code>arr[5]</code></li>
+    <li>Inserting or removing from a stack</li>
+    <li>Hash map lookup</li>
+  </ul>
 
-            <h3>1. Improves Logical Thinking</h3>
-            <p>
-                Strong problem solving enhances your ability to think clearly and logically. 
-                Your programming ability depends far more on logical reasoning than on memorizing syntax.
-            </p>
+  <h2>O(log n) — Logarithmic Time</h2>
+  <p><strong>Meaning:</strong> The input size reduces by half each step.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Binary Search in a sorted array</li>
+    <li>Binary Search Tree operations (balanced)</li>
+    <li>Finding an item in a phonebook by halving</li>
+  </ul>
 
-            <h3>2. Helps Build Efficient and Scalable Systems</h3>
-            <p>
-                Efficient solutions rely on choosing the right algorithm and data structure. 
-                Good problem solvers can reduce time complexity, improve performance, and build scalable applications.
-            </p>
+  <h2>O(n) — Linear Time</h2>
+  <p><strong>Meaning:</strong> Time grows directly with the input size.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Looping through an array</li>
+    <li>Finding max/min in a list</li>
+    <li>Counting frequency of elements</li>
+  </ul>
 
-            <h3>3. Essential for Technical Interviews</h3>
-            <p>
-                Companies evaluate your ability to analyze and solve problems. 
-                Strong problem-solving skills significantly increase your chances of success in coding interviews.
-            </p>
+  <h2>O(n log n) — Linearithmic Time</h2>
+  <p><strong>Meaning:</strong> A combination of linear work and logarithmic splitting.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Merge Sort</li>
+    <li>Quick Sort (average case)</li>
+    <li>Heap Sort</li>
+  </ul>
 
-            <h3>4. Speeds Up Debugging</h3>
-            <p>
-                Debugging is a form of problem solving. 
-                When you can break down complex issues into smaller parts, you identify and fix bugs much faster.
-            </p>
+  <h2>O(n²) — Quadratic Time</h2>
+  <p><strong>Meaning:</strong> Operations inside nested loops over the same n items.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Bubble Sort</li>
+    <li>Insertion Sort (worst case)</li>
+    <li>Checking all pairs in an array</li>
+  </ul>
 
-            <h3>5. Leads to Better Architecture Decisions</h3>
-            <p>
-                When you understand how different data structures and techniques work, you naturally start 
-                designing cleaner and more maintainable architectures.
-            </p>
-        </section>
+  <h2>O(2ⁿ) — Exponential Time</h2>
+  <p><strong>Meaning:</strong> The algorithm doubles work with every increase in input size.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Subset generation (Power Set)</li>
+    <li>Recursive Fibonacci without DP</li>
+    <li>Solving NP problems with brute force</li>
+  </ul>
 
-        <section id="types-of-problems">
-            <h2>Types of Problems Programmers Commonly Encounter</h2>
+  <h2>O(n!) — Factorial Time</h2>
+  <p><strong>Meaning:</strong> Used in problems where we generate all permutations.</p>
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>Generating all permutations of a list</li>
+    <li>Traveling Salesman Problem brute force</li>
+  </ul>
+  
 
-            <p>
-                Programming challenges fall into well-known categories and patterns. 
-                Understanding these patterns helps you recognize the structure of new problems 
-                and solve them more efficiently.
-            </p>
+  <h3>Code Examples</h3>
 
-            <h3>1. Array Problems</h3>
-            <p>
-                Arrays form the basis of many problem-solving techniques.  
-                They teach iteration, sorting, searching, prefix sums, frequency mapping, and two-pointer techniques.  
-                Common tasks include reversing arrays, finding duplicates, and calculating maximum subarray sums.
-            </p>
+  <h4>O(1) Example</h4>
+  <pre><code>// Access array element
+int x = arr[5];
+</code></pre>
 
-            <h3>2. String Problems</h3>
-            <p>
-                Strings are sequences of characters and often involve pattern matching, parsing, 
-                hashing, or substring operations.  
-                Techniques such as sliding window and hash maps are frequently used to solve string problems.
-            </p>
+  <h4>O(log n) Example</h4>
+  <pre><code>// Binary Search
+int binarySearch(int[] arr, int target) {
+    int l = 0, r = arr.length - 1;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
 
-            <h3>3. Linked List Problems</h3>
-            <p>
-                Linked lists help deepen understanding of memory, pointers, and dynamic structures.  
-                Typical problems include reversing a list, detecting cycles, merging lists, 
-                and using fast-slow pointer patterns.
-            </p>
+  <h4>O(n) Example</h4>
+  <pre><code>// Find maximum
+int findMax(int[] arr) {
+    int max = arr[0];
+    for (int x : arr) {
+        if (x > max) max = x;
+    }
+    return max;
+}
+</code></pre>
 
-            <h3>4. Stack and Queue Problems</h3>
-            <p>
-                Stacks and queues model real-world processing flows.  
-                They are used for expression evaluation, tracking states (undo/redo), 
-                and solving next-greater-element or sliding window maximum problems.
-            </p>
+  <h4>O(n log n) Example</h4>
+  <pre><code>// Merge Sort (simplified)
+void mergeSort(int[] arr) {
+    if (arr.length < 2) return;
+    int mid = arr.length / 2;
+    int[] left = Arrays.copyOfRange(arr, 0, mid);
+    int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+    mergeSort(left);
+    mergeSort(right);
+    merge(arr, left, right);
+}
+</code></pre>
 
-            <h3>5. HashMap and HashSet Based Problems</h3>
-            <p>
-                These structures are essential for fast lookups and frequency counting.  
-                They are used in problems involving duplicates, grouping, unique elements, and efficient filtering.
-            </p>
+  <h4>O(n²) Example</h4>
+  <pre><code>// Bubble Sort
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) swap(arr[j], arr[j + 1]);
+    }
+}
+</code></pre>
 
-            <h3>6. Sliding Window Problems</h3>
-            <p>
-                Sliding window techniques solve subarray or substring problems more efficiently by 
-                maintaining a moving range instead of recalculating results repeatedly.  
-                Common examples include finding the longest substring without repetition or maximum sum windows.
-            </p>
+  <h4>O(2ⁿ) Example</h4>
+  <pre><code>// Subset Generation
+void subset(String s, String curr, int index) {
+    if (index == s.length()) {
+        System.out.println(curr);
+        return;
+    }
+    subset(s, curr + s.charAt(index), index + 1);
+    subset(s, curr, index + 1);
+}
+</code></pre>
 
-            <h3>7. Recursion and Backtracking</h3>
-            <p>
-                Recursion is used for breaking complex tasks into smaller ones.  
-                Backtracking helps in exploring all possible combinations or configurations, 
-                such as in puzzles, permutations, and subset generation.
-            </p>
+  <h4>O(n!) Example</h4>
+  <pre><code>// Permutations
+void permute(String s, String ans) {
+    if (s.length() == 0) {
+        System.out.println(ans);
+        return;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        char ch = s.charAt(i);
+        String ros = s.substring(0, i) + s.substring(i + 1);
+        permute(ros, ans + ch);
+    }
+}
+</code></pre>
 
-            <h3>8. Tree Problems</h3>
-            <p>
-                Trees represent hierarchical data.  
-                Tree problems involve depth-first search (DFS), breadth-first search (BFS), 
-                computing heights, and finding relationships like lowest common ancestors.
-            </p>
+  
 
-            <h3>9. Graph Problems</h3>
-            <p>
-                Graphs model relationships and networks.  
-                Graph problems include traversal algorithms, cycle detection, shortest paths, 
-                and dependency ordering using topological sorting.
-            </p>
+        <h2>Code Examples</h2>
 
-            <h3>10. Dynamic Programming</h3>
-            <p>
-                Dynamic programming is used for optimization problems with overlapping subproblems.  
-                Examples include knapsack, longest common subsequence, coin change, and pathfinding challenges.
-            </p>
-        </section>
+        <h3>O(1) Example</h3>
+        <pre><code>// Access array element
+int x = arr[5];
+</code></pre>
+
+        <h3>O(log n) Example</h3>
+        <pre><code>// Binary Search
+int binarySearch(int[] arr, int target) {
+    int l = 0, r = arr.length - 1;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
+
+        <h3>O(n) Example</h3>
+        <pre><code>// Find maximum element
+int findMax(int[] arr) {
+    int max = arr[0];
+    for (int x : arr) {
+        if (x > max) max = x;
+    }
+    return max;
+}
+</code></pre>
+
+        <h3>O(n log n) Example</h3>
+        <pre><code>// Merge Sort (simplified)
+void mergeSort(int[] arr) {
+    if (arr.length < 2) return;
+    int mid = arr.length / 2;
+    int[] left = Arrays.copyOfRange(arr, 0, mid);
+    int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+    mergeSort(left);
+    mergeSort(right);
+    merge(arr, left, right);
+}
+</code></pre>
+
+        <h3>O(n²) Example</h3>
+        <pre><code>// Bubble Sort
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+            int temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+        }
+    }
+}
+</code></pre>
+
+        <h3>O(2ⁿ) Example</h3>
+        <pre><code>// Subset generation
+void subset(String s, String curr, int index) {
+    if (index == s.length()) {
+        System.out.println(curr);
+        return;
+    }
+    subset(s, curr + s.charAt(index), index + 1);
+    subset(s, curr, index + 1);
+}
+</code></pre>
+
+        <h3>O(n!) Example</h3>
+        <pre><code>// Permutations
+void permute(String s, String ans) {
+    if (s.length() == 0) {
+        System.out.println(ans);
+        return;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        char ch = s.charAt(i);
+        String ros = s.substring(0, i) + s.substring(i + 1);
+        permute(ros, ans + ch);
+    }
+}
+</code></pre>
+
+</section>
+<section>
+    <h2>Space Complexity — How to Calculate It</h2>
+
+    <p>
+        Space Complexity measures how much extra memory an algorithm needs relative to the input size <code>n</code>.
+        It includes:
+    </p>
+
+    <ul>
+        <li><b>Input space</b> — memory to store the input</li>
+        <li><b>Auxiliary space</b> — extra memory your algorithm uses (variables, arrays, recursion stack)</li>
+    </ul>
+
+    <p>
+        To calculate space complexity, analyze:
+    </p>
+
+    <ol>
+        <li>How many variables are used?</li>
+        <li>Do you allocate new arrays/lists?</li>
+        <li>Does recursion add stack frames?</li>
+        <li>Does memory grow based on input size <code>n</code>?</li>
+    </ol>
+
+    <h3>O(1) Space Complexity</h3>
+    <p>Constant space — memory does not grow with input size.</p>
+
+    <pre><code>
+function findMax(arr):
+    maxVal = arr[0]     # Only one variable → constant space
+    for i from 1 to n:
+        if arr[i] > maxVal:
+            maxVal = arr[i]
+    return maxVal
+    </code></pre>
+
+    <p>Only one variable → O(1).</p>
+
+    <h3>O(n) Space Complexity</h3>
+    <p>Memory grows linearly with input.</p>
+
+    <pre><code>
+function copyArray(arr):
+    newArr = new array of size n   # Allocating n space
+    for i from 0 to n-1:
+        newArr[i] = arr[i]
+    return newArr
+    </code></pre>
+
+    <p>Creates a new array of size <code>n</code> → O(n).</p>
+
+    <h3>O(n²) Space Complexity</h3>
+    <p>Memory grows in two dimensions (matrix, grid).</p>
+
+    <pre><code>
+function createMatrix(n):
+    matrix = new 2D array[n][n]   # n * n memory
+    return matrix
+    </code></pre>
+
+    <p>2D structure → O(n²).</p>
+
+    <h3>O(log n) Space Complexity</h3>
+    <p>Usually comes from recursion depth (binary search, tree operations).</p>
+
+    <pre><code>
+function binarySearch(arr, left, right, target):
+    if left > right:
+        return -1
+
+    mid = (left + right) / 2
+
+    if arr[mid] == target:
+        return mid
+    else if target < arr[mid]:
+        return binarySearch(arr, left, mid - 1, target)
+    else:
+        return binarySearch(arr, mid + 1, right, target)
+    </code></pre>
+
+    <p>Recursion tree height = log n → O(log n) space.</p>
+
+    <h3>O(n log n) Space Complexity</h3>
+    <p>Common in divide & conquer algorithms (e.g., Merge Sort).</p>
+
+    <pre><code>
+function mergeSort(arr):
+    if arr size <= 1:
+        return arr
+    
+    mid = n/2
+    left = mergeSort(arr[0...mid])
+    right = mergeSort(arr[mid+1...n])
+
+    return merge(left, right)   # uses extra O(n)
+    </code></pre>
+
+    <p>
+        Recursion depth = log n  
+        Extra array each level = n  
+        Total → O(n log n)
+    </p>
+
+    <h3>O(n³) Space Complexity</h3>
+    <p>Rare, typically 3D matrices.</p>
+
+    <pre><code>
+matrix = new 3D array[n][n][n]
+    </code></pre>
+
+    <p>Memory grows in three dimensions → O(n³).</p>
+
+</section>
 
     </div>
 </main>

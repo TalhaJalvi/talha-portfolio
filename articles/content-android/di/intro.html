@@ -1,259 +1,375 @@
-<section id="dependency-injection">
-  <h2>Dependency Injection (DI) in Android</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-  <p>
-    In Android development, <strong>Dependency Injection (DI)</strong> is a powerful design pattern 
-    that helps you create cleaner, modular, and easily testable applications.  
-    It allows you to manage how objects get the instances of other classes they depend on, 
-    without having to create them manually.
-  </p>
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-  <h3>1. What Is Dependency Injection?</h3>
-  <p>
-    <strong>Dependency Injection</strong> means providing required dependencies to a class from the outside, 
-    instead of letting the class create them on its own.  
-    This makes your code loosely coupled and more maintainable.
-  </p>
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
 
-  <pre><code class="language-kotlin">
-  // Without Dependency Injection
-  class UserRepository {
-      private val apiService = ApiService() // tightly coupled
-  }
+        <!-- 1. App Architecture -->
+        <li class="menu-section">App Architecture</li>
+        <li><a href="../../../articles/android-core.html" class="nav-link">Introduction to Architecture</a></li>
+        <li><a href="../../content-android/architecture/mvc.html" class="nav-link">MVC Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp.html" class="nav-link">MVP Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvvm.html" class="nav-link">MVVM Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvi.html" class="nav-link">MVI Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp-mvc-in-compose.html" class="nav-link">Using MVP and MVC in Compose</a></li>
+        <li><a href="../../content-android/architecture/clean-architecture.html" class="nav-link">Clean Architecture</a></li>
+        <li><a href="../../content-android/architecture/layers.html" class="nav-link">Data, Domain & UI Layers</a></li>
+        <li><a href="../../content-android/architecture/repository-pattern.html" class="nav-link">Repository Pattern</a></li>
+        <li><a href="../../content-android/architecture/modularization.html" class="nav-link">App Modularization</a></li>
 
-  // With Dependency Injection
-  class UserRepository(private val apiService: ApiService)
-  </code></pre>
+        <!-- 2. Dependency Injection -->
+        <li class="menu-section">Dependency Injection (DI)</li>
+        <li><a href="../../content-android/di/intro.html" class="nav-link">Introduction to DI</a></li>
+        <li><a href="../../content-android/di/hilt.html" class="nav-link">Hilt Basics</a></li>
+        <li><a href="../../content-android/di/dagger.html" class="nav-link">Dagger 2 Overview</a></li>
+        <li><a href="../../content-android/di/koin.html" class="nav-link">Koin Framework</a></li>
+        <li><a href="../../content-android/di/scopes-components.html" class="nav-link">Scopes & Components</a></li>
+        <li><a href="../../content-android/di/testing.html" class="nav-link">Testing with DI</a></li>
 
-  <p>
-    In the first example, <code>UserRepository</code> directly creates <code>ApiService</code>, 
-    making it hard to test and reuse.  
-    In the second example, <code>ApiService</code> is provided externally — 
-    making it easier to manage and test.
-  </p>
+        <!-- 3. Data Persistence -->
+        <li class="menu-section">Data Persistence</li>
+        <li><a href="../../content-android/persistence/overview.html" class="nav-link">Overview of Data Persistence</a></li>
+        <li><a href="../../content-android/persistence/sharedpreferences.html" class="nav-link">SharedPreferences</a></li>
+        <li><a href="../../content-android/persistence/datastore.html" class="nav-link">DataStore (Proto & Preferences)</a></li>
+        <li><a href="../../content-android/persistence/room.html" class="nav-link">Room Database</a></li>
+        <li><a href="../../content-android/persistence/sqlite.html" class="nav-link">SQLite Database</a></li>
+        <li><a href="../../content-android/persistence/repository.html" class="nav-link">Repository Pattern in Persistence</a></li>
+        <li><a href="../../content-android/persistence/offline-sync.html" class="nav-link">Offline-First & Sync Strategies</a></li>
 
-  <h3>2. Why Dependency Injection Exists</h3>
-  <p>
-    As Android apps grow, they contain many interconnected components like 
-    ViewModels, Repositories, and Services.  
-    Without DI, creating and maintaining these objects manually becomes complicated and repetitive.  
-    DI simplifies this by centralizing dependency management.
-  </p>
+        <!-- 4. Networking & Data Layer -->
+        <li class="menu-section">Networking & Data Layer</li>
+        <li><a href="../../content-android/networking/retrofit.html" class="nav-link">Retrofit & OkHttp</a></li>
+        <li><a href="../../content-android/networking/interceptors.html" class="nav-link">Interceptors & Logging</a></li>
+        <li><a href="../../content-android/networking/error-handling.html" class="nav-link">Error Handling</a></li>
+        <li><a href="../../content-android/networking/caching.html" class="nav-link">Caching & Pagination</a></li>
+        <li><a href="../../content-android/networking/api-layer.html" class="nav-link">API Layer & Repository Integration</a></li>
 
-  <ul>
-    <li>Reduces code duplication.</li>
-    <li>Improves testability (easily mock dependencies).</li>
-    <li>Makes code modular and scalable.</li>
-    <li>Decouples object creation from business logic.</li>
-  </ul>
+        <!-- 5. State Management -->
+        <li class="menu-section">State Management</li>
+        <li><a href="../../content-android/state/livedata.html" class="nav-link">LiveData</a></li>
+        <li><a href="../../content-android/state/flow.html" class="nav-link">StateFlow & SharedFlow</a></li>
+        <li><a href="../../content-android/state/uistate.html" class="nav-link">UI State & Events</a></li>
+        <li><a href="../../content-android/state/uimodel.html" class="nav-link">UI Model (ViewState + Actions)</a></li>
+        <li><a href="../../content-android/state/compose-state.html" class="nav-link">Compose State & UDF</a></li>
 
-<h3>3. Types of Dependency Injection</h3>
+        <!-- 6. Background Work -->
+        <li class="menu-section">Background Work</li>
+        <li><a href="../../content-android/background/workmanager.html" class="nav-link">WorkManager</a></li>
+        <li><a href="../../content-android/background/services.html" class="nav-link">Foreground & Background Services</a></li>
+        <li><a href="../../content-android/background/threads.html" class="nav-link">Threads & Executors</a></li>
+        <li><a href="../../content-android/background/coroutines.html" class="nav-link">Coroutines in Background</a></li>
 
-<p>Dependency Injection can be implemented in several ways depending on how dependencies are provided to a class. Below are the three most common types:</p>
+        <!-- 7. Testing & Debugging -->
+        <li class="menu-section">Testing & Debugging</li>
+        <li><a href="../../content-android/testing/unit-testing.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="../../content-android/testing/ui-testing.html" class="nav-link">UI Testing</a></li>
+        <li><a href="../../content-android/testing/integration.html" class="nav-link">Integration Testing</a></li>
+        <li><a href="../../content-android/testing/mock.html" class="nav-link">Mocking & Dependency Injection</a></li>
+        <li><a href="../../content-android/testing/debugging.html" class="nav-link">Debugging & Profiling</a></li>
 
-<ul>
-  <li><strong>Constructor Injection</strong> – Dependencies are passed via constructor parameters.</li>
-  <li><strong>Field Injection</strong> – Dependencies are injected directly into fields or properties.</li>
-  <li><strong>Method Injection</strong> – Dependencies are passed through methods.</li>
-</ul>
+        <!-- 8. Security & Data Protection -->
+        <li class="menu-section">Security & Data Protection</li>
+        <li><a href="../../content-android/security/encryption.html" class="nav-link">Encryption & Decryption</a></li>
+        <li><a href="../../content-android/security/keystore.html" class="nav-link">Android Keystore</a></li>
+        <li><a href="../../content-android/security/secure-storage.html" class="nav-link">Secure Local Storage</a></li>
+        <li><a href="../../content-android/security/network-security.html" class="nav-link">Network Security Config</a></li>
 
-<!-- Constructor Injection -->
-<h4>1. Constructor Injection</h4>
-<p>
-  Dependencies are passed through the class constructor. This is the most recommended approach 
-  as it ensures immutability and makes testing easier.
-</p>
-
-<pre><code class="language-kotlin">
-// Example: Constructor Injection
-class AuthRepository {
-    fun loginUser() = "User logged in successfully!"
-}
-
-class AuthViewModel(private val repository: AuthRepository) {
-    fun authenticate() = repository.loginUser()
-}
-
-// Usage
-val viewModel = AuthViewModel(AuthRepository())
-println(viewModel.authenticate())
-</code></pre>
-
-<hr>
-
-<h4>2. Setter Injection (or Property Injection/Field Injection):</h4>
-<p>
-  In <strong>Field Injection</strong>, dependencies are directly injected into fields or properties 
-  of a class. This is especially useful in Android components like <code>Activity</code> or 
-  <code>Fragment</code>, where you cannot pass dependencies through the constructor because 
-  the Android system itself creates these components.
-</p>
-
-<p>
-  Frameworks like <strong>Dagger Hilt</strong> handle this automatically — you just need to 
-  annotate your component with <code>@AndroidEntryPoint</code> and mark the dependency with 
-  <code>@Inject</code>.
-</p>
-
-<pre><code class="language-kotlin">
-// Example: Field Injection using Hilt
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var repository: AuthRepository
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Hilt has already injected the repository here
-        repository.loginUser()
-    }
-}
-</code></pre>
-
-<h5>How It Works:</h5>
-<ol>
-  <li><code>@AndroidEntryPoint</code> tells Hilt that this component needs dependency injection.</li>
-  <li><code>@Inject</code> marks which field should be provided automatically.</li>
-  <li>When the Activity is created, Hilt injects the dependency before <code>onCreate()</code> runs.</li>
-</ol>
-
-<h5>Advantages:</h5>
-<ul>
-  <li>Ideal for Android system-managed classes like Activities and Fragments.</li>
-  <li>Automatic and clean — no need to manually create dependencies.</li>
-  <li>Reduces boilerplate code when combined with Hilt.</li>
-</ul>
-
-<h5>Disadvantages:</h5>
-<ul>
-  <li>Not ideal for unit testing — dependencies aren’t visible in the constructor.</li>
-  <li>Hides dependency requirements, making code less explicit.</li>
-  <li>Tightly coupled with the DI framework’s lifecycle.</li>
-</ul>
-
-<p><em>⚠️ Tip: Use Field Injection only for Android framework classes. For ViewModels and business logic, prefer Constructor Injection.</em></p>
-
-<hr>
-
-<!-- Method Injection -->
-<h4>3. Method Injection</h4>
-<p>
-  Dependencies are passed through a method rather than a constructor or property. 
-  Useful when a dependency cannot be provided at construction time.
-</p>
-
-<pre><code class="language-kotlin">
-// Example: Method Injection
-class AuthViewModel {
-
-    private lateinit var repository: AuthRepository
-
-    fun injectRepository(repo: AuthRepository) {
-        repository = repo
-    }
-
-    fun authenticate() = repository.loginUser()
-}
-
-// Usage
-val viewModel = AuthViewModel()
-viewModel.injectRepository(AuthRepository())
-println(viewModel.authenticate())
-</code></pre>
+        <!-- 9. Performance & Optimization -->
+        <li class="menu-section">Performance & Optimization</li>
+        <li><a href="../../content-android/performance/memory.html" class="nav-link">Memory Optimization</a></li>
+        <li><a href="../../content-android/performance/startup.html" class="nav-link">App Startup Time</a></li>
+        <li><a href="../../content-android/performance/rendering.html" class="nav-link">Rendering & Overdraw</a></li>
+        <li><a href="../../content-android/performance/battery.html" class="nav-link">Battery & CPU Efficiency</a></li>
+    </ul>
+    </nav>
 
 
-  <h3>4. Benefits of Using DI in Android</h3>
-  <ul>
-    <li><strong>Testability:</strong> Mock dependencies in unit tests easily.</li>
-    <li><strong>Reusability:</strong> Classes are no longer tied to specific implementations.</li>
-    <li><strong>Scalability:</strong> Manage complex object graphs efficiently.</li>
-    <li><strong>Maintainability:</strong> Reduces boilerplate and initialization code.</li>
-  </ul>
+    <main class="content">
+        <div id="content-display">
+          <section id="dependency-injection">
+            <h2>Dependency Injection (DI) in Android</h2>
 
-  <h3>5. Manual DI vs Framework-based DI</h3>
-  <p>
-    You can manually provide dependencies or use frameworks like 
-    <strong>Dagger</strong> or <strong>Hilt</strong> to automate the process.
-  </p>
+            <p>
+              In Android development, <strong>Dependency Injection (DI)</strong> is a powerful design pattern 
+              that helps you create cleaner, modular, and easily testable applications.  
+              It allows you to manage how objects get the instances of other classes they depend on, 
+              without having to create them manually.
+            </p>
 
-  <pre><code class="language-kotlin">
-// Manual DI Example
-val apiService = ApiService()
-val repository = UserRepository(apiService)
-val viewModel = UserViewModel(repository)
-  </code></pre>
+            <h3>1. What Is Dependency Injection?</h3>
+            <p>
+              <strong>Dependency Injection</strong> means providing required dependencies to a class from the outside, 
+              instead of letting the class create them on its own.  
+              This makes your code loosely coupled and more maintainable.
+            </p>
 
-  <p>
-    While manual DI works for small apps, frameworks like <strong>Hilt</strong> 
-    handle large dependency graphs automatically, reducing complexity.
-  </p>
+            <pre><code class="language-kotlin">
+            // Without Dependency Injection
+            class UserRepository {
+                private val apiService = ApiService() // tightly coupled
+            }
 
-  <h3>6. Introducing Hilt (by Google)</h3>
-  <p>
-    <strong>Hilt</strong> is a DI library built on top of Dagger, designed specifically for Android.  
-    It integrates seamlessly with Android components and generates all boilerplate code.
-  </p>
+            // With Dependency Injection
+            class UserRepository(private val apiService: ApiService)
+            </code></pre>
 
-  <h4>Step 1: Add Dependencies</h4>
-  <pre><code class="language-gradle">
-implementation "com.google.dagger:hilt-android:2.52"
-kapt "com.google.dagger:hilt-compiler:2.52"
-  </code></pre>
+            <p>
+              In the first example, <code>UserRepository</code> directly creates <code>ApiService</code>, 
+              making it hard to test and reuse.  
+              In the second example, <code>ApiService</code> is provided externally — 
+              making it easier to manage and test.
+            </p>
 
-  <h4>Step 2: Annotate Application Class</h4>
-  <pre><code class="language-kotlin">
-@HiltAndroidApp
-class MyApp : Application()
-  </code></pre>
+            <h3>2. Why Dependency Injection Exists</h3>
+            <p>
+              As Android apps grow, they contain many interconnected components like 
+              ViewModels, Repositories, and Services.  
+              Without DI, creating and maintaining these objects manually becomes complicated and repetitive.  
+              DI simplifies this by centralizing dependency management.
+            </p>
 
-  <h4>Step 3: Create a Module to Provide Dependencies</h4>
-  <pre><code class="language-kotlin">
-@Module
-@InstallIn(SingletonComponent::class)
-object NetworkModule {
+            <ul>
+              <li>Reduces code duplication.</li>
+              <li>Improves testability (easily mock dependencies).</li>
+              <li>Makes code modular and scalable.</li>
+              <li>Decouples object creation from business logic.</li>
+            </ul>
 
-    @Provides
-    fun provideApiService(): ApiService {
-        return ApiService()
-    }
-}
-  </code></pre>
+          <h3>3. Types of Dependency Injection</h3>
 
-  <h4>Step 4: Inject Dependencies into Components</h4>
-  <pre><code class="language-kotlin">
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+          <p>Dependency Injection can be implemented in several ways depending on how dependencies are provided to a class. Below are the three most common types:</p>
 
-    @Inject lateinit var apiService: ApiService
+          <ul>
+            <li><strong>Constructor Injection</strong> – Dependencies are passed via constructor parameters.</li>
+            <li><strong>Field Injection</strong> – Dependencies are injected directly into fields or properties.</li>
+            <li><strong>Method Injection</strong> – Dependencies are passed through methods.</li>
+          </ul>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        apiService.fetchData()
-    }
-}
-  </code></pre>
+          <!-- Constructor Injection -->
+          <h4>1. Constructor Injection</h4>
+          <p>
+            Dependencies are passed through the class constructor. This is the most recommended approach 
+            as it ensures immutability and makes testing easier.
+          </p>
 
-  <h3>7. Scopes in Hilt</h3>
-  <ul>
-    <li><code>@Singleton</code> – Single instance shared across the whole app.</li>
-    <li><code>@ActivityScoped</code> – Instance tied to the lifecycle of an Activity.</li>
-    <li><code>@ViewModelScoped</code> – Used with ViewModels.</li>
-  </ul>
+          <pre><code class="language-kotlin">
+          // Example: Constructor Injection
+          class AuthRepository {
+              fun loginUser() = "User logged in successfully!"
+          }
 
-  <h3>8. Common Mistakes in DI</h3>
-  <ul>
-    <li>Forgetting to annotate classes with <code>@AndroidEntryPoint</code>.</li>
-    <li>Creating dependencies manually instead of injecting them.</li>
-    <li>Injecting large objects unnecessarily (causing memory overhead).</li>
-    <li>Mixing different scopes incorrectly (e.g., Singleton with ActivityScoped).</li>
-  </ul>
+          class AuthViewModel(private val repository: AuthRepository) {
+              fun authenticate() = repository.loginUser()
+          }
 
-  <h3>9. Best Practices</h3>
-  <ul>
-    <li>Use constructor injection wherever possible.</li>
-    <li>Keep your modules organized by feature (NetworkModule, RepositoryModule, etc.).</li>
-    <li>Avoid overusing <code>@Singleton</code> — scope wisely.</li>
-    <li>Use interfaces for flexible implementations (e.g., for testing).</li>
-  </ul>
-</section>
+          // Usage
+          val viewModel = AuthViewModel(AuthRepository())
+          println(viewModel.authenticate())
+          </code></pre>
+
+          <hr>
+
+          <h4>2. Setter Injection (or Property Injection/Field Injection):</h4>
+          <p>
+            In <strong>Field Injection</strong>, dependencies are directly injected into fields or properties 
+            of a class. This is especially useful in Android components like <code>Activity</code> or 
+            <code>Fragment</code>, where you cannot pass dependencies through the constructor because 
+            the Android system itself creates these components.
+          </p>
+
+          <p>
+            Frameworks like <strong>Dagger Hilt</strong> handle this automatically — you just need to 
+            annotate your component with <code>@AndroidEntryPoint</code> and mark the dependency with 
+            <code>@Inject</code>.
+          </p>
+
+          <pre><code class="language-kotlin">
+          // Example: Field Injection using Hilt
+          @AndroidEntryPoint
+          class MainActivity : AppCompatActivity() {
+
+              @Inject
+              lateinit var repository: AuthRepository
+
+              override fun onCreate(savedInstanceState: Bundle?) {
+                  super.onCreate(savedInstanceState)
+                  // Hilt has already injected the repository here
+                  repository.loginUser()
+              }
+          }
+          </code></pre>
+
+          <h5>How It Works:</h5>
+          <ol>
+            <li><code>@AndroidEntryPoint</code> tells Hilt that this component needs dependency injection.</li>
+            <li><code>@Inject</code> marks which field should be provided automatically.</li>
+            <li>When the Activity is created, Hilt injects the dependency before <code>onCreate()</code> runs.</li>
+          </ol>
+
+          <h5>Advantages:</h5>
+          <ul>
+            <li>Ideal for Android system-managed classes like Activities and Fragments.</li>
+            <li>Automatic and clean — no need to manually create dependencies.</li>
+            <li>Reduces boilerplate code when combined with Hilt.</li>
+          </ul>
+
+          <h5>Disadvantages:</h5>
+          <ul>
+            <li>Not ideal for unit testing — dependencies aren’t visible in the constructor.</li>
+            <li>Hides dependency requirements, making code less explicit.</li>
+            <li>Tightly coupled with the DI framework’s lifecycle.</li>
+          </ul>
+
+          <p><em>⚠️ Tip: Use Field Injection only for Android framework classes. For ViewModels and business logic, prefer Constructor Injection.</em></p>
+
+          <hr>
+
+          <!-- Method Injection -->
+          <h4>3. Method Injection</h4>
+          <p>
+            Dependencies are passed through a method rather than a constructor or property. 
+            Useful when a dependency cannot be provided at construction time.
+          </p>
+
+          <pre><code class="language-kotlin">
+          // Example: Method Injection
+          class AuthViewModel {
+
+              private lateinit var repository: AuthRepository
+
+              fun injectRepository(repo: AuthRepository) {
+                  repository = repo
+              }
+
+              fun authenticate() = repository.loginUser()
+          }
+
+          // Usage
+          val viewModel = AuthViewModel()
+          viewModel.injectRepository(AuthRepository())
+          println(viewModel.authenticate())
+          </code></pre>
+
+
+            <h3>4. Benefits of Using DI in Android</h3>
+            <ul>
+              <li><strong>Testability:</strong> Mock dependencies in unit tests easily.</li>
+              <li><strong>Reusability:</strong> Classes are no longer tied to specific implementations.</li>
+              <li><strong>Scalability:</strong> Manage complex object graphs efficiently.</li>
+              <li><strong>Maintainability:</strong> Reduces boilerplate and initialization code.</li>
+            </ul>
+
+            <h3>5. Manual DI vs Framework-based DI</h3>
+            <p>
+              You can manually provide dependencies or use frameworks like 
+              <strong>Dagger</strong> or <strong>Hilt</strong> to automate the process.
+            </p>
+
+            <pre><code class="language-kotlin">
+          // Manual DI Example
+          val apiService = ApiService()
+          val repository = UserRepository(apiService)
+          val viewModel = UserViewModel(repository)
+            </code></pre>
+
+            <p>
+              While manual DI works for small apps, frameworks like <strong>Hilt</strong> 
+              handle large dependency graphs automatically, reducing complexity.
+            </p>
+
+            <h3>6. Introducing Hilt (by Google)</h3>
+            <p>
+              <strong>Hilt</strong> is a DI library built on top of Dagger, designed specifically for Android.  
+              It integrates seamlessly with Android components and generates all boilerplate code.
+            </p>
+
+            <h4>Step 1: Add Dependencies</h4>
+            <pre><code class="language-gradle">
+          implementation "com.google.dagger:hilt-android:2.52"
+          kapt "com.google.dagger:hilt-compiler:2.52"
+            </code></pre>
+
+            <h4>Step 2: Annotate Application Class</h4>
+            <pre><code class="language-kotlin">
+          @HiltAndroidApp
+          class MyApp : Application()
+            </code></pre>
+
+            <h4>Step 3: Create a Module to Provide Dependencies</h4>
+            <pre><code class="language-kotlin">
+          @Module
+          @InstallIn(SingletonComponent::class)
+          object NetworkModule {
+
+              @Provides
+              fun provideApiService(): ApiService {
+                  return ApiService()
+              }
+          }
+            </code></pre>
+
+            <h4>Step 4: Inject Dependencies into Components</h4>
+            <pre><code class="language-kotlin">
+          @AndroidEntryPoint
+          class MainActivity : AppCompatActivity() {
+
+              @Inject lateinit var apiService: ApiService
+
+              override fun onCreate(savedInstanceState: Bundle?) {
+                  super.onCreate(savedInstanceState)
+                  apiService.fetchData()
+              }
+          }
+            </code></pre>
+
+            <h3>7. Scopes in Hilt</h3>
+            <ul>
+              <li><code>@Singleton</code> – Single instance shared across the whole app.</li>
+              <li><code>@ActivityScoped</code> – Instance tied to the lifecycle of an Activity.</li>
+              <li><code>@ViewModelScoped</code> – Used with ViewModels.</li>
+            </ul>
+
+            <h3>8. Common Mistakes in DI</h3>
+            <ul>
+              <li>Forgetting to annotate classes with <code>@AndroidEntryPoint</code>.</li>
+              <li>Creating dependencies manually instead of injecting them.</li>
+              <li>Injecting large objects unnecessarily (causing memory overhead).</li>
+              <li>Mixing different scopes incorrectly (e.g., Singleton with ActivityScoped).</li>
+            </ul>
+
+            <h3>9. Best Practices</h3>
+            <ul>
+              <li>Use constructor injection wherever possible.</li>
+              <li>Keep your modules organized by feature (NetworkModule, RepositoryModule, etc.).</li>
+              <li>Avoid overusing <code>@Singleton</code> — scope wisely.</li>
+              <li>Use interfaces for flexible implementations (e.g., for testing).</li>
+            </ul>
+          </section>
+            </div>
+    </main>
+
+    <script src="../../../js/python.js"></script>
+</body>
+</html>
+

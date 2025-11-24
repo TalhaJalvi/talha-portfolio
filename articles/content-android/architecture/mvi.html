@@ -1,171 +1,287 @@
-<section id="mvi-architecture" class="basic-1 bg-gray py-5">
-    <div class="container">
-        <h1 class="text-center mb-5">MVI Architecture in Android — Complete Guide</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Core</title>
+    <link rel="stylesheet" href="../../../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <h3>1. What is MVI Architecture?</h3>
-        <p>
-            MVI stands for <strong>Model–View–Intent</strong>. 
-            It is a reactive architecture pattern that enforces <strong>unidirectional data flow</strong> 
-            and is ideal for modern Android apps using Jetpack Compose or reactive frameworks like Flow or RxJava.
-        </p>
+    <header class="header">
+        <header class="header">
+        <h1>Android Core</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
 
-        <h3>2. Key Components of MVI</h3>
-        <ul>
-            <li><strong>Model:</strong> Represents the state of the UI. Usually immutable and updated only via events.</li>
-            <li><strong>View:</strong> Observes the Model (UI state) and renders it. All user interactions are sent as Intents.</li>
-            <li><strong>Intent:</strong> Represents user actions or events (e.g., button clicks). Intents are processed to generate a new Model state.</li>
-        </ul>
+    <!-- Android Core Topics -->
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Android Core Topics</li>
 
-        <h3>3. MVI Data Flow</h3>
-        <ol>
-            <li>User interacts with the <strong>View</strong> (Intent).</li>
-            <li>The <strong>Intent</strong> is processed by a <strong>Reducer / ViewModel</strong>.</li>
-            <li>The <strong>Model</strong> state is updated based on the Intent.</li>
-            <li>The <strong>View</strong> observes the new Model state and updates the UI.</li>
-            <li>The cycle repeats for the next Intent.</li>
-        </ol>
+        <!-- 1. App Architecture -->
+        <li class="menu-section">App Architecture</li>
+        <li><a href="../../../articles/android-core.html" class="nav-link">Introduction to Architecture</a></li>
+        <li><a href="../../content-android/architecture/mvc.html" class="nav-link">MVC Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp.html" class="nav-link">MVP Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvvm.html" class="nav-link">MVVM Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvi.html" class="nav-link">MVI Pattern</a></li>
+        <li><a href="../../content-android/architecture/mvp-mvc-in-compose.html" class="nav-link">Using MVP and MVC in Compose</a></li>
+        <li><a href="../../content-android/architecture/clean-architecture.html" class="nav-link">Clean Architecture</a></li>
+        <li><a href="../../content-android/architecture/layers.html" class="nav-link">Data, Domain & UI Layers</a></li>
+        <li><a href="../../content-android/architecture/repository-pattern.html" class="nav-link">Repository Pattern</a></li>
+        <li><a href="../../content-android/architecture/modularization.html" class="nav-link">App Modularization</a></li>
 
-        <h3>4. Advantages of MVI</h3>
-        <ul>
-            <li>Unidirectional flow eliminates UI inconsistencies.</li>
-            <li>Single source of truth — the Model represents the entire UI state.</li>
-            <li>Reactive — works perfectly with Jetpack Compose, StateFlow, or LiveData.</li>
-            <li>Easier testing — Intents and Model states can be tested independently of the View.</li>
-        </ul>
+        <!-- 2. Dependency Injection -->
+        <li class="menu-section">Dependency Injection (DI)</li>
+        <li><a href="../../content-android/di/intro.html" class="nav-link">Introduction to DI</a></li>
+        <li><a href="../../content-android/di/hilt.html" class="nav-link">Hilt Basics</a></li>
+        <li><a href="../../content-android/di/dagger.html" class="nav-link">Dagger 2 Overview</a></li>
+        <li><a href="../../content-android/di/koin.html" class="nav-link">Koin Framework</a></li>
+        <li><a href="../../content-android/di/scopes-components.html" class="nav-link">Scopes & Components</a></li>
+        <li><a href="../../content-android/di/testing.html" class="nav-link">Testing with DI</a></li>
 
-        <h3>5. Example: Login Screen Using MVI</h3>
+        <!-- 3. Data Persistence -->
+        <li class="menu-section">Data Persistence</li>
+        <li><a href="../../content-android/persistence/overview.html" class="nav-link">Overview of Data Persistence</a></li>
+        <li><a href="../../content-android/persistence/sharedpreferences.html" class="nav-link">SharedPreferences</a></li>
+        <li><a href="../../content-android/persistence/datastore.html" class="nav-link">DataStore (Proto & Preferences)</a></li>
+        <li><a href="../../content-android/persistence/room.html" class="nav-link">Room Database</a></li>
+        <li><a href="../../content-android/persistence/sqlite.html" class="nav-link">SQLite Database</a></li>
+        <li><a href="../../content-android/persistence/repository.html" class="nav-link">Repository Pattern in Persistence</a></li>
+        <li><a href="../../content-android/persistence/offline-sync.html" class="nav-link">Offline-First & Sync Strategies</a></li>
 
-        <h4>📁 Folder Structure</h4>
-        <pre><code>
-        ├── model/
-        │   └── LoginState.kt
-        ├── intent/
-        │   └── LoginIntent.kt
-        ├── viewmodel/
-        │   └── LoginViewModel.kt
-        ├── view/
-        │   └── LoginActivity.kt
-        └── activity_login.xml
-        </code></pre>
+        <!-- 4. Networking & Data Layer -->
+        <li class="menu-section">Networking & Data Layer</li>
+        <li><a href="../../content-android/networking/retrofit.html" class="nav-link">Retrofit & OkHttp</a></li>
+        <li><a href="../../content-android/networking/interceptors.html" class="nav-link">Interceptors & Logging</a></li>
+        <li><a href="../../content-android/networking/error-handling.html" class="nav-link">Error Handling</a></li>
+        <li><a href="../../content-android/networking/caching.html" class="nav-link">Caching & Pagination</a></li>
+        <li><a href="../../content-android/networking/api-layer.html" class="nav-link">API Layer & Repository Integration</a></li>
 
-        <h4>🧩 Model: LoginState.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvi.model
+        <!-- 5. State Management -->
+        <li class="menu-section">State Management</li>
+        <li><a href="../../content-android/state/livedata.html" class="nav-link">LiveData</a></li>
+        <li><a href="../../content-android/state/flow.html" class="nav-link">StateFlow & SharedFlow</a></li>
+        <li><a href="../../content-android/state/uistate.html" class="nav-link">UI State & Events</a></li>
+        <li><a href="../../content-android/state/uimodel.html" class="nav-link">UI Model (ViewState + Actions)</a></li>
+        <li><a href="../../content-android/state/compose-state.html" class="nav-link">Compose State & UDF</a></li>
 
-        data class LoginState(
-            val username: String = "",
-            val password: String = "",
-            val isLoading: Boolean = false,
-            val errorMessage: String? = null,
-            val success: Boolean = false
-        )
-        </code></pre>
+        <!-- 6. Background Work -->
+        <li class="menu-section">Background Work</li>
+        <li><a href="../../content-android/background/workmanager.html" class="nav-link">WorkManager</a></li>
+        <li><a href="../../content-android/background/services.html" class="nav-link">Foreground & Background Services</a></li>
+        <li><a href="../../content-android/background/threads.html" class="nav-link">Threads & Executors</a></li>
+        <li><a href="../../content-android/background/coroutines.html" class="nav-link">Coroutines in Background</a></li>
 
-        <h4>🎯 Intent: LoginIntent.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvi.intent
+        <!-- 7. Testing & Debugging -->
+        <li class="menu-section">Testing & Debugging</li>
+        <li><a href="../../content-android/testing/unit-testing.html" class="nav-link">Unit Testing</a></li>
+        <li><a href="../../content-android/testing/ui-testing.html" class="nav-link">UI Testing</a></li>
+        <li><a href="../../content-android/testing/integration.html" class="nav-link">Integration Testing</a></li>
+        <li><a href="../../content-android/testing/mock.html" class="nav-link">Mocking & Dependency Injection</a></li>
+        <li><a href="../../content-android/testing/debugging.html" class="nav-link">Debugging & Profiling</a></li>
 
-        sealed class LoginIntent {
-            data class Submit(val username: String, val password: String) : LoginIntent()
-        }
-        </code></pre>
+        <!-- 8. Security & Data Protection -->
+        <li class="menu-section">Security & Data Protection</li>
+        <li><a href="../../content-android/security/encryption.html" class="nav-link">Encryption & Decryption</a></li>
+        <li><a href="../../content-android/security/keystore.html" class="nav-link">Android Keystore</a></li>
+        <li><a href="../../content-android/security/secure-storage.html" class="nav-link">Secure Local Storage</a></li>
+        <li><a href="../../content-android/security/network-security.html" class="nav-link">Network Security Config</a></li>
 
-        <h4>🧠 ViewModel: LoginViewModel.kt</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvi.viewmodel
+        <!-- 9. Performance & Optimization -->
+        <li class="menu-section">Performance & Optimization</li>
+        <li><a href="../../content-android/performance/memory.html" class="nav-link">Memory Optimization</a></li>
+        <li><a href="../../content-android/performance/startup.html" class="nav-link">App Startup Time</a></li>
+        <li><a href="../../content-android/performance/rendering.html" class="nav-link">Rendering & Overdraw</a></li>
+        <li><a href="../../content-android/performance/battery.html" class="nav-link">Battery & CPU Efficiency</a></li>
+    </ul>
+    </nav>
 
-        import androidx.lifecycle.ViewModel
-        import androidx.lifecycle.viewModelScope
-        import com.example.mvi.model.LoginState
-        import com.example.mvi.intent.LoginIntent
-        import kotlinx.coroutines.flow.MutableStateFlow
-        import kotlinx.coroutines.flow.StateFlow
-        import kotlinx.coroutines.launch
 
-        class LoginViewModel : ViewModel() {
+    <main class="content">
+        <div id="content-display">
+            <section id="mvi-architecture" class="basic-1 bg-gray py-5">
+                <div class="container">
+                    <h1 class="text-center mb-5">MVI Architecture in Android — Complete Guide</h1>
 
-            private val _uiState = MutableStateFlow(LoginState())
-            val uiState: StateFlow<LoginState> get() = _uiState
+                    <h3>1. What is MVI Architecture?</h3>
+                    <p>
+                        MVI stands for <strong>Model–View–Intent</strong>. 
+                        It is a reactive architecture pattern that enforces <strong>unidirectional data flow</strong> 
+                        and is ideal for modern Android apps using Jetpack Compose or reactive frameworks like Flow or RxJava.
+                    </p>
 
-            fun processIntent(intent: LoginIntent) {
-                when (intent) {
-                    is LoginIntent.Submit -> login(intent.username, intent.password)
-                }
-            }
+                    <h3>2. Key Components of MVI</h3>
+                    <ul>
+                        <li><strong>Model:</strong> Represents the state of the UI. Usually immutable and updated only via events.</li>
+                        <li><strong>View:</strong> Observes the Model (UI state) and renders it. All user interactions are sent as Intents.</li>
+                        <li><strong>Intent:</strong> Represents user actions or events (e.g., button clicks). Intents are processed to generate a new Model state.</li>
+                    </ul>
 
-            private fun login(username: String, password: String) {
-                viewModelScope.launch {
-                    _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
-                    // Simulate login
-                    if (username.isNotEmpty() && password.length >= 6) {
-                        _uiState.value = LoginState(username, password, isLoading = false, success = true)
-                    } else {
-                        _uiState.value = LoginState(username, password, isLoading = false, errorMessage = "Invalid credentials")
+                    <h3>3. MVI Data Flow</h3>
+                    <ol>
+                        <li>User interacts with the <strong>View</strong> (Intent).</li>
+                        <li>The <strong>Intent</strong> is processed by a <strong>Reducer / ViewModel</strong>.</li>
+                        <li>The <strong>Model</strong> state is updated based on the Intent.</li>
+                        <li>The <strong>View</strong> observes the new Model state and updates the UI.</li>
+                        <li>The cycle repeats for the next Intent.</li>
+                    </ol>
+
+                    <h3>4. Advantages of MVI</h3>
+                    <ul>
+                        <li>Unidirectional flow eliminates UI inconsistencies.</li>
+                        <li>Single source of truth — the Model represents the entire UI state.</li>
+                        <li>Reactive — works perfectly with Jetpack Compose, StateFlow, or LiveData.</li>
+                        <li>Easier testing — Intents and Model states can be tested independently of the View.</li>
+                    </ul>
+
+                    <h3>5. Example: Login Screen Using MVI</h3>
+
+                    <h4>📁 Folder Structure</h4>
+                    <pre><code>
+                    ├── model/
+                    │   └── LoginState.kt
+                    ├── intent/
+                    │   └── LoginIntent.kt
+                    ├── viewmodel/
+                    │   └── LoginViewModel.kt
+                    ├── view/
+                    │   └── LoginActivity.kt
+                    └── activity_login.xml
+                    </code></pre>
+
+                    <h4>🧩 Model: LoginState.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvi.model
+
+                    data class LoginState(
+                        val username: String = "",
+                        val password: String = "",
+                        val isLoading: Boolean = false,
+                        val errorMessage: String? = null,
+                        val success: Boolean = false
+                    )
+                    </code></pre>
+
+                    <h4>🎯 Intent: LoginIntent.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvi.intent
+
+                    sealed class LoginIntent {
+                        data class Submit(val username: String, val password: String) : LoginIntent()
                     }
-                }
-            }
-        }
-        </code></pre>
+                    </code></pre>
 
-        <h4>🎬 View: LoginActivity.kt (Jetpack Compose Example)</h4>
-        <pre><code class="language-kotlin">
-        package com.example.mvi.view
+                    <h4>🧠 ViewModel: LoginViewModel.kt</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvi.viewmodel
 
-        import android.os.Bundle
-        import androidx.activity.ComponentActivity
-        import androidx.activity.compose.setContent
-        import androidx.activity.viewModels
-        import androidx.compose.material.*
-        import androidx.compose.runtime.*
-        import com.example.mvi.viewmodel.LoginViewModel
-        import com.example.mvi.intent.LoginIntent
+                    import androidx.lifecycle.ViewModel
+                    import androidx.lifecycle.viewModelScope
+                    import com.example.mvi.model.LoginState
+                    import com.example.mvi.intent.LoginIntent
+                    import kotlinx.coroutines.flow.MutableStateFlow
+                    import kotlinx.coroutines.flow.StateFlow
+                    import kotlinx.coroutines.launch
 
-        class LoginActivity : ComponentActivity() {
-            private val viewModel: LoginViewModel by viewModels()
+                    class LoginViewModel : ViewModel() {
 
-            override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContent {
-                    val uiState by viewModel.uiState.collectAsState()
-                    LoginScreen(uiState) { username, password ->
-                        viewModel.processIntent(LoginIntent.Submit(username, password))
+                        private val _uiState = MutableStateFlow(LoginState())
+                        val uiState: StateFlow<LoginState> get() = _uiState
+
+                        fun processIntent(intent: LoginIntent) {
+                            when (intent) {
+                                is LoginIntent.Submit -> login(intent.username, intent.password)
+                            }
+                        }
+
+                        private fun login(username: String, password: String) {
+                            viewModelScope.launch {
+                                _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
+                                // Simulate login
+                                if (username.isNotEmpty() && password.length >= 6) {
+                                    _uiState.value = LoginState(username, password, isLoading = false, success = true)
+                                } else {
+                                    _uiState.value = LoginState(username, password, isLoading = false, errorMessage = "Invalid credentials")
+                                }
+                            }
+                        }
                     }
-                }
-            }
-        }
+                    </code></pre>
 
-        @Composable
-        fun LoginScreen(state: com.example.mvi.model.LoginState, onSubmit: (String, String) -> Unit) {
-            var username by remember { mutableStateOf("") }
-            var password by remember { mutableStateOf("") }
+                    <h4>🎬 View: LoginActivity.kt (Jetpack Compose Example)</h4>
+                    <pre><code class="language-kotlin">
+                    package com.example.mvi.view
 
-            Column {
-                TextField(value = username, onValueChange = { username = it }, label = { Text("Username") })
-                TextField(value = password, onValueChange = { password = it }, label = { Text("Password") })
-                Button(onClick = { onSubmit(username, password) }) { Text("Login") }
+                    import android.os.Bundle
+                    import androidx.activity.ComponentActivity
+                    import androidx.activity.compose.setContent
+                    import androidx.activity.viewModels
+                    import androidx.compose.material.*
+                    import androidx.compose.runtime.*
+                    import com.example.mvi.viewmodel.LoginViewModel
+                    import com.example.mvi.intent.LoginIntent
 
-                if (state.isLoading) { CircularProgressIndicator() }
-                state.errorMessage?.let { Text(it, color = MaterialTheme.colors.error) }
-                if (state.success) { Text("Login Successful!") }
-            }
-        }
-        </code></pre>
+                    class LoginActivity : ComponentActivity() {
+                        private val viewModel: LoginViewModel by viewModels()
 
-        <h3>6. Advantages of MVI</h3>
-        <ul>
-            <li>Unidirectional data flow prevents UI inconsistencies.</li>
-            <li>Single source of truth — the UI state is centralized in the Model.</li>
-            <li>Reactive and perfect for Compose or Flow.</li>
-            <li>Easier testing of Intents and Model states independently of View.</li>
-        </ul>
+                        override fun onCreate(savedInstanceState: Bundle?) {
+                            super.onCreate(savedInstanceState)
+                            setContent {
+                                val uiState by viewModel.uiState.collectAsState()
+                                LoginScreen(uiState) { username, password ->
+                                    viewModel.processIntent(LoginIntent.Submit(username, password))
+                                }
+                            }
+                        }
+                    }
 
-        <div class="text-center mt-5">
-            <h4>Conclusion</h4>
-            <p>
-                MVI is a modern reactive architecture that fits perfectly with Jetpack Compose. 
-                By enforcing unidirectional data flow and a single source of truth, it simplifies 
-                state management and testing, making it ideal for large and complex applications.
-            </p>
-        </div>
-    </div>
-</section>
+                    @Composable
+                    fun LoginScreen(state: com.example.mvi.model.LoginState, onSubmit: (String, String) -> Unit) {
+                        var username by remember { mutableStateOf("") }
+                        var password by remember { mutableStateOf("") }
+
+                        Column {
+                            TextField(value = username, onValueChange = { username = it }, label = { Text("Username") })
+                            TextField(value = password, onValueChange = { password = it }, label = { Text("Password") })
+                            Button(onClick = { onSubmit(username, password) }) { Text("Login") }
+
+                            if (state.isLoading) { CircularProgressIndicator() }
+                            state.errorMessage?.let { Text(it, color = MaterialTheme.colors.error) }
+                            if (state.success) { Text("Login Successful!") }
+                        }
+                    }
+                    </code></pre>
+
+                    <h3>6. Advantages of MVI</h3>
+                    <ul>
+                        <li>Unidirectional data flow prevents UI inconsistencies.</li>
+                        <li>Single source of truth — the UI state is centralized in the Model.</li>
+                        <li>Reactive and perfect for Compose or Flow.</li>
+                        <li>Easier testing of Intents and Model states independently of View.</li>
+                    </ul>
+
+                    <div class="text-center mt-5">
+                        <h4>Conclusion</h4>
+                        <p>
+                            MVI is a modern reactive architecture that fits perfectly with Jetpack Compose. 
+                            By enforcing unidirectional data flow and a single source of truth, it simplifies 
+                            state management and testing, making it ideal for large and complex applications.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            </div>
+    </main>
+
+    <script src="../../../js/python.js"></script>
+</body>
+</html>
+
