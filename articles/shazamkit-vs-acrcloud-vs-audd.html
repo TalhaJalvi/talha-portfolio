@@ -7,13 +7,13 @@
   <meta name="description" content="A practical comparison of ShazamKit, ACRCloud and AudD for building music recognition features in mobile and backend applications, including metadata, integration style, scale and use cases.">
   <meta name="author" content="Talha Abbas Jalvi">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://talhajalvi.github.io/talha-portfolio/articles/shazamkit-vs-acrcloud-vs-audd.html">
+  <link rel="canonical" href="https://talhajalvi.com/articles/shazamkit-vs-acrcloud-vs-audd.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Talha Jalvi">
   <meta property="og:title" content="ShazamKit vs ACRCloud vs AudD: Music Recognition API Comparison">
   <meta property="og:description" content="Compare ShazamKit, ACRCloud and AudD for song identification, metadata, mobile integration, backend workflows and production use cases.">
-  <meta property="og:url" content="https://talhajalvi.github.io/talha-portfolio/articles/shazamkit-vs-acrcloud-vs-audd.html">
+  <meta property="og:url" content="https://talhajalvi.com/articles/shazamkit-vs-acrcloud-vs-audd.html">
   <meta name="twitter:card" content="summary">
 
   <script type="application/ld+json">
@@ -26,9 +26,10 @@
     "dateModified": "2026-08-27",
     "author": {
       "@type": "Person",
-      "name": "Talha Abbas Jalvi"
+      "name": "Talha Abbas Jalvi",
+      "url": "https://talhajalvi.com/"
     },
-    "mainEntityOfPage": "https://talhajalvi.github.io/talha-portfolio/articles/shazamkit-vs-acrcloud-vs-audd.html"
+    "mainEntityOfPage": "https://talhajalvi.com/articles/shazamkit-vs-acrcloud-vs-audd.html"
   }
   </script>
 
@@ -83,11 +84,11 @@
         <thead><tr><th>Area</th><th>ShazamKit</th><th>ACRCloud</th><th>AudD</th></tr></thead>
         <tbody>
           <tr><td>Best fit</td><td>Apple-platform apps and Shazam catalog matching</td><td>Cross-platform commercial recognition, metadata and monitoring</td><td>Simple server/API integration, clips, streams and large files</td></tr>
-          <tr><td>Integration style</td><td>Native framework / SDK</td><td>APIs and SDKs</td><td>HTTP API, WebSocket and stream workflows</td></tr>
+          <tr><td>Integration style</td><td>Native framework / SDK</td><td>APIs and SDKs</td><td>HTTP API, SDKs and stream workflows</td></tr>
           <tr><td>Catalog</td><td>Shazam catalog or your own custom catalog</td><td>Commercial fingerprint database plus custom/business workflows</td><td>AudD music recognition database plus private-upload options for some customers</td></tr>
           <tr><td>Continuous streams</td><td>Streaming audio buffers can be matched in-session</td><td>Supports monitoring and broadcast-oriented products</td><td>Dedicated audio-stream recognition product</td></tr>
           <tr><td>Large files</td><td>Not primarily a server-side long-file API</td><td>Commercial workflows vary by product</td><td>Dedicated enterprise endpoint for long audio/video</td></tr>
-          <tr><td>Metadata emphasis</td><td>Matched media metadata from Shazam catalog</td><td>Strong third-party IDs and metadata options such as ISRC/UPC</td><td>Rich response metadata, with optional additional providers</td></tr>
+          <tr><td>Metadata emphasis</td><td>Matched media metadata from Shazam catalog</td><td>Strong third-party IDs and metadata options such as ISRC/UPC</td><td>Rich response metadata with optional provider lookups</td></tr>
         </tbody>
       </table>
 
@@ -101,20 +102,18 @@
       <p>The trade-off is architectural flexibility. If your product must expose one uniform recognition backend to iOS, Android, web, server workers and broadcast jobs, a general HTTP service can be easier to centralize.</p>
 
       <h2>2. ACRCloud</h2>
-      <p>ACRCloud is designed as a broader automatic content recognition platform. Its music-recognition product advertises a catalog of more than 150 million tracks and offers APIs and SDKs for product integration. It also emphasizes third-party identifiers and links, including standard identifiers such as <strong>ISRC</strong> and <strong>UPC</strong>, plus integrations with music platforms.</p>
+      <p>ACRCloud is designed as a broader automatic content recognition platform. Its music-recognition product advertises a large commercial catalog and offers APIs and SDKs for product integration. It also emphasizes third-party identifiers and links, including standard identifiers such as <strong>ISRC</strong> and <strong>UPC</strong>, plus integrations with music platforms.</p>
 
       <p>That matters when recognition is only the first step. A production app may need to identify a song and then normalize it against Spotify, Apple Music, YouTube or an internal catalog. ACRCloud’s positioning is strong for commercial products that also care about broadcast monitoring, copyright workflows, local-file scanning or other audio-recognition use cases beyond a single “listen now” button.</p>
 
       <div class="callout"><strong>Choose ACRCloud when:</strong> you want a cross-platform commercial recognition layer, care about metadata/industry identifiers, or expect the product to expand into monitoring, copyright or catalog workflows.</div>
 
       <h2>3. AudD</h2>
-      <p>AudD is appealing because the basic recognition API is extremely straightforward. You send a file or a public URL and receive JSON containing fields such as artist, title, album, release date, label, timecode and a song link. Optional metadata can also be requested.</p>
+      <p>AudD is appealing because the basic recognition API is straightforward. You send a file or a public URL and receive JSON containing fields such as artist, title, album, release date, label, timecode and a song link. Additional provider metadata can be requested when needed.</p>
 
-      <p>The standard endpoint is aimed at short recognition requests. AudD also has separate products for continuous audio streams and for large audio or video files. Its enterprise endpoint can process long recordings and divides work into audio chunks, which makes it useful for mixes, broadcasts, podcasts or user-generated media where more than one song may appear.</p>
+      <p>The standard endpoint is aimed at short recognition requests. AudD also has separate products for continuous audio streams and for large audio or video files. Its enterprise endpoint can process long recordings, which makes it useful for mixes, broadcasts, podcasts or user-generated media where more than one song may appear.</p>
 
-      <p>AudD also documents an async WebSocket interface for sending multiple recognition requests without waiting synchronously for each result. For backend-heavy systems, that can be convenient.</p>
-
-      <div class="callout"><strong>Choose AudD when:</strong> you want a very simple HTTP integration, your backend owns the recognition flow, or you need separate short-clip, stream and long-file recognition workflows.</div>
+      <div class="callout"><strong>Choose AudD when:</strong> you want a simple HTTP integration, your backend owns the recognition flow, or you need distinct short-clip, stream and long-file recognition workflows.</div>
 
       <h2>Which one would I pick?</h2>
       <h3>For an iOS-first music app</h3>
@@ -156,6 +155,9 @@
 
       <p>If you use ShazamKit directly on iOS, you can still normalize its result into the same internal model used by your backend recognition path. That keeps business logic independent from the recognition engine.</p>
 
+      <h2>Build an AudD backend next</h2>
+      <p>If AudD looks like the best fit for your backend workflow, continue with my <a href="audd-api-tutorial-python-fastapi.html">AudD API tutorial using Python and FastAPI</a>. It covers multipart audio uploads, metadata requests, response normalization, failure handling, upload limits and a production-friendly provider adapter.</p>
+
       <h2>Final recommendation</h2>
       <p>There is no universal winner. <strong>ShazamKit</strong> is the strongest natural fit for native Apple experiences. <strong>ACRCloud</strong> is compelling when recognition is part of a broader commercial music-data or monitoring product. <strong>AudD</strong> is attractive when you want an easy backend API with clearly separated short-clip, stream and long-file workflows.</p>
 
@@ -177,6 +179,6 @@
     </article>
   </main>
 
-  <footer>© 2026 Talha Abbas Jalvi · <a href="articles-home.html">More engineering articles</a></footer>
+  <footer>© 2026 Talha Abbas Jalvi · <a href="articles-home.html">More engineering articles</a> · <a href="audd-api-tutorial-python-fastapi.html">AudD API tutorial</a></footer>
 </body>
 </html>
