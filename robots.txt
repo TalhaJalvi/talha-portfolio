@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Keep search engines focused on public content.
-Sitemap: https://talhajalvi.github.io/talha-portfolio/tal-sitemap.xml
+Sitemap: https://talhajalvi.com/tal-sitemap.xml
