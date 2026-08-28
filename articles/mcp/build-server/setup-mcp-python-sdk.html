@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Set Up the MCP Python SDK v2 with uv or pip | Talha Jalvi</title><meta name="description" content="Set up a modern Python MCP project with Python 3.10+, uv or pip, the mcp CLI, environment variables, and a clean development workflow."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/setup-mcp-python-sdk.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 2</span></div><h1>Set Up the MCP Python SDK v2</h1><p>Start new projects on the current v2 SDK unless you have a specific legacy constraint.</p><h2>Create a project</h2><pre>uv init my-mcp-server
+cd my-mcp-server
+uv add "mcp[cli]"</pre><p>With pip, create and activate a virtual environment first, then install <code>mcp[cli]</code>.</p><h2>Recommended layout</h2><pre>my-mcp-server/
+  pyproject.toml
+  .env.example
+  src/
+    app.py
+    tools/
+    resources/
+    services/
+  tests/</pre><h2>Useful commands</h2><ul><li><code>uv run mcp dev src/app.py</code> — development with Inspector.</li><li><code>uv run mcp run src/app.py</code> — run a server object from a file.</li><li><code>mcp version</code> — check CLI version.</li></ul><h2>Pin important dependencies</h2><p>Production projects should lock dependencies and review MCP SDK migration notes before major upgrades. SDK package versions and protocol versions are separate concepts.</p><div class="warn"><strong>Do not commit secrets.</strong> Commit a <code>.env.example</code> with variable names, not real credentials.</div><div class="next"><a href="first-mcp-tool.html">Next: Your First Tool →</a></div></article></main></body></html>

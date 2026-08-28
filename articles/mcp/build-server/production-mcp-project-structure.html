@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Production MCP Server Project Structure in Python | Talha Jalvi</title><meta name="description" content="Organize a production Python MCP server into tools, resources, domain services, auth, configuration, observability, and tests without coupling business logic to protocol code."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/production-mcp-project-structure.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 14</span></div><h1>Production MCP Server Project Structure</h1><pre>src/
+  server.py
+  config.py
+  auth.py
+  tools/
+    orders.py
+    deployments.py
+  resources/
+    docs.py
+  prompts/
+    operations.py
+  services/
+    orders_service.py
+    deploy_service.py
+  observability.py
+tests/
+  test_tools.py
+  test_auth.py
+  test_services.py</pre><h2>Keep protocol adapters thin</h2><p>Tool functions should validate agent-facing arguments and delegate to domain services. This keeps business logic testable without MCP and lets REST, background workers, and MCP share code.</p><h2>Group by domain when the project grows</h2><p>For larger codebases, feature-oriented packages often scale better than one giant <code>tools.py</code>.</p><h2>Centralize cross-cutting concerns</h2><p>Authentication, tracing, configuration, retries, and rate limits should not be reimplemented independently inside every tool.</p><div class="next"><a href="testing-mcp-server.html">Next: Testing →</a></div></article></main></body></html>
