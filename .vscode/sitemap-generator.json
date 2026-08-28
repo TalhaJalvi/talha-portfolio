@@ -1,7 +1,7 @@
 {
   "sitemap.xml": {
     "Protocol": "https",
-    "DomainName": "talhajalvi.github.io/talha-portfolio",
+    "DomainName": "talhajalvi.com",
     "Root": "./",
     "IncludeExt": [
       ".html",
@@ -14,7 +14,7 @@
     ],
     "DefaultChangeFrequency": "monthly",
     "TabCharacters": "\t",
-    "bIncludeWWW": true,
+    "bIncludeWWW": false,
     "bRemoveFileExtentions": false,
     "bUseTrailingSlash": false,
     "bAutomaticallyUpdateSitemap": true,

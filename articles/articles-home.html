@@ -1,280 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Software Engineer, Android, Jetpack compose, django, python">
-    <meta name="author" content="Talha Abbas Jalvi">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer Articles: Android, Kotlin, Python & Backend | Talha Jalvi</title>
+  <meta name="description" content="Practical software engineering articles by Talha Jalvi covering Android, Kotlin, Jetpack Compose, Python backend development, architecture, music recognition APIs, design patterns, interviews and problem solving.">
+  <meta name="author" content="Talha Abbas Jalvi">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://talhajalvi.com/articles/articles-home.html">
 
-    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
-	<meta property="og:site_name" content="Talha Abbas Jalvi" /> <!-- website name -->
-	<meta property="og:site" content="https://talhajalvi.github.io/talha-portfolio/" /> <!-- website link -->
-	<meta property="og:title" content="Talha Abbas Jalvi"/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Talha Jalvi">
+  <meta property="og:title" content="Developer Articles: Android, Kotlin, Python & Backend">
+  <meta property="og:description" content="Practical notes and tutorials on Android, Kotlin, Jetpack Compose, Python backend development, music recognition APIs and software engineering.">
+  <meta property="og:url" content="https://talhajalvi.com/articles/articles-home.html">
+  <meta name="twitter:card" content="summary">
 
-    <!-- Webpage Title -->
-    <title>Talha Abbas Jalvi Articles/Notes</title>
-    
-    <!-- Styles -->
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Developer Articles by Talha Jalvi",
+    "description": "Practical software engineering articles covering Android, Kotlin, Jetpack Compose, Python backend development, music recognition APIs, architecture and problem solving.",
+    "url": "https://talhajalvi.com/articles/articles-home.html",
+    "author": {
+      "@type": "Person",
+      "name": "Talha Abbas Jalvi",
+      "url": "https://talhajalvi.com/"
+    }
+  }
+  </script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/fontawesome-all.css" rel="stylesheet">
-	<link href="../css/articles-styles.css" rel="stylesheet">
-	
-	<!-- Favicon  -->
-    <link rel="icon" href="../images/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/fontawesome-all.css" rel="stylesheet">
+  <link href="../css/articles-styles.css" rel="stylesheet">
+  <link rel="icon" href="../images/favicon.svg">
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
-    
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-        <div class="container">
-            
-            <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="../images/favicon.svg" alt="alternative"></a>  
-
-            <!-- Text Logo - Use this if you don't have a graphic logo -->
-            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Mark</a> -->
-
-            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-                <span class="nav-item social-icons">
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-facebook-f fa-stack-1x"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-twitter fa-stack-1x"></i>
-                        </a>
-                    </span>
-                </span>
-            </div> <!-- end of navbar-collapse -->
-        </div> <!-- end of container -->
-    </nav> <!-- end of navbar -->
-    <!-- end of navigation -->
-
-    <!-- Kotlin / Python Section -->
-    <div id="about" class="basic-1 bg-gray text-center py-5">
-
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
-    <h5 style="margin: 3%;">DISCLAIMER: This content is AI generated under human supervision!</h5>
+      <a class="navbar-brand logo-image" href="../index.html" aria-label="Talha Jalvi home">
+        <img src="../images/favicon.svg" alt="Talha Jalvi logo">
+      </a>
+      <div class="ms-auto">
+        <a class="nav-link d-inline-block" href="../index.html">Home</a>
+        <a class="nav-link d-inline-block" href="mailto:talhajalvi321@gmail.com">Work with me</a>
+      </div>
+    </div>
+  </nav>
 
+  <main class="basic-1 bg-gray py-5" style="padding-top: 8rem !important; min-height: 100vh;">
+    <div class="container">
+      <header class="text-center mb-5">
+        <h1>Software Engineering Articles</h1>
+        <p class="lead mx-auto" style="max-width: 760px;">Practical tutorials and implementation notes across mobile development, backend systems, APIs and production software engineering.</p>
+      </header>
+
+      <section class="mb-5" aria-labelledby="featured-heading">
+        <h2 id="featured-heading" class="text-center mb-4">Featured engineering guides</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body p-4 p-md-5">
+                <p class="text-uppercase small fw-bold mb-2">Music recognition APIs</p>
+                <h3 class="h2">ShazamKit vs ACRCloud vs AudD</h3>
+                <p>Compare three approaches to song identification for mobile and backend products, including integration style, metadata, continuous streams, long-file processing and production architecture.</p>
+                <a class="btn btn-primary" href="shazamkit-vs-acrcloud-vs-audd.html">Read the comparison</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body p-4 p-md-5">
+                <p class="text-uppercase small fw-bold mb-2">Python & FastAPI</p>
+                <h3 class="h2">AudD API Tutorial</h3>
+                <p>Recognize songs from uploaded audio or a public URL, request provider metadata, normalize the response and expose the workflow through FastAPI.</p>
+                <a class="btn btn-primary" href="audd-api-tutorial-python-fastapi.html">Read the tutorial</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="topics-heading">
+        <h2 id="topics-heading" class="text-center mb-4">Explore topics</h2>
         <div class="row justify-content-center text-center g-4">
-
-        <!-- Kotlin -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="kotlin.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/img_kotlin_learn.png" alt="Kotlin Logo" class="img-fluid p-3">
-                <p class="card-title mb-2">Kotlin Development</p>
-            </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="android-core.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/android-core.png" alt="Android development" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Android Development</h3>
+                <p class="px-3">Core Android concepts, architecture and implementation notes.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- OOP Kotlin -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="oop_kotlin.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/oop-in-kotlin.png" alt="OOP Kotlin Logo" class="img-fluid p-3">
-                <p class="card-title mb-2">OOP in Kotlin</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="jetpack-compose.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/img_jetpack_compose.png" alt="Jetpack Compose" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Jetpack Compose</h3>
+                <p class="px-3">Compose fundamentals, UI patterns and practical Android examples.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- Jetpack Compose -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="jetpack-compose.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/img_jetpack_compose.png" alt="Jetpack Compose Logo" class="img-fluid p-3">
-                <p class="card-title mb-2">Jetpack Compose</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="kotlin.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/img_kotlin_learn.png" alt="Kotlin programming" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Kotlin</h3>
+                <p class="px-3">Kotlin language concepts for Android and general software development.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- Android Core -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="android-core.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/android-core.png" alt="Android Core" class="img-fluid p-3">
-                <p class="card-title mb-2">Android Core</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="oop_kotlin.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/oop-in-kotlin.png" alt="Object oriented programming in Kotlin" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">OOP in Kotlin</h3>
+                <p class="px-3">Object-oriented programming concepts explained with Kotlin examples.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- Android Core -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="problem-solving-qas.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/problem-solving.png" alt="Android Core" class="img-fluid p-3">
-                <p class="card-title mb-2">Problem Solving</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="python-backend-development/Introduction.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/pyton-backend-development.png" alt="Python backend development" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Python Backend</h3>
+                <p class="px-3">Backend engineering concepts, APIs, databases and Python development.</p>
+              </div>
             </a>
-        </div>
-        <!-- Interview QAs -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="interview-qas.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/interview.png" alt="Android Interview" class="img-fluid p-3">
-                <p class="card-title mb-2">Android Interview Questions</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="design-patterns.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/design-patterns.png" alt="Software design patterns" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Design Patterns</h3>
+                <p class="px-3">Reusable software design ideas and architecture patterns.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- Python Backend Development -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="../articles/python-backend-development/Introduction.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/pyton-backend-development.png" alt="Android Interview" class="img-fluid p-3">
-                <p class="card-title mb-2">Python Backend Development</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="problem-solving-qas.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/problem-solving.png" alt="Programming problem solving" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Problem Solving</h3>
+                <p class="px-3">Programming exercises, approaches and interview-style problems.</p>
+              </div>
             </a>
-        </div>
-
-        <!-- Design Patterns -->
-        <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
-            <a href="../articles/design-patterns.html" class="text-decoration-none text-dark w-100" style="max-width: 300px;">
-            <div class="card square-card shadow-sm">
-                <img src="../images/design-patterns.png" alt="Android Interview" class="img-fluid p-3">
-                <p class="card-title mb-2">Design Patterns</p>
-            </div>
+          </div>
+          <div class="col-10 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <a href="interview-qas.html" class="text-decoration-none text-dark w-100" style="max-width:300px;">
+              <div class="card square-card shadow-sm h-100">
+                <img src="../images/interview.png" alt="Android interview questions" class="img-fluid p-3">
+                <h3 class="card-title h5 mb-2">Android Interviews</h3>
+                <p class="px-3">Android interview questions and engineering concepts worth reviewing.</p>
+              </div>
             </a>
+          </div>
         </div>
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-    </div> <!-- end of basic-1 -->
+      </section>
 
+      <section class="text-center mt-5 py-4">
+        <h2>Building something similar?</h2>
+        <p>I work on Android, React Native, Python backends, APIs and production software systems.</p>
+        <a class="btn btn-primary" href="mailto:talhajalvi321@gmail.com?subject=Software%20development%20project">Discuss a project</a>
+      </section>
+    </div>
+  </main>
 
-
-    <!-- Contact -->
-    <div id="contact" class="form-1 bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Contact details</h2>
-                    <p class="p-heading">For any type of online project please don't hesitate to get in touch with me. The fastest way is to send me your message using the following email <a class="blue no-line" href="#your-link">talhajalvi321@gmail.com</a></p>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    
-                    <!-- Contact Form -->
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Project details</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">Submit</button>
-                        </div>
-                    </form>
-                    <!-- end of contact form -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form-1 -->  
-    <!-- end of contact -->
-
-
-    <!-- Footer -->
-    <div class="footer bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="social-container">
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-instagram fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-youtube fa-stack-1x"></i>
-                            </a>
-                        </span>
-                    </div> <!-- end of social-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of footer -->  
-    <!-- end of footer -->
-
-
-    <!-- Copyright -->
-    <div class="copyright bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="p-small">Copyright © <a class="no-line" href="#your-link">Your name</a></p>
-                </div> <!-- end of col -->
-            </div> <!-- enf of row -->
-        </div> <!-- end of container -->
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="p-small">Distributed By <a class="no-line" href="https://themewagon.com/">Themewagon</a></p>
-                </div> <!-- end of col -->
-            </div> <!-- enf of row -->
-        </div> <!-- end of container -->
-        
-    </div> <!-- end of copyright --> 
-    <!-- end of copyright -->
-    
-    	
-    <!-- Scripts -->
-    <script src="../js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="../js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="../js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="../js/scripts.js"></script> <!-- Custom scripts -->
+  <footer class="bg-gray text-center py-4">
+    <div class="container">
+      <p class="mb-1">Written and maintained by Talha Abbas Jalvi.</p>
+      <p class="mb-0"><a href="../index.html">Portfolio</a> · <a href="mailto:talhajalvi321@gmail.com">Contact</a></p>
+    </div>
+  </footer>
 </body>
 </html>

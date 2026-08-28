@@ -1,46 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/articles-home.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/articles-home.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/kotlin.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/shazamkit-vs-acrcloud-vs-audd.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/oop_kotlin.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/audd-api-tutorial-python-fastapi.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/jetpack-compose.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/kotlin.html</loc>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/android-core.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/oop_kotlin.html</loc>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://talhajalvi.github.io/talha-portfolio/articles/interview-qas.html</loc>
-    <priority>0.83</priority>
-    <lastmod>2025-10-03</lastmod>
+    <loc>https://talhajalvi.com/articles/jetpack-compose.html</loc>
+    <priority>0.8</priority>
   </url>
-
+  <url>
+    <loc>https://talhajalvi.com/articles/android-core.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/problem-solving-qas.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/interview-qas.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/design-patterns.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/python-backend-development/Introduction.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-android/architecture/clean-architecture.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-android/architecture/mvvm.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-android/architecture/mvi.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-android/di/hilt.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-compose/fundamentals/composable-functions.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-compose/fundamentals/modifiers.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://talhajalvi.com/articles/content-compose/fundamentals/project-setup.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
