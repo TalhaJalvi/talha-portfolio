@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publish MCP Servers to the Registry with GitHub Actions | Talha Jalvi</title><meta name="description" content="Automate MCP Registry publishing with GitHub Actions, OIDC authentication, release tags, package publishing, server.json validation, and mcp-publisher."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/advanced/publish-mcp-github-actions.html"><link rel="stylesheet" href="../../../css/mcp-module-11.css"></head><body><main><article><div class="nav"><a href="module-11-index.html">← Module 11</a><span>Lesson 13</span></div><h1>Publish MCP with GitHub Actions</h1><p>The official Registry docs recommend GitHub OIDC where possible because it avoids storing a dedicated Registry authentication secret.</p><pre>name: Publish MCP Registry
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+  id-token: write
+
+# after tests/build/package publishing:
+# ./mcp-publisher login github-oidc
+# ./mcp-publisher publish</pre><h2>Release order matters</h2><p>For package-based servers, publish the package first, then publish Registry metadata that points to the verified version.</p><h2>Protect the pipeline</h2><p>Require tests before tag/release, restrict who can create release tags, pin important Actions, and use environment protections for publishing credentials.</p><h2>Reference</h2><p><a href="https://modelcontextprotocol.io/registry/github-actions">Official GitHub Actions publishing guide</a></p><div class="next"><a href="module-11-index.html">Back to Module 11 overview</a></div></article></main></body></html>
