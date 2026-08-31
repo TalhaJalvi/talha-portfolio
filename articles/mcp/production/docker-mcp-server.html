@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deploy an MCP Server with Docker | Talha Jalvi</title><meta name="description" content="Containerize a Python MCP server with Docker using non-root users, health checks, environment secrets, small images, and Streamable HTTP deployment."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/production/docker-mcp-server.html"><link rel="stylesheet" href="../../../css/mcp-module-10.css"></head><body><main><article><div class="nav"><a href="module-10-index.html">← Module 10</a><span>Lesson 2</span></div><h1>Deploy MCP with Docker</h1><pre>FROM python:3.12-slim
+WORKDIR /app
+COPY . /app
+RUN pip install --no-cache-dir -r requirements.txt
+RUN useradd -r appuser && chown -R appuser /app
+USER appuser
+CMD ["python", "server.py"]</pre><h2>Container principles</h2><ul><li>Run as non-root.</li><li>Do not bake API keys into layers.</li><li>Pin dependencies.</li><li>Keep filesystem permissions minimal.</li><li>Set CPU/memory limits in the runtime.</li></ul><h2>State</h2><p>The modern protocol core is stateless, so avoid storing protocol session state in container memory. Application state belongs in durable stores when needed.</p><div class="next"><a href="mcp-fastapi-production.html">Next: FastAPI Infrastructure →</a></div></article></main></body></html>
