@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
-# Keep search engines focused on public content.
+# Public learning content sitemaps.
 Sitemap: https://talhajalvi.com/tal-sitemap.xml
+Sitemap: https://talhajalvi.com/lesson-sitemap.xml
