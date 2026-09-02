@@ -1,106 +1,91 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const navLinks = document.querySelectorAll('.sidebar .nav-link');
+  const themeSwitcher = document.getElementById('theme-switcher');
+  const body = document.body;
 
-    const contentDisplay = document.querySelector('.content #content-display'); // Target div where content is loaded
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    // const navLinks = document.querySelectorAll('.sidebar .nav-link');
-    const themeSwitcher = document.getElementById('theme-switcher');
-    const body = document.body;
+  if (sidebar && !document.querySelector('.sidebar-backdrop')) {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    body.appendChild(backdrop);
 
-// --- Content Loading & Active Link Management (New/Updated) ---
+    backdrop.addEventListener('click', closeSidebar);
+  }
 
-    /**
-     * Sets the 'active' class on the correct sidebar link based on the loaded URL.
-     * @param {string} currentUrl - The URL of the loaded content file.
-     */
-    function setActiveLink(currentUrl) {
-        navLinks.forEach(link => {
-            // Remove 'active' from all links
-            link.classList.remove('active');
-            
-            // Add 'active' to the link that matches the current content URL
-            if (link.getAttribute('href') === currentUrl) {
-                link.classList.add('active');
-            }
-        });
-    }
+  function openSidebar() {
+    if (!sidebar) return;
+    sidebar.classList.add('open');
+    body.classList.add('sidebar-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+  }
 
+  function closeSidebar() {
+    if (!sidebar) return;
+    sidebar.classList.remove('open');
+    body.classList.remove('sidebar-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+  }
 
-// --- Sidebar Toggle Logic (Original, slightly optimized) ---
-    
-    // Toggle the sidebar open/closed on button click
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    }
+  if (menuToggle && sidebar) {
+    menuToggle.setAttribute('aria-label', 'Toggle course navigation');
+    menuToggle.setAttribute('aria-controls', 'course-navigation');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    sidebar.id = sidebar.id || 'course-navigation';
 
-// <!-- Sidebar Link Click Handler (Updated) -->
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Stop default navigation
-            const contentPath = link.getAttribute('href');
-
-            // 1. Load the new content
-            loadContent(contentPath); 
-
-            // 2. Close the sidebar (mobile logic)
-            if (window.innerWidth <= 768) { 
-                sidebar.classList.remove('open');
-            }
-            
-            // NOTE: The active link class is set inside loadContent()
-        });
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
     });
-    
-// --- Initial Load Logic (New) ---
+  }
 
-    const defaultContentPath = navLinks.length > 0 ? navLinks[0].getAttribute('href') : null;
-    let initialUrl = defaultContentPath;
-    
-    // Check if the current URL has a hash (e.g., #installation)
-    const currentHash = window.location.hash.substring(1); 
-    if (currentHash) {
-        // Construct the expected file path
-        const expectedUrl = `content/${currentHash}.html`;
-        // Check if a link exists for this file
-        const hashLink = document.querySelector(`.nav-link[href="${expectedUrl}"]`);
-        if (hashLink) {
-             initialUrl = expectedUrl;
-        }
+  navLinks.forEach(link => {
+    try {
+      const linkUrl = new URL(link.href, window.location.href);
+      if (linkUrl.pathname === window.location.pathname) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      }
+    } catch (_) {
+      // Leave malformed legacy links untouched instead of breaking the page.
     }
 
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
 
-// --- Theme Switcher (Original) ---
+  function setTheme(theme) {
+    const dark = theme === 'dark';
+    body.classList.toggle('dark-mode', dark);
 
-    // Function to set the theme based on preference
-    const setTheme = (theme) => {
-        if (theme === 'dark') {
-            body.classList.add('dark-mode');
-        } else {
-            body.classList.remove('dark-mode');
-        }
-    };
-
-    // Load saved theme from localStorage or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-
-    // Event listener for the theme switcher button
     if (themeSwitcher) {
-        themeSwitcher.addEventListener('click', () => {
-            const isDarkMode = body.classList.contains('dark-mode');
-            const newTheme = isDarkMode ? 'light' : 'dark';
-            setTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
+      themeSwitcher.textContent = dark ? 'Light mode' : 'Dark mode';
+      themeSwitcher.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
+  }
 
+  let savedTheme = 'light';
+  try {
+    savedTheme = localStorage.getItem('theme') || 'light';
+  } catch (_) {}
+  setTheme(savedTheme);
 
-// --- REMOVED SCROLLSPY ---
-// The original Scrollspy code (onScroll function and event listeners) has been removed 
-// because it breaks when content sections are dynamically loaded one-by-one.
-// The active link styling is now handled by the loadContent function.
+  if (themeSwitcher) {
+    themeSwitcher.addEventListener('click', () => {
+      const nextTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+      setTheme(nextTheme);
+      try {
+        localStorage.setItem('theme', nextTheme);
+      } catch (_) {}
+    });
+  }
 
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeSidebar();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeSidebar();
+  });
 });
