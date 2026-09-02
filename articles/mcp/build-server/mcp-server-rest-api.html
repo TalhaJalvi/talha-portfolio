@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build an MCP Server That Calls a REST API with Python | Talha Jalvi</title><meta name="description" content="Wrap an existing REST API with MCP tools using Python and httpx, including timeouts, authentication, error normalization, and safe tool design."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/mcp-server-rest-api.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 4</span></div><h1>Build an MCP Server for a REST API</h1><p>A common production pattern is to keep your existing business API and add an MCP layer specifically designed for agents.</p><pre>import os
+import httpx
+from mcp.server import MCPServer
+
+mcp = MCPServer("Orders")
+BASE_URL = os.environ["ORDERS_API_URL"]
+TOKEN = os.environ["ORDERS_API_TOKEN"]
+
+@mcp.tool()
+async def get_order(order_id: str) -> dict:
+    """Fetch one order by its public order ID."""
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.get(
+            f"{BASE_URL}/orders/{order_id}",
+            headers={"Authorization": f"Bearer {TOKEN}"},
+        )
+        r.raise_for_status()
+        return r.json()</pre><h2>Do not mirror every endpoint</h2><p>Create agent-oriented operations rather than one MCP tool per REST route. A tool can orchestrate several backend calls when that creates a coherent task boundary.</p><h2>Normalize errors</h2><p>Translate downstream 404s, validation failures, and service outages into concise tool errors. Avoid returning raw stack traces or internal headers.</p><h2>Use explicit timeouts</h2><p>Every external HTTP call should have a timeout. For idempotent reads you may add bounded retries; for mutations, use downstream idempotency keys before retrying automatically.</p><div class="warn"><strong>SSRF warning:</strong> do not accept arbitrary URLs from the model and fetch them with privileged server credentials.</div><div class="next"><a href="mcp-server-postgresql.html">Next: PostgreSQL MCP Server →</a></div></article></main></body></html>
