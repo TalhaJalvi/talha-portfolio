@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hosted MCP Tools with OpenAI Agents SDK | Talha Jalvi</title><meta name="description" content="Use HostedMCPTool so OpenAI's Responses API can call a remote MCP server, including server labels, URLs, approvals, streaming, and connector-backed servers."><link rel="canonical" href="https://talhajalvi.com/articles/ai-agents/mcp/hosted-mcp-openai.html"><link rel="stylesheet" href="../../../css/mcp-module-06.css"></head><body><main><article><div class="nav"><a href="module-06-index.html">← Module 6</a><span>Lesson 3</span></div><h1>Hosted MCP Tools with OpenAI</h1><p><code>HostedMCPTool</code> lets the Responses API handle the remote MCP tool round trip. Your code supplies the server configuration rather than manually listing and dispatching each tool.</p><pre>from agents import Agent, HostedMCPTool
+
+agent = Agent(
+    name="Repo Assistant",
+    tools=[HostedMCPTool(tool_config={
+        "type":"mcp",
+        "server_label":"docs",
+        "server_url":"https://mcp.example.com/mcp",
+        "require_approval":"never",
+    })],
+)</pre><h2>When hosted MCP fits</h2><p>Use it when the server is publicly reachable from OpenAI infrastructure and you want the hosted model/tool path to own MCP discovery and execution.</p><h2>Approvals still matter</h2><p>For sensitive tools, set approval policies rather than using <code>never</code>. Hosted MCP supports approval callbacks and per-tool policies.</p><h2>Connector-backed servers</h2><p>The current SDK also documents hosted connector-backed MCP configurations where you provide a connector ID and authorization token.</p><div class="warn"><strong>Trust the server before connecting it.</strong> MCP tools may read data or perform actions using supplied credentials.</div><div class="next"><a href="local-mcp-openai-agent.html">Next: Local MCP →</a></div></article></main></body></html>
