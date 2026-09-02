@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Talha Jalvi | Software Engineer — Mobile, Backend & AI</title>
-  <meta name="description" content="Software engineer Talha Jalvi builds Android and React Native apps, Python backends, APIs and AI-powered products. Read practical engineering guides or discuss a software project.">
+  <title>Learn AI Agents, MCP, Android, Kotlin &amp; Python | Talha Learning</title>
+  <meta name="description" content="Learn AI agents, Model Context Protocol, Android, Kotlin, Jetpack Compose and Python backend development through free, structured software engineering lessons.">
   <meta name="author" content="Talha Abbas Jalvi">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://talhajalvi.com/">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Talha Jalvi">
-  <meta property="og:title" content="Talha Jalvi | Software Engineer — Mobile, Backend & AI">
-  <meta property="og:description" content="Practical software engineering, mobile development, Python backends, APIs and AI-powered products.">
+  <meta property="og:site_name" content="Talha Learning">
+  <meta property="og:title" content="Learn Software Engineering Deeply | Talha Learning">
+  <meta property="og:description" content="Free structured courses and practical lessons on AI agents, MCP, Android, Kotlin, Jetpack Compose and Python backend development.">
   <meta property="og:url" content="https://talhajalvi.com/">
   <meta name="twitter:card" content="summary">
 
@@ -24,140 +24,228 @@
         "@type": "WebSite",
         "@id": "https://talhajalvi.com/#website",
         "url": "https://talhajalvi.com/",
-        "name": "Talha Jalvi",
-        "description": "Software engineering portfolio and practical engineering articles."
+        "name": "Talha Learning",
+        "description": "Free structured software engineering courses and practical developer lessons.",
+        "publisher": {"@id": "https://talhajalvi.com/#creator"}
       },
       {
         "@type": "Person",
-        "@id": "https://talhajalvi.com/#person",
+        "@id": "https://talhajalvi.com/#creator",
         "name": "Talha Abbas Jalvi",
         "url": "https://talhajalvi.com/",
-        "jobTitle": "Software Engineer",
-        "knowsAbout": ["Android", "React Native", "Python", "FastAPI", "Backend Development", "APIs", "Artificial Intelligence", "PostgreSQL"]
+        "jobTitle": "Software Engineer and Course Creator",
+        "knowsAbout": ["AI Agents", "Model Context Protocol", "Android", "Kotlin", "Jetpack Compose", "Python", "FastAPI", "Backend Development"]
+      },
+      {
+        "@type": "ItemList",
+        "name": "AI Agents and Model Context Protocol Course",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "url": "https://talhajalvi.com/articles/ai-agents/", "name": "AI Agent Fundamentals"},
+          {"@type": "ListItem", "position": 2, "url": "https://talhajalvi.com/articles/mcp/module-02-index.html", "name": "MCP Fundamentals"},
+          {"@type": "ListItem", "position": 3, "url": "https://talhajalvi.com/articles/mcp/core-capabilities/module-03-index.html", "name": "MCP Core Capabilities"}
+        ]
       }
     ]
   }
   </script>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1tcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/fontawesome-all.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/styles.css?v=learning-platform-1" rel="stylesheet">
   <link rel="icon" href="images/favicon.svg">
   <style>
-    .hero-copy{max-width:760px}.hero-kicker{font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}.skill-card,.content-card{height:100%;padding:1.75rem;border:1px solid #e7e9ed;background:#fff}.content-card h3,.skill-card h3{font-size:1.25rem}.section-pad{padding:5rem 0}.cta-box{padding:2.5rem;background:#24262a;color:#fff}.cta-box h2,.cta-box p{color:#fff}.clean-link{text-decoration:none}.clean-link:hover{text-decoration:none}.article-link{font-weight:700}.project-card img{aspect-ratio:16/10;object-fit:cover;width:100%}.small-label{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0b36a8}
+    :root{--learn-blue:#0b57d0;--learn-dark:#111827;--learn-muted:#5f6b7a;--learn-border:#dfe3e8;--learn-soft:#f4f7fb}
+    body{color:var(--learn-dark);background:#fff}
+    .navbar-brand{display:flex;align-items:center;gap:.7rem;color:#fff!important;font-family:Poppins,sans-serif;font-weight:700}
+    .navbar-brand img{width:42px;height:42px}
+    .learning-hero{padding:10rem 0 6rem;background:linear-gradient(135deg,#111827 0%,#173b72 58%,#0b57d0 100%);color:#fff}
+    .learning-hero h1{max-width:900px;font-size:clamp(2.45rem,5vw,4.6rem);line-height:1.08;color:#fff;margin-bottom:1.5rem}
+    .learning-hero .lead{max-width:760px;color:#e5edf9;font-size:1.2rem}
+    .eyebrow{font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#0b57d0}
+    .learning-hero .eyebrow{color:#a9ccff}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+    .hero-secondary{display:inline-block;padding:1.375rem 2.625rem;border:1px solid rgba(255,255,255,.75);border-radius:2px;color:#fff;font-weight:600;text-decoration:none}
+    .hero-secondary:hover{background:#fff;color:#173b72;text-decoration:none}
+    .platform-stats{margin-top:-2rem;position:relative;z-index:2}
+    .stats-shell{background:#fff;border:1px solid var(--learn-border);box-shadow:0 12px 35px rgba(17,24,39,.1)}
+    .stat{padding:1.5rem;text-align:center}
+    .stat strong{display:block;font-family:Poppins,sans-serif;font-size:1.55rem;color:var(--learn-dark)}
+    .stat span{color:var(--learn-muted)}
+    .section-pad{padding:5.5rem 0}
+    .section-heading{max-width:760px;margin-bottom:2.25rem}
+    .section-heading h2{font-size:clamp(2rem,3vw,2.75rem)}
+    .course-banner{padding:2rem;border:1px solid #bcd2f4;background:#eef5ff;margin-bottom:1.5rem}
+    .course-card,.path-card,.guide-card,.step-card{height:100%;padding:1.65rem;border:1px solid var(--learn-border);background:#fff}
+    .course-card{border-top:4px solid var(--learn-blue)}
+    .course-card h3,.path-card h3,.guide-card h3,.step-card h3{font-size:1.25rem}
+    .course-card p,.path-card p,.guide-card p,.step-card p{color:var(--learn-muted)}
+    .module-number{display:inline-flex;width:2.2rem;height:2.2rem;align-items:center;justify-content:center;border-radius:50%;background:#e8f0fe;color:#0b57d0;font-weight:700;margin-bottom:1rem}
+    .lesson-count{font-size:.85rem;font-weight:700;color:#526173;text-transform:uppercase;letter-spacing:.04em}
+    .learn-link{font-weight:700;color:var(--learn-blue);text-decoration:none}
+    .learn-link:hover{text-decoration:underline}
+    .paths-section{background:var(--learn-soft)}
+    .path-icon{font-size:1.45rem;color:var(--learn-blue);margin-bottom:1rem}
+    .step-number{font-family:Poppins,sans-serif;font-size:2rem;color:#b5c9e8;margin-bottom:.75rem}
+    .creator-note{padding:2.5rem;border-left:5px solid var(--learn-blue);background:#f7f9fc}
+    .platform-footer{padding:3rem 0;background:#111827;color:#c7d0dc}
+    .platform-footer a{color:#fff}
+    @media(max-width:767px){.learning-hero{padding:8.5rem 0 5rem}.stat{border-bottom:1px solid var(--learn-border)}.stat:last-child{border-bottom:0}.section-pad{padding:4rem 0}}
   </style>
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
-      <a class="navbar-brand logo-image" href="index.html" aria-label="Talha Jalvi home"><img src="images/favicon.svg" alt="Talha Jalvi logo"></a>
-      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="index.html" aria-label="Talha Learning home"><img src="images/favicon.svg" alt="" width="42" height="42">Talha Learning</a>
+      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas" aria-label="Open navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link page-scroll" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link page-scroll" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link page-scroll" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="articles/articles-home.html">Engineering Articles</a></li>
-          <li class="nav-item"><a class="nav-link" href="mailto:talhajalvi321@gmail.com">Contact</a></li>
+          <li class="nav-item"><a class="nav-link page-scroll" href="#curriculum">Curriculum</a></li>
+          <li class="nav-item"><a class="nav-link page-scroll" href="#paths">Learning Paths</a></li>
+          <li class="nav-item"><a class="nav-link" href="articles/articles-home.html">All Lessons</a></li>
+          <li class="nav-item"><a class="nav-link page-scroll" href="#creator">About the Creator</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header id="header" class="header">
+  <header class="learning-hero">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="text-container hero-copy">
-            <p class="hero-kicker text-white">Mobile · Backend · AI</p>
-            <h1 class="h1-large">I build production software and write about the engineering behind it.</h1>
-            <p class="text-white mb-4">Android and React Native apps, Python backends, APIs, databases, real-time systems and practical AI integrations.</p>
-            <a class="btn-solid-lg" href="articles/articles-home.html">Read Engineering Guides</a>
-            <a class="btn-outline-lg" href="mailto:talhajalvi321@gmail.com?subject=Software%20development%20project"><i class="fas fa-user"></i> Discuss a Project</a>
-          </div>
-        </div>
+      <p class="eyebrow">Free software engineering learning platform</p>
+      <h1>Learn deeply. Build confidently. Grow one lesson at a time.</h1>
+      <p class="lead">Structured courses and practical developer guides on AI agents, Model Context Protocol, Android, Kotlin, Jetpack Compose and Python backend development.</p>
+      <div class="hero-actions">
+        <a class="btn-solid-lg page-scroll" href="#curriculum">Start Learning Free</a>
+        <a class="hero-secondary" href="articles/articles-home.html">Browse All Lessons</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section id="about" class="basic-1 bg-gray">
+    <section class="platform-stats" aria-label="Platform highlights">
       <div class="container">
-        <div class="row align-items-start">
-          <div class="col-lg-5">
-            <div class="text-container first">
-              <p class="small-label">About</p>
-              <h2>Software engineering focused on real products</h2>
-              <p>I work across mobile and backend systems, from user-facing applications to APIs, databases, background processing and AI-powered features. This site is both my portfolio and a growing library of practical engineering notes.</p>
-              <p><a class="blue article-link" href="articles/articles-home.html">Browse all engineering articles →</a></p>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="row g-3">
-              <div class="col-md-6"><div class="skill-card"><h3>Mobile Engineering</h3><p>Android, Kotlin, Jetpack Compose, React Native, notifications, subscriptions and production debugging.</p></div></div>
-              <div class="col-md-6"><div class="skill-card"><h3>Backend Engineering</h3><p>Python, FastAPI, Django, REST APIs, WebSockets, PostgreSQL and scalable application architecture.</p></div></div>
-              <div class="col-md-6"><div class="skill-card"><h3>AI Integrations</h3><p>LLM APIs, retrieval, streaming responses, music/audio workflows and cost-aware AI product engineering.</p></div></div>
-              <div class="col-md-6"><div class="skill-card"><h3>Real-time Systems</h3><p>Monitoring dashboards, event-driven workflows, background jobs and reliable client/server communication.</p></div></div>
-            </div>
+        <div class="stats-shell">
+          <div class="row g-0">
+            <div class="col-md-4 stat"><strong>35 lessons</strong><span>in the guided AI Agents &amp; MCP course</span></div>
+            <div class="col-md-4 stat"><strong>8 topic libraries</strong><span>across mobile, backend and engineering fundamentals</span></div>
+            <div class="col-md-4 stat"><strong>Free access</strong><span>learn without an account or paywall</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="section-pad">
+    <section id="curriculum" class="section-pad">
       <div class="container">
-        <div class="row mb-4"><div class="col-lg-8"><p class="small-label">Services</p><h2>How I can help</h2><p>Focused engineering help for teams that need to ship or stabilize a real product.</p></div></div>
+        <div class="section-heading">
+          <p class="eyebrow">Featured curriculum</p>
+          <h2>AI Agents &amp; Model Context Protocol</h2>
+          <p class="lead">Start with agent fundamentals, understand how MCP connects AI systems to tools and data, then study the protocol capabilities used in real integrations.</p>
+        </div>
+        <div class="course-banner">
+          <div class="row align-items-center">
+            <div class="col-lg-8"><strong>Beginner to intermediate</strong><p class="mb-lg-0">Follow the modules in order. Each lesson focuses on one concept, connects it to the wider architecture and links to the next step.</p></div>
+            <div class="col-lg-4 text-lg-right"><span class="lesson-count">3 published modules · 35 lessons</span></div>
+          </div>
+        </div>
         <div class="row g-4">
-          <div class="col-lg-4"><div class="content-card"><i class="fas fa-mobile-alt mb-3"></i><h3>Mobile App Development</h3><p>Android and React Native development, API integration, authentication, notifications, subscriptions and platform-specific debugging.</p></div></div>
-          <div class="col-lg-4"><div class="content-card"><i class="fas fa-code mb-3"></i><h3>Backend & API Development</h3><p>FastAPI and Django services, PostgreSQL databases, authentication, integrations, WebSockets and deployment-oriented backend work.</p></div></div>
-          <div class="col-lg-4"><div class="content-card"><i class="fas fa-brain mb-3"></i><h3>AI Product Engineering</h3><p>Practical AI features including LLM APIs, RAG, streaming chat, audio workflows and production cost optimization.</p></div></div>
+          <div class="col-lg-4">
+            <article class="course-card">
+              <span class="module-number">1</span>
+              <p class="lesson-count">10 lessons · Foundation</p>
+              <h3>AI Agent Fundamentals</h3>
+              <p>Agent loops, reasoning, tools, workflows, function calling, architecture and your first Python agent.</p>
+              <a class="learn-link" href="articles/ai-agents/index.html">Start Module 1 →</a>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <article class="course-card">
+              <span class="module-number">2</span>
+              <p class="lesson-count">10 lessons · Protocol basics</p>
+              <h3>MCP Fundamentals</h3>
+              <p>Why MCP exists, host-client-server architecture, JSON-RPC, capability negotiation, lifecycle and compatibility.</p>
+              <a class="learn-link" href="articles/mcp/module-02-index.html">Start Module 2 →</a>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <article class="course-card">
+              <span class="module-number">3</span>
+              <p class="lesson-count">15 lessons · Core capabilities</p>
+              <h3>MCP Core Capabilities</h3>
+              <p>Tools, resources, prompts, schemas, elicitation, completion, pagination, progress, cancellation and caching.</p>
+              <a class="learn-link" href="articles/mcp/core-capabilities/module-03-index.html">Start Module 3 →</a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-pad bg-gray" aria-labelledby="featured-heading">
+    <section id="paths" class="section-pad paths-section">
       <div class="container">
-        <div class="row mb-4"><div class="col-lg-8"><p class="small-label">Featured writing</p><h2 id="featured-heading">Engineering guides built from real problems</h2></div></div>
+        <div class="section-heading">
+          <p class="eyebrow">Learning paths</p>
+          <h2>Choose what you want to master</h2>
+          <p>Use these topic libraries for focused study, interview preparation or reference while building software.</p>
+        </div>
         <div class="row g-4">
-          <div class="col-lg-12"><div class="content-card"><p class="small-label">AI Agents &amp; MCP · Module 1</p><h3>AI Agent Fundamentals</h3><p>Learn what AI agents are, how agent loops and function calling work, when to use workflows, and how to design a practical agent architecture.</p><a class="blue article-link" href="articles/ai-agents/index.html">Start Module 1 →</a></div></div>
-          <div class="col-lg-6"><div class="content-card"><p class="small-label">AI Agents &amp; MCP · Module 2</p><h3>MCP Fundamentals</h3><p>Understand why MCP exists, its host-client-server architecture, JSON-RPC lifecycle, capability negotiation and protocol compatibility.</p><a class="blue article-link" href="articles/mcp/module-02-index.html">Start Module 2 →</a></div></div>
-          <div class="col-lg-6"><div class="content-card"><p class="small-label">AI Agents &amp; MCP · Module 3</p><h3>MCP Core Capabilities</h3><p>Explore MCP tools, resources, prompts, schemas, elicitation, completion, pagination, progress, cancellation and caching.</p><a class="blue article-link" href="articles/mcp/core-capabilities/module-03-index.html">Start Module 3 →</a></div></div>
-          <div class="col-lg-6"><div class="content-card"><h3>ShazamKit vs ACRCloud vs AudD</h3><p>A practical comparison for developers choosing a music-recognition API, including platform fit, metadata and architecture considerations.</p><a class="blue article-link" href="articles/shazamkit-vs-acrcloud-vs-audd.html">Read the comparison →</a></div></div>
-          <div class="col-lg-6"><div class="content-card"><h3>AudD API Tutorial with Python & FastAPI</h3><p>Recognize music from an audio file, request metadata and wrap AudD behind a production-friendly FastAPI endpoint.</p><a class="blue article-link" href="articles/audd-api-tutorial-python-fastapi.html">Read the tutorial →</a></div></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/android-core.html"><article class="path-card"><i class="fas fa-mobile-alt path-icon" aria-hidden="true"></i><h3>Modern Android Development</h3><p>Architecture, dependency injection, persistence and production Android concepts.</p><span class="learn-link">Explore Android →</span></article></a></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/jetpack-compose.html"><article class="path-card"><i class="fas fa-layer-group path-icon" aria-hidden="true"></i><h3>Jetpack Compose</h3><p>Composable UI, state, recomposition, layouts, modifiers and practical patterns.</p><span class="learn-link">Learn Compose →</span></article></a></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/kotlin.html"><article class="path-card"><i class="fas fa-code path-icon" aria-hidden="true"></i><h3>Kotlin Programming</h3><p>Language fundamentals, collections, coroutines, Flow, OOP and null safety.</p><span class="learn-link">Learn Kotlin →</span></article></a></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/python-backend-development/Introduction.html"><article class="path-card"><i class="fas fa-server path-icon" aria-hidden="true"></i><h3>Python Backend</h3><p>FastAPI, Django, REST APIs, authentication, databases and microservices.</p><span class="learn-link">Explore Backend →</span></article></a></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/design-patterns.html"><article class="path-card"><i class="fas fa-project-diagram path-icon" aria-hidden="true"></i><h3>Design Patterns</h3><p>Reusable software design ideas, SOLID principles and architecture patterns.</p><span class="learn-link">Study Patterns →</span></article></a></div>
+          <div class="col-md-6 col-lg-4"><a class="text-decoration-none text-dark" href="articles/problem-solving-qas.html"><article class="path-card"><i class="fas fa-brain path-icon" aria-hidden="true"></i><h3>Problem Solving &amp; Interviews</h3><p>Data structures, algorithms, coding patterns, complexity and interview questions.</p><span class="learn-link">Practice Problems →</span></article></a></div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section-pad">
+    <section class="section-pad" aria-labelledby="practical-guides-heading">
       <div class="container">
-        <div class="row mb-4"><div class="col-lg-8"><p class="small-label">Selected work</p><h2>Projects</h2><p>Examples of mobile, web and monitoring systems I have worked on.</p></div></div>
+        <div class="section-heading">
+          <p class="eyebrow">Practical guides</p>
+          <h2 id="practical-guides-heading">Learn from real integration problems</h2>
+          <p>Focused tutorials and comparisons for developers building production features.</p>
+        </div>
         <div class="row g-4">
-          <div class="col-lg-4"><div class="content-card project-card"><img class="img-fluid mb-3" src="images/zupeshawar_login.jpg" alt="Real-time monitoring dashboard project"><h3>Real-time Monitoring Dashboard</h3><p>Internal monitoring software for operational equipment with real-time status updates.</p></div></div>
-          <div class="col-lg-4"><div class="content-card project-card"><img class="img-fluid mb-3" src="images/meal_mate.jpeg" alt="Meal planner mobile app"><h3>Meal Planner App</h3><p>A mobile application for creating, editing and managing recipes and meal-planning workflows.</p></div></div>
-          <div class="col-lg-4"><div class="content-card project-card"><img class="img-fluid mb-3" src="images/crawler.png" alt="Job crawler application"><h3>Job Crawler</h3><p>A data collection workflow that aggregates job listings and exposes them through a usable frontend.</p></div></div>
+          <div class="col-lg-6"><article class="guide-card"><p class="lesson-count">Music recognition APIs</p><h3>ShazamKit vs ACRCloud vs AudD</h3><p>Compare integration models, metadata, continuous streams, long-file processing and production architecture.</p><a class="learn-link" href="articles/shazamkit-vs-acrcloud-vs-audd.html">Read the comparison →</a></article></div>
+          <div class="col-lg-6"><article class="guide-card"><p class="lesson-count">Python &amp; FastAPI</p><h3>AudD API Tutorial</h3><p>Recognize music from audio, request metadata and expose the workflow through a FastAPI endpoint.</p><a class="learn-link" href="articles/audd-api-tutorial-python-fastapi.html">Read the tutorial →</a></article></div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section-pad bg-gray">
+    <section class="section-pad paths-section" aria-labelledby="learning-method-heading">
       <div class="container">
-        <div class="cta-box text-center">
-          <h2>Need help building or debugging a software product?</h2>
-          <p class="mx-auto" style="max-width:700px">Tell me what you are building, where you are stuck and what stack you are using.</p>
-          <a class="btn-solid-lg" href="mailto:talhajalvi321@gmail.com?subject=Software%20development%20project">Email Me</a>
+        <div class="section-heading">
+          <p class="eyebrow">How to use the platform</p>
+          <h2 id="learning-method-heading">A simple path from concept to confidence</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4"><div class="step-card"><div class="step-number">01</div><h3>Choose a path</h3><p>Follow a structured course from the beginning or open a focused topic library.</p></div></div>
+          <div class="col-md-4"><div class="step-card"><div class="step-number">02</div><h3>Study one concept</h3><p>Each lesson explains a bounded idea with practical context and references.</p></div></div>
+          <div class="col-md-4"><div class="step-card"><div class="step-number">03</div><h3>Apply what you learn</h3><p>Use the concepts in projects, integrations, architecture decisions and interviews.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="creator" class="section-pad">
+      <div class="container">
+        <div class="creator-note">
+          <p class="eyebrow">About the creator</p>
+          <h2>Lessons shaped by real software engineering work</h2>
+          <p class="mb-2">I’m Talha Abbas Jalvi, a software engineer working across mobile apps, Python backends, APIs and AI-powered products. I built this platform to turn practical engineering experience and careful research into structured learning material.</p>
+          <p class="mb-0"><strong>The platform is currently free.</strong> More courses, progress features and advanced learning paths will be added as the library grows.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer bg-gray">
-    <div class="container text-center">
-      <p class="mb-2">© 2026 Talha Abbas Jalvi</p>
-      <p class="mb-0"><a href="articles/articles-home.html">Engineering Articles</a> · <a href="https://github.com/TalhaJalvi">GitHub</a> · <a href="mailto:talhajalvi321@gmail.com">Contact</a></p>
+  <footer class="platform-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6"><strong>Talha Learning</strong><p class="mb-md-0">Deep software engineering lessons, freely accessible.</p></div>
+        <div class="col-md-6 text-md-right"><a href="articles/articles-home.html">All Lessons</a> · <a href="#curriculum">Curriculum</a> · <a href="https://github.com/TalhaJalvi">GitHub</a></div>
+      </div>
     </div>
   </footer>
 
