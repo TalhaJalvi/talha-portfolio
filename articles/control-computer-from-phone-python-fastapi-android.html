@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Your Computer From Your Phone with Python, FastAPI & Android | Talha Jalvi</title>
+  <meta name="description" content="Build a secure personal automation system that lets you control your computer from an Android phone using Python, FastAPI, Retrofit and Tailscale. Includes architecture, code, security and practical automation examples.">
+  <meta name="author" content="Talha Abbas Jalvi">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://talhajalvi.com/articles/control-computer-from-phone-python-fastapi-android.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Talha Jalvi">
+  <meta property="og:title" content="Control Your Computer From Your Phone with Python, FastAPI & Android">
+  <meta property="og:description" content="Create a secure phone-to-PC automation system with an allowlisted FastAPI command layer, Android client and private Tailscale networking.">
+  <meta property="og:url" content="https://talhajalvi.com/articles/control-computer-from-phone-python-fastapi-android.html">
+  <meta name="twitter:card" content="summary">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Control Your Computer From Your Phone with Python, FastAPI & Android",
+    "description": "A practical guide to building a secure personal computer automation system controlled from an Android phone using Python, FastAPI, Retrofit and Tailscale.",
+    "datePublished": "2026-09-03",
+    "dateModified": "2026-09-03",
+    "author": {
+      "@type": "Person",
+      "name": "Talha Abbas Jalvi",
+      "url": "https://talhajalvi.com/"
+    },
+    "mainEntityOfPage": "https://talhajalvi.com/articles/control-computer-from-phone-python-fastapi-android.html",
+    "proficiencyLevel": "Intermediate",
+    "keywords": [
+      "control computer from phone",
+      "Python automation",
+      "FastAPI Android",
+      "remote computer control",
+      "Android PC controller",
+      "system automation Python",
+      "Tailscale FastAPI"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#f8f9fa; --card:#fff; --text:#212529; --muted:#5f6872; --border:#dee2e6; --link:#0b57d0; --code:#111827; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.75; }
+    header.site-header { background:#fff; border-bottom:1px solid var(--border); padding:16px 24px; position:sticky; top:0; z-index:10; }
+    .nav { max-width:1050px; margin:auto; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+    .nav a { color:var(--text); text-decoration:none; font-weight:600; }
+    main { max-width:900px; margin:40px auto; padding:0 20px; }
+    article { background:var(--card); padding:42px; border:1px solid var(--border); border-radius:14px; }
+    h1 { font-size:2.5rem; line-height:1.2; margin-top:0; }
+    h2 { font-size:1.7rem; margin-top:2.6rem; }
+    h3 { font-size:1.25rem; margin-top:2rem; }
+    p, li { font-size:1.04rem; }
+    .lead { font-size:1.18rem; color:var(--muted); }
+    .meta { color:var(--muted); font-size:.95rem; margin-bottom:2rem; }
+    a { color:var(--link); }
+    pre { background:var(--code); color:#f8fafc; padding:18px; border-radius:10px; overflow-x:auto; line-height:1.55; }
+    code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    p code, li code { background:#eef1f4; color:#111827; padding:2px 5px; border-radius:4px; }
+    .callout { border-left:4px solid var(--link); background:#f3f7ff; padding:16px 18px; margin:1.5rem 0; }
+    .warning { border-left-color:#b45309; background:#fff7ed; }
+    .success { border-left-color:#15803d; background:#f0fdf4; }
+    .diagram { background:#f8fafc; border:1px solid var(--border); padding:20px; border-radius:10px; overflow-x:auto; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:pre; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; margin:1.25rem 0; }
+    th,td { border:1px solid var(--border); padding:10px 12px; text-align:left; vertical-align:top; }
+    th { background:#f1f5f9; }
+    .cta { margin-top:3rem; padding:24px; border-radius:12px; background:#111827; color:#fff; }
+    .cta h2 { color:#fff; margin-top:0; }
+    .cta a { color:#fff; }
+    footer { max-width:900px; margin:24px auto 50px; padding:0 20px; color:var(--muted); }
+    @media (max-width:700px) { article{padding:24px;} h1{font-size:2rem;} .nav{align-items:flex-start;flex-direction:column;} }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav">
+      <a href="../index.html">Talha Jalvi</a>
+      <div><a href="articles-home.html">Articles</a> &nbsp; <a href="mailto:talhajalvi321@gmail.com">Work with me</a></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <h1>Control Your Computer From Your Phone with Python, FastAPI & Android</h1>
+      <p class="lead">What if your phone could start your development environment, open a project, report CPU and memory usage, lock your workstation, launch a backup, or trigger any automation you intentionally define? In this tutorial we will build exactly that: a small Python service running on your computer and an Android app that controls it securely.</p>
+      <p class="meta">Published September 3, 2026 · Python · FastAPI · Android · Automation · Networking</p>
+
+      <p>The interesting part is not simply making a phone send a command to a computer. That can be done in a few lines. The real engineering problem is designing the system so that it is useful without turning your computer into an unauthenticated remote shell.</p>
+
+      <div class="callout"><strong>What we will build:</strong> Android phone → private network → FastAPI automation service on your computer → a small registry of approved actions → operating-system APIs and applications.</div>
+
+      <h2>1. What can you automate?</h2>
+      <p>Once a trusted service is running on your own computer, a mobile app can become a programmable remote control for repetitive workflows. Examples include:</p>
+      <ul>
+        <li>start your local development stack;</li>
+        <li>open VS Code, PyCharm, Android Studio or a project folder;</li>
+        <li>launch a backup or synchronization script;</li>
+        <li>show CPU, memory, disk and battery status;</li>
+        <li>lock the workstation;</li>
+        <li>open a predefined website or dashboard;</li>
+        <li>start or stop a service you explicitly configured;</li>
+        <li>run a media or presentation shortcut;</li>
+        <li>trigger home-lab jobs from your phone;</li>
+        <li>send a notification back when a long-running task finishes.</li>
+      </ul>
+
+      <p>You can keep extending the same design. The mobile app does not need to understand how Linux, Windows or macOS performs an operation. It only needs to know that an action such as <code>start_dev</code> exists.</p>
+
+      <h2>2. The architecture</h2>
+      <div class="diagram">┌─────────────────────┐
+│    Android phone    │
+│  Kotlin + Retrofit  │
+└──────────┬──────────┘
+           │ HTTPS / private network
+           ▼
+┌─────────────────────┐
+│   FastAPI service   │
+│ authentication +    │
+│ action validation   │
+└──────────┬──────────┘
+           │ only approved action IDs
+           ▼
+┌─────────────────────┐
+│   Action registry   │
+│ start_dev           │
+│ system_status       │
+│ lock_pc             │
+│ open_dashboard      │
+└──────────┬──────────┘
+           ▼
+┌─────────────────────┐
+│ Your operating      │
+│ system & programs   │
+└─────────────────────┘</div>
+
+      <p>This separation is important. The API accepts a small vocabulary of actions. It does <strong>not</strong> accept arbitrary shell text from the phone.</p>
+
+      <div class="callout warning"><strong>Do not build <code>POST /run?command=...</code> and feed the value into a shell.</strong> If that endpoint is exposed, a stolen token, input-validation mistake or network misconfiguration can become full remote code execution. Define actions on the computer and send only action IDs from the mobile client.</div>
+
+      <h2>3. Why FastAPI?</h2>
+      <p>FastAPI is a good fit for a personal automation gateway because the API surface is small, request models are easy to validate and you can add authentication, WebSockets and async jobs without changing the overall architecture. FastAPI also exposes standard security utilities for bearer tokens and OAuth2 flows.</p>
+
+      <p>For this tutorial we will keep authentication intentionally simple so the automation design stays visible. For a real multi-user product, move to proper user accounts, short-lived access tokens, rotation and revocation.</p>
+
+      <h2>4. Create the desktop automation service</h2>
+      <p>Create a Python environment and install the packages:</p>
+
+      <pre><code>pip install fastapi uvicorn psutil</code></pre>
+
+      <p>Now create <code>main.py</code>:</p>
+
+      <pre><code>import os
+import platform
+import subprocess
+import webbrowser
+from pathlib import Path
+
+import psutil
+from fastapi import Depends, FastAPI, Header, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI(title="Personal Automation API")
+
+API_TOKEN = os.environ["AUTOMATION_API_TOKEN"]
+
+
+class ActionRequest(BaseModel):
+    action: str
+
+
+def require_token(authorization: str | None = Header(default=None)):
+    expected = f"Bearer {API_TOKEN}"
+    if authorization != expected:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+
+def system_status():
+    return {
+        "hostname": platform.node(),
+        "os": platform.system(),
+        "cpu_percent": psutil.cpu_percent(interval=0.2),
+        "memory_percent": psutil.virtual_memory().percent,
+        "disk_percent": psutil.disk_usage("/").percent,
+    }
+
+
+def open_dashboard():
+    webbrowser.open("https://github.com/TalhaJalvi")
+    return {"message": "Dashboard opened"}
+
+
+def start_dev():
+    project = Path.home() / "projects" / "my-app"
+
+    # A fixed executable and fixed arguments are safer than accepting shell text.
+    subprocess.Popen(
+        ["code", str(project)],
+        shell=False,
+    )
+
+    return {"message": "Development project opened"}
+
+
+def lock_pc():
+    system = platform.system()
+
+    if system == "Linux":
+        subprocess.run(["loginctl", "lock-session"], check=True, shell=False)
+    elif system == "Windows":
+        subprocess.run(
+            ["rundll32.exe", "user32.dll,LockWorkStation"],
+            check=True,
+            shell=False,
+        )
+    elif system == "Darwin":
+        subprocess.run(
+            [
+                "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession",
+                "-suspend",
+            ],
+            check=True,
+            shell=False,
+        )
+    else:
+        raise RuntimeError("Unsupported operating system")
+
+    return {"message": "Computer locked"}
+
+
+ACTIONS = {
+    "system_status": system_status,
+    "open_dashboard": open_dashboard,
+    "start_dev": start_dev,
+    "lock_pc": lock_pc,
+}
+
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+
+
+@app.post("/api/actions")
+def run_action(request: ActionRequest, _: None = Depends(require_token)):
+    handler = ACTIONS.get(request.action)
+
+    if handler is None:
+        raise HTTPException(status_code=404, detail="Unknown action")
+
+    try:
+        result = handler()
+        return {"ok": True, "action": request.action, "result": result}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc</code></pre>
+
+      <p>Set a long random token instead of hardcoding it:</p>
+
+      <pre><code>export AUTOMATION_API_TOKEN="replace-with-a-long-random-secret"
+uvicorn main:app --host 0.0.0.0 --port 8123</code></pre>
+
+      <p>At this point the computer exposes a small API, but only actions registered in <code>ACTIONS</code> can run.</p>
+
+      <h2>5. Test it locally</h2>
+      <pre><code>curl http://127.0.0.1:8123/health</code></pre>
+
+      <p>Then trigger an approved action:</p>
+
+      <pre><code>curl -X POST http://127.0.0.1:8123/api/actions \
+  -H "Authorization: Bearer $AUTOMATION_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"action":"system_status"}'</code></pre>
+
+      <p>A response may look like this:</p>
+
+      <pre><code>{
+  "ok": true,
+  "action": "system_status",
+  "result": {
+    "hostname": "dev-machine",
+    "os": "Linux",
+    "cpu_percent": 18.2,
+    "memory_percent": 61.7,
+    "disk_percent": 44.3
+  }
+}</code></pre>
+
+      <h2>6. Make actions reusable instead of writing one giant API file</h2>
+      <p>As your automation library grows, split actions into modules. Your API should behave more like a dispatcher than a collection of unrelated operating-system code.</p>
+
+      <pre><code>automation/
+├── main.py
+├── auth.py
+├── registry.py
+└── actions/
+    ├── system.py
+    ├── development.py
+    ├── backups.py
+    └── media.py</code></pre>
+
+      <p>A simple action object can also carry metadata that the mobile app can display:</p>
+
+      <pre><code>from dataclasses import dataclass
+from collections.abc import Callable
+
+
+@dataclass
+class Action:
+    id: str
+    title: str
+    description: str
+    dangerous: bool
+    handler: Callable
+
+
+ACTIONS = {
+    "start_dev": Action(
+        id="start_dev",
+        title="Start development",
+        description="Open the project and development tools",
+        dangerous=False,
+        handler=start_dev,
+    ),
+    "lock_pc": Action(
+        id="lock_pc",
+        title="Lock computer",
+        description="Immediately lock the workstation",
+        dangerous=True,
+        handler=lock_pc,
+    ),
+}</code></pre>
+
+      <p>You can then add <code>GET /api/actions</code> and let the phone render buttons dynamically rather than hardcoding every command in the Android application.</p>
+
+      <h2>7. Connect the Android app with Retrofit</h2>
+      <p>The Android side can be very small. It only needs the computer's API address, an authentication token and a list of available actions.</p>
+
+      <p>Define request and response models:</p>
+
+      <pre><code>data class ActionRequest(
+    val action: String
+)
+
+data class ActionResponse(
+    val ok: Boolean,
+    val action: String,
+    val result: Map&lt;String, Any?&gt;?
+)</code></pre>
+
+      <p>Create the Retrofit service:</p>
+
+      <pre><code>import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
+
+interface AutomationApi {
+    @POST("api/actions")
+    suspend fun runAction(
+        @Header("Authorization") authorization: String,
+        @Body body: ActionRequest
+    ): ActionResponse
+}</code></pre>
+
+      <p>Then call it from a repository or ViewModel:</p>
+
+      <pre><code>class AutomationRepository(
+    private val api: AutomationApi,
+    private val token: String
+) {
+    suspend fun run(action: String): ActionResponse {
+        return api.runAction(
+            authorization = "Bearer $token",
+            body = ActionRequest(action)
+        )
+    }
+}</code></pre>
+
+      <p>A Compose screen can expose a few large buttons:</p>
+
+      <pre><code>@Composable
+fun AutomationScreen(
+    onAction: (String) -&gt; Unit
+) {
+    Column {
+        Button(onClick = { onAction("system_status") }) {
+            Text("System status")
+        }
+
+        Button(onClick = { onAction("start_dev") }) {
+            Text("Start development")
+        }
+
+        Button(onClick = { onAction("open_dashboard") }) {
+            Text("Open dashboard")
+        }
+
+        Button(onClick = { onAction("lock_pc") }) {
+            Text("Lock computer")
+        }
+    }
+}</code></pre>
+
+      <p>That is already enough for a working phone-to-computer controller on the same trusted network.</p>
+
+      <h2>8. Do not expose the FastAPI port directly to the public internet</h2>
+      <p>The simplest version works over your home Wi-Fi, but many people immediately want access while away from home. Avoid solving that by forwarding port <code>8123</code> from your router to your computer.</p>
+
+      <p>A better personal setup is a private overlay network such as Tailscale. Install it on the computer and phone, place both devices in the same tailnet and connect to the computer through its private Tailscale address or MagicDNS name.</p>
+
+      <div class="callout success"><strong>Recommended mental model:</strong> FastAPI authenticates the application request, while the private network determines which devices can reach the service in the first place. These are separate layers and both are useful.</div>
+
+      <p>Tailscale's documentation describes a tailnet as a private network of authenticated users and devices. Its access-control policies can further restrict which devices are permitted to connect to a resource. For a personal automation service, that lets you avoid publishing the API to the open internet.</p>
+
+      <h2>9. Why <code>shell=False</code> and fixed arguments matter</h2>
+      <p>Python's <code>subprocess</code> module does not implicitly invoke a system shell in the normal case. That is useful here because your application can execute a known program with a known list of arguments without asking a shell to interpret user-controlled text.</p>
+
+      <p>Compare these two designs:</p>
+
+      <h3>Unsafe design</h3>
+      <pre><code># Do not expose this pattern through a remote API.
+command = request.command
+subprocess.run(command, shell=True)</code></pre>
+
+      <h3>Safer design</h3>
+      <pre><code>ACTIONS = {
+    "open_project": lambda: subprocess.Popen(
+        ["code", "/home/talha/projects/my-app"],
+        shell=False,
+    )
+}</code></pre>
+
+      <p>The safer version limits what the mobile client can request. The phone chooses an operation; the computer owns the implementation.</p>
+
+      <h2>10. Add confirmation for destructive actions</h2>
+      <p>Not every automation should execute after one accidental tap. Treat power-off, restart, deleting files, stopping databases and changing network settings differently from harmless shortcuts.</p>
+
+      <p>A good pattern is to classify actions:</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Risk</th><th>Examples</th><th>Suggested behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Low</td><td>system status, open dashboard</td><td>run immediately</td></tr>
+          <tr><td>Medium</td><td>start backup, restart a development service</td><td>show result and audit entry</td></tr>
+          <tr><td>High</td><td>lock, reboot, shutdown, destructive maintenance</td><td>require explicit confirmation and optionally recent re-authentication</td></tr>
+        </tbody>
+      </table></div>
+
+      <p>For high-risk actions, the first API call can create a short-lived confirmation challenge and the second call can execute it. This prevents accidental presses and gives you room for biometric confirmation on Android.</p>
+
+      <h2>11. Run long jobs in the background</h2>
+      <p>Some actions finish immediately, while others may take minutes. A backup, media conversion, build or data-processing job should not keep a mobile HTTP request open until completion.</p>
+
+      <p>A cleaner API looks like this:</p>
+
+      <pre><code>POST /api/jobs
+{
+  "action": "backup_photos"
+}
+
+202 Accepted
+{
+  "job_id": "7eec...",
+  "status": "queued"
+}</code></pre>
+
+      <p>The phone can poll <code>GET /api/jobs/{id}</code>, or the server can push updates over a WebSocket connection. FastAPI supports WebSocket endpoints directly, so the same backend can send progress events such as <code>queued</code>, <code>running</code>, <code>80%</code> and <code>completed</code>.</p>
+
+      <h2>12. Turn the phone into a live system dashboard</h2>
+      <p>Once communication exists in both directions, the project becomes more interesting than a collection of remote buttons. Your app can display live machine state:</p>
+      <ul>
+        <li>CPU load and temperature;</li>
+        <li>RAM and disk usage;</li>
+        <li>battery and charging state on a laptop;</li>
+        <li>Docker/container status;</li>
+        <li>whether a local API or database is running;</li>
+        <li>current backup status;</li>
+        <li>Git branch or build state for a development machine.</li>
+      </ul>
+
+      <p>For near-real-time values, send compact updates over WebSockets rather than repeatedly creating HTTP requests every second.</p>
+
+      <h2>13. Example: a one-tap “Start Work” automation</h2>
+      <p>Suppose every morning you perform the same sequence: open your code project, start Docker services, open your task board and launch Slack. Instead of putting four powerful commands in the mobile app, expose one intent: <code>start_work</code>.</p>
+
+      <pre><code>def start_work():
+    project = Path.home() / "projects" / "my-app"
+
+    subprocess.Popen(["code", str(project)], shell=False)
+    subprocess.Popen(
+        ["docker", "compose", "up", "-d"],
+        cwd=project,
+        shell=False,
+    )
+    webbrowser.open("https://github.com/pulls")
+
+    return {
+        "message": "Work environment started",
+        "project": str(project),
+    }
+
+
+ACTIONS["start_work"] = start_work</code></pre>
+
+      <p>The phone sends:</p>
+
+      <pre><code>{"action":"start_work"}</code></pre>
+
+      <p>The important architectural idea is that <code>start_work</code> represents your intent. All OS-specific details stay on your computer. Later you can change VS Code to PyCharm, Docker Compose to another service manager, or the task-board URL without publishing a new Android app.</p>
+
+      <h2>14. Automate based on events, not only buttons</h2>
+      <p>Manual control is only the first stage. The same action registry can also respond to schedules and events:</p>
+      <ul>
+        <li>run a backup at night if the laptop is charging;</li>
+        <li>start a development service when you connect to your home network;</li>
+        <li>notify the phone when a build finishes;</li>
+        <li>stop expensive local workloads when battery falls below a threshold;</li>
+        <li>trigger a maintenance task from a webhook;</li>
+        <li>run a morning workflow on weekdays.</li>
+      </ul>
+
+      <p>This is where the project moves from <em>remote control</em> to an actual automation platform. Keep the trigger layer separate from the action layer: a button, schedule or webhook should all be able to trigger the same vetted action.</p>
+
+      <h2>15. A more production-ready design</h2>
+      <p>If you evolve this from a personal experiment into a product, add explicit boundaries before adding more commands.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Area</th><th>Personal prototype</th><th>Production direction</th></tr></thead>
+        <tbody>
+          <tr><td>Authentication</td><td>single bearer secret</td><td>OAuth2/OIDC, short-lived JWTs, refresh/revocation</td></tr>
+          <tr><td>Network</td><td>trusted Wi-Fi / Tailscale</td><td>TLS, private access policy, device identity</td></tr>
+          <tr><td>Commands</td><td>hardcoded action registry</td><td>permissioned action catalog and policy checks</td></tr>
+          <tr><td>Secrets</td><td>environment variable</td><td>platform keystore/secret manager</td></tr>
+          <tr><td>Audit</td><td>console log</td><td>who triggered which action, when and result</td></tr>
+          <tr><td>Long jobs</td><td>direct function call</td><td>queue + worker + job state</td></tr>
+          <tr><td>Dangerous actions</td><td>manual caution</td><td>confirmation, step-up auth, least privilege</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>16. Security checklist</h2>
+      <ul>
+        <li><strong>Never accept arbitrary shell commands from the mobile client.</strong></li>
+        <li>Keep an explicit allowlist of action identifiers.</li>
+        <li>Run the automation service as a normal user, not as root or Administrator.</li>
+        <li>Use <code>shell=False</code> with fixed executable names and arguments wherever possible.</li>
+        <li>Require authentication even on a private network.</li>
+        <li>Prefer a private device network instead of public router port forwarding.</li>
+        <li>Store secrets outside source code and never commit them to Git.</li>
+        <li>Log action ID, device/user, timestamp, result and failure.</li>
+        <li>Require confirmation for destructive operations.</li>
+        <li>Rate-limit repeated requests and reject unknown actions.</li>
+        <li>Keep operating systems, Python packages and networking software updated.</li>
+        <li>If multiple users exist, authorize each action separately rather than treating authentication as permission to do everything.</li>
+      </ul>
+
+      <h2>17. Ideas to extend the project</h2>
+      <p>Once the safe foundation is working, you can turn this into a substantial portfolio project:</p>
+      <ul>
+        <li><strong>Dynamic action discovery:</strong> the app downloads available actions and renders the UI.</li>
+        <li><strong>WebSocket telemetry:</strong> live CPU, memory, services and job progress.</li>
+        <li><strong>Android widgets:</strong> trigger favorite actions from the home screen.</li>
+        <li><strong>Notifications:</strong> tell the phone when a backup, build or download finishes.</li>
+        <li><strong>Biometric confirmation:</strong> require fingerprint/face confirmation for high-risk actions.</li>
+        <li><strong>Multiple computers:</strong> laptop, desktop, Raspberry Pi and home server under one app.</li>
+        <li><strong>Schedules:</strong> define morning, shutdown and maintenance routines.</li>
+        <li><strong>Plugin architecture:</strong> install action modules without changing the API core.</li>
+        <li><strong>Voice or AI interface:</strong> translate natural-language requests into known action IDs, while still keeping the action allowlist as the final security boundary.</li>
+      </ul>
+
+      <div class="callout warning"><strong>AI should choose among permitted actions, not generate unrestricted shell commands.</strong> An LLM can map “start my work setup” to <code>start_work</code>; the desktop service should still validate that <code>start_work</code> exists and is allowed.</div>
+
+      <h2>18. Final architecture</h2>
+      <div class="diagram">Android UI / widget / voice
+          │
+          ▼
+Authenticated API request
+          │
+          ▼
+Private network policy
+          │
+          ▼
+FastAPI automation gateway
+          │
+          ├── validate identity
+          ├── validate action ID
+          ├── check permission / confirmation
+          ├── write audit log
+          │
+          ▼
+Allowlisted action registry
+          │
+          ├── operating-system action
+          ├── application launch
+          ├── development workflow
+          ├── backup/job
+          └── status/telemetry
+          │
+          ▼
+Result / job status / WebSocket event
+          │
+          ▼
+Android app</div>
+
+      <p>The project can start as a weekend utility and grow into a serious demonstration of mobile development, Python backend engineering, operating-system automation, networking, authentication, asynchronous jobs and security design.</p>
+
+      <h2>Sources and further reading</h2>
+      <p>I recommend reviewing the primary documentation below before adapting the example to your own machine:</p>
+      <ul>
+        <li><a href="https://fastapi.tiangolo.com/tutorial/security/" rel="noopener noreferrer">FastAPI security documentation</a></li>
+        <li><a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" rel="noopener noreferrer">FastAPI OAuth2 with bearer JWT tokens</a></li>
+        <li><a href="https://fastapi.tiangolo.com/advanced/websockets/" rel="noopener noreferrer">FastAPI WebSockets documentation</a></li>
+        <li><a href="https://docs.python.org/3/library/subprocess.html#security-considerations" rel="noopener noreferrer">Python subprocess security considerations</a></li>
+        <li><a href="https://square.github.io/retrofit/" rel="noopener noreferrer">Retrofit documentation for Android HTTP APIs</a></li>
+        <li><a href="https://tailscale.com/docs/concepts/tailnet" rel="noopener noreferrer">Tailscale: what is a tailnet?</a></li>
+        <li><a href="https://tailscale.com/docs/manage" rel="noopener noreferrer">Tailscale access management</a></li>
+        <li><a href="https://tailscale.com/docs/reference/best-practices/security" rel="noopener noreferrer">Tailscale security best practices</a></li>
+        <li><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener noreferrer">Google: creating helpful, reliable, people-first content</a></li>
+        <li><a href="https://developers.google.com/search/docs/appearance/structured-data/article" rel="noopener noreferrer">Google Article structured data documentation</a></li>
+      </ul>
+
+      <div class="cta">
+        <h2>Where to go next</h2>
+        <p>If you want to take this beyond a prototype, the next useful step is building an action-discovery endpoint, Android dashboard, WebSocket telemetry and per-action permissions. Those four pieces turn the simple remote into a reusable personal automation platform.</p>
+        <p><a href="articles-home.html">Browse more software engineering articles →</a></p>
+      </div>
+    </article>
+  </main>
+
+  <footer>Talha Jalvi · Software engineering, Android, backend systems and applied AI.</footer>
+</body>
+</html>
