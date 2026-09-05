@@ -5,3 +5,4 @@ Allow: /
 Sitemap: https://talhajalvi.com/tal-sitemap.xml
 Sitemap: https://talhajalvi.com/lesson-sitemap.xml
 Sitemap: https://talhajalvi.com/course-sitemap.xml
+Sitemap: https://talhajalvi.com/astra-sitemap.xml
