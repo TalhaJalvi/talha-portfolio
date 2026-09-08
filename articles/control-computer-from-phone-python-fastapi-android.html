@@ -68,7 +68,7 @@
     .callout { border-left:4px solid var(--link); background:#f3f7ff; padding:16px 18px; margin:1.5rem 0; }
     .warning { border-left-color:#b45309; background:#fff7ed; }
     .success { border-left-color:#15803d; background:#f0fdf4; }
-    .diagram { background:#f8fafc; border:1px solid var(--border); padding:20px; border-radius:10px; overflow-x:auto; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:pre; }
+    .architecture-diagram { display:block; width:100%; height:auto; margin:1.5rem auto; border:1px solid var(--border); border-radius:12px; }
     .table-wrap { overflow-x:auto; }
     table { width:100%; border-collapse:collapse; margin:1.25rem 0; }
     th,td { border:1px solid var(--border); padding:10px 12px; text-align:left; vertical-align:top; }
@@ -116,31 +116,7 @@
       <p>You can keep extending the same design. The mobile app does not need to understand how Linux, Windows or macOS performs an operation. It only needs to know that an action such as <code>start_dev</code> exists.</p>
 
       <h2>2. The architecture</h2>
-      <div class="diagram">┌─────────────────────┐
-│    Android phone    │
-│  Kotlin + Retrofit  │
-└──────────┬──────────┘
-           │ HTTPS / private network
-           ▼
-┌─────────────────────┐
-│   FastAPI service   │
-│ authentication +    │
-│ action validation   │
-└──────────┬──────────┘
-           │ only approved action IDs
-           ▼
-┌─────────────────────┐
-│   Action registry   │
-│ start_dev           │
-│ system_status       │
-│ lock_pc             │
-│ open_dashboard      │
-└──────────┬──────────┘
-           ▼
-┌─────────────────────┐
-│ Your operating      │
-│ system & programs   │
-└─────────────────────┘</div>
+      <img class="architecture-diagram" src="../images/control-computer-from-phone-architecture.png" width="1122" height="1402" loading="lazy" alt="Architecture showing an Android phone sending approved action IDs over a secure private network to a FastAPI service, action registry and computer operating system.">
 
       <p>This separation is important. The API accepts a small vocabulary of actions. It does <strong>not</strong> accept arbitrary shell text from the phone.</p>
 
@@ -577,36 +553,7 @@ ACTIONS["start_work"] = start_work</code></pre>
       <div class="callout warning"><strong>AI should choose among permitted actions, not generate unrestricted shell commands.</strong> An LLM can map “start my work setup” to <code>start_work</code>; the desktop service should still validate that <code>start_work</code> exists and is allowed.</div>
 
       <h2>18. Final architecture</h2>
-      <div class="diagram">Android UI / widget / voice
-          │
-          ▼
-Authenticated API request
-          │
-          ▼
-Private network policy
-          │
-          ▼
-FastAPI automation gateway
-          │
-          ├── validate identity
-          ├── validate action ID
-          ├── check permission / confirmation
-          ├── write audit log
-          │
-          ▼
-Allowlisted action registry
-          │
-          ├── operating-system action
-          ├── application launch
-          ├── development workflow
-          ├── backup/job
-          └── status/telemetry
-          │
-          ▼
-Result / job status / WebSocket event
-          │
-          ▼
-Android app</div>
+      <img class="architecture-diagram" src="../images/control-computer-from-phone-final-architecture.png" width="1122" height="1402" loading="lazy" alt="Final architecture showing an Android app sending an authenticated request through a private network to a FastAPI gateway and allowlisted action registry, then receiving job status through WebSocket events.">
 
       <p>The project can start as a weekend utility and grow into a serious demonstration of mobile development, Python backend engineering, operating-system automation, networking, authentication, asynchronous jobs and security design.</p>
 
