@@ -1,1 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCP Core Capabilities: Tools, Resources, Prompts, Elicitation & More | Talha Jalvi</title><meta name="description" content="A complete guide to MCP core capabilities including tools, resources, prompts, schemas, elicitation, completion, pagination, cancellation, progress, caching, and deprecated roots/sampling/logging."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/core-capabilities/module-03-index.html"><link rel="stylesheet" href="../../../css/mcp-module-03.css"></head><body><main><div class="hub"><div class="nav"><a href="../../../index.html">Talha Jalvi</a><span>Module 3 · MCP Core Capabilities</span></div><h1>MCP Core Capabilities</h1><p class="muted">How MCP servers expose useful capabilities and how clients consume them. Updated for the 2026-07-28 specification.</p><div class="grid"><div class="card"><a href="mcp-tools.html">1. MCP Tools</a></div><div class="card"><a href="designing-good-mcp-tools.html">2. Designing Good Tools</a></div><div class="card"><a href="mcp-tool-schemas.html">3. Tool Schemas</a></div><div class="card"><a href="mcp-resources.html">4. MCP Resources</a></div><div class="card"><a href="resource-uris-templates.html">5. Resource URIs & Templates</a></div><div class="card"><a href="mcp-prompts.html">6. MCP Prompts</a></div><div class="card"><a href="mcp-prompts-vs-system-prompts.html">7. MCP Prompts vs System Prompts</a></div><div class="card"><a href="mcp-roots-deprecated.html">8. MCP Roots (Deprecated)</a></div><div class="card"><a href="mcp-sampling-deprecated.html">9. MCP Sampling (Deprecated)</a></div><div class="card"><a href="mcp-elicitation.html">10. MCP Elicitation</a></div><div class="card"><a href="mcp-completion.html">11. MCP Completion</a></div><div class="card"><a href="mcp-pagination.html">12. MCP Pagination</a></div><div class="card"><a href="mcp-progress-cancellation.html">13. Progress & Cancellation</a></div><div class="card"><a href="mcp-logging-deprecated.html">14. MCP Logging (Deprecated)</a></div><div class="card"><a href="mcp-caching.html">15. MCP Caching</a></div></div><h2>Key 2026 changes</h2><p>The current protocol makes list/read results cacheable, adopts full JSON Schema 2020-12 for tool input/output schemas, restructures server-to-client interactions around Multi Round-Trip Requests, and deprecates roots, sampling, and logging for new implementations. Those deprecated features still work during the policy window, but new systems should use the documented replacements.</p><h2>Primary sources</h2><ul><li><a href="https://modelcontextprotocol.io/specification/2026-07-28">MCP 2026-07-28 specification</a></li><li><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">MCP 2026-07-28 release notes</a></li></ul></div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MCP Tools, Resources & Prompts Explained: Core Capabilities</title>
+  <meta name="description" content="Understand MCP tools, resources, prompts, schemas, elicitation, completion, pagination, progress, cancellation and caching with links to focused implementation guides.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://talhajalvi.com/articles/mcp/core-capabilities/module-03-index.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="MCP Tools, Resources & Prompts Explained">
+  <meta property="og:description" content="A developer-focused guide to Model Context Protocol core capabilities and how clients and servers use them.">
+  <meta property="og:url" content="https://talhajalvi.com/articles/mcp/core-capabilities/module-03-index.html">
+  <link rel="stylesheet" href="../../../css/mcp-module-03.css">
+</head>
+<body>
+<main><div class="hub">
+  <div class="nav"><a href="../../../index.html">Talha Jalvi</a><span>Module 3 · MCP Core Capabilities</span></div>
+  <h1>MCP Tools, Resources & Prompts: Core Capabilities Explained</h1>
+  <p class="muted">A practical map of the capabilities an MCP server can expose and a client can consume, updated for the 2026-07-28 specification.</p>
+
+  <h2>What are MCP core capabilities?</h2>
+  <p>Model Context Protocol gives clients and servers a common way to describe capabilities such as <strong>tools</strong>, <strong>resources</strong>, and <strong>prompts</strong>. Tools represent actions, resources expose retrievable context, and prompts provide reusable prompt templates. The protocol also defines supporting behavior such as schemas, elicitation, completion, pagination, progress, cancellation and caching.</p>
+  <p>If you are learning agents first, start with the <a href="../../ai-agents/index.html">AI Agents tutorial for developers</a>. For the full protocol sequence, use the <a href="../../ai-mcp-course.html">complete MCP course</a>.</p>
+
+  <div class="grid">
+    <div class="card"><a href="mcp-tools.html">1. MCP Tools</a><p>Actions a model or client can request from a server.</p></div>
+    <div class="card"><a href="designing-good-mcp-tools.html">2. Designing Good MCP Tools</a><p>Names, boundaries, confirmation and predictable behavior.</p></div>
+    <div class="card"><a href="mcp-tool-schemas.html">3. MCP Tool Schemas</a><p>Input/output contracts and JSON Schema design.</p></div>
+    <div class="card"><a href="mcp-resources.html">4. MCP Resources</a><p>Expose retrievable application or domain context.</p></div>
+    <div class="card"><a href="resource-uris-templates.html">5. Resource URIs & Templates</a><p>Address and parameterize retrievable resources.</p></div>
+    <div class="card"><a href="mcp-prompts.html">6. MCP Prompts</a><p>Reusable prompt templates surfaced by servers.</p></div>
+    <div class="card"><a href="mcp-prompts-vs-system-prompts.html">7. MCP Prompts vs System Prompts</a><p>Understand where each type of instruction belongs.</p></div>
+    <div class="card"><a href="mcp-roots-deprecated.html">8. MCP Roots (Deprecated)</a></div>
+    <div class="card"><a href="mcp-sampling-deprecated.html">9. MCP Sampling (Deprecated)</a></div>
+    <div class="card"><a href="mcp-elicitation.html">10. MCP Elicitation</a><p>Request additional information during an interaction.</p></div>
+    <div class="card"><a href="mcp-completion.html">11. MCP Completion</a></div>
+    <div class="card"><a href="mcp-pagination.html">12. MCP Pagination</a></div>
+    <div class="card"><a href="mcp-progress-cancellation.html">13. Progress & Cancellation</a></div>
+    <div class="card"><a href="mcp-logging-deprecated.html">14. MCP Logging (Deprecated)</a></div>
+    <div class="card"><a href="mcp-caching.html">15. MCP Caching</a></div>
+  </div>
+
+  <h2>MCP tools vs resources vs prompts</h2>
+  <table>
+    <thead><tr><th>Capability</th><th>Best mental model</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Tools</td><td>Do something</td><td>Create a ticket, query a database, send a request</td></tr>
+      <tr><td>Resources</td><td>Read something</td><td>Repository file, customer record, schema, documentation</td></tr>
+      <tr><td>Prompts</td><td>Reuse an interaction template</td><td>Code review prompt, incident analysis prompt</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key 2026 changes</h2>
+  <p>The current protocol makes list/read results cacheable, adopts full JSON Schema 2020-12 for tool input/output schemas, restructures server-to-client interactions around Multi Round-Trip Requests, and deprecates roots, sampling and logging for new implementations. Deprecated features may still exist during their policy window, but new implementations should follow current replacements and specification guidance.</p>
+
+  <h2>Where to go next</h2>
+  <ul>
+    <li><a href="mcp-tools.html">Start with MCP tools</a> if you are building actions.</li>
+    <li><a href="mcp-resources.html">Read MCP resources</a> if your server exposes context.</li>
+    <li><a href="mcp-prompts.html">Read MCP prompts</a> if you need reusable prompt templates.</li>
+    <li><a href="../../ai-agents/index.html">Return to the AI Agents learning path</a> to see how MCP fits inside an agent architecture.</li>
+  </ul>
+
+  <h2>Primary sources</h2>
+  <ul>
+    <li><a href="https://modelcontextprotocol.io/specification/2026-07-28">MCP 2026-07-28 specification</a></li>
+    <li><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">MCP 2026-07-28 release notes</a></li>
+  </ul>
+</div></main>
+</body>
+</html>
