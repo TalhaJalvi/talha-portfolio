@@ -1,156 +1,96 @@
 <section id="kotlin-overriding">
-  <h2>Overriding Methods & Properties in Kotlin</h2>
-  <p>
-    Overriding is a key feature of Object-Oriented Programming that allows a subclass to provide a specific implementation 
-    for a method or property that is already defined in its superclass. Kotlin makes overriding explicit using the 
-    <code>open</code>, <code>override</code>, and <code>final</code> keywords.
-  </p>
+  <h2>Method and Property Overriding in Kotlin: <code>open</code>, <code>override</code> & <code>final</code></h2>
+  <p><strong>Overriding in Kotlin</strong> lets a subclass replace or extend behavior declared by a parent class. Kotlin makes inheritance explicit: classes and members are final by default, so the parent declaration must be marked <code>open</code> and the child implementation must use <code>override</code>.</p>
 
-  <h3>1. Why Overriding Matters</h3>
-  <ul>
-    <li><strong>Customization:</strong> Allows subclasses to change behavior inherited from a parent class.</li>
-    <li><strong>Polymorphism:</strong> Enables objects of different types to be treated uniformly while providing specific behaviors.</li>
-    <li><strong>Code Reuse:</strong> Subclasses can reuse most of the parent class logic while customizing only the parts needed.</li>
-    <li><strong>Maintainability:</strong> Centralized changes in the parent class can propagate unless overridden, making updates easier.</li>
-  </ul>
+  <div class="callout"><strong>Quick answer:</strong> mark the parent member <code>open</code>, then declare the child member with <code>override</code>. Use <code>super</code> when the override should reuse the parent implementation.</div>
 
-  <h3>2. Overriding Methods</h3>
-  <p>In Kotlin, methods are <strong>final by default</strong>, meaning they cannot be overridden unless explicitly marked as <code>open</code> in the parent class.</p>
-  <pre><code>
-open class Aircraft(val name: String) {
-    open fun status() {
-        println("$name is ready for flight")
-    }
-}
-
-class Jet(name: String, val maxSpeed: Int) : Aircraft(name) {
-    override fun status() {
-        println("$name is ready for flight at max speed $maxSpeed km/h")
-    }
-}
-
-fun main() {
-    val jet = Jet("Falcon", 1200)
-    jet.status() // Calls overridden method
-}
-  </code></pre>
-  <p><strong>Output:</strong></p>
-  <pre><code>
-Falcon is ready for flight at max speed 1200 km/h
-  </code></pre>
-  <p><strong>Note:</strong> Using <code>override</code> is mandatory; otherwise, the compiler will throw an error.</p>
-
-  <h3>3. Overriding Properties</h3>
-  <p>Kotlin allows properties to be overridden in subclasses, just like methods. Both <code>val</code> and <code>var</code> can be overridden if the parent property is <code>open</code>.</p>
-  <pre><code>
-open class Aircraft {
-    open val type: String = "Generic Aircraft"
+  <h3>1. Overriding a Method</h3>
+  <pre><code>open class Aircraft {
+    open fun status() = println("Aircraft ready")
 }
 
 class Jet : Aircraft() {
-    override val type: String = "Jet Aircraft"
+    override fun status() = println("Jet ready")
+}</code></pre>
+  <p>Without <code>open</code> on the parent function, Kotlin prevents the override at compile time.</p>
+
+  <h3>2. Extending Parent Behavior with <code>super</code></h3>
+  <pre><code>open class Aircraft {
+    open fun status() = println("Base checks complete")
 }
 
-fun main() {
-    val jet = Jet()
-    println(jet.type) // Access overridden property
-}
-  </code></pre>
-  <p><strong>Output:</strong></p>
-  <pre><code>
-Jet Aircraft
-  </code></pre>
+class Jet : Aircraft() {
+    override fun status() {
+        super.status()
+        println("Jet-specific checks complete")
+    }
+}</code></pre>
+  <p>This is useful when the base class contains shared behavior that every subclass should retain.</p>
 
-  <h3>4. Overriding val with var and vice versa</h3>
-  <p>
-    - You can override a <code>val</code> property with a <code>val</code> or <code>var</code> in the subclass.<br>
-    - You cannot override a <code>var</code> property with a <code>val</code>, as it would break mutability rules.
-  </p>
-  <pre><code>
-open class Aircraft {
+  <h3>3. Overriding Properties</h3>
+  <pre><code>open class Aircraft {
+    open val type: String = "Aircraft"
+}
+
+class Jet : Aircraft() {
+    override val type: String = "Jet"
+}</code></pre>
+
+  <h3>4. Can a <code>val</code> Be Overridden with a <code>var</code>?</h3>
+  <p>Yes. A parent <code>val</code> promises only a getter, so a child may provide a <code>var</code> with both getter and setter. A parent <code>var</code> cannot be overridden by a <code>val</code>, because that would remove the setter promised by the parent contract.</p>
+  <pre><code>open class Aircraft {
     open val speed: Int = 100
 }
 
 class Jet : Aircraft() {
-    override var speed: Int = 120 // Allowed: val -> var
-}
-  </code></pre>
+    override var speed: Int = 120 // Allowed
+}</code></pre>
 
-  <h3>5. Calling Superclass Implementation</h3>
-  <p>Sometimes, you want to extend the behavior of a superclass method rather than completely replacing it. You can use <code>super</code>:</p>
-  <pre><code>
-open class Aircraft(val name: String) {
-    open fun status() = println("$name ready")
+  <h3>5. Preventing Further Overrides with <code>final</code></h3>
+  <p>An overridden member remains open to further overrides unless you explicitly mark it <code>final</code>.</p>
+  <pre><code>open class Parent {
+    open fun run() {}
 }
 
-class Jet(name: String, val maxSpeed: Int) : Aircraft(name) {
-    override fun status() {
-        super.status()  // Calls Aircraft's status
-        println("Maximum speed: $maxSpeed km/h")
-    }
+open class Child : Parent() {
+    final override fun run() {}
 }
 
-fun main() {
-    val jet = Jet("Falcon", 1200)
-    jet.status()
-}
-  </code></pre>
-  <p><strong>Output:</strong></p>
-  <pre><code>
-Falcon ready
-Maximum speed: 1200 km/h
-  </code></pre>
+class GrandChild : Child() {
+    // run() cannot be overridden here
+}</code></pre>
 
-  <h3>6. Technical Interview Questions</h3>
+  <h3>6. Overriding vs Overloading</h3>
+  <table>
+    <thead><tr><th>Concept</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Overriding</td><td>Subclass supplies a new implementation of an inherited member</td><td><code>override fun status()</code></td></tr>
+      <tr><td>Overloading</td><td>Multiple functions share a name but have different parameter lists</td><td><code>fun add(a:Int)</code> and <code>fun add(a:Int,b:Int)</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>7. Common Interview Questions</h3>
   <ul>
-    <li><strong>What does it mean to override a method in Kotlin?</strong> <br>
-        Providing a specific implementation in a subclass for a method defined in the superclass.</li>
-    <li><strong>Are methods open for overriding by default?</strong> <br>
-        No, methods are final by default. Use <code>open</code> in the superclass to allow overriding.</li>
-    <li><strong>Can properties be overridden?</strong> <br>
-        Yes, using <code>open</code> in the parent class and <code>override</code> in the subclass.</li>
-    <li><strong>Can we override val with var and var with val?</strong> <br>
-        You can override <code>val</code> with <code>val</code> or <code>var</code>, but you cannot override <code>var</code> with <code>val</code>.</li>
-    <li><strong>How can a subclass extend a superclass method instead of replacing it?</strong> <br>
-        By calling <code>super.methodName()</code> inside the overridden method.</li>
+    <li><strong>Why are Kotlin members not overridable by default?</strong> Kotlin chooses final-by-default semantics to make inheritance intentional.</li>
+    <li><strong>Is <code>override</code> optional?</strong> No. Kotlin requires it for clarity and compiler safety.</li>
+    <li><strong>Can a <code>val</code> be overridden by a <code>var</code>?</strong> Yes.</li>
+    <li><strong>Can a <code>var</code> be overridden by a <code>val</code>?</strong> No.</li>
+    <li><strong>How do you call the parent implementation?</strong> Use <code>super.memberName()</code> or <code>super.property</code>.</li>
   </ul>
 
-  <h3>7. Key Takeaways</h3>
+  <h3>8. Related Kotlin OOP Guides</h3>
   <ul>
-    <li>Overriding allows customization of inherited behavior.</li>
-    <li>All methods and properties are final by default; <code>open</code> keyword is required to override.</li>
-    <li>The <code>override</code> keyword is mandatory in Kotlin to clearly indicate overriding.</li>
-    <li>Use <code>super</code> to extend behavior instead of completely replacing it.</li>
-    <li>Overriding properties allows polymorphic behavior with both <code>val</code> and <code>var</code> carefully handled.</li>
+    <li><a href="polymorphism.html">Polymorphism in Kotlin</a></li>
+    <li><a href="super.html">Using <code>super</code> in Kotlin</a></li>
+    <li><a href="static-vs-runtime-polymorphism.html">Overloading vs runtime polymorphism</a></li>
+    <li><a href="inheritance-basics.html">Kotlin inheritance basics</a></li>
   </ul>
- <h3>Example: Overriding a Property and a Method</h3>
-  <pre><code>
-open class ParentClass(open val name: String) {
-    open fun printName() {
-        println(name)
-    }
-}
 
-class ChildClass : ParentClass("Talha") {
-
-    override val name: String = "Usman"  // Override property
-
-    override fun printName() {
-        println("${super.name} is the name of parent") // Access parent property
-        println("Overridden method: $name")            // Access overridden property
-    }
-}
-
-fun main() {
-    val child = ChildClass()
-    child.printName()
-}
-  </code></pre>
-
-  <p><strong>Output:</strong></p>
-  <pre><code>
-Talha is the name of parent
-Overridden method: Usman
-  </code></pre>
-
+  <h3>9. Key Takeaways</h3>
+  <ul>
+    <li>Use <code>open</code> on parent declarations that are intentionally extensible.</li>
+    <li>Use <code>override</code> on every overriding member.</li>
+    <li>Use <code>final override</code> when a child should stop further customization.</li>
+    <li>Overriding is one of the mechanisms behind runtime polymorphism.</li>
+  </ul>
 </section>
