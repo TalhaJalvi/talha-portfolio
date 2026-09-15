@@ -1,0 +1,70 @@
+<section id="kotlin-static-vs-runtime-polymorphism">
+  <h2>Static vs Runtime Polymorphism in Kotlin: Overloading vs Overriding</h2>
+  <p>Kotlin developers commonly describe <strong>function overloading</strong> as static or compile-time polymorphism and <strong>method overriding</strong> as runtime or dynamic polymorphism. The key difference is when the target implementation is selected.</p>
+
+  <div class="callout"><strong>Quick answer:</strong> overloading is selected from the function signature at compile time; overriding uses the actual runtime object to choose an implementation.</div>
+
+  <h3>1. Static Polymorphism: Function Overloading</h3>
+  <pre><code>class Calculator {
+    fun add(a: Int, b: Int) = a + b
+    fun add(a: Int, b: Int, c: Int) = a + b + c
+}
+
+val calc = Calculator()
+calc.add(2, 3)
+calc.add(2, 3, 4)</code></pre>
+  <p>The compiler chooses the matching overload from the argument list and types.</p>
+
+  <h3>2. Runtime Polymorphism: Method Overriding</h3>
+  <pre><code>open class Animal {
+    open fun sound() = println("Animal")
+}
+
+class Dog : Animal() {
+    override fun sound() = println("Bark")
+}
+
+val animal: Animal = Dog()
+animal.sound() // Bark</code></pre>
+  <p>The variable is typed as <code>Animal</code>, but the object is a <code>Dog</code>, so the overridden implementation is dispatched at runtime.</p>
+
+  <h3>3. Static vs Runtime Polymorphism</h3>
+  <table>
+    <thead><tr><th>Aspect</th><th>Static / compile-time</th><th>Runtime / dynamic</th></tr></thead>
+    <tbody>
+      <tr><td>Typical Kotlin mechanism</td><td>Function overloading</td><td>Method overriding / interface implementation</td></tr>
+      <tr><td>Selection</td><td>Compiler chooses a signature</td><td>Runtime object chooses an override</td></tr>
+      <tr><td>Inheritance required?</td><td>No</td><td>Usually a parent type or interface is involved</td></tr>
+      <tr><td>Main use</td><td>Convenient APIs for different argument shapes</td><td>Replaceable behavior behind a common type</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4. Interface Example of Runtime Polymorphism</h3>
+  <pre><code>interface Formatter {
+    fun format(value: String): String
+}
+
+class JsonFormatter : Formatter {
+    override fun format(value: String) = "{\"value\":\"$value\"}"
+}
+
+class PlainFormatter : Formatter {
+    override fun format(value: String) = value
+}</code></pre>
+  <p>Calling code can depend on <code>Formatter</code> while the concrete implementation changes independently.</p>
+
+  <h3>5. Common Interview Questions</h3>
+  <ul>
+    <li><strong>What is static polymorphism in Kotlin?</strong> The common term for overload selection at compile time.</li>
+    <li><strong>What is runtime polymorphism?</strong> Dynamic dispatch of overridden members based on the real object type.</li>
+    <li><strong>Is overloading the same as overriding?</strong> No. Overloads have different signatures; overrides replace inherited behavior with the same contract.</li>
+    <li><strong>Do interfaces support runtime polymorphism?</strong> Yes. Multiple implementations can be consumed through the same interface type.</li>
+  </ul>
+
+  <h3>6. Related Kotlin OOP Guides</h3>
+  <ul>
+    <li><a href="polymorphism.html">Polymorphism in Kotlin</a></li>
+    <li><a href="overriding.html">Method and property overriding</a></li>
+    <li><a href="interfaces.html">Interfaces and default methods</a></li>
+  </ul>
+</section>

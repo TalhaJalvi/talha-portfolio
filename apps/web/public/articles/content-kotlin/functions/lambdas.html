@@ -1,0 +1,390 @@
+<section id="kotlin-lambdas-higherorder" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Lambdas and Higher-Order Functions in Kotlin</h2>
+
+    <h4>1. Why Use Lambdas and Higher-Order Functions?</h4>
+    <p>
+      In Kotlin, functions are <strong>first-class citizens</strong>: they can be assigned to variables, passed as arguments, or returned from other functions.
+      This capability introduces two powerful concepts:
+    </p>
+    <ul>
+      <li><strong>Lambda expressions</strong> — anonymous blocks of code that can be passed and executed later.</li>
+      <li><strong>Higher-order functions</strong> — functions that take other functions as parameters or return them.</li>
+    </ul>
+    <p>
+      These features improve code modularity, readability, and flexibility, especially when working with collections, callbacks, or functional programming patterns.
+    </p>
+
+    <hr>
+
+   <h4>2. What is a Lambda Expression?</h4>
+<p>
+  A <strong>lambda expression</strong> is an anonymous function without a name.  
+  It can be stored in a variable, passed directly as an argument to a function, or returned from a function.  
+  The general syntax:
+</p>
+<pre><code class="language-kotlin">{ parameters -> body }</code></pre>
+
+<h5>Basic Lambda Examples</h5>
+<pre><code class="language-kotlin">
+// Lambda stored in a variable
+val greet: (String) -> Unit = { name -> println("Hello, $name!") }
+
+// Lambda with inferred type
+val sum = { a: Int, b: Int -> a + b }
+
+// Lambda using 'it' for single parameter
+val printMessage: (String) -> Unit = { println(it) }
+
+fun main() {
+    greet("Talha")              // Output: Hello, Talha!
+    println(sum(5, 10))         // Output: 15
+    printMessage("Kotlin Rocks!") // Output: Kotlin Rocks!
+}
+</code></pre>
+
+<h5>Passing Lambda as Parameter</h5>
+<pre><code class="language-kotlin">
+// Higher-order function accepting a lambda
+fun performOperation(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val sumResult = performOperation(10, 5) { x, y -> x + y }
+    val productResult = performOperation(10, 5) { x, y -> x * y }
+
+    println("Sum: $sumResult")       // Output: Sum: 15
+    println("Product: $productResult") // Output: Product: 50
+}
+</code></pre>
+
+<h5>Returning Lambda from a Function</h5>
+<pre><code class="language-kotlin">
+// Function returning a lambda
+fun getOperation(type: String): (Int, Int) -> Int {
+    return when(type) {
+        "add" -> { a, b -> a + b }
+        "multiply" -> { a, b -> a * b }
+        else -> { _, _ -> 0 }
+    }
+}
+
+fun main() {
+    val operation = getOperation("add")
+    println(operation(20, 30)) // Output: 50
+
+    val multiplyOp = getOperation("multiply")
+    println(multiplyOp(4, 5))  // Output: 20
+}
+</code></pre>
+
+<h5>Multiple Syntax Variations</h5>
+<pre><code class="language-kotlin">
+// Lambda with explicit type
+val divide: (Int, Int) -> Int = { a, b -> a / b }
+
+// Anonymous function syntax
+val divideAnon = fun(a: Int, b: Int): Int { return a / b }
+
+fun main() {
+    println(divide(10, 2))      // Output: 5
+    println(divideAnon(10, 2))  // Output: 5
+}
+</code></pre>
+
+    <h4>3. Type Inference in Lambdas</h4>
+    <p>
+      Kotlin can infer parameter and return types, so you don’t always need to explicitly declare them:
+    </p>
+    <pre><code class="language-kotlin">
+val sum = { a: Int, b: Int -> a + b }   // Type inferred as (Int, Int) -> Int
+val square: (Int) -> Int = { it * it }  // Single parameter uses 'it'
+
+fun main() {
+    println(sum(5, 10))    // Output: 15
+    println(square(4))     // Output: 16
+}
+    </code></pre>
+
+    <p>
+      <strong>Note:</strong> If a lambda has only one parameter, you can use the implicit <code>it</code> instead of naming it.
+    </p>
+
+    <hr>
+
+    <h4>4. Higher-Order Functions</h4>
+    <p>
+      A <strong>higher-order function</strong> either:
+    </p>
+    <ul>
+      <li>Takes one or more functions as parameters</li>
+      <li>Returns a function as a result</li>
+    </ul>
+
+    <pre><code class="language-kotlin">
+// Function taking another function as parameter
+fun operateOnNumbers(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val sum = operateOnNumbers(5, 3) { x, y -> x + y }
+    val product = operateOnNumbers(5, 3) { x, y -> x * y }
+
+    println("Sum: $sum")       // Output: Sum: 8
+    println("Product: $product") // Output: Product: 15
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>5. Returning Functions</h4>
+    <p>
+      Kotlin allows functions to return other functions, enabling dynamic behavior:
+    </p>
+
+    <pre><code class="language-kotlin">
+// Function returning another function
+fun getOperation(type: String): (Int, Int) -> Int {
+    return when(type) {
+        "add" -> { a, b -> a + b }
+        "multiply" -> { a, b -> a * b }
+        else -> { _, _ -> 0 }
+    }
+}
+
+fun main() {
+    val operation = getOperation("add")
+    println(operation(10, 20)) // Output: 30
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>6. Practical Example — Lambdas with Collections</h4>
+    <p>
+      Lambdas are frequently used with Kotlin collections through functions like <code>map</code>, <code>filter</code>, and <code>forEach</code>.
+    </p>
+
+    <pre><code class="language-kotlin">
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5)
+
+    val squared = numbers.map { it * it }
+    val even = numbers.filter { it % 2 == 0 }
+
+    println("Squared: $squared")
+    println("Even Numbers: $even")
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Squared: [1, 4, 9, 16, 25]
+Even Numbers: [2, 4]
+    </code></pre>
+
+    <hr>
+
+    <h4>7. Difference Between Lambda and Anonymous Function</h4>
+    <p>
+      Both are unnamed, but with key differences:
+    </p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-light">
+          <th>Feature</th>
+          <th>Lambda Expression</th>
+          <th>Anonymous Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Syntax</td>
+          <td><code>{ a, b -> a + b }</code></td>
+          <td><code>fun(a: Int, b: Int): Int { return a + b }</code></td>
+        </tr>
+        <tr>
+          <td>Return Type</td>
+          <td>Inferred automatically (last expression returned)</td>
+          <td>Explicit <code>return</code> required</td>
+        </tr>
+        <tr>
+          <td>Return Behavior</td>
+          <td><code>return</code> exits enclosing function</td>
+          <td><code>return</code> exits only from the anonymous function itself</td>
+        </tr>
+        <tr>
+          <td>Use Case</td>
+          <td>Concise, short-lived operations</td>
+          <td>Complex logic, explicit control</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pre><code class="language-kotlin">
+// Lambda
+val multiply = { a: Int, b: Int -> a * b }
+
+// Anonymous function
+val multiplyAnon = fun(a: Int, b: Int): Int {
+    return a * b
+}
+
+fun main() {
+    println(multiply(4, 5))     // 20
+    println(multiplyAnon(4, 5)) // 20
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>8. When to Use and When Not to Use</h4>
+    <h6>✅ Use When:</h6>
+    <ul>
+      <li>Writing concise, reusable code</li>
+      <li>Working with collections or streams</li>
+      <li>Reducing boilerplate for callbacks</li>
+    </ul>
+
+    <h6>🚫 Avoid When:</h6>
+    <ul>
+      <li>Performance is critical (each lambda creates a function object)</li>
+      <li>Logic is complex — prefer named functions</li>
+      <li>Excessive nesting leads to poor readability</li>
+    </ul>
+
+    <hr>
+
+<h4>9. Common Interview Questions</h4>
+
+<ul>
+  <li>
+    <strong>What is a lambda expression in Kotlin?</strong><br>
+    A lambda expression is an <strong>anonymous function</strong> that can be stored in a variable, passed as an argument, or returned from a function.  
+    It is defined using curly braces <code>{ }</code> with parameters on the left of <code>-></code> and the function body on the right.
+    <pre><code class="language-kotlin">{ x: Int, y: Int -> x + y }</code></pre>
+  </li>
+
+  <li>
+    <strong>What is a higher-order function?</strong><br>
+    A higher-order function is a function that either:
+    <ul>
+      <li>Takes one or more functions as parameters</li>
+      <li>Returns a function as a result</li>
+    </ul>
+    Example:
+    <pre><code class="language-kotlin">
+fun operate(a: Int, b: Int, op: (Int, Int) -> Int): Int = op(a, b)
+val sum = operate(5, 3) { x, y -> x + y } // sum = 8
+    </code></pre>
+  </li>
+
+  <li>
+    <strong>How does the <code>it</code> keyword work?</strong><br>
+    When a lambda has a single parameter, Kotlin provides an implicit name <code>it</code> so you don’t need to explicitly declare it.
+    <pre><code class="language-kotlin">
+val printSquare: (Int) -> Unit = { println(it * it) }
+printSquare(5) // Output: 25
+    </code></pre>
+  </li>
+
+  <li>
+    <strong>Difference between lambda and anonymous function?</strong><br>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-light">
+          <th>Feature</th>
+          <th>Lambda Expression</th>
+          <th>Anonymous Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Syntax</td>
+          <td><code>{ a, b -> a + b }</code></td>
+          <td><code>fun(a: Int, b: Int): Int { return a + b }</code></td>
+        </tr>
+        <tr>
+          <td>Return Type</td>
+          <td>Inferred automatically</td>
+          <td>Explicit return required</td>
+        </tr>
+        <tr>
+          <td>Return Behavior</td>
+          <td><code>return</code> exits the enclosing function</td>
+          <td><code>return</code> exits only the anonymous function itself</td>
+        </tr>
+        <tr>
+          <td>Use Case</td>
+          <td>Concise operations, short-lived expressions</td>
+          <td>Complex logic requiring explicit control</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+
+  <li>
+    <strong>How do inline functions optimize lambdas?</strong><br>
+    Inline functions instruct the compiler to <strong>replace the lambda call with the lambda code itself</strong> at the call site.  
+    This avoids creating additional function objects and improves performance.
+    <pre><code class="language-kotlin">
+inline fun operateInline(a: Int, b: Int, op: (Int, Int) -> Int): Int = op(a, b)
+val result = operateInline(5, 3) { x, y -> x + y } // No lambda object created
+    </code></pre>
+  </li>
+
+  <li>
+    <strong>Can lambdas access outer variables (closures)?</strong><br>
+    Yes, lambdas can access and modify variables defined in the outer scope. This is known as a <strong>closure</strong>.
+    <pre><code class="language-kotlin">
+fun main() {
+    var counter = 0
+    val increment = { counter += 1 } // Lambda captures 'counter'
+
+    increment()
+    increment()
+    println(counter) // Output: 2
+}
+    </code></pre>
+  </li>
+</ul>
+
+
+    <hr>
+
+    <h4>10. Complete Example Program</h4>
+    <pre><code class="language-kotlin">
+fun calculate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val add = { x: Int, y: Int -> x + y }
+    val subtract = { x: Int, y: Int -> x - y }
+    val multiply = { x: Int, y: Int -> x * y }
+
+    println("Addition: ${calculate(10, 5, add)}")
+    println("Subtraction: ${calculate(10, 5, subtract)}")
+    println("Multiplication: ${calculate(10, 5, multiply)}")
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+    </code></pre>
+
+    <hr>
+
+    <p>
+      <strong>Summary:</strong><br>
+      Lambdas and higher-order functions enable concise, flexible, and expressive code in Kotlin.  
+      They simplify operations, improve readability, support functional programming patterns, and are an essential skill for modern Kotlin development.
+    </p>
+  </div>
+</section>

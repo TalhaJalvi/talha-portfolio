@@ -1,0 +1,191 @@
+<section id="compose-recomposition-lifecycle">
+  <h2>Recomposition & Lifecycle in Jetpack Compose</h2>
+  <p>
+    One of Jetpack Compose’s most powerful features is its ability to 
+    <strong>automatically update the UI when data changes</strong>. This behavior 
+    is known as <em>recomposition</em>. Understanding how and when Compose 
+    recomposes is essential to writing efficient, predictable, and bug-free UI code.
+  </p>
+
+  <h3>1. What is Recomposition?</h3>
+  <p>
+    <strong>Recomposition</strong> is the process where Jetpack Compose re-executes 
+    composable functions to update the UI in response to changes in state or data. 
+    Rather than redrawing everything, Compose intelligently updates only the parts 
+    of the UI that need to change.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "Count: $count")
+        Button(onClick = { count++ }) {
+            Text("Increase")
+        }
+    }
+}
+  </code></pre>
+
+  <p>
+    Each time the button is clicked, the <code>count</code> value changes — triggering 
+    a recomposition. Compose then re-invokes the <code>Counter()</code> function, but 
+    efficiently updates only the affected elements.
+  </p>
+
+  <h3>2. How Recomposition Works</h3>
+  <p>
+    When you declare UI with composables, Compose builds a 
+    <strong>composition tree</strong>. During recomposition:
+  </p>
+  <ul>
+    <li>Compose checks which parts of the tree are affected by state changes.</li>
+    <li>Only the relevant nodes are updated — not the entire UI.</li>
+    <li>Unchanged composables are skipped for performance.</li>
+  </ul>
+
+  <h4>Recomposition Flow:</h4>
+  <ol>
+    <li>UI is first composed → initial layout created.</li>
+    <li>State changes → Compose marks affected functions.</li>
+    <li>Only those composables re-execute (recompose).</li>
+    <li>Updated layout is efficiently re-rendered.</li>
+  </ol>
+
+  <h3>3. Key Concept: “Remember” and State</h3>
+  <p>
+    Compose automatically resets state when recomposing unless you explicitly 
+    <strong>remember</strong> it. The <code>remember</code> function stores state in memory 
+    so it survives recompositions.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun RememberExample() {
+    var text by remember { mutableStateOf("Hello") }
+
+    Column {
+        Text(text)
+        Button(onClick = { text = "Updated!" }) {
+            Text("Change Text")
+        }
+    }
+}
+  </code></pre>
+
+  <p>
+    Without <code>remember</code>, the <code>text</code> variable would reset to 
+    <code>"Hello"</code> on every recomposition — breaking the reactive behavior.
+  </p>
+
+  <h3>4. Skipping Unnecessary Recompositions</h3>
+  <p>
+    Compose is smart enough to <strong>skip recomposition</strong> for composables 
+    whose parameters haven’t changed. This is part of its optimization mechanism.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun GreetingCard(name: String) {
+    Text("Hello, $name")
+}
+
+// If 'name' doesn't change, GreetingCard won't recompose.
+  </code></pre>
+
+  <p>
+    To further optimize, you can use functions like 
+    <code>derivedStateOf</code> or mark stable objects with 
+    <code>@Stable</code> for advanced use cases.
+  </p>
+
+  <h3>5. Side Effects and Lifecycle Awareness</h3>
+  <p>
+    Sometimes you need to perform tasks outside the scope of UI drawing, such as 
+    logging, network calls, or animations. These are handled using <strong>side-effect APIs</strong> 
+    that are lifecycle-aware.
+  </p>
+
+  <ul>
+    <li><code>LaunchedEffect</code> — runs suspend functions during composition.</li>
+    <li><code>DisposableEffect</code> — cleans up when composable leaves composition.</li>
+    <li><code>SideEffect</code> — runs every time after successful recomposition.</li>
+  </ul>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun TimerExample() {
+    var time by remember { mutableStateOf(0) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(1000)
+            time++
+        }
+    }
+
+    Text("Time elapsed: $time s")
+}
+  </code></pre>
+
+  <p>
+    Here, <code>LaunchedEffect(Unit)</code> ensures the timer starts once when the 
+    composable enters the composition and continues running while it stays active.
+  </p>
+
+  <h3>6. Composition Lifecycle Overview</h3>
+  <p>
+    Every composable follows a short lifecycle similar to Activity/Fragment lifecycles:
+  </p>
+
+  <pre><code>
+  Enter Composition → Recompose (many times) → Leave Composition
+  </code></pre>
+
+  <ul>
+    <li><strong>Enter Composition</strong>: When composable first appears.</li>
+    <li><strong>Recompose</strong>: When data/state changes.</li>
+    <li><strong>Leave Composition</strong>: When UI is removed or replaced.</li>
+  </ul>
+
+  <p>
+    You can observe these events using <code>DisposableEffect</code>:
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun LifecycleAwareComposable() {
+    DisposableEffect(Unit) {
+        println("Entered composition")
+        onDispose {
+            println("Left composition")
+        }
+    }
+}
+  </code></pre>
+
+  <h3>7. Best Practices for Recomposition</h3>
+  <ul>
+    <li>Keep composables small and focused — easier recomposition control.</li>
+    <li>Use <code>remember</code> for state retention within a composable.</li>
+    <li>Move expensive logic outside composables or use <code>remember</code> blocks.</li>
+    <li>Use <code>SideEffect</code> or <code>LaunchedEffect</code> for non-UI operations.</li>
+  </ul>
+
+  <h3>8. Common Mistakes</h3>
+  <ul>
+    <li>Running network/database calls directly in a composable body.</li>
+    <li>Forgetting to use <code>remember</code> for mutable states.</li>
+    <li>Assuming composables are called only once (they re-execute frequently).</li>
+  </ul>
+
+  <h3>9. What’s Next?</h3>
+  <p>
+    With recomposition and lifecycle covered, the next article will focus on 
+    <strong>State Management</strong> in Compose — using 
+    <code>remember</code>, <code>mutableStateOf</code>, and other tools 
+    to manage dynamic UI updates effectively.
+  </p>
+</section>

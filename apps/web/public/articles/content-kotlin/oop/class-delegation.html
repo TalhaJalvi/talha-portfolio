@@ -1,0 +1,117 @@
+<section id="kotlin-delegation">
+  <h2>What & How: Delegation (Class-Level)</h2>
+
+  <p>
+    In Kotlin, <strong>delegation</strong> is a design pattern that allows a class to hand over (delegate)
+    specific tasks or functionalities to another class or object. This means instead of re-implementing
+    methods or duplicating logic, we can reuse existing implementations by delegating responsibilities.
+  </p>
+
+  <p>
+    Kotlin provides built-in support for <em>class-level delegation</em> using the <code>by</code> keyword.
+    It encourages the principle of <strong>composition over inheritance</strong>, resulting in more flexible
+    and reusable designs without creating deep inheritance hierarchies.
+  </p>
+
+  <h3>Why Use Delegation?</h3>
+  <ul>
+    <li>To avoid code duplication.</li>
+    <li>To prefer composition over inheritance.</li>
+    <li>To easily reuse existing implementations.</li>
+    <li>To keep classes focused on a single responsibility.</li>
+  </ul>
+
+  <h3>Syntax</h3>
+  <pre><code class="language-kotlin">
+interface Printer {
+    fun printMessage()
+}
+
+class ConsolePrinter : Printer {
+    override fun printMessage() {
+        println("Printing from ConsolePrinter")
+    }
+}
+
+// Class-level delegation
+class DelegatedPrinter(printer: Printer) : Printer by printer
+
+fun main() {
+    val printer = ConsolePrinter()
+    val delegatedPrinter = DelegatedPrinter(printer)
+    delegatedPrinter.printMessage() // Delegates call to ConsolePrinter
+}
+  </code></pre>
+
+  <h3>Explanation</h3>
+  <ul>
+    <li><code>Printer</code> defines an interface with a method <code>printMessage()</code>.</li>
+    <li><code>ConsolePrinter</code> provides a concrete implementation of this interface.</li>
+    <li><code>DelegatedPrinter</code> does not re-implement <code>printMessage()</code> but delegates it using <code>by</code>.</li>
+  </ul>
+
+  <p>
+    When <code>delegatedPrinter.printMessage()</code> is called, the actual method execution is performed
+    by the <code>ConsolePrinter</code> instance.
+  </p>
+
+  <h3>Overriding Delegated Methods</h3>
+  <p>
+    Even though a class delegates functionality, it can still override delegated methods to extend or modify
+    the delegated behavior.
+  </p>
+
+  <pre><code class="language-kotlin">
+class CustomPrinter(printer: Printer) : Printer by printer {
+    override fun printMessage() {
+        println("Custom behavior before delegating...")
+        printer.printMessage()
+    }
+}
+
+fun main() {
+    val printer = ConsolePrinter()
+    val custom = CustomPrinter(printer)
+    custom.printMessage()
+}
+  </code></pre>
+
+  <p>
+    This approach allows you to combine delegation with method overriding for partial customization.
+  </p>
+
+  <h3>Real-World Example</h3>
+  <p>
+    Delegation is used widely in the Kotlin standard library and Android development, for example in
+    property delegates like <code>by lazy</code> or <code>Delegates.observable</code>.
+  </p>
+
+  <pre><code class="language-kotlin">
+import kotlin.properties.Delegates
+
+class User {
+    var name: String by Delegates.observable("Unknown") { _, old, new ->
+        println("Name changed from $old to $new")
+    }
+}
+
+fun main() {
+    val user = User()
+    user.name = "Talha"
+    user.name = "Usman"
+}
+  </code></pre>
+
+  <h3>Summary</h3>
+  <ul>
+    <li>Delegation allows a class to reuse functionality from another class or object.</li>
+    <li>Implemented using the <code>by</code> keyword.</li>
+    <li>Supports overriding of delegated methods when needed.</li>
+    <li>Promotes cleaner and more modular design.</li>
+  </ul>
+
+  <p>
+    <strong>In short:</strong> Delegation in Kotlin makes your code reusable, flexible, and less dependent on inheritance,
+    encouraging better composition-based architecture.
+  </p>
+</section>

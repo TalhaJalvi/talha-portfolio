@@ -1,0 +1,126 @@
+<section id="kotlin-inheritance">
+  <h2>Inheritance in Kotlin</h2>
+  <p>
+    Inheritance is a core concept of Object-Oriented Programming (OOP) that allows a class to acquire properties and behavior (methods) from another class. 
+    Kotlin supports single inheritance (a class can inherit from only one class) but allows multiple interface implementations. 
+    Inheritance promotes code reuse, extensibility, and polymorphism.
+  </p>
+
+  <h3>1. Why Inheritance Matters</h3>
+  <ul>
+    <li><strong>Code Reuse:</strong> Subclasses reuse code from a parent class, avoiding duplication.</li>
+    <li><strong>Extensibility:</strong> You can extend existing classes with new behavior without modifying them.</li>
+    <li><strong>Polymorphism:</strong> Subclasses can be treated as instances of the parent class, enabling flexible code design.</li>
+    <li><strong>Organization:</strong> Logical hierarchy of classes improves readability and maintainability.</li>
+  </ul>
+
+  <h3>2. How Inheritance Works in Kotlin</h3>
+  <p>
+    By default, classes in Kotlin are <code>final</code> (cannot be inherited). 
+    To allow inheritance, you must mark the class as <code>open</code>. 
+    Similarly, functions or properties must be marked <code>open</code> if you want them to be overridden in a subclass.
+  </p>
+
+  <h4>2.1 Basic Inheritance Example</h4>
+  <pre><code>
+open class Aircraft(val name: String) {
+    open fun fly() {
+        println("$name is flying")
+    }
+
+    fun status() {
+        println("$name is ready for flight")
+    }
+}
+
+class Jet(name: String, val maxSpeed: Int) : Aircraft(name) {
+    override fun fly() {
+        println("$name flies at max speed of $maxSpeed km/h")
+    }
+}
+
+fun main() {
+    val plane: Aircraft = Jet("Falcon", 1200)
+    plane.status()   // Calls parent class function
+    plane.fly()      // Calls overridden function in subclass
+}
+  </code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Falcon is ready for flight
+Falcon flies at max speed of 1200 km/h
+  </code></pre>
+
+  <h4>2.2 Notes on Inheritance</h4>
+  <ul>
+    <li><strong>open:</strong> Marks a class or member as inheritable.</li>
+    <li><strong>final:</strong> By default, classes and members are final. Cannot be overridden unless marked open.</li>
+    <li><strong>override:</strong> Used to override a function or property in a subclass.</li>
+    <li><strong>super:</strong> Refers to the parent class and is used to call parent methods or constructors.</li>
+  </ul>
+
+  <h3>3. Inheritance and Constructors</h3>
+  <p>
+    When inheriting a class, the parent’s constructor must be called. Kotlin supports calling the primary constructor of the parent directly in the subclass declaration.
+  </p>
+  <pre><code>
+open class Aircraft(val name: String, val capacity: Int)
+
+class CargoPlane(name: String, capacity: Int, val cargoWeight: Int) : Aircraft(name, capacity)
+
+fun main() {
+    val cargo = CargoPlane("Hercules", 50, 2000)
+    println("${cargo.name} carries ${cargo.cargoWeight} tons")
+}
+  </code></pre>
+
+  <h3>4. Inheriting Interfaces</h3>
+  <p>
+    Kotlin allows multiple interface implementations even though class inheritance is single. This is useful for adding behavior from multiple sources.
+  </p>
+  <pre><code>
+interface Flyable {
+    fun fly()
+}
+
+interface Movable {
+    fun move()
+}
+
+class Drone : Flyable, Movable {
+    override fun fly() {
+        println("Drone is flying")
+    }
+
+    override fun move() {
+        println("Drone is moving")
+    }
+}
+  </code></pre>
+
+  <h3>5. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is inheritance?</strong> <br>
+        A mechanism where a class acquires properties and behavior from another class.</li>
+    <li><strong>What does the <code>open</code> keyword mean?</strong> <br>
+        Marks a class or member as inheritable/overridable.</li>
+    <li><strong>Can Kotlin support multiple inheritance of classes?</strong> <br>
+        No, Kotlin supports single inheritance for classes but allows multiple interfaces.</li>
+    <li><strong>How do you call a parent class constructor?</strong> <br>
+        By using the parent class name with parameters after the colon in the subclass declaration.</li>
+    <li><strong>What is the difference between overriding and overloading?</strong> <br>
+        Overriding changes behavior in a subclass; overloading defines multiple methods with same name but different parameters.</li>
+    <li><strong>What is the role of <code>super</code>?</strong> <br>
+        Used to refer to parent class functions or properties, often to call them in an overridden method.</li>
+  </ul>
+
+  <h3>6. Key Takeaways</h3>
+  <ul>
+    <li>Inheritance allows code reuse, extensibility, and polymorphism.</li>
+    <li>Kotlin classes are final by default; use <code>open</code> to make them inheritable.</li>
+    <li>Override parent class functions using <code>override</code>.</li>
+    <li>Single class inheritance is complemented by multiple interface implementation.</li>
+    <li>Use <code>super</code> to access parent class functionality.</li>
+  </ul>
+</section>

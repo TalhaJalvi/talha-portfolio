@@ -1,0 +1,196 @@
+<section id="compose-state-basics">
+  <h2>State Management in Jetpack Compose: <code>remember</code> & <code>mutableStateOf</code></h2>
+
+  <p>
+    In Jetpack Compose, <strong>state</strong> is the single source of truth for your UI.  
+    Whenever the state changes, Compose automatically <em>recomposes</em> the parts of the UI 
+    that depend on it. This reactive model removes the need for manual updates like 
+    <code>notifyDataSetChanged()</code> in traditional Android development.
+  </p>
+
+  <h3>1. What is State?</h3>
+  <p>
+    <strong>State</strong> represents data that can change over time — such as user input, 
+    animation progress, or network responses. Compose uses this state to drive the UI, ensuring 
+    it always displays the most recent data.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("Count: $count")
+        Button(onClick = { count++ }) {
+            Text("Increment")
+        }
+    }
+}
+  </code></pre>
+
+  <p>
+    Here, <code>count</code> is a state variable. Each time the button is clicked, 
+    <code>count</code> changes — triggering recomposition, and updating the displayed value automatically.
+  </p>
+
+  <h3>2. Understanding <code>mutableStateOf</code></h3>
+  <p>
+    The <code>mutableStateOf</code> function creates a <strong>state holder</strong> 
+    — an observable container that notifies Compose when its value changes.
+  </p>
+
+  <pre><code class="language-kotlin">
+val name = mutableStateOf("Talha")
+
+// Read value
+Text(name.value)
+
+// Update value
+name.value = "Updated Name"
+  </code></pre>
+
+  <p>
+    Compose tracks reads to <code>name.value</code> and will recompose any composable that 
+    reads this value when it changes.
+  </p>
+
+  <h3>3. The Role of <code>remember</code></h3>
+  <p>
+    <code>remember</code> ensures that state survives across recompositions.  
+    Without it, the variable would reset to its initial value every time the UI is redrawn.
+  </p>
+
+  <pre><code class="language-kotlin">
+// Without remember — resets every recomposition
+@Composable
+fun WrongCounter() {
+    var count = mutableStateOf(0)
+    Button(onClick = { count.value++ }) {
+        Text("Count: ${count.value}")
+    }
+}
+  </code></pre>
+
+  <p>
+    Each recomposition reinitializes <code>count</code>, preventing persistent updates.  
+    To fix this, use <code>remember</code>:
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun CorrectCounter() {
+    var count by remember { mutableStateOf(0) }
+    Button(onClick = { count++ }) {
+        Text("Count: $count")
+    }
+}
+  </code></pre>
+
+  <p>
+    Now the count persists and updates correctly, because Compose “remembers” the value between recompositions.
+  </p>
+
+  <h3>4. State Hoisting</h3>
+  <p>
+    <strong>State hoisting</strong> is the practice of moving state out of a composable 
+    and passing it in as parameters.  
+    This makes components reusable and testable.
+  </p>
+
+  <pre><code class="language-kotlin">
+// State hoisted
+@Composable
+fun CounterDisplay(count: Int, onIncrement: () -> Unit) {
+    Button(onClick = onIncrement) {
+        Text("Count: $count")
+    }
+}
+
+@Composable
+fun CounterScreen() {
+    var count by remember { mutableStateOf(0) }
+    CounterDisplay(count = count, onIncrement = { count++ })
+}
+  </code></pre>
+
+  <p>
+    Here, <code>CounterDisplay</code> doesn’t manage its own state — 
+    it just displays data passed from the parent. This separation follows 
+    <strong>unidirectional data flow</strong> (UDF).
+  </p>
+
+  <h3>5. Unidirectional Data Flow (UDF)</h3>
+  <p>
+    Compose follows a one-way data flow principle:
+  </p>
+
+  <ul>
+    <li>Parent owns and updates the state.</li>
+    <li>Child composable receives state as input (parameter).</li>
+    <li>Child triggers events to request updates (via lambdas).</li>
+  </ul>
+
+  <p>
+    This ensures predictable and debuggable UIs — the UI always reflects a single source of truth.
+  </p>
+
+  <h3>6. State in ViewModels</h3>
+  <p>
+    For larger apps, managing state at the composable level isn’t enough.  
+    You can use <code>ViewModel</code> to hold state across configuration changes.
+  </p>
+
+  <pre><code class="language-kotlin">
+class CounterViewModel : ViewModel() {
+    var count by mutableStateOf(0)
+        private set
+
+    fun increment() {
+        count++
+    }
+}
+
+@Composable
+fun CounterScreen(viewModel: CounterViewModel = viewModel()) {
+    Button(onClick = { viewModel.increment() }) {
+        Text("Count: ${viewModel.count}")
+    }
+}
+  </code></pre>
+
+  <p>
+    The <code>ViewModel</code> stores state outside the composable, ensuring 
+    it persists during configuration changes like rotation.
+  </p>
+
+  <h3>7. When to Use What</h3>
+  <ul>
+    <li><strong>Local state</strong> → Use <code>remember</code> and <code>mutableStateOf</code>.</li>
+    <li><strong>Shared or persistent state</strong> → Use <code>ViewModel</code> and <code>mutableStateOf</code>.</li>
+    <li><strong>Derived state</strong> → Use <code>derivedStateOf</code> to optimize recompositions.</li>
+  </ul>
+
+  <h3>8. Common Pitfalls</h3>
+  <ul>
+    <li>Forgetting to use <code>remember</code>, causing state resets.</li>
+    <li>Creating multiple mutable states for the same data source.</li>
+    <li>Overly coupling UI logic with state logic in one composable.</li>
+  </ul>
+
+  <h3>9. Best Practices</h3>
+  <ul>
+    <li>Keep state as close as possible to where it’s used.</li>
+    <li>Use state hoisting to improve reusability.</li>
+    <li>Leverage <code>ViewModel</code> for screen-level state.</li>
+    <li>Minimize unnecessary recompositions by structuring composables cleanly.</li>
+  </ul>
+
+  <h3>10. What’s Next?</h3>
+  <p>
+    Now that you understand the basics of state management,  
+    the next article will explore <strong>Side Effects & Effect Handlers</strong> — 
+    using <code>LaunchedEffect</code>, <code>rememberCoroutineScope</code>, 
+    and <code>SideEffect</code> for managing non-UI logic in a reactive way.
+  </p>
+</section>

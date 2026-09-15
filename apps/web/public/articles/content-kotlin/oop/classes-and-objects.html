@@ -1,0 +1,103 @@
+<section id="kotlin-classes-objects">
+  <h2>Understanding Classes and Objects in Kotlin</h2>
+  <p>In Kotlin, classes and objects are fundamental concepts in Object-Oriented Programming (OOP). They allow developers to model real-world entities and behaviors within software applications, promoting code reuse, modularity, and maintainability.</p>
+
+  <h3>1. Why Classes and Objects Matter</h3>
+  <p>Classes and objects enable developers to:</p>
+  <ul>
+    <li>Encapsulate data and behavior into cohesive units.</li>
+    <li>Model real-world entities and their interactions.</li>
+    <li>Promote code reuse through inheritance and polymorphism.</li>
+    <li>Enhance code maintainability and readability.</li>
+  </ul>
+
+  <h3>2. What Are Classes and Objects?</h3>
+  <p><strong>Class:</strong> A class is a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods) that the objects instantiated from it will have.</p>
+  <p><strong>Object:</strong> An object is an instance of a class. It contains specific data and can perform the behaviors defined by its class.</p>
+
+  <h4>2.1 Declaring a Class</h4>
+  <p>In Kotlin, a class is declared using the <code>class</code> keyword:</p>
+  <pre><code>class Car(val make: String, val model: String, val year: Int) {
+    fun startEngine() {
+      println("The engine of $make $model is now running.")
+    }
+  }</code></pre>
+
+  <h4>2.2 Creating an Object</h4>
+  <p>An object is created by calling the class constructor:</p>
+  <pre><code>val myCar = Car("Toyota", "Corolla", 2022)
+myCar.startEngine()</code></pre>
+
+  <h3>3. Key Concepts in Kotlin Classes</h3>
+  <ul>
+    <li><strong>Primary Constructor:</strong> Declared in the class header, it initializes the class properties.</li>
+    <li><strong>Secondary Constructor:</strong> Provides additional ways to initialize the class, useful for complex initialization logic.</li>
+    <li><strong>Init Block:</strong> A special block that runs during object initialization, allowing for additional setup.</li>
+    <li><strong>Visibility Modifiers:</strong> Control the visibility of classes and their members. Kotlin supports <code>public</code>, <code>private</code>, <code>protected</code>, and <code>internal</code> modifiers.</li>
+  </ul>
+
+  <h4>3.1 Example with Primary Constructor</h4>
+  <pre><code>class Car(val make: String, val model: String, val year: Int) {
+    fun startEngine() {
+      println("The engine of $make $model is now running.")
+    }
+  }</code></pre>
+
+  <h4>3.2 Example with Secondary Constructor</h4>
+  <pre><code>class Car(val make: String, val model: String) {
+    val year: Int
+
+    constructor(make: String, model: String, year: Int) : this(make, model) {
+      this.year = year
+    }
+
+    fun startEngine() {
+      println("The engine of $make $model is now running.")
+    }
+  }</code></pre>
+
+  <h4>3.3 Example with Init Block</h4>
+  <pre><code>class Car(val make: String, val model: String, val year: Int) {
+    init {
+      println("Car initialized: $make $model, $year")
+    }
+
+    fun startEngine() {
+      println("The engine of $make $model is now running.")
+    }
+  }</code></pre>
+
+  <h3>4. Common Interview Questions</h3>
+  <ul>
+    <li><strong>What is the difference between a class and an object?</strong> A class is a blueprint for creating objects, while an object is an instance of a class.</li>
+    <li><strong>What are visibility modifiers in Kotlin?</strong> Visibility modifiers control the visibility of classes and their members. Kotlin supports <code>public</code>, <code>private</code>, <code>protected</code>, and <code>internal</code> modifiers.</li>
+    <li><strong>What is the purpose of the <code>init</code> block?</strong> The <code>init</code> block allows for additional initialization logic during object creation.</li>
+    <li><strong>What is the difference between primary and secondary constructors?</strong> The primary constructor is declared in the class header and initializes the class properties, while the secondary constructor provides additional ways to initialize the class, useful for complex initialization logic.</li>
+  </ul>
+
+  <h3>5. Summary Table</h3>
+  <table>
+    <tr><th>Feature</th><th>Primary Constructor</th><th>Secondary Constructor</th><th>Init Block</th></tr>
+    <tr><td>Declared In</td><td>Class Header</td><td>Class Body</td><td>Class Body</td></tr>
+    <tr><td>Purpose</td><td>Initialize Class Properties</td><td>Provide Additional Initialization Logic</td><td>Execute Additional Setup During Object Initialization</td></tr>
+    <tr><td>Usage</td><td>Simple Initialization</td><td>Complex Initialization</td><td>Additional Setup</td></tr>
+  </table>
+
+  <h3>6. Example Program</h3>
+  <pre><code>fun main() {
+    val myCar = Car("Toyota", "Corolla", 2022)
+    myCar.startEngine()
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Car initialized: Toyota Corolla, 2022
+The engine of Toyota Corolla is now running.</code></pre>
+
+  <h3>7. Key Takeaways</h3>
+  <ul>
+    <li>Classes serve as blueprints for creating objects in Kotlin.</li>
+    <li>Objects are instances of classes that contain specific data and behaviors.</li>
+    <li>Kotlin supports primary and secondary constructors, as well as init blocks for flexible object initialization.</li>
+    <li>Visibility modifiers control the accessibility of classes and their members.</li>
+  </ul>
+</section>

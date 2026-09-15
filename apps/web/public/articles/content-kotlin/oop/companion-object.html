@@ -1,0 +1,152 @@
+<section id="companion-object-in-kotlin">
+  <h2>What & How: Companion Object in Kotlin</h2>
+
+  <p>
+    In Kotlin, unlike Java, there is no concept of <em>static members</em> directly inside a class. 
+    Instead, Kotlin provides a special construct known as the <strong>companion object</strong>, 
+    which allows you to define members that belong to the class itself rather than any particular instance.
+  </p>
+
+  <h3>What is a Companion Object?</h3>
+  <p>
+    A <strong>companion object</strong> is a singleton object declared inside a class using the 
+    <code>companion object</code> keyword. It allows you to define methods and properties that can be 
+    accessed without creating an instance of the class, similar to <code>static</code> members in Java.
+  </p>
+
+  <h3>Basic Example</h3>
+  <pre><code class="language-kotlin">
+class Utils {
+    companion object {
+        fun printMessage(msg: String) {
+            println("Message: $msg")
+        }
+    }
+}
+
+fun main() {
+    // Accessing the function without creating an object
+    Utils.printMessage("Hello from Companion Object!")
+}
+  </code></pre>
+
+  <p>
+    In this example, the <code>printMessage()</code> function belongs to the class itself, 
+    not to any specific instance. This means it can be accessed directly using the class name.
+  </p>
+
+  <h3>Named Companion Objects</h3>
+  <p>
+    By default, the name of the companion object is <code>Companion</code>. 
+    However, you can give it a custom name if needed:
+  </p>
+
+  <pre><code class="language-kotlin">
+class Config {
+    companion object Loader {
+        fun loadSettings() = "Settings loaded successfully!"
+    }
+}
+
+fun main() {
+    // Access via custom name
+    println(Config.Loader.loadSettings())
+}
+  </code></pre>
+
+  <p>
+    Even if you assign a name, you can still access the members directly using the class name 
+    (<code>Config.loadSettings()</code>) because Kotlin automatically creates a reference for it.
+  </p>
+
+  <h3>Companion Object vs Object Declaration</h3>
+  <ul>
+    <li>
+      A <strong>companion object</strong> is tied to a class and can access private members of that class.
+    </li>
+    <li>
+      A regular <strong>object declaration</strong> is a standalone singleton that exists independently.
+    </li>
+  </ul>
+
+  <pre><code class="language-kotlin">
+object Database {
+    fun connect() = "Database connected"
+}
+
+class Server {
+    companion object {
+        fun start() = "Server started"
+    }
+}
+
+fun main() {
+    println(Database.connect())   // Standalone object
+    println(Server.start())       // Companion object
+}
+  </code></pre>
+
+  <h3>Using Companion Object as a Factory</h3>
+  <p>
+    Companion objects are often used as <strong>factory methods</strong> to create instances 
+    of a class with controlled initialization logic.
+  </p>
+
+  <pre><code class="language-kotlin">
+class User private constructor(val name: String) {
+    companion object {
+        fun create(name: String): User {
+            println("User instance created")
+            return User(name)
+        }
+    }
+}
+
+fun main() {
+    val user = User.create("Talha")
+    println("Name: ${user.name}")
+}
+  </code></pre>
+
+  <p>
+    This approach encapsulates the object creation logic and hides the constructor, 
+    promoting clean and maintainable code.
+  </p>
+
+  <h3>Key Takeaways</h3>
+  <ul>
+    <li>Kotlin doesn’t have <code>static</code> — it uses <strong>companion objects</strong> instead.</li>
+    <li>You can define functions and properties that belong to the class, not the instance.</li>
+    <li>Useful for creating <strong>factory methods</strong>, <strong>constants</strong>, or <strong>utilities</strong>.</li>
+    <li>Can implement interfaces and hold state if needed.</li>
+  </ul>
+
+  <h3>Example: Implementing an Interface in Companion Object</h3>
+  <pre><code class="language-kotlin">
+interface Provider {
+    fun provide(): String
+}
+
+class Service {
+    companion object : Provider {
+        override fun provide() = "Service Provided"
+    }
+}
+
+fun main() {
+    println(Service.provide())
+}
+  </code></pre>
+
+  <p>
+    This demonstrates that a companion object can implement interfaces, 
+    allowing flexible design and behavior.
+  </p>
+
+  <h3>Conclusion</h3>
+  <p>
+    The <strong>companion object</strong> in Kotlin is a powerful replacement for Java’s static members, 
+    providing flexibility and encapsulation. Whether for utility functions, constants, or factory methods, 
+    it’s a fundamental feature that promotes clean and object-oriented Kotlin code.
+  </p>
+</section>

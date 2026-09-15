@@ -1,0 +1,118 @@
+<section>
+  <h2>Using <code>withContext</code> in Kotlin Coroutines</h2>
+
+  <p><code>withContext</code> is a <strong>suspending function</strong> used to switch the coroutine context (dispatcher) for a block of code.
+  It is commonly used for performing background tasks like IO or CPU-intensive work and then returning the result to the original context.</p>
+
+  <h3>1️⃣ Basic Syntax</h3>
+  <pre><code class="language-kotlin">
+val result = withContext(Dispatchers.IO) {
+    // Code here runs on IO dispatcher
+    someComputation()
+}
+  </code></pre>
+  <p>The block runs in the specified dispatcher, and the coroutine resumes on its original context after completion.</p>
+
+  <h3>2️⃣ Why Use <code>withContext</code>?</h3>
+  <ul>
+    <li>Switch threads safely for network or database operations.</li>
+    <li>Return values from background work without blocking the main thread.</li>
+    <li>Integrate heavy computation into structured concurrency.</li>
+    <li>Handle cancellations properly.</li>
+  </ul>
+
+  <h3>3️⃣ Example 1 — Switching to IO Dispatcher</h3>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    println("Running on thread: ${'$'}{Thread.currentThread().name}")
+
+    val result = withContext(Dispatchers.IO) {
+        println("Running on thread: ${'$'}{Thread.currentThread().name}")
+        delay(1000) // Simulate long-running IO task
+        "Data from IO"
+    }
+
+    println("Result: ${'$'}result")
+    println("Back to thread: ${'$'}{Thread.currentThread().name}")
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre>
+Running on thread: main
+Running on thread: DefaultDispatcher-worker-1
+Result: Data from IO
+Back to thread: main
+  </pre>
+  <p>Explanation: The coroutine switches to a background thread for IO, then resumes on the main thread.</p>
+
+  <h3>4️⃣ Example 2 — CPU-Intensive Computation</h3>
+  <pre><code class="language-kotlin">
+val sum = withContext(Dispatchers.Default) {
+    var total = 0
+    for (i in 1..5_000_000) total += i
+    total
+}
+println("Sum: ${'$'}sum")
+  </code></pre>
+  <p>Explanation: Heavy computation runs on <code>Dispatchers.Default</code> to avoid blocking the main thread.</p>
+
+  <h3>5️⃣ Example 3 — Nested Context Switching</h3>
+  <pre><code class="language-kotlin">
+runBlocking {
+    println("Start on: ${'$'}{Thread.currentThread().name}")
+
+    withContext(Dispatchers.IO) {
+        println("IO work on: ${'$'}{Thread.currentThread().name}")
+
+        withContext(Dispatchers.Default) {
+            println("CPU work on: ${'$'}{Thread.currentThread().name}")
+        }
+    }
+
+    println("Back to start thread")
+}
+  </code></pre>
+  <p>Explanation: You can nest <code>withContext</code> blocks to switch between different dispatchers for IO and CPU work.</p>
+
+  <h3>6️⃣ launch vs withContext</h3>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>launch</th>
+        <th>withContext</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Returns</td>
+        <td>Job (no result)</td>
+        <td>Result of the block</td>
+      </tr>
+      <tr>
+        <td>Can switch thread</td>
+        <td>Only if dispatcher is specified</td>
+        <td>Explicitly switches context</td>
+      </tr>
+      <tr>
+        <td>Suspension</td>
+        <td>No, runs concurrently</td>
+        <td>Suspends until block finishes</td>
+      </tr>
+      <tr>
+        <td>Use-case</td>
+        <td>Fire-and-forget tasks</td>
+        <td>Get a result from background work</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>7️⃣ TL;DR</h3>
+  <p>
+    <code>withContext</code> is used to <strong>switch coroutine context safely</strong> for a block of code, 
+    perform work like network calls or heavy computation off the main thread, and return a result.  
+    It keeps structured concurrency intact and allows proper cancellation handling.
+  </p>
+</section>

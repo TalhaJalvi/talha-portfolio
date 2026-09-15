@@ -1,0 +1,42 @@
+<section class="content-section">
+    <h2>Understanding Processes, Threads, and Coroutines</h2>
+
+    <h3>1. Program</h3>
+    <p><strong>What:</strong> A program is a static set of instructions written in a programming language (like Kotlin, Java, or Python) that defines what actions a computer should perform.</p>
+    <p><strong>Why:</strong> Programs provide a blueprint for a computer to execute a specific task or solve a problem.</p>
+    <p><strong>How:</strong> The operating system loads a program into memory, converts it into one or more processes, and begins execution.</p>
+
+    <h3>2. Process</h3>
+    <p><strong>What:</strong> A process is a running instance of a program. It has its own <em>process ID (PID)</em>, <em>state</em>, <em>memory space</em>, <em>network handles</em>, and <em>file system handles</em>.</p>
+    <p><strong>Why:</strong> Processes allow programs to execute independently, each with its own memory and resources, preventing interference between applications.</p>
+    <p><strong>How:</strong> When you run a program, the operating system creates a process for it and allocates memory and resources to handle execution.</p>
+
+    <h3>3. Thread</h3>
+    <p><strong>What:</strong> A thread is the smallest unit of execution within a process. Every process has at least one thread — called the <em>main thread</em> or <em>thread of execution</em>.</p>
+    <p><strong>Why:</strong> Threads allow a program to perform multiple tasks simultaneously (e.g., downloading a file while updating the UI).</p>
+    <p><strong>How:</strong> A process can create multiple threads, and all threads share the same memory space but run independently on different CPU cores (if available).</p>
+
+    <h3>4. Sequential Execution</h3>
+    <p><strong>What:</strong> In sequential execution, instructions are executed one after another — one task must finish before the next begins.</p>
+    <p><strong>Why:</strong> This is simple and predictable but inefficient when tasks can be run concurrently (like waiting for network responses).</p>
+    <p><strong>How:</strong> The CPU executes each instruction in order, using a single thread without parallelism or concurrency.</p>
+
+    <h3>5. Thread Pool</h3>
+    <p><strong>What:</strong> A thread pool is a collection of pre-created threads that can be reused to execute multiple tasks concurrently.</p>
+    <p><strong>Why:</strong> Creating new threads is expensive in terms of system memory and CPU time. A thread pool reduces overhead by reusing existing threads instead of creating new ones for every task.</p>
+    <p><strong>How:</strong> When a task is submitted, a thread from the pool picks it up and executes it. After completion, the thread returns to the pool for reuse. This is used heavily in frameworks like <em>Executors</em> in Java and <em>Dispatchers.IO</em> in Kotlin coroutines.</p>
+
+    <h3>6. Coroutines</h3>
+    <p><strong>What:</strong> A coroutine is a lightweight, cooperative unit of work that can run multiple tasks on the same thread without blocking it.</p>
+    <p><strong>Why:</strong> Threads have system-level limitations — each thread consumes memory and CPU context. Coroutines are user-level constructs that can handle thousands of tasks efficiently without creating thousands of threads.</p>
+    <p><strong>How:</strong> Coroutines use <em>suspension</em> instead of blocking. When a coroutine waits (e.g., for a network call), it suspends itself and lets another coroutine run on the same thread, resuming later when the result is ready.</p>
+
+    <h3>7. Meaning of "Coroutine"</h3>
+    <p><strong>Co</strong> means <em>cooperative</em> and <strong>routines</strong> means <em>functions</em>. Together, coroutines are cooperative functions that work together efficiently by yielding control when waiting for a result instead of blocking the thread.</p>
+
+    <h3>8. Threads vs Coroutines</h3>
+    <ul>
+        <li><strong>Threads:</strong> Limited by the operating system, costly to create and manage.</li>
+        <li><strong>Coroutines:</strong> Lightweight, managed by the language runtime, and can run thousands concurrently on a few threads.</li>
+    </ul>
+</section>

@@ -1,0 +1,147 @@
+<section id="compose-composable-functions">
+  <h2>Composable Functions & Syntax</h2>
+  <p>
+    In Jetpack Compose, <strong>Composable functions</strong> are the fundamental building
+    blocks of your user interface. Instead of defining layouts in XML, you
+    create reusable Kotlin functions that describe what your UI should look like
+    for a given state. Compose then automatically updates (recomposes) your UI
+    whenever the data changes.
+  </p>
+
+  <h3>1. What is a Composable Function?</h3>
+  <p>
+    A composable function is a regular Kotlin function annotated with
+    <code>@Composable</code>. This annotation tells the Compose compiler that the function
+    contributes UI to your application.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello, $name!")
+}
+  </code></pre>
+
+  <p>
+    The above function describes <em>what</em> to display — not <em>how</em> to display it.
+    Compose takes care of rendering it efficiently based on the app state.
+  </p>
+
+  <h3>2. The <code>@Composable</code> Annotation</h3>
+  <p>
+    The <code>@Composable</code> annotation works like a bridge between your logic and the
+    Compose runtime. It enables special capabilities such as:
+  </p>
+  <ul>
+    <li>Tracking changes in state for recomposition</li>
+    <li>Rendering UI declaratively using function calls</li>
+    <li>Combining smaller composables into more complex layouts</li>
+  </ul>
+
+  <h3>3. Function Structure & Parameters</h3>
+  <p>
+    Composable functions can take parameters to make them flexible and reusable.
+    You can pass text, images, colors, or even other composables as arguments.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun WelcomeCard(username: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .padding(16.dp)
+            .background(Color.LightGray)
+    ) {
+        Text(text = "Welcome, $username!", style = MaterialTheme.typography.titleMedium)
+        Text(text = "Let's explore Jetpack Compose 🚀")
+    }
+}
+  </code></pre>
+
+  <p>
+    Notice how <code>Modifier</code> is passed as a parameter — this is a common pattern in
+    Compose that allows flexible styling and layout behavior.
+  </p>
+
+  <h3>4. Composing Composables</h3>
+  <p>
+    Composable functions can call other composables to create complex UIs
+    through composition.
+  </p>
+
+  <pre><code class="language-kotlin">
+@Composable
+fun UserProfile() {
+    Column(modifier = Modifier.padding(24.dp)) {
+        ProfilePicture()
+        Spacer(modifier = Modifier.height(12.dp))
+        UserDetails(name = "Talha Abbas", title = "Android Developer")
+    }
+}
+
+@Composable
+fun ProfilePicture() {
+    Box(
+        modifier = Modifier
+            .size(80.dp)
+            .clip(CircleShape)
+            .background(Color.Gray)
+    )
+}
+
+@Composable
+fun UserDetails(name: String, title: String) {
+    Column {
+        Text(text = name, style = MaterialTheme.typography.titleMedium)
+        Text(text = title, style = MaterialTheme.typography.bodyMedium)
+    }
+}
+  </code></pre>
+
+  <p>
+    This composition model promotes reusability — small building blocks combine
+    into larger UIs naturally.
+  </p>
+
+  <h3>5. Previewing Composables</h3>
+  <p>
+    You can preview your composables directly in Android Studio without running
+    the app on a device. Use the <code>@Preview</code> annotation for this:
+  </p>
+
+  <pre><code class="language-kotlin">
+@Preview(showBackground = true)
+@Composable
+fun WelcomeCardPreview() {
+    WelcomeCard(username = "Talha")
+}
+  </code></pre>
+
+  <p>
+    The <code>@Preview</code> annotation renders the composable in the IDE’s preview panel.
+    You can also specify parameters like <code>showSystemUi</code> or <code>backgroundColor</code>
+    for more realistic previews.
+  </p>
+
+  <h3>6. Best Practices</h3>
+  <ul>
+    <li>Use <strong>small, focused composables</strong> — each handling one logical piece of UI.</li>
+    <li><strong>Avoid side effects</strong> in composables — they should be pure and predictable.</li>
+    <li>Use <code>Modifier</code> for layout and styling instead of parameters like <code>padding</code> or <code>background</code>.</li>
+    <li>Preview your composables often to ensure UI consistency.</li>
+  </ul>
+
+  <h3>7. Common Mistakes</h3>
+  <ul>
+    <li>Forgetting the <code>@Composable</code> annotation (causes compile errors).</li>
+    <li>Doing heavy logic or state mutations inside composables.</li>
+    <li>Nesting composables too deeply — use meaningful structure instead.</li>
+  </ul>
+
+  <h3>8. What’s Next?</h3>
+  <p>
+    Now that you understand the basics of <strong>Composable functions</strong>, the next
+    article will dive into the <strong>Recomposition & Lifecycle</strong> — how Compose
+    automatically updates your UI in response to data changes.
+  </p>
+</section>

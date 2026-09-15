@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build Your Own MCP Client in Python | Talha Jalvi</title><meta name="description" content="Build a Python MCP client that connects, discovers capabilities, lists tools, calls tools, reads resources, and handles protocol versions safely."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/transports-clients/build-mcp-client-python.html"><link rel="stylesheet" href="../../../css/mcp-module-05.css"></head><body><main><article><div class="nav"><a href="module-05-index.html">← Module 5</a><span>Lesson 7</span></div><h1>Build Your Own MCP Client in Python</h1><pre>from mcp.client import Client
+
+async def inspect_server(url: str):
+    async with Client(url) as client:
+        print("protocol:", client.protocol_version)
+        print("capabilities:", client.server_capabilities)
+        tools = await client.list_tools()
+        for tool in tools.tools:
+            print(tool.name, tool.description)</pre><h2>Do not hardcode one protocol era</h2><p>The current SDK can negotiate with modern and older servers. Let the SDK handle protocol compatibility unless you have a specific interoperability requirement.</p><h2>Validate what you expose to the model</h2><p>Your client can list 200 tools, but your agent may need only 8. Filter and namespace before converting server capabilities into model tools.</p><h2>Capture server identity for diagnostics, not trust</h2><p>Self-reported server metadata is useful for logs and UI, but it should not be your authorization decision.</p><h2>Reference</h2><ul><li><a href="https://py.sdk.modelcontextprotocol.io/client/">Official Python SDK Client</a></li></ul><div class="next"><a href="mcp-tool-discovery.html">Next: Tool Discovery →</a></div></article></main></body></html>

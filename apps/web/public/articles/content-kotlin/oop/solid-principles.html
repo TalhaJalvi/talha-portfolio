@@ -1,0 +1,298 @@
+<section id="solid-principles-in-kotlin">
+  <h2>SOLID Principles in Kotlin</h2>
+
+  <p>Got help from <a href="https://medium.com/huawei-developers/kotlin-solid-principles-tutorial-examples-192bf8c049dd">https://medium.com/huawei-developers/kotlin-solid-principles-tutorial-examples-192bf8c049dd</a>
+    The SOLID principles represent five fundamental design guidelines for writing clean, maintainable, and scalable object-oriented code. 
+    They help developers avoid tightly coupled, rigid, or error-prone designs. 
+    Kotlin, with its expressive syntax and support for both object-oriented and functional paradigms, makes applying SOLID principles straightforward and practical.
+  </p>
+
+  <h3>1. Single Responsibility Principle (SRP)</h3>
+  <h4>What</h4>
+  <p>
+    A class should have only one responsibility — meaning it should have only one reason to change. 
+    This keeps classes focused, modular, and easier to maintain.
+  </p>
+
+  <h4>Violation Example</h4>
+  <pre><code class="language-kotlin">
+class ReportManager {
+    fun generateReport(): String {
+        return "Report Content"
+    }
+
+    fun saveToFile(content: String) {
+        println("Saving report to file: $content")
+    }
+
+    fun sendEmail(content: String) {
+        println("Sending report via email: $content")
+    }
+}
+  </code></pre>
+
+  <p>
+    <code>ReportManager</code> handles generating, saving, and sending reports — three separate responsibilities. Any change in email logic or file saving requires modifying this class, violating SRP.
+  </p>
+
+  <h4>Correct Implementation</h4>
+  <pre><code class="language-kotlin">
+class ReportGenerator {
+    fun generate(): String = "Report Content"
+}
+
+class ReportSaver {
+    fun save(content: String) = println("Saving report: $content")
+}
+
+class ReportSender {
+    fun send(content: String) = println("Sending report via email: $content")
+}
+
+fun main() {
+    val generator = ReportGenerator()
+    val saver = ReportSaver()
+    val sender = ReportSender()
+
+    val report = generator.generate()
+    saver.save(report)
+    sender.send(report)
+}
+  </code></pre>
+
+  <p>
+    Each class now handles a single responsibility. Modifications in one class won’t affect the others, making the system easier to extend or test.
+  </p>
+
+  <h3>2. Open/Closed Principle (OCP)</h3>
+  <h4>What</h4>
+  <p>
+    Classes should be open for extension but closed for modification. 
+    You should be able to introduce new behavior without altering existing code.
+  </p>
+
+  <h4>Violation Example</h4>
+  <pre><code class="language-kotlin">
+class AreaCalculator {
+    fun calculate(shape: Any): Double {
+        return when (shape) {
+            is Circle -> Math.PI * shape.radius * shape.radius
+            is Rectangle -> shape.width * shape.height
+            else -> 0.0
+        }
+    }
+}
+
+class Circle(val radius: Double)
+class Rectangle(val width: Double, val height: Double)
+  </code></pre>
+
+  <p>
+    Adding a new shape (e.g., Triangle) requires modifying <code>calculate()</code>, violating OCP.
+  </p>
+
+  <h4>Correct Implementation</h4>
+  <pre><code class="language-kotlin">
+interface Shape {
+    fun area(): Double
+}
+
+class Circle(private val radius: Double) : Shape {
+    override fun area() = Math.PI * radius * radius
+}
+
+class Rectangle(private val width: Double, private val height: Double) : Shape {
+    override fun area() = width * height
+}
+
+class Triangle(private val base: Double, private val height: Double) : Shape {
+    override fun area() = 0.5 * base * height
+}
+
+fun printArea(shape: Shape) {
+    println("Area: ${shape.area()}")
+}
+  </code></pre>
+
+  <p>
+    Now new shapes can be added by implementing the <code>Shape</code> interface — no modification to existing code is needed.
+  </p>
+
+   <h3>Liskov Substitution Principle (LSP)</h3>
+
+  <h3>What Is It?</h3>
+  <p>
+    The Liskov Substitution Principle is a key rule in object-oriented programming. 
+    It states that if a program works with a certain type of object, it should also work with any subtype of that object without issues. 
+    In other words, all methods and properties in the base class should work correctly in all subclasses without modifying client code.
+  </p>
+
+  <h3>Violation Example</h3>
+  <p>
+    In this violation example, a subclass inherits from the base class but does not honor the expected behavior. 
+    This breaks the Liskov principle because client code relying on the base class can fail or behave unexpectedly.
+  </p>
+  <pre><code class="language-kotlin">
+// Base class
+open class Bird {
+    // common bird methods and properties
+}
+
+// Interface for flying birds
+interface IFlyingBird {
+    fun fly(): Boolean
+}
+
+// Subclass that violates LSP
+class Penguin : Bird() {
+    // Penguins cannot fly, so fly method is missing
+}
+
+// Subclass that can fly
+class Eagle : Bird(), IFlyingBird {
+    override fun fly(): Boolean {
+        return true
+    }
+}
+  </code></pre>
+  <p>
+    Here, <code>Penguin</code> inherits from <code>Bird</code> but does not implement <code>IFlyingBird</code>. 
+    If client code expects all birds to fly, passing a <code>Penguin</code> will break the program.
+  </p>
+
+  <h3>Correct Usage</h3>
+  <p>
+    In the correct usage, only birds that can fly implement the <code>IFlyingBird</code> interface. 
+    This ensures that all methods and properties defined for flying behavior remain valid, and client code can safely use any subclass without changes.
+  </p>
+  <pre><code class="language-kotlin">
+// Base class
+open class Bird {
+    // common bird methods and properties
+}
+
+// Interface for flying birds
+interface IFlyingBird {
+    fun fly(): Boolean
+}
+
+// Subclass for penguins (cannot fly)
+class Penguin : Bird() {
+    // specific penguin behavior
+}
+
+// Subclass for eagles (can fly)
+class Eagle : Bird(), IFlyingBird {
+    override fun fly(): Boolean {
+        return true
+    }
+}
+  </code></pre>
+
+  <p>
+    By separating flying behavior into an interface, we ensure that only birds that can fly implement <code>fly()</code>. 
+    This respects the Liskov Substitution Principle and avoids breaking client code.
+  </p>
+
+  <h3>4. Interface Segregation Principle (ISP)</h3>
+  <h4>What</h4>
+  <p>
+    Clients should not be forced to depend on interfaces they do not use. 
+    Large interfaces should be split into smaller, more focused ones.
+  </p>
+
+  <h4>Violation Example</h4>
+  <pre><code class="language-kotlin">
+interface Machine {
+    fun printDocument()
+    fun scanDocument()
+    fun faxDocument()
+}
+
+class BasicPrinter : Machine {
+    override fun printDocument() = println("Printing...")
+    override fun scanDocument() { /* Not needed */ }
+    override fun faxDocument() { /* Not needed */ }
+}
+  </code></pre>
+
+  <h4>Correct Implementation</h4>
+  <pre><code class="language-kotlin">
+interface Printer { fun printDocument() }
+interface Scanner { fun scanDocument() }
+interface Fax { fun faxDocument() }
+
+class MultiFunctionPrinter : Printer, Scanner, Fax {
+    override fun printDocument() = println("Printing document...")
+    override fun scanDocument() = println("Scanning document...")
+    override fun faxDocument() = println("Faxing document...")
+}
+
+class SimplePrinter : Printer {
+    override fun printDocument() = println("Printing document...")
+}
+  </code></pre>
+
+  <h3>5. Dependency Inversion Principle (DIP)</h3>
+  <h4>What</h4>
+  <p>
+   The Dependency Inversion Principle (DIP) is a SOLID guideline which emphasizes that high-level modules should not rely directly on low-level modules; instead, both should depend on abstractions. In practice, this means that classes should work with interfaces or abstract classes rather than concrete implementations. By following DIP, components are decoupled from one another, resulting in code that is more modular, easier to test, and simpler to maintain.
+  </p>
+
+  <h4>Violation Example</h4>
+  <pre><code class="language-kotlin">
+class EmailService {
+    fun sendEmail(message: String) = println("Sending email: $message")
+}
+
+class NotificationManager {
+    private val emailService = EmailService()
+
+    fun notify(message: String) {
+        emailService.sendEmail(message)
+    }
+}
+  </code></pre>
+
+  <h4>Correct Implementation</h4>
+  <pre><code class="language-kotlin">
+interface NotificationService {
+    fun send(message: String)
+}
+
+class EmailService : NotificationService {
+    override fun send(message: String) = println("Email sent: $message")
+}
+
+class SMSService : NotificationService {
+    override fun send(message: String) = println("SMS sent: $message")
+}
+
+class NotificationManager(private val service: NotificationService) {
+    fun notify(message: String) = service.send(message)
+}
+
+fun main() {
+    val notifier = NotificationManager(EmailService())
+    notifier.notify("Hello from Kotlin SOLID!")
+
+    val smsNotifier = NotificationManager(SMSService())
+    smsNotifier.notify("Hello via SMS!")
+}
+  </code></pre>
+
+  <h3>Interview Questions & Answers</h3>
+  <ul>
+    <li><strong>Q1:</strong> What does SOLID stand for?<br>
+        <strong>A:</strong> Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.</li>
+
+    <li><strong>Q2:</strong> Why are SOLID principles important?<br>
+        <strong>A:</strong> They make code easier to maintain, test, and scale by reducing coupling and increasing cohesion.</li>
+
+    <li><strong>Q3:</strong> How does Kotlin support Dependency Inversion naturally?<br>
+        <strong>A:</strong> Through interfaces, higher-order functions, and dependency injection patterns.</li>
+
+    <li><strong>Q4:</strong> What is a common violation of Liskov Substitution Principle?<br>
+        <strong>A:</strong> When a subclass overrides a parent method in a way that breaks expected behavior (like Square changing Rectangle’s width/height behavior).</li>
+
+    <li><strong>Q5:</strong> How does Interface Segregation help in real projects?<br

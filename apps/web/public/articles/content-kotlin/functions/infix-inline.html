@@ -1,0 +1,179 @@
+<section id="kotlin-infix-inline" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Infix and Inline Functions in Kotlin</h2>
+
+    <h4>1. Why Use Infix and Inline Functions?</h4>
+    <p>
+      Kotlin provides <strong>infix</strong> and <strong>inline</strong> functions to improve code readability, conciseness, and performance.
+      <ul>
+        <li><strong>Infix functions</strong> allow calling functions in a natural, readable way without using parentheses.</li>
+        <li><strong>Inline functions</strong> optimize performance by avoiding lambda object creation and function call overhead.</li>
+      </ul>
+    </p>
+    <p>
+      Together, these features make Kotlin code expressive, readable, and efficient.
+    </p>
+
+    <hr>
+
+    <h4>2. Infix Functions</h4>
+    <p>
+      An <strong>infix function</strong> is a function that can be called using infix notation — without parentheses or the dot <code>.</code> operator.
+    </p>
+
+    <h5>Requirements for Infix Functions</h5>
+    <ul>
+      <li>Must be a member function or an extension function.</li>
+      <li>Must have a single parameter.</li>
+      <li>Must be marked with the <code>infix</code> keyword.</li>
+    </ul>
+
+    <h5>Basic Infix Function Example</h5>
+    <pre><code class="language-kotlin">
+// Extension function with infix notation
+infix fun Int.times(str: String) = str.repeat(this)
+
+fun main() {
+    val result = 3 times "Hi "
+    println(result) // Output: Hi Hi Hi 
+}
+    </code></pre>
+
+    <h5>Using Infix with Classes</h5>
+    <pre><code class="language-kotlin">
+class Person(val name: String) {
+    infix fun likes(other: Person) = "${this.name} likes ${other.name}"
+}
+
+fun main() {
+    val alice = Person("Alice")
+    val bob = Person("Bob")
+
+    println(alice likes bob) // Output: Alice likes Bob
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>3. Inline Functions</h4>
+    <p>
+      An <strong>inline function</strong> tells the compiler to insert the function's code directly at the call site instead of creating a function object.
+      This improves performance, especially when using lambdas as parameters.
+    </p>
+
+    <h5>Basic Inline Function Example</h5>
+    <pre><code class="language-kotlin">
+inline fun operate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val sum = operate(5, 3) { x, y -> x + y }
+    println(sum) // Output: 8
+}
+    </code></pre>
+
+    <p>
+      <strong>Benefit:</strong> The lambda <code>{ x, y -> x + y }</code> is inserted directly into the call site, avoiding lambda object creation.
+    </p>
+
+    <h5>Inline Function with Reified Type</h5>
+    <p>
+      Inline functions can also use <code>reified</code> type parameters to access type information at runtime, which is not normally available due to type erasure.
+    </p>
+    <pre><code class="language-kotlin">
+inline fun <reified T> isType(value: Any): Boolean {
+    return value is T
+}
+
+fun main() {
+    println(isType<String>("Hello")) // Output: true
+    println(isType<Int>("Hello"))    // Output: false
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>4. Combining Infix and Inline Functions</h4>
+    <p>
+      You can also declare a function as both <code>infix</code> and <code>inline</code> for a clean syntax and optimized performance.
+    </p>
+
+    <pre><code class="language-kotlin">
+inline infix fun Int.shout(message: String) = println("$message!".repeat(this))
+
+fun main() {
+    3 shout "Wow" 
+    // Output: Wow!Wow!Wow!
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>5. When to Use and When Not to Use</h4>
+
+    <h6>✅ Use Infix Functions When:</h6>
+    <ul>
+      <li>Function has a single, meaningful parameter.</li>
+      <li>You want cleaner, readable syntax resembling natural language.</li>
+      <li>Working with DSLs (Domain Specific Languages) or expressive APIs.</li>
+    </ul>
+
+    <h6>✅ Use Inline Functions When:</h6>
+    <ul>
+      <li>Passing lambdas as parameters to avoid function object overhead.</li>
+      <li>You want to use <code>reified</code> types for generic type checking.</li>
+      <li>Performance is important in tight loops or frequently called functions.</li>
+    </ul>
+
+    <h6>🚫 Avoid When:</h6>
+    <ul>
+      <li>Function is large — inlining can increase bytecode size.</li>
+      <li>Overusing infix functions can reduce clarity if parameters are unclear.</li>
+      <li>Lambda captures large variables — may lead to memory issues.</li>
+    </ul>
+
+    <hr>
+
+    <h4>6. Common Interview Questions</h4>
+    <ul>
+      <li><strong>What is an infix function?</strong><br> 
+          A function called without parentheses using the <code>infix</code> keyword; requires a single parameter.
+      </li>
+      <li><strong>What is an inline function?</strong><br>
+          A function where the compiler inserts the code at the call site, reducing lambda object creation and overhead.
+      </li>
+      <li><strong>Can you combine infix and inline?</strong><br>
+          Yes, for readable syntax and optimized performance.
+      </li>
+      <li><strong>When to use reified types?</strong><br>
+          Inside inline functions to access generic type information at runtime.
+      </li>
+      <li><strong>Are there drawbacks of inline functions?</strong><br>
+          Yes, inlining large functions can increase bytecode size and memory usage.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h4>7. Example Program</h4>
+    <pre><code class="language-kotlin">
+// Infix and Inline combined example
+inline infix fun String.repeatMessage(times: Int) = this.repeat(times)
+
+fun main() {
+    val message = "Hello " repeatMessage 3
+    println(message) // Output: Hello Hello Hello 
+}
+    </code></pre>
+
+    <hr>
+
+    <p>
+      <strong>Summary:</strong><br>
+      Infix and inline functions make Kotlin code more readable, expressive, and efficient.  
+      Infix functions provide natural syntax for single-parameter functions, while inline functions optimize performance and enable reified types.  
+      Using them effectively improves code clarity, performance, and developer productivity.
+    </p>
+  </div>
+</section>

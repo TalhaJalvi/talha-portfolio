@@ -1,0 +1,200 @@
+<section id="kotlin-vararg" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Vararg in Kotlin (Variable Number of Arguments)</h2>
+
+    <h4>1. Why Use <code>vararg</code>?</h4>
+    <p>
+      Sometimes, you don’t know how many arguments a function should take. Instead of defining multiple overloads or passing a list manually, Kotlin provides the <code>vararg</code> keyword to accept a <strong>variable number of arguments</strong>.
+    </p>
+    <p>
+      It allows you to pass multiple values of the same type to a single parameter, making your function calls more flexible and concise.
+    </p>
+
+    <hr>
+
+    <h4>2. How to Use <code>vararg</code> in Functions</h4>
+    <p>
+      You can declare a <code>vararg</code> parameter in a function to accept zero or more values of the specified type.
+    </p>
+
+    <pre><code class="language-kotlin">
+// Example: Using vararg in Kotlin
+fun printNames(vararg names: String) {
+    for (name in names) {
+        println(name)
+    }
+}
+
+fun main() {
+    printNames("Talha", "Sara", "Ali")
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Talha
+Sara
+Ali
+    </code></pre>
+
+    <hr>
+
+    <h4>3. Accessing <code>vararg</code> Values</h4>
+    <p>
+      Internally, Kotlin stores all <code>vararg</code> parameters as an array. This means you can use all array functions and properties on them.
+    </p>
+
+    <pre><code class="language-kotlin">
+fun sumAll(vararg numbers: Int): Int {
+    return numbers.sum() // numbers is an IntArray
+}
+
+fun main() {
+    println(sumAll(1, 2, 3, 4)) // Output: 10
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>4. Passing Arrays to Vararg Parameters</h4>
+    <p>
+      You can also pass an existing array to a <code>vararg</code> function using the <strong>spread operator</strong> (<code>*</code>).
+    </p>
+
+    <pre><code class="language-kotlin">
+fun printLanguages(vararg languages: String) {
+    languages.forEach { println(it) }
+}
+
+fun main() {
+    val langs = arrayOf("Kotlin", "Java", "Python")
+    printLanguages(*langs) // Spread operator unpacks the array
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Kotlin
+Java
+Python
+    </code></pre>
+
+    <hr>
+
+    <h4>5. Combining Vararg with Other Parameters</h4>
+    <p>
+      You can combine <code>vararg</code> with normal parameters, but the <code>vararg</code> must be the <strong>last</strong> or a <strong>second-to-last</strong> parameter (if followed by a parameter with a named argument).
+    </p>
+
+    <pre><code class="language-kotlin">
+fun greetUsers(greeting: String, vararg users: String) {
+    for (user in users) println("$greeting, $user!")
+}
+
+fun main() {
+    greetUsers("Hello", "Talha", "Sara", "Ali")
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Hello, Talha!
+Hello, Sara!
+Hello, Ali!
+    </code></pre>
+
+    <p>
+      If a parameter comes after a <code>vararg</code>, you must use a <strong>named argument</strong> when calling the function.
+    </p>
+
+    <pre><code class="language-kotlin">
+fun registerUsers(vararg names: String, admin: String) {
+    println("Admin: $admin")
+    println("Users: ${names.joinToString()}")
+}
+
+fun main() {
+    registerUsers("Ahsan", "Zain", admin = "Talha")
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>6. When to Use and When Not to Use <code>vararg</code></h4>
+
+    <h6>✅ Use <code>vararg</code> when:</h6>
+    <ul>
+      <li>You want to pass multiple values of the same type to a function easily.</li>
+      <li>You don’t want to create an array manually.</li>
+      <li>The number of arguments is unknown at compile time.</li>
+    </ul>
+
+    <h6>🚫 Avoid <code>vararg</code> when:</h6>
+    <ul>
+      <li>You need multiple parameters of different types — use a data class instead.</li>
+      <li>You frequently pass large arrays (it can increase memory overhead).</li>
+      <li>The function logic is better handled with a collection or list parameter.</li>
+    </ul>
+
+    <hr>
+
+    <h4>7. Interview Questions</h4>
+    <ul>
+      <li><strong>What does the <code>vararg</code> keyword do in Kotlin?</strong><br>
+        It allows a function to accept a variable number of arguments of the same type without manually creating an array.
+      </li>
+
+      <li><strong>How are <code>vararg</code> parameters represented internally?</strong><br>
+        They are represented as arrays (e.g., <code>IntArray</code> for integers, <code>Array&lt;String&gt;</code> for strings).
+      </li>
+
+      <li><strong>What is the spread operator (<code>*</code>) used for in Kotlin?</strong><br>
+        It is used to unpack the elements of an array when passing it to a <code>vararg</code> parameter.
+      </li>
+
+      <li><strong>Can you have multiple <code>vararg</code> parameters in a single function?</strong><br>
+        No, Kotlin only allows one <code>vararg</code> parameter per function to avoid ambiguity.
+      </li>
+
+      <li><strong>How can you mix normal parameters and <code>vararg</code> in the same function?</strong><br>
+        Place normal parameters before the <code>vararg</code>. If a parameter comes after it, use named arguments when calling the function.
+      </li>
+
+      <li><strong>When should you avoid using <code>vararg</code>?</strong><br>
+        Avoid it when passing large collections frequently or when parameters are of mixed types — a list or data class is better in those cases.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h4>8. Example Program</h4>
+    <pre><code class="language-kotlin">
+fun calculateAverage(vararg scores: Int): Double {
+    if (scores.isEmpty()) return 0.0
+    return scores.average()
+}
+
+fun main() {
+    println("Average Score: ${calculateAverage(85, 90, 95)}")
+    println("Average Score: ${calculateAverage(60, 70)}")
+    println("Average Score: ${calculateAverage()}")
+}
+    </code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>
+Average Score: 90.0
+Average Score: 65.0
+Average Score: 0.0
+    </code></pre>
+
+    <hr>
+
+    <p>
+      <strong>Summary:</strong><br>
+      The <code>vararg</code> keyword in Kotlin allows functions to accept a flexible number of arguments 
+      without creating overloaded versions or passing arrays manually. It improves readability and flexibility 
+      while keeping function calls concise and expressive.
+    </p>
+  </div>
+</section>

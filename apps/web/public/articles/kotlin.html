@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotlin</title>
+    <link rel="stylesheet" href="../css/kotlin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <header class="header">
+        <h1>Kotlin</h1>
+        <button id="menu-toggle" class="menu-toggle">
+            &#9776; </button>
+        <button id="theme-switcher" class="theme-switcher">Toggle Theme</button>
+    </header>
+    </header>
+
+    <nav class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-title">Kotlin Topics</li>
+
+        <!-- 1. Kotlin Basics -->
+        <li class="menu-section">Basics</li>
+        <li><a href="content-kotlin/basics/introduction.html" class="nav-link">Introduction</a></li>
+        <li><a href="content-kotlin/basics/variables-and-types.html" class="nav-link">Variables & Data Types</a></li>
+        <li><a href="content-kotlin/basics/type-inference.html" class="nav-link">Type Inference</a></li>
+        <li><a href="content-kotlin/basics/strings.html" class="nav-link">Strings & Interpolation</a></li>
+        <li><a href="content-kotlin/basics/comments.html" class="nav-link">Comments</a></li>
+
+        <!-- 2. Control Flow -->
+        <li class="menu-section">Control Flow</li>
+        <li><a href="content-kotlin/control-flow/if-else.html" class="nav-link">If-Else</a></li>
+        <li><a href="content-kotlin/control-flow/when.html" class="nav-link">When Expression</a></li>
+        <li><a href="content-kotlin/control-flow/loops.html" class="nav-link">Loops</a></li>
+        <li><a href="content-kotlin/control-flow/ranges.html" class="nav-link">Ranges</a></li>
+        <li><a href="content-kotlin/control-flow/break-continue.html" class="nav-link">Break & Continue</a></li>
+
+        <!-- 3. Functions -->
+        <li class="menu-section">Functions</li>
+        <li><a href="content-kotlin/functions/basic-functions.html" class="nav-link">Basic Functions</a></li>
+        <li><a href="content-kotlin/functions/default-arguments.html" class="nav-link">Default & Named Arguments</a></li>
+        <li><a href="content-kotlin/functions/vararg.html" class="nav-link">Vararg Parameters</a></li>
+        <li><a href="content-kotlin/functions/lambdas.html" class="nav-link">Lambdas & Higher-Order Functions</a></li>
+        <li><a href="content-kotlin/functions/infix-inline.html" class="nav-link">Infix & Inline Functions</a></li>
+
+        <!-- 4. Collections -->
+        <li class="menu-section">Collections</li>
+        <li><a href="content-kotlin/collections/what-are-collections.html" class="nav-link">Collections</a></li>
+        <li><a href="content-kotlin/collections/arrays.html" class="nav-link">Arrays</a></li>
+        <li><a href="content-kotlin/collections/lists.html" class="nav-link">Lists</a></li>
+        <li><a href="content-kotlin/collections/sets.html" class="nav-link">Sets</a></li>
+        <li><a href="content-kotlin/collections/maps.html" class="nav-link">Maps</a></li>
+        <li><a href="content-kotlin/collections/functions.html" class="nav-link">Collection Functions</a></li>
+
+        <!-- 5. Null Safety -->
+        <li class="menu-section">Null Safety</li>
+        <li><a href="content-kotlin/null-safety/nullables.html" class="nav-link">Nullable Types</a></li>
+
+        <!-- 6. Standard Library -->
+        <li class="menu-section">Standard Library</li>
+        <li><a href="content-kotlin/std-lib/scope-functions.html" class="nav-link">Scope Functions</a></li>
+        <li><a href="content-kotlin/std-lib/let-apply-run.html" class="nav-link">Let, Apply, Run, Also, With</a></li>
+        <li><a href="content-kotlin/std-lib/takeif.html" class="nav-link">TakeIf & TakeUnless</a></li>
+        <li><a href="content-kotlin/std-lib/lazy.html" class="nav-link">Lazy Initialization</a></li>
+
+        <!-- 7. Exception Handling -->
+        <li class="menu-section">Exception Handling</li>
+        <li><a href="content-kotlin/exceptions/try-catch.html" class="nav-link">Try-Catch-Finally</a></li>
+        <li><a href="content-kotlin/exceptions/custom-exceptions.html" class="nav-link">Custom Exceptions</a></li>
+
+        <!-- 8. Functional Programming -->
+        <li class="menu-section">Functional Programming</li>
+        <li><a href="content-kotlin/fp/higher-order.html" class="nav-link">Higher-Order Functions</a></li>
+        <li><a href="content-kotlin/fp/extension-functions.html" class="nav-link">Extension Functions</a></li>
+        <li><a href="content-kotlin/fp/operator-overloading.html" class="nav-link">Operator Overloading</a></li>
+        <li><a href="content-kotlin/fp/currying.html" class="nav-link">Currying & Partial Application</a></li>
+
+        <!-- 9. Generics -->
+        <li class="menu-section">Generics</li>
+        <li><a href="content-kotlin/generics/generic-functions.html" class="nav-link">Generic Functions</a></li>
+        <li><a href="content-kotlin/generics/type-constraints.html" class="nav-link">Type Constraints</a></li>
+        <li><a href="content-kotlin/generics/variance.html" class="nav-link">Variance & Reified Types</a></li>
+
+        <!-- 10. Coroutines -->
+        <li class="menu-section">Coroutines</li>
+        <li><a href="content-kotlin/coroutines/intro.html" class="nav-link">Introduction</a></li>
+        <li><a href="content-kotlin/coroutines/basics.html" class="nav-link">Coroutine Basics</a></li>
+        <li><a href="content-kotlin/coroutines/suspending-functions.html" class="nav-link">Suspending Functions & Modifiers</a></li>
+        <li><a href="content-kotlin/coroutines/builders.html" class="nav-link">Coroutine Builders Launch, Async, RunBlocking</a></li>
+        <li><a href="content-kotlin/coroutines/job-hierarchy.html" class="nav-link">Job Hirarchy</a></li>
+        <li><a href="content-kotlin/coroutines/with-context.html" class="nav-link">WithContext</a></li>
+        <li><a href="content-kotlin/coroutines/interview.html" class="nav-link">Interview Q/A</a></li>
+
+        <!--11. Flows -->
+        <li class="menu-section">Flows</li>
+        <li><a href="content-kotlin/flows/basics.html" class="nav-link">Introduction and Basics</a></li>
+        <li><a href="content-kotlin/flows/flow-operators.html" class="nav-link">Flows operators</a></li>
+        <li><a href="content-kotlin/flows/flow-context.html" class="nav-link">Context switching in Flows</a></li>
+        <li><a href="content-kotlin/flows/shared-flows.html" class="nav-link">Shared Flows in Kotlin</a></li>
+        <li><a href="content-kotlin/flows/state-flows.html" class="nav-link">State Flows in Kotlin</a></li>
+        <li><a href="content-kotlin/coroutines/interview.html" class="nav-link">Interview Q/A</a></li>
+
+        <!-- 12. File I/O -->
+        <li class="menu-section">File & IO</li>
+        <li><a href="content-kotlin/io/read-write.html" class="nav-link">Read/Write Files</a></li>
+        <li><a href="content-kotlin/io/streams.html" class="nav-link">Streams</a></li>
+        <li><a href="content-kotlin/io/serialization.html" class="nav-link">Serialization</a></li>
+
+        <!-- 13. Advanced Kotlin -->
+        <li class="menu-section">Advanced</li>
+        <li><a href="content-kotlin/advanced/reflection.html" class="nav-link">Reflection</a></li>
+        <li><a href="content-kotlin/advanced/delegation.html" class="nav-link">Delegation</a></li>
+        <li><a href="content-kotlin/advanced/dsl.html" class="nav-link">DSLs</a></li>
+        <li><a href="content-kotlin/advanced/multiplatform.html" class="nav-link">Kotlin Multiplatform</a></li>
+
+
+        <!-- 14. Best Practices -->
+        <li class="menu-section">Best Practices</li>
+        <li><a href="content-kotlin/best-practices/immutability.html" class="nav-link">Immutability</a></li>
+        <li><a href="content-kotlin/best-practices/idiomatic.html" class="nav-link">Idiomatic Kotlin</a></li>
+        <li><a href="content-kotlin/best-practices/clean-code.html" class="nav-link">Clean Code Guidelines</a></li>
+
+    </ul>
+    </nav>
+
+
+    <main class="content">
+        <div id="content-display">
+            </div>
+    </main>
+
+    <script src="../js/kotlin.js"></script>
+</body>
+</html>

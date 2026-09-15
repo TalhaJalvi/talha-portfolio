@@ -1,0 +1,93 @@
+<section id="compose-project-setup">
+  <h2>Jetpack Compose Project Setup: Android Studio, Kotlin & Gradle</h2>
+  <p>This guide shows the modern way to create a <strong>Jetpack Compose</strong> project and add Compose to an existing Android app. For new projects, Android Studio's <strong>Empty Activity</strong> template is the simplest path because it configures Compose for you.</p>
+
+  <div class="callout"><strong>2026 setup note:</strong> with Kotlin 2.0 and newer, the Compose compiler is configured through the Kotlin Compose Compiler Gradle plugin. Compose libraries are best managed with the official Compose BOM so compatible library versions stay aligned.</div>
+
+  <h3>1. Create a New Compose App</h3>
+  <ol>
+    <li>Open Android Studio and choose <strong>New Project</strong>.</li>
+    <li>Select <strong>Empty Activity</strong>.</li>
+    <li>Use Kotlin and choose the minimum SDK needed by your app.</li>
+    <li>Finish the wizard and let Gradle sync.</li>
+  </ol>
+
+  <h3>2. Minimal Compose Activity</h3>
+  <pre><code class="language-kotlin">class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                Text("Hello Compose")
+            }
+        }
+    }
+}</code></pre>
+
+  <h3>3. Enable Compose in an Existing Project</h3>
+  <pre><code class="language-kotlin">android {
+    buildFeatures {
+        compose = true
+    }
+}</code></pre>
+
+  <h3>4. Compose Compiler Plugin</h3>
+  <p>For Kotlin 2.0+, use the <code>org.jetbrains.kotlin.plugin.compose</code> Gradle plugin and keep its version aligned with your Kotlin version. This replaces the older pattern of manually setting a Compose compiler extension version.</p>
+
+  <h3>5. Use the Compose BOM</h3>
+  <p>The Compose Bill of Materials keeps Compose libraries on compatible versions. As of September 2026, Android Developers lists the stable Compose BOM as <code>2026.08.00</code>.</p>
+  <pre><code class="language-kotlin">dependencies {
+    val composeBom = platform("androidx.compose:compose-bom:2026.08.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+}</code></pre>
+
+  <h3>6. Verify the Setup with a Preview</h3>
+  <pre><code class="language-kotlin">@Composable
+fun Greeting(name: String) {
+    Text("Hello, $name!")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Greeting("Compose")
+}</code></pre>
+
+  <h3>7. Common Setup Problems</h3>
+  <ul>
+    <li><strong>Compiler mismatch:</strong> on Kotlin 2.0+, use the Compose Compiler Gradle plugin that matches Kotlin.</li>
+    <li><strong>Unresolved imports:</strong> verify the BOM and the specific Compose libraries your code uses.</li>
+    <li><strong>Preview not rendering:</strong> include preview and tooling dependencies.</li>
+    <li><strong>SDK compatibility:</strong> newer Compose releases can require newer compile SDK and Android Gradle Plugin versions.</li>
+  </ul>
+
+  <h3>8. Recommended Structure</h3>
+  <pre><code>app/
+└── src/main/java/com/example/app/
+    ├── MainActivity.kt
+    ├── ui/
+    │   ├── components/
+    │   ├── screens/
+    │   └── theme/
+    ├── data/
+    └── domain/</code></pre>
+
+  <h3>9. Next Steps</h3>
+  <ul>
+    <li><a href="composable-functions.html">Composable functions in Jetpack Compose</a></li>
+    <li><a href="recomposition.html">How recomposition works</a></li>
+  </ul>
+
+  <h3>10. Official References</h3>
+  <ul>
+    <li><a href="https://developer.android.com/develop/ui/compose/setup">Jetpack Compose quick start</a></li>
+    <li><a href="https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler">Compose dependencies and compiler setup</a></li>
+    <li><a href="https://developer.android.com/develop/ui/compose/bom">Compose BOM</a></li>
+  </ul>
+</section>

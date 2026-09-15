@@ -1,0 +1,94 @@
+<section id="kotlin-visibility-modifiers">
+  <h2>Kotlin Visibility Modifiers: public, private, protected, internal & File-Level Visibility</h2>
+  <p><strong>Kotlin visibility modifiers</strong> control where classes, functions, properties, constructors, and other declarations can be accessed. The four modifiers are <code>public</code>, <code>private</code>, <code>protected</code>, and <code>internal</code>.</p>
+
+  <div class="callout"><strong>Quick answer:</strong> Kotlin declarations are <code>public</code> by default. A top-level <code>private</code> declaration is visible only inside the same file, while <code>internal</code> is visible throughout the same module.</div>
+
+  <h3>1. Visibility Modifiers at a Glance</h3>
+  <table>
+    <thead><tr><th>Modifier</th><th>Top-level declaration</th><th>Class member</th></tr></thead>
+    <tbody>
+      <tr><td><code>public</code></td><td>Visible everywhere</td><td>Visible everywhere the containing type is visible</td></tr>
+      <tr><td><code>private</code></td><td>Visible only in the same file</td><td>Visible only inside the declaring class</td></tr>
+      <tr><td><code>protected</code></td><td>Not allowed</td><td>Visible in the class and subclasses</td></tr>
+      <tr><td><code>internal</code></td><td>Visible in the same module</td><td>Visible in the same module</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2. File-Level Visibility in Kotlin</h3>
+  <p>File-level visibility applies to declarations written directly in a Kotlin file rather than inside a class. This is especially important for the <code>private</code> modifier.</p>
+  <pre><code>// Analytics.kt
+private const val TAG = "Analytics"
+
+private fun normalizeEventName(name: String): String {
+    return name.trim().lowercase()
+}
+
+fun trackEvent(name: String) {
+    println("$TAG: ${normalizeEventName(name)}")
+}</code></pre>
+  <p><code>TAG</code> and <code>normalizeEventName()</code> are available anywhere inside <code>Analytics.kt</code>, but code in another file cannot access them. The public <code>trackEvent()</code> function remains accessible to callers.</p>
+
+  <h3>3. <code>private</code> at File Level vs Class Level</h3>
+  <ul>
+    <li><strong>Top-level private:</strong> visible throughout the same Kotlin file.</li>
+    <li><strong>Class-member private:</strong> visible only inside the declaring class.</li>
+  </ul>
+  <pre><code>private fun fileHelper() = Unit
+
+class Example {
+    private fun classHelper() = Unit
+}</code></pre>
+
+  <h3>4. The <code>internal</code> Modifier</h3>
+  <p><code>internal</code> is useful when multiple files or packages inside one module need access to a declaration, but consumers of another module should not treat it as public API.</p>
+  <pre><code>internal class SessionStore {
+    internal fun clear() { /* module-only API */ }
+}</code></pre>
+  <p>A Kotlin module is a set of source files compiled together, such as a Gradle module. Package boundaries do not define <code>internal</code> visibility.</p>
+
+  <h3>5. The <code>protected</code> Modifier</h3>
+  <p><code>protected</code> is only valid for class members. It makes a member available inside the declaring class and subclasses.</p>
+  <pre><code>open class BaseRepository {
+    protected fun logRequest() = println("request")
+}
+
+class UserRepository : BaseRepository() {
+    fun load() {
+        logRequest()
+    }
+}</code></pre>
+
+  <h3>6. Choosing the Right Visibility</h3>
+  <ul>
+    <li>Use <code>private</code> for implementation details that should not become dependencies.</li>
+    <li>Use <code>internal</code> for module-level APIs shared across files or packages.</li>
+    <li>Use <code>protected</code> only when subclasses genuinely need an extension point.</li>
+    <li>Keep <code>public</code> APIs intentional because callers can become coupled to them.</li>
+  </ul>
+
+  <h3>7. Common Interview Questions</h3>
+  <ul>
+    <li><strong>What is the default visibility in Kotlin?</strong> <code>public</code>.</li>
+    <li><strong>What does file-level <code>private</code> mean?</strong> The declaration is accessible only from the same Kotlin file.</li>
+    <li><strong>Can a top-level declaration be <code>protected</code>?</strong> No.</li>
+    <li><strong>What is the difference between <code>private</code> and <code>internal</code>?</strong> <code>private</code> is limited to a class or file; <code>internal</code> is visible across the same module.</li>
+    <li><strong>Is <code>internal</code> the same as package-private in Java?</strong> No. Kotlin <code>internal</code> is module-scoped, not package-scoped.</li>
+  </ul>
+
+  <h3>8. Related Kotlin OOP Guides</h3>
+  <ul>
+    <li><a href="encapsulation.html">Encapsulation in Kotlin</a></li>
+    <li><a href="properties-methods.html">Properties, getters and setters</a></li>
+    <li><a href="inheritance-basics.html">Kotlin inheritance basics</a></li>
+    <li><a href="interfaces.html">Interfaces in Kotlin</a></li>
+  </ul>
+
+  <h3>9. Key Takeaways</h3>
+  <ul>
+    <li>Kotlin has four visibility modifiers: public, private, protected, and internal.</li>
+    <li>Top-level private declarations have file-level visibility.</li>
+    <li>Internal declarations are visible across the same module.</li>
+    <li>Prefer the narrowest visibility that satisfies the design.</li>
+  </ul>
+</section>

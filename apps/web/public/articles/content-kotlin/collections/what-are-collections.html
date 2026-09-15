@@ -1,0 +1,157 @@
+<section id="collections" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Collections — Complete Guide</h1>
+
+        <h3>1. What Are Collections in Kotlin?</h3>
+        <p>
+            In Kotlin, a <strong>Collection</strong> is a data structure that holds multiple elements. Collections help you store, organize, and manipulate groups of related data efficiently.
+        </p>
+        <p>
+            Kotlin collections are categorized into <strong>three main types:</strong> 
+            <em>Lists</em>, <em>Sets</em>, and <em>Maps</em>. Collections can also be either 
+            <strong>read-only (immutable)</strong> or <strong>mutable</strong>.
+        </p>
+
+        <h3>2. Collection Hierarchy in Kotlin</h3>
+        <ul>
+            <li><strong>Collection&lt;T&gt;</strong> — Base interface for read-only collections.</li>
+            <li><strong>List&lt;T&gt;</strong> — Ordered collection with elements accessible by index.</li>
+            <li><strong>Set&lt;T&gt;</strong> — Collection of unique elements; order may or may not be preserved.</li>
+            <li><strong>Map&lt;K, V&gt;</strong> — Collection of key-value pairs.</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>3. Types of Collections</h3>
+
+        <h5>1️⃣ Lists</h5>
+        <p>
+            A <strong>List</strong> is an ordered collection. Duplicates are allowed. Kotlin provides:
+        </p>
+        <ul>
+            <li><code>List</code> — Immutable (read-only)</li>
+            <li><code>MutableList</code> — Mutable (can add, remove, or update elements)</li>
+        </ul>
+        <pre><code class="language-kotlin">
+// Immutable List
+val fruits = listOf("Apple", "Banana", "Cherry")
+
+// Mutable List
+val numbers = mutableListOf(1, 2, 3)
+numbers.add(4)
+        </code></pre>
+
+        <h5>2️⃣ Sets</h5>
+        <p>
+            A <strong>Set</strong> stores unique elements. Duplicates are automatically removed.
+        </p>
+        <ul>
+            <li><code>Set</code> — Immutable</li>
+            <li><code>MutableSet</code> — Mutable</li>
+            <li><code>LinkedHashSet</code> — Maintains insertion order</li>
+            <li><code>HashSet</code> — No guaranteed order</li>
+        </ul>
+        <pre><code class="language-kotlin">
+val uniqueNumbers = setOf(1, 2, 2, 3) // [1, 2, 3]
+val mutableSet = mutableSetOf("A", "B")
+mutableSet.add("C")
+        </code></pre>
+
+        <h5>3️⃣ Maps</h5>
+        <p>
+            A <strong>Map</strong> stores key-value pairs. Keys are unique, values can repeat. Kotlin provides:
+        </p>
+        <ul>
+            <li><code>Map&lt;K, V&gt;</code> — Immutable</li>
+            <li><code>MutableMap&lt;K, V&gt;</code> — Mutable</li>
+        </ul>
+        <pre><code class="language-kotlin">
+// Immutable Map
+val capitals = mapOf("Pakistan" to "Islamabad", "USA" to "Washington")
+
+// Mutable Map
+val mutableCapitals = mutableMapOf("India" to "New Delhi")
+mutableCapitals["UK"] = "London"
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>4. Functional Operations on Collections</h3>
+        <p>
+            Kotlin collections provide <strong>powerful higher-order functions</strong> for traversing, filtering, mapping, and more.
+        </p>
+        <pre><code class="language-kotlin">
+// Example: List operations
+val numbers = listOf(1, 2, 3, 4, 5)
+
+// Filter even numbers
+val evenNumbers = numbers.filter { it % 2 == 0 }
+
+// Map to double
+val doubled = numbers.map { it * 2 }
+
+// Find first number > 3
+val firstLarge = numbers.find { it > 3 }
+
+println(evenNumbers) // [2, 4]
+println(doubled)     // [2, 4, 6, 8, 10]
+println(firstLarge)  // 4
+        </code></pre>
+
+        <h3>5. Traversing Collections</h3>
+        <pre><code class="language-kotlin">
+// Using for loop
+for (num in numbers) println(num)
+
+// Using forEach
+numbers.forEach { println(it) }
+
+// Traversing Sets
+val namesSet = setOf("Ali", "Ahmed", "Zain")
+namesSet.forEach { println(it) }
+
+// Traversing Maps
+val capitalsMap = mapOf("Pakistan" to "Islamabad", "USA" to "Washington")
+capitalsMap.forEach { (country, capital) ->
+    println("$country -> $capital")
+}
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>6. Key Differences Between Collection Types</h3>
+        <table class="table table-bordered text-center my-4">
+            <thead class="table-light">
+                <tr>
+                    <th>Feature</th>
+                    <th>List</th>
+                    <th>Set</th>
+                    <th>Map</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Duplicates</td><td>Allowed</td><td>Not allowed</td><td>Keys unique, values can repeat</td></tr>
+                <tr><td>Order</td><td>Maintained</td><td>Not guaranteed (<code>LinkedHashSet</code> preserves)</td><td>Not guaranteed (<code>LinkedHashMap</code> preserves)</td></tr>
+                <tr><td>Index Access</td><td>Yes</td><td>No</td><td>No</td></tr>
+                <tr><td>Mutable / Immutable</td><td>List / MutableList</td><td>Set / MutableSet</td><td>Map / MutableMap</td></tr>
+                <tr><td>Functional Operations</td><td>filter, map, find, sorted...</td><td>filter, map, find...</td><td>mapKeys, mapValues, filterKeys...</td></tr>
+            </tbody>
+        </table>
+
+        <hr class="my-5">
+
+        <h3>7. When to Use Which Collection?</h3>
+        <ul>
+            <li>✅ <strong>List:</strong> Ordered data, duplicates allowed, need index access (RecyclerView, API data).</li>
+            <li>✅ <strong>Set:</strong> Unique elements, no duplicates, perform set operations (permissions, tags).</li>
+            <li>✅ <strong>Map:</strong> Key-value pairs, fast lookups by key (settings, configuration, dictionaries).</li>
+        </ul>
+
+        <div class="example-box mt-5">
+            <h5>Bonus Tip 💡</h5>
+            <p>
+                Use <strong>immutable collections</strong> whenever possible for safer, predictable code. Use <strong>mutable collections</strong> when you need to modify data dynamically.
+            </p>
+        </div>
+    </div>
+</section>

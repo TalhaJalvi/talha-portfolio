@@ -1,0 +1,256 @@
+<section>
+  <h2>Job Hierarchy in Kotlin Coroutines</h2>
+
+  <p>Coroutines in Kotlin are structured. This means when you launch a coroutine inside another coroutine, 
+  they form a <strong>parent–child relationship</strong>. Each coroutine is backed by a <code>Job</code> object,
+  and together, they create a <strong>job hierarchy</strong>.</p>
+
+  <h3>1️⃣ What is a Job?</h3>
+  <p>
+    Every coroutine has a <code>Job</code> that represents its lifecycle. 
+    A <code>Job</code> can be in one of several states: Active, Completing, Cancelling, or Completed.
+    When you cancel a parent job, all its children are automatically cancelled.
+  </p>
+
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val parentJob = launch {
+        val childJob1 = launch {
+            repeat(3) { i ->
+                println("Child 1 - Working $i")
+                delay(200)
+            }
+            println("Child 1 - Done")
+        }
+
+        val childJob2 = launch {
+            repeat(3) { i ->
+                println("Child 2 - Working $i")
+                delay(300)
+            }
+            println("Child 2 - Done")
+        }
+
+        // Wait for children to finish
+        childJob1.join()
+        childJob2.join()
+        println("Parent job completed")
+    }
+
+    delay(500)
+    println("Cancelling parent job!")
+    parentJob.cancelAndJoin()
+    println("Parent cancelled — all children stopped.")
+}
+  </code></pre>
+
+  <h4>🧠 Explanation</h4>
+  <ul>
+    <li><code>parentJob</code> is launched using <code>launch</code> inside <code>runBlocking</code>.</li>
+    <li>Two child coroutines are launched inside it → they become <strong>children of parentJob</strong>.</li>
+    <li>When <code>parentJob.cancel()</code> is called, both <code>childJob1</code> and <code>childJob2</code> are automatically cancelled.</li>
+  </ul>
+
+  <h4>💻 Expected Output</h4>
+  <pre>
+Child 1 - Working 0
+Child 2 - Working 0
+Child 1 - Working 1
+Child 2 - Working 1
+Cancelling parent job!
+Parent cancelled — all children stopped.
+  </pre>
+
+  <p><strong>Notice:</strong> The children stop mid-way — they never print “Done”, because the parent cancelled them.</p>
+
+  <hr/>
+
+  <h3>2️⃣ Propagation of Context and Exceptions</h3>
+  <p>
+    A child coroutine automatically inherits its parent’s <code>CoroutineContext</code> — 
+    this includes the dispatcher, job, and exception handling behavior.  
+    But you can override any part of it (for example, by changing the dispatcher or adding a new exception handler).
+  </p>
+
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val handler = CoroutineExceptionHandler { _, ex ->
+        println("Caught exception: ${'$'}{ex.message}")
+    }
+
+    val parentJob = launch(handler) {
+        val childJob = launch {
+            println("Child job starting")
+            throw RuntimeException("Child failed!")
+        }
+
+        childJob.join()
+        println("Parent continues even after child failure?")
+    }
+
+    parentJob.join()
+    println("Done.")
+}
+  </code></pre>
+
+  <h4>💬 Explanation</h4>
+  <ul>
+    <li>Here the <strong>child job throws an exception</strong>.</li>
+    <li>Since we’re using normal <code>launch</code> inside <code>launch</code>, 
+        the <strong>exception propagates up</strong> and cancels the parent.</li>
+    <li><code>CoroutineExceptionHandler</code> catches it at the top level.</li>
+  </ul>
+
+  <h4>💻 Output</h4>
+  <pre>
+Child job starting
+Caught exception: Child failed!
+Done.
+  </pre>
+
+  <p>The parent was cancelled because its child failed — unless we use a <code>SupervisorJob</code> (explained below).</p>
+
+  <hr/>
+
+  <h3>3️⃣ SupervisorJob — Isolating Failures</h3>
+  <p>
+    By default, when one child coroutine fails, the failure cancels the parent and all other children.
+    This is sometimes undesirable — for example, when multiple independent tasks run in parallel.
+  </p>
+
+  <p>To prevent cascading failures, Kotlin provides <code>SupervisorJob</code> or <code>supervisorScope</code>.</p>
+
+  <h4>✅ Example — Using SupervisorJob</h4>
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    val child1 = scope.launch {
+        println("Child 1 starting")
+        throw RuntimeException("Child 1 failed!")
+    }
+
+    val child2 = scope.launch {
+        delay(500)
+        println("Child 2 completed successfully")
+    }
+
+    joinAll(child1, child2)
+    println("Supervisor scope is still alive even after failure")
+}
+  </code></pre>
+
+  <h4>💬 Explanation</h4>
+  <ul>
+    <li><code>SupervisorJob</code> creates a parent job where children are independent.</li>
+    <li>When <code>child1</code> fails, the exception <strong>does not cancel</strong> the supervisor or <code>child2</code>.</li>
+    <li><code>child2</code> continues and finishes normally.</li>
+  </ul>
+
+  <h4>💻 Output</h4>
+  <pre>
+Child 1 starting
+Child 2 completed successfully
+Supervisor scope is still alive even after failure
+  </pre>
+
+  <hr/>
+
+  <h3>4️⃣ supervisorScope — Structured Alternative</h3>
+  <p>
+    <code>supervisorScope { ... }</code> is a suspending function that behaves like <code>coroutineScope</code>, 
+    but it uses a <code>SupervisorJob</code> internally.
+  </p>
+
+  <pre><code class="language-kotlin">
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    supervisorScope {
+        val child1 = launch {
+            println("Child 1 started")
+            throw RuntimeException("Child 1 crashed")
+        }
+
+        val child2 = launch {
+            delay(400)
+            println("Child 2 done")
+        }
+
+        child1.join()
+        child2.join()
+    }
+
+    println("Supervisor scope completed")
+}
+  </code></pre>
+
+  <h4>💬 Explanation</h4>
+  <ul>
+    <li><code>supervisorScope</code> prevents one child’s failure from cancelling others.</li>
+    <li>But if the <strong>supervisorScope itself</strong> fails (throws an exception), it cancels all its children.</li>
+  </ul>
+
+  <h4>💻 Output</h4>
+  <pre>
+Child 1 started
+Child 2 done
+Supervisor scope completed
+  </pre>
+
+  <hr/>
+
+  <h3>5️⃣ Visual Summary — Job Hierarchy Tree (Text Representation)</h3>
+  <pre>
+runBlocking (root job)
+│
+└── parentJob
+    ├── childJob1
+    └── childJob2
+  </pre>
+
+  <ul>
+    <li>If <code>parentJob</code> is cancelled → all children are cancelled.</li>
+    <li>If <code>childJob1</code> fails → parent and <code>childJob2</code> are also cancelled (default).</li>
+    <li>If using <code>SupervisorJob</code> → only the failing child is cancelled, others continue.</li>
+  </ul>
+
+  <hr/>
+
+  <h3>🧾 Quick Comparison</h3>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Job</th>
+        <th>SupervisorJob</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Failure of one child affects siblings?</td>
+        <td>✅ Yes, cancels all</td>
+        <td>❌ No, isolated</td>
+      </tr>
+      <tr>
+        <td>Parent cancelled → all children?</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+      </tr>
+      <tr>
+        <td>Used with</td>
+        <td><code>launch</code>, <code>coroutineScope</code></td>
+        <td><code>launch</code>, <code>supervisorScope</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>In short:</strong> Use <code>SupervisorJob</code> when you want sibling coroutines to work independently, 
+  even if one of them fails.</p>
+</section>

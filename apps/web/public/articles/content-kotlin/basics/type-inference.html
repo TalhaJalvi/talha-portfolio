@@ -1,0 +1,94 @@
+<section id="kotlin-type-inference">
+  <h2>Type Inference in Kotlin</h2>
+  <p>
+    Kotlin is a statically typed language, which means every variable and expression has a type known at compile time. 
+    However, the compiler is smart enough to automatically infer types in most cases — a feature known as <em>type inference</em>.
+  </p>
+
+  <h3>1. What is Type Inference?</h3>
+  <p>
+    Type inference allows the compiler to deduce the type of a variable, function, or expression 
+    without requiring the programmer to declare it explicitly. This results in cleaner, shorter, and more readable code.
+  </p>
+
+  <h4>Example:</h4>
+  <pre><code>val name = "Kotlin"    // Compiler infers String
+var age = 25           // Compiler infers Int
+val pi = 3.1416        // Compiler infers Double</code></pre>
+
+  <h3>2. Statically Typed vs Dynamically Typed Languages</h3>
+  <p>
+    Understanding type inference is easier when you know the difference between statically and dynamically typed languages.
+  </p>
+  <ul>
+    <li>
+      <strong>Statically Typed Languages:</strong> Types are determined at compile time. 
+      Kotlin, Java, and C# fall into this category. Even with type inference, the compiler knows the exact type before the program runs.
+    </li>
+    <li>
+      <strong>Dynamically Typed Languages:</strong> Types are determined at runtime. Python, JavaScript, and Ruby are examples. 
+      Variables can change type during execution, and type-related errors are caught only at runtime.
+    </li>
+  </ul>
+  <p>
+    Kotlin’s type inference lets you skip writing explicit types, but the language is still statically typed — the type is fixed at compile time.
+  </p>
+
+  <h3>3. Why Type Inference Matters</h3>
+  <ul>
+    <li>Makes code concise and less repetitive</li>
+    <li>Improves readability without sacrificing type safety</li>
+    <li>Ensures safer refactoring since the compiler checks types</li>
+  </ul>
+
+  <h3>4. How Type Inference Works</h3>
+  <ul>
+    <li>Literals (e.g., <code>val x = 10</code>) → type inferred from literal (<code>Int</code>)</li>
+    <li>Function return values (e.g., <code>val data = getUser()</code>) → type inferred from return type</li>
+    <li>Collections → type inferred from contained elements</li>
+  </ul>
+
+  <h3>5. Type Inference with Functions</h3>
+  <pre><code>fun add(a: Int, b: Int) = a + b       // Return type inferred as Int
+fun greeting() = "Hello, Kotlin!"        // Return type inferred as String</code></pre>
+
+  <p>
+    Functions with multiple return paths or complex logic require explicit return type declaration.
+  </p>
+  <pre><code>fun check(value: Int): String {
+    return if (value > 0) "Positive" else "Non-positive"
+}</code></pre>
+
+  <h3>6. Type Inference with Collections and Generics</h3>
+  <pre><code>val numbers = listOf(1, 2, 3)         // List&lt;Int&gt;
+val names = mutableListOf("A", "B")       // MutableList&lt;String&gt;
+val map = mapOf(1 to "One", 2 to "Two")   // Map&lt;Int, String&gt;</code></pre>
+
+  <h3>7. Type Inference in Lambda Expressions</h3>
+  <pre><code>val numbers = listOf(1, 2, 3, 4)
+val doubled = numbers.map { it * 2 }      // 'it' inferred as Int</code></pre>
+
+  <h3>8. Limitations of Type Inference</h3>
+  <ul>
+    <li>Variables declared without initialization</li>
+    <li>Functions with multiple possible return types</li>
+    <li>Ambiguous expressions with multiple compatible types</li>
+  </ul>
+
+  <h3>9. Example Program</h3>
+  <pre><code>fun main() {
+    val name = "Kotlin"
+    var version = 2.0
+    val active = true
+
+    val numbers = listOf(1, 2, 3)
+    val doubled = numbers.map { it * 2 }
+
+    println("Language: $name, Version: $version, Active: $active")
+    println("Doubled List: $doubled")
+}</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Language: Kotlin, Version: 2.0, Active: true
+Doubled List: [2, 4, 6]</code></pre>
+</section>

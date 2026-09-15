@@ -1,0 +1,14 @@
+{
+  "name": "talhajalvi-platform",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "dev:api": "pnpm --filter @talhajalvi/api dev",
+    "dev:mobile": "pnpm --filter @talhajalvi/mobile start",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}

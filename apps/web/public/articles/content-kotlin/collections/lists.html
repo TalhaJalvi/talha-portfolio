@@ -1,0 +1,249 @@
+<section id="lists" class="basic-1 bg-gray py-5">
+  <div class="container">
+    <h1 class="text-center mb-5">Kotlin Lists — Complete Guide</h1>
+
+    <h3>1. Why Use Lists in Kotlin?</h3>
+    <p>
+      In Kotlin, <strong>Lists</strong> are used to store ordered collections of elements that can be accessed by index.
+      Unlike arrays, lists are more flexible and come in two main types:
+    </p>
+    <ul>
+      <li><code>List</code> — Read-only (immutable)</li>
+      <li><code>MutableList</code> — Can be modified (add, remove, update elements)</li>
+    </ul>
+    <p>
+      Lists are widely used in Android development for displaying collections such as items in a
+      <code>RecyclerView</code>, menu options, or network responses.
+    </p>
+
+    <div class="example-box">
+      <h5>Example:</h5>
+      <pre><code class="language-kotlin">
+// Example: List of fruits
+val fruits = listOf("Apple", "Banana", "Cherry")
+println(fruits[1]) // Output: Banana
+      </code></pre>
+    </div>
+
+    <hr class="my-5" />
+
+    <h3>2. How to Declare and Use Lists in Kotlin (with 5 Examples)</h3>
+
+    <h5>Example 1 — Using <code>listOf()</code> (Immutable List)</h5>
+    <pre><code class="language-kotlin">
+// Basic declaration
+val colors = listOf("Red", "Green", "Blue")
+
+// Access elements
+println(colors[0])   // Red
+println(colors.size) // 3
+
+// Iterate
+for (color in colors) println(color)
+    </code></pre>
+
+    <pre><code class="language-kotlin">
+// With explicit type
+val numbers: List<Int> = listOf(1, 2, 3, 4, 5)
+println(numbers.joinToString(" - ")) // 1 - 2 - 3 - 4 - 5
+    </code></pre>
+
+    <h5>Example 2 — Using <code>mutableListOf()</code> (Mutable List)</h5>
+    <pre><code class="language-kotlin">
+// Create a mutable list
+val cities = mutableListOf("Lahore", "Karachi", "Islamabad")
+
+// Add or remove elements
+cities.add("Quetta")
+cities.remove("Karachi")
+
+println(cities) // [Lahore, Islamabad, Quetta]
+    </code></pre>
+
+    <pre><code class="language-kotlin">
+// Another way with explicit type
+val scores: MutableList<Int> = mutableListOf(10, 20, 30)
+scores[1] = 25
+scores.add(40)
+println(scores) // [10, 25, 30, 40]
+    </code></pre>
+
+    <h5>Example 3 — Using <code>emptyList()</code> and <code>mutableListOf()</code></h5>
+    <pre><code class="language-kotlin">
+// Empty immutable list
+val empty = emptyList<String>()
+println(empty.isEmpty()) // true
+    </code></pre>
+
+    <pre><code class="language-kotlin">
+// Empty mutable list
+val mutable = mutableListOf<String>()
+mutable.add("Talha")
+mutable.add("Abbas")
+println(mutable) // [Talha, Abbas]
+    </code></pre>
+
+    <h5>Example 4 — Using <code>List()</code> Constructor</h5>
+    <pre><code class="language-kotlin">
+// Create a list using lambda
+val squares = List(5) { it * it }
+println(squares) // [0, 1, 4, 9, 16]
+    </code></pre>
+
+    <pre><code class="language-kotlin">
+// Another example
+val doubled = List(4) { i -> i * 2 }
+println(doubled) // [0, 2, 4, 6]
+    </code></pre>
+
+    <h5>Example 5 — Converting Between Lists and Arrays</h5>
+    <pre><code class="language-kotlin">
+// List to Array
+val list = listOf("A", "B", "C")
+val arr = list.toTypedArray()
+println(arr.joinToString()) // A, B, C
+    </code></pre>
+
+    <pre><code class="language-kotlin">
+// Array to List
+val arr2 = arrayOf(10, 20, 30)
+val newList = arr2.toList()
+println(newList) // [10, 20, 30]
+    </code></pre>
+
+    <hr class="my-5" />
+
+    <h3>3. When and When Not to Use Lists?</h3>
+
+    <h5>✅ When to Use Lists:</h5>
+    <ul>
+      <li>When you need an ordered collection of elements.</li>
+      <li>When you frequently iterate or filter data.</li>
+      <li>When you want dynamic size and flexibility (use <code>MutableList</code>).</li>
+      <li>When working with APIs returning collections (e.g., Retrofit, Room).</li>
+    </ul>
+
+    <h5>🚫 When Not to Use Lists:</h5>
+    <ul>
+      <li>When you need fixed-size collections → use <code>Array</code>.</li>
+      <li>When you need unique elements → use <code>Set</code>.</li>
+      <li>When you need fast key-value lookups → use <code>Map</code>.</li>
+    </ul>
+
+    <hr class="my-5" />
+
+    <h3>4. Top 10 Interview Questions (With Answers)</h3>
+    <ol>
+      <li><strong>Q1:</strong> Difference between <code>List</code> and <code>MutableList</code>?<br>
+        <strong>Ans:</strong> <code>List</code> is read-only; <code>MutableList</code> supports adding, removing, or updating elements.
+      </li>
+      <li><strong>Q2:</strong> Can a list contain duplicates?<br>
+        <strong>Ans:</strong> Yes. Lists can have duplicate elements.</li>
+      <li><strong>Q3:</strong> How to create an empty list?<br>
+        <strong>Ans:</strong> Use <code>emptyList&lt;T&gt;()</code> for immutable or <code>mutableListOf&lt;T&gt;()</code> for mutable.</li>
+      <li><strong>Q4:</strong> Convert a list to array?<br>
+        <strong>Ans:</strong> <code>list.toTypedArray()</code></li>
+      <li><strong>Q5:</strong> What happens if you modify an immutable list?<br>
+        <strong>Ans:</strong> Compilation error — <code>List</code> doesn’t allow modification.</li>
+      <li><strong>Q6:</strong> How to iterate through a list?<br>
+        <strong>Ans:</strong> Use <code>for</code> loop or <code>forEach</code>:
+        <pre><code class="language-kotlin">
+val items = listOf("A", "B", "C")
+items.forEach { println(it) }
+        </code></pre>
+      </li>
+      <li><strong>Q7:</strong> Check if an element exists?<br>
+        <strong>Ans:</strong> Use <code>in</code> or <code>contains()</code>:
+        <pre><code class="language-kotlin">
+if ("Apple" in fruits) println("Found")
+        </code></pre>
+      </li>
+      <li><strong>Q8:</strong> Add element at a specific index?<br>
+        <strong>Ans:</strong> <code>add(index, element)</code>:
+        <pre><code class="language-kotlin">
+val names = mutableListOf("A", "B", "C")
+names.add(1, "Z")
+println(names) // [A, Z, B, C]
+        </code></pre>
+      </li>
+      <li><strong>Q9:</strong> Remove duplicates?<br>
+        <strong>Ans:</strong> Use <code>distinct()</code>:
+        <pre><code class="language-kotlin">
+val nums = listOf(1, 2, 2, 3)
+println(nums.distinct()) // [1, 2, 3]
+        </code></pre>
+      </li>
+      <li><strong>Q10:</strong> Sort or reverse a list?<br>
+        <strong>Ans:</strong> Use <code>sorted()</code>, <code>sortedDescending()</code>, or <code>reversed()</code>:
+        <pre><code class="language-kotlin">
+val list = listOf(5, 2, 8, 1)
+println(list.sorted())           // [1, 2, 5, 8]
+println(list.sortedDescending()) // [8, 5, 2, 1]
+        </code></pre>
+      </li>
+    </ol>
+
+    <hr class="my-5" />
+
+    <!-- ✅ Array vs List Section -->
+    <div class="container">
+      <h1 class="text-center mb-5">Array vs List in Kotlin — Why List is Preferred</h1>
+
+      <h3>1. Are Arrays and Lists Both Collections?</h3>
+      <p>✅ Yes! In Kotlin, both <strong>Arrays</strong> and <strong>Lists</strong> are part of the <em>collection system</em>, but they differ in behavior and flexibility.</p>
+
+      <table class="table table-bordered text-center my-4">
+        <thead class="table-light">
+          <tr>
+            <th>Feature</th>
+            <th>Array</th>
+            <th>List</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Type</td><td>Fixed-size collection</td><td>Dynamic collection (<code>MutableList</code>)</td></tr>
+          <tr><td>Mutability</td><td>Can change elements but not size</td><td>Immutable (<code>List</code>) or mutable (<code>MutableList</code>)</td></tr>
+          <tr><td>Resizing</td><td>❌ Not allowed</td><td>✅ Allowed</td></tr>
+          <tr><td>Functional Operations</td><td>Limited built-in functions</td><td>Powerful extensions like <code>filter()</code>, <code>map()</code>, <code>find()</code></td></tr>
+          <tr><td>Usage</td><td>Used for fixed size and type (performance-critical code)</td><td>Used in modern Kotlin & Android apps for dynamic data</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2. Why <code>List</code> is Better for Filtering and Searching</h3>
+      <p>Kotlin’s <code>List</code> is built on <code>Collection&lt;T&gt;</code>, offering a rich API for filtering, mapping, and searching efficiently.</p>
+
+      <h4>Example — Filtering a List</h4>
+      <pre><code class="language-kotlin">
+val numbers = listOf(1, 2, 3, 4, 5, 6)
+val evenNumbers = numbers.filter { it % 2 == 0 }
+println(evenNumbers) // [2, 4, 6]
+      </code></pre>
+
+      <h4>Example — Searching in a List</h4>
+      <pre><code class="language-kotlin">
+val names = listOf("Talha", "Ali", "Ahmed", "Zain")
+val found = names.find { it.startsWith("A") }
+println(found) // Ahmed
+      </code></pre>
+
+      <p>
+        Arrays don’t natively support these operations — Kotlin internally converts them to Lists for functions like <code>filter()</code> or <code>map()</code>.  
+        Hence, Lists are preferred for cleaner and faster high-level code.
+      </p>
+
+      <h3>3. Final Comparison Summary</h3>
+      <ul>
+        <li>⚡ <strong>Array:</strong> Best for performance-critical, fixed-size data.</li>
+        <li>💡 <strong>List:</strong> Best for flexible, filterable, and dynamic data in Android.</li>
+      </ul>
+
+      <div class="example-box mt-4">
+        <h5>Bonus Tip 💡</h5>
+        <p>
+          Use <code>MutableList</code> in RecyclerViews or APIs where data changes.
+          Use <code>List</code> when data is static and should remain read-only.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

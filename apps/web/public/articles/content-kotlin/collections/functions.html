@@ -1,0 +1,174 @@
+<section id="collection-functions" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Collection Functions — Complete Guide</h1>
+
+        <h3>1. What Are Collection Functions in Kotlin?</h3>
+        <p>
+            Kotlin provides a rich set of <strong>collection functions</strong> to perform operations on Lists, Sets, and Maps. 
+            These functions make it easier to <strong>filter, transform, search, sort, and aggregate data</strong> in a concise and readable way.
+        </p>
+
+        <h3>2. Types of Collection Functions</h3>
+        <ul>
+            <li><strong>Filtering:</strong> Keep only elements matching a condition (<code>filter</code>, <code>filterNot</code>, <code>filterNotNull</code>).</li>
+            <li><strong>Mapping / Transformation:</strong> Transform elements (<code>map</code>, <code>mapNotNull</code>).</li>
+            <li><strong>Searching / Querying:</strong> Find elements (<code>find</code>, <code>first</code>, <code>last</code>, <code>contains</code>).</li>
+            <li><strong>Aggregation / Reduction:</strong> Combine elements (<code>sum</code>, <code>count</code>, <code>reduce</code>, <code>fold</code>).</li>
+            <li><strong>Sorting:</strong> Sort collections (<code>sorted</code>, <code>sortedDescending</code>, <code>sortedBy</code>, <code>sortedByDescending</code>).</li>
+            <li><strong>Grouping / Partitioning:</strong> Group elements (<code>groupBy</code>, <code>partition</code>).</li>
+            <li><strong>Other Useful Functions:</strong> <code>distinct</code>, <code>take</code>, <code>drop</code>, <code>chunked</code>, <code>zip</code>, <code>all</code>, <code>any</code>, <code>none</code>.</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>3. Examples of Collection Functions</h3>
+
+        <h5>Example 1 — Filtering a List</h5>
+        <pre><code class="language-kotlin">
+val numbers = listOf(1, 2, 3, 4, 5, 6)
+
+// Keep even numbers only
+val evenNumbers = numbers.filter { it % 2 == 0 }
+println(evenNumbers) // [2, 4, 6]
+
+// Remove null values
+val items = listOf("A", null, "B")
+val nonNullItems = items.filterNotNull()
+println(nonNullItems) // [A, B]
+        </code></pre>
+
+        <h5>Example 2 — Mapping / Transformation</h5>
+        <pre><code class="language-kotlin">
+val names = listOf("Ali", "Ahmed", "Zain")
+
+// Convert to uppercase
+val upperNames = names.map { it.uppercase() }
+println(upperNames) // [ALI, AHMED, ZAIN]
+
+// Multiply numbers by 2
+val doubled = numbers.map { it * 2 }
+println(doubled) // [2, 4, 6, 8, 10, 12]
+        </code></pre>
+
+        <h5>Example 3 — Searching / Querying</h5>
+        <pre><code class="language-kotlin">
+// Find first number > 3
+val first = numbers.find { it > 3 }
+println(first) // 4
+
+// Check if list contains 5
+println(numbers.contains(5)) // true
+        </code></pre>
+
+        <h5>Example 4 — Aggregation / Reduction</h5>
+        <pre><code class="language-kotlin">
+// Sum of numbers
+println(numbers.sum()) // 21
+
+// Count elements greater than 3
+println(numbers.count { it > 3 }) // 3
+
+// Reduce to product of numbers
+val product = numbers.reduce { acc, num -> acc * num }
+println(product) // 720
+
+// Fold with initial value
+val sumWithInitial = numbers.fold(10) { acc, num -> acc + num }
+println(sumWithInitial) // 31
+        </code></pre>
+
+        <h5>Example 5 — Sorting</h5>
+        <pre><code class="language-kotlin">
+val unsorted = listOf(5, 2, 8, 1)
+
+// Sort ascending
+println(unsorted.sorted()) // [1, 2, 5, 8]
+
+// Sort descending
+println(unsorted.sortedDescending()) // [8, 5, 2, 1]
+        </code></pre>
+
+        <h5>Example 6 — Grouping / Partitioning</h5>
+        <pre><code class="language-kotlin">
+val words = listOf("apple", "banana", "apricot", "cherry")
+
+// Group by first letter
+val grouped = words.groupBy { it.first() }
+println(grouped) 
+// {a=[apple, apricot], b=[banana], c=[cherry]}
+
+// Partition numbers into even and odd
+val (evens, odds) = numbers.partition { it % 2 == 0 }
+println(evens) // [2, 4, 6]
+println(odds)  // [1, 3, 5]
+        </code></pre>
+
+        <h5>Example 7 — Other Useful Functions</h5>
+        <pre><code class="language-kotlin">
+val nums = listOf(1, 2, 2, 3, 4)
+
+// Remove duplicates
+println(nums.distinct()) // [1, 2, 3, 4]
+
+// Take first 3 elements
+println(nums.take(3)) // [1, 2, 2]
+
+// Drop first 2 elements
+println(nums.drop(2)) // [2, 3, 4]
+
+// Chunked into pairs
+println(nums.chunked(2)) // [[1, 2], [2, 3], [4]]
+
+// Check conditions
+println(nums.all { it > 0 }) // true
+println(nums.any { it > 3 }) // true
+println(nums.none { it < 0 }) // true
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>4. When to Use Collection Functions?</h3>
+        <ul>
+            <li>✅ When you want to <strong>process collections in a concise, readable way</strong>.</li>
+            <li>✅ When using <strong>functional programming</strong> style with lambdas.</li>
+            <li>✅ When you need to <strong>filter, transform, or aggregate</strong> data from Lists, Sets, or Maps.</li>
+            <li>✅ For Android apps, collection functions simplify working with <code>RecyclerView</code> data, API responses, or configuration lists.</li>
+        </ul>
+
+        <h3>5. Top 8 Interview Questions (With Answers)</h3>
+        <ol>
+            <li><strong>Q1:</strong> What is the difference between <code>map</code> and <code>forEach</code>?<br>
+                <strong>Ans:</strong> <code>map</code> transforms elements and returns a new collection; <code>forEach</code> just performs an action on each element.
+            </li>
+            <li><strong>Q2:</strong> How do you filter null values from a collection?<br>
+                <strong>Ans:</strong> Use <code>filterNotNull()</code>.
+            </li>
+            <li><strong>Q3:</strong> How do you combine multiple collection functions?<br>
+                <strong>Ans:</strong> You can chain them, e.g., <code>numbers.filter { it > 2 }.map { it * 2 }</code>.
+            </li>
+            <li><strong>Q4:</strong> Can collection functions be used on Sets and Maps?<br>
+                <strong>Ans:</strong> Yes! Most functions work on any collection. For Maps, you can use <code>mapKeys</code>, <code>mapValues</code>, or convert to a List.
+            </li>
+            <li><strong>Q5:</strong> Difference between <code>reduce</code> and <code>fold</code>?<br>
+                <strong>Ans:</strong> <code>reduce</code> uses the first element as initial accumulator; <code>fold</code> allows specifying a custom initial value.
+            </li>
+            <li><strong>Q6:</strong> How to check if all elements satisfy a condition?<br>
+                <strong>Ans:</strong> Use <code>all { condition }</code>.
+            </li>
+            <li><strong>Q7:</strong> How to get first element matching a condition?<br>
+                <strong>Ans:</strong> Use <code>first { condition }</code> or <code>find { condition }</code>.
+            </li>
+            <li><strong>Q8:</strong> How to partition a collection?<br>
+                <strong>Ans:</strong> Use <code>partition { condition }</code> to split into two lists.
+            </li>
+        </ol>
+
+        <div class="example-box mt-5">
+            <h5>Bonus Tip 💡</h5>
+            <p>
+                Kotlin collection functions make your code <strong>concise, expressive, and easy to maintain</strong>. 
+                For Android, you can process lists or API data without loops, making your code cleaner and less error-prone.
+            </p>
+        </div>
+    </div>
+</section>

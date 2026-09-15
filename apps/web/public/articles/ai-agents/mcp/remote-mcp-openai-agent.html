@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect a Remote MCP Server to an OpenAI Agent | Talha Jalvi</title><meta name="description" content="Connect the OpenAI Agents SDK to a remote MCP server using Streamable HTTP, headers, timeouts, retries, caching, and safe authorization."><link rel="canonical" href="https://talhajalvi.com/articles/ai-agents/mcp/remote-mcp-openai-agent.html"><link rel="stylesheet" href="../../../css/mcp-module-06.css"></head><body><main><article><div class="nav"><a href="module-06-index.html">← Module 6</a><span>Lesson 5</span></div><h1>Connect a Remote MCP Server to an OpenAI Agent</h1><pre>from agents.mcp import MCPServerStreamableHttp
+
+server = MCPServerStreamableHttp(
+    name="Production MCP",
+    params={
+        "url":"https://mcp.example.com/mcp",
+        "headers":{"Authorization":"Bearer ..."},
+        "timeout":10,
+    },
+    cache_tools_list=True,
+    max_retry_attempts=2,
+)</pre><h2>Use HTTPS and scoped credentials</h2><p>Do not put access tokens in URLs. Use authorization headers and least-privilege server permissions.</p><h2>Bound retries</h2><p>Listing tools can usually be retried safely. Mutation tool calls require more care; use idempotency and explicit semantics before enabling automatic retries.</p><div class="next"><a href="mcp-tool-filtering-openai.html">Next: Tool Filtering →</a></div></article></main></body></html>

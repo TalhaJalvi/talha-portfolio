@@ -1,0 +1,163 @@
+<section id="maps" class="basic-1 bg-gray py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Kotlin Maps — Complete Guide</h1>
+
+        <h3>1. What is a Map in Kotlin?</h3>
+        <p>
+            A <strong>Map</strong> in Kotlin is a collection that stores data in <strong>key-value pairs</strong>. 
+            Each key is unique, while values can be duplicated. Maps are useful when you want to access data via a key rather than an index.
+        </p>
+
+        <ul>
+            <li><code>Map&lt;K, V&gt;</code> — Read-only (immutable)</li>
+            <li><code>MutableMap&lt;K, V&gt;</code> — Can add, remove, or update entries</li>
+            <li><code>HashMap</code> — Unordered mutable map</li>
+            <li><code>LinkedHashMap</code> — Maintains insertion order</li>
+        </ul>
+
+        <div class="example-box">
+            <h5>Example:</h5>
+            <pre><code class="language-kotlin">
+// Immutable Map
+val capitals = mapOf("Pakistan" to "Islamabad", "USA" to "Washington")
+println(capitals["Pakistan"]) // Islamabad
+
+// Mutable Map
+val mutableCapitals = mutableMapOf("India" to "New Delhi")
+mutableCapitals["UK"] = "London"
+println(mutableCapitals) // {India=New Delhi, UK=London}
+            </code></pre>
+        </div>
+
+        <hr class="my-5">
+
+        <h3>2. How to Declare and Use Maps (with 4 Examples)</h3>
+
+        <h5>Example 1 — Using <code>mapOf()</code> (Immutable Map)</h5>
+        <pre><code class="language-kotlin">
+// Immutable Map
+val userAges = mapOf("Ali" to 25, "Ahmed" to 30)
+println(userAges["Ahmed"]) // 30
+println(userAges.containsKey("Ali")) // true
+        </code></pre>
+
+        <h5>Example 2 — Using <code>mutableMapOf()</code> (Mutable Map)</h5>
+        <pre><code class="language-kotlin">
+// Mutable Map
+val scores = mutableMapOf("Math" to 90, "Science" to 85)
+scores["English"] = 88   // Add new key-value pair
+scores["Math"] = 95      // Update value
+scores.remove("Science") // Remove entry
+
+println(scores) // {Math=95, English=88}
+        </code></pre>
+
+        <h5>Example 3 — Using <code>HashMap</code> and <code>LinkedHashMap</code></h5>
+        <pre><code class="language-kotlin">
+// HashMap (unordered)
+val hashMap = hashMapOf(1 to "A", 2 to "B", 3 to "C")
+println(hashMap) // order not guaranteed
+
+// LinkedHashMap (maintains insertion order)
+val linkedMap = linkedMapOf(1 to "A", 2 to "B", 3 to "C")
+println(linkedMap) // {1=A, 2=B, 3=C}
+        </code></pre>
+
+        <h5>Example 4 — Traversing a Map</h5>
+        <pre><code class="language-kotlin">
+// Using for loop
+for ((key, value) in scores) {
+    println("$key -> $value")
+}
+
+// Using forEach
+scores.forEach { (subject, score) ->
+    println("$subject: $score")
+}
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>3. Common Map Operations</h3>
+        <pre><code class="language-kotlin">
+val mapA = mapOf(1 to "One", 2 to "Two", 3 to "Three")
+val mapB = mapOf(3 to "Three", 4 to "Four")
+
+// Keys
+println(mapA.keys) // [1, 2, 3]
+
+// Values
+println(mapA.values) // [One, Two, Three]
+
+// Get value with default
+println(mapA.getOrDefault(5, "Unknown")) // Unknown
+
+// Merge Maps
+val merged = mapA + mapB
+println(merged) // {1=One, 2=Two, 3=Three, 4=Four}
+        </code></pre>
+
+        <hr class="my-5">
+
+        <h3>4. When and When Not to Use Maps?</h3>
+
+        <h5>✅ When to Use Maps:</h5>
+        <ul>
+            <li>When you need to store data as <strong>key-value pairs</strong>.</li>
+            <li>When you want fast lookups using keys.</li>
+            <li>When you want to maintain insertion order (use <code>LinkedHashMap</code>).</li>
+        </ul>
+
+        <h5>🚫 When Not to Use Maps:</h5>
+        <ul>
+            <li>When you need duplicates in keys — keys must always be unique.</li>
+            <li>When you need to access data by index — use <code>List</code> instead.</li>
+        </ul>
+
+        <hr class="my-5">
+
+        <h3>5. Top 6 Interview Questions (With Answers)</h3>
+        <ol>
+            <li><strong>Q1:</strong> What is the main difference between Map and List?<br>
+                <strong>Ans:</strong> List stores elements by index and allows duplicates; Map stores elements as key-value pairs with unique keys.
+            </li>
+
+            <li><strong>Q2:</strong> Can Map keys be duplicated?<br>
+                <strong>Ans:</strong> No, keys must be unique.
+            </li>
+
+            <li><strong>Q3:</strong> How do you add or update entries in a mutable map?<br>
+                <strong>Ans:</strong> Use indexing or <code>put()</code> method:
+                <pre><code class="language-kotlin">
+val map = mutableMapOf("A" to 1)
+map["B"] = 2
+map.put("A", 3)
+                </code></pre>
+            </li>
+
+            <li><strong>Q4:</strong> How to traverse a Map?<br>
+                <strong>Ans:</strong> Use <code>for ((key, value) in map)</code> or <code>forEach</code> function.
+            </li>
+
+            <li><strong>Q5:</strong> How to merge two maps?<br>
+                <strong>Ans:</strong> Use <code>map1 + map2</code> for immutable merge.
+            </li>
+
+            <li><strong>Q6:</strong> How to get a value with a default if key doesn’t exist?<br>
+                <strong>Ans:</strong> Use <code>getOrDefault(key, defaultValue)</code>.
+            </li>
+        </ol>
+
+        <div class="example-box mt-5">
+            <h5>Bonus Tip 💡</h5>
+            <p>
+                In Android apps, Maps are ideal for storing <strong>settings, configuration, or key-value based data</strong> where keys need to be unique and access by key is fast.
+            </p>
+            <pre><code class="language-kotlin">
+val userSettings = mutableMapOf("theme" to "dark", "notifications" to true)
+userSettings["theme"] = "light" // Update
+println(userSettings) // {theme=light, notifications=true}
+            </code></pre>
+        </div>
+    </div>
+</section>

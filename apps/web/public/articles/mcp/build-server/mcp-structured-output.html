@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCP Structured Tool Output in Python: Schemas and Typed Results | Talha Jalvi</title><meta name="description" content="Return structured MCP tool results from Python so agents can reliably consume IDs, statuses, lists, and machine-readable fields."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/mcp-structured-output.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 10</span></div><h1>Return Structured Data from MCP Tools</h1><p>Whenever a tool's result will feed another tool or decision, structured output is more reliable than prose.</p><pre>from pydantic import BaseModel
+
+class DeployResult(BaseModel):
+    deployment_id: str
+    status: str
+    url: str | None = None
+
+@mcp.tool()
+async def deploy(service: str) -> DeployResult:
+    """Deploy a service to staging."""
+    data = await deployment_service.deploy(service)
+    return DeployResult(**data)</pre><h2>Why structured output helps</h2><ul><li>Stable IDs can be passed into later tools.</li><li>The runtime can validate shape.</li><li>The model does not need to extract fields from prose.</li><li>Clients can render rich UI more easily.</li></ul><h2>Do not over-return</h2><p>Return the fields needed for the next decision, not an entire internal database row or third-party payload.</p><div class="next"><a href="mcp-error-handling.html">Next: Error Handling →</a></div></article></main></body></html>

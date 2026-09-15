@@ -1,0 +1,83 @@
+<section id="kotlin-jvmstatic-java-interop">
+  <h2><code>@JvmStatic</code> in Kotlin: Java Interop, Companion Objects & Examples</h2>
+  <p><strong><code>@JvmStatic</code></strong> tells the Kotlin compiler to generate a Java-friendly static bridge for a function or property accessor declared in an <code>object</code> or <code>companion object</code>. It is useful when Java callers should use <code>ClassName.method()</code> instead of going through <code>ClassName.Companion.method()</code>.</p>
+
+  <div class="callout"><strong>Quick answer:</strong> use <code>@JvmStatic</code> for APIs that need natural static-style access from Java. Kotlin callers usually do not need the annotation.</div>
+
+  <h3>1. Without <code>@JvmStatic</code></h3>
+  <pre><code>class Utils {
+    companion object {
+        fun greet(name: String) = "Hello, $name"
+    }
+}</code></pre>
+  <p>Java accesses the companion object explicitly:</p>
+  <pre><code>System.out.println(Utils.Companion.greet("Talha"));</code></pre>
+
+  <h3>2. With <code>@JvmStatic</code></h3>
+  <pre><code>class Utils {
+    companion object {
+        @JvmStatic
+        fun greet(name: String) = "Hello, $name"
+    }
+}</code></pre>
+  <p>Java can now call:</p>
+  <pre><code>System.out.println(Utils.greet("Talha"));</code></pre>
+  <p>Kotlin code can still use the member normally through the class name.</p>
+
+  <h3>3. Where Can <code>@JvmStatic</code> Be Used?</h3>
+  <ul>
+    <li>Functions inside a <code>companion object</code>.</li>
+    <li>Functions inside a named or anonymous Kotlin <code>object</code>.</li>
+    <li>Properties in those scopes, where Java-friendly static accessors are generated.</li>
+  </ul>
+
+  <h3>4. <code>@JvmStatic</code> vs <code>@JvmField</code> vs <code>@JvmOverloads</code></h3>
+  <table>
+    <thead><tr><th>Annotation</th><th>What it changes for Java callers</th><th>Typical use</th></tr></thead>
+    <tbody>
+      <tr><td><code>@JvmStatic</code></td><td>Generates static-style method/property accessors</td><td>Companion/object APIs called from Java</td></tr>
+      <tr><td><code>@JvmField</code></td><td>Exposes a property as a Java field without getter/setter methods</td><td>Constants or direct field interoperability</td></tr>
+      <tr><td><code>@JvmOverloads</code></td><td>Generates Java overloads for default parameters</td><td>Java-friendly APIs with optional arguments</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5. Property Example</h3>
+  <pre><code>class Config {
+    companion object {
+        @JvmStatic
+        val version = "1.0"
+    }
+}</code></pre>
+  <p>Java reads this through the generated static getter, for example <code>Config.getVersion()</code>. If you specifically want a field instead of an accessor, look at <code>@JvmField</code>.</p>
+
+  <h3>6. When Should You Use <code>@JvmStatic</code>?</h3>
+  <ul>
+    <li>When a Kotlin library exposes companion/object APIs to Java consumers.</li>
+    <li>When migrating a mixed Java/Kotlin codebase and Java call sites expect static-style syntax.</li>
+    <li>When a Java framework expects a static method shape.</li>
+  </ul>
+  <p>Do not add it everywhere by default. If the API is only consumed from Kotlin, it usually adds no benefit.</p>
+
+  <h3>7. Common Interview Questions</h3>
+  <ul>
+    <li><strong>What does <code>@JvmStatic</code> do?</strong> It generates static bridge methods or accessors for Java interoperability.</li>
+    <li><strong>Does Kotlin have Java's <code>static</code> keyword?</strong> No. Kotlin commonly uses top-level declarations, objects, and companion objects instead.</li>
+    <li><strong>Is <code>@JvmStatic</code> required for Kotlin callers?</strong> No. Its main purpose is JVM/Java interoperability.</li>
+    <li><strong>What is the difference between <code>@JvmStatic</code> and <code>@JvmField</code>?</strong> <code>@JvmStatic</code> gives Java static-style methods/accessors; <code>@JvmField</code> exposes the property as a field.</li>
+  </ul>
+
+  <h3>8. Related Kotlin Guides</h3>
+  <ul>
+    <li><a href="companion-object.html">Companion objects in Kotlin</a></li>
+    <li><a href="interfaces.html">Kotlin interfaces and default methods</a></li>
+    <li><a href="visibility-modifiers.html">Visibility modifiers in Kotlin</a></li>
+  </ul>
+
+  <h3>9. Key Takeaways</h3>
+  <ul>
+    <li><code>@JvmStatic</code> is mainly about making Kotlin APIs convenient for Java callers.</li>
+    <li>It is typically used inside objects and companion objects.</li>
+    <li>Use <code>@JvmField</code> when Java needs a field rather than an accessor.</li>
+    <li>Prefer top-level functions when a function does not logically belong to a class.</li>
+  </ul>
+</section>

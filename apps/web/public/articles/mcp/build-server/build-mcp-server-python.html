@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Build an MCP Server with Python in 2026 | Talha Jalvi</title><meta name="description" content="Build a Model Context Protocol server with Python using the current MCP SDK, expose a tool and resource, run it locally, and test it with MCP Inspector."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/build-mcp-server-python.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 1</span></div><h1>How to Build an MCP Server with Python</h1><p>The official MCP Python SDK lets you create a useful server with ordinary typed Python functions. The SDK derives tool schemas from type hints and docstrings, handles protocol messages, and gives you both local and HTTP deployment paths.</p><h2>Install the SDK</h2><pre>uv add "mcp[cli]"
+# or
+pip install "mcp[cli]"</pre><p>The current v2 docs require Python 3.10+. The CLI extra gives you <code>mcp dev</code>, which launches the server with MCP Inspector for development.</p><h2>Create a minimal server</h2><pre>from mcp.server import MCPServer
+
+mcp = MCPServer("Demo")
+
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    """Add two integers."""
+    return a + b
+
+@mcp.resource("greeting://{name}")
+def greeting(name: str) -> str:
+    """Return a greeting resource."""
+    return f"Hello, {name}!"
+
+if __name__ == "__main__":
+    mcp.run()</pre><p>By default, <code>run()</code> uses stdio, which is ideal when a host launches your server as a subprocess.</p><h2>Run it with Inspector</h2><pre>uv run mcp dev server.py</pre><p>MCP Inspector can list the tool, build an input form from the generated schema, invoke it, and inspect resource output.</p><h2>What the SDK did for you</h2><ul><li>Generated JSON Schema from Python types.</li><li>Registered the tool and resource.</li><li>Handled protocol serialization and validation.</li><li>Exposed the same capabilities regardless of transport.</li></ul><div class="note"><strong>Core idea:</strong> build business capabilities first. Transport and protocol plumbing should be delegated to the SDK unless you genuinely need a low-level server.</div><h2>References</h2><ul><li><a href="https://py.sdk.modelcontextprotocol.io/">MCP Python SDK v2</a></li></ul><div class="next"><a href="setup-mcp-python-sdk.html">Next: Set Up the SDK →</a></div></article></main></body></html>

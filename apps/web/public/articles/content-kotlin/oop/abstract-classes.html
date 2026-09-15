@@ -1,0 +1,94 @@
+<section id="kotlin-abstract-classes">
+  <h2>Abstract Classes in Kotlin</h2>
+  <p>
+    Abstract classes are classes that cannot be instantiated directly and are meant to be subclassed. 
+    They can contain both abstract members (without implementation) and concrete members (with implementation). 
+    Abstract classes are used to define a common blueprint for multiple subclasses.
+  </p>
+
+  <h3>1. Why Abstract Classes Matter</h3>
+  <ul>
+    <li><strong>Define a common blueprint:</strong> Abstract classes provide a structure that multiple subclasses can follow.</li>
+    <li><strong>Partial implementation:</strong> Allows shared functionality while leaving some methods abstract for subclasses to implement.</li>
+    <li><strong>Enforce contracts:</strong> Ensures that certain methods are implemented by all subclasses.</li>
+    <li><strong>Polymorphism:</strong> Enables using a reference of the abstract class to point to objects of its subclasses.</li>
+  </ul>
+
+  <h3>2. What is an Abstract Class?</h3>
+  <p>
+    An abstract class is declared using the <code>abstract</code> keyword. 
+    Abstract members are declared without implementation, and concrete members can have full implementations.
+  </p>
+  <pre><code>
+abstract class Aircraft(val name: String) {
+    abstract fun fly()                // Must be implemented by subclasses
+    open fun startEngine() {          // Optional override
+        println("$name engine started")
+    }
+}
+  </code></pre>
+
+  <h3>3. Implementing Abstract Classes</h3>
+  <p>Subclasses must implement all abstract members:</p>
+  <pre><code>
+class Jet(name: String) : Aircraft(name) {
+    override fun fly() {
+        println("$name is flying at supersonic speed")
+    }
+
+    override fun startEngine() {
+        super.startEngine()  // Optionally call parent implementation
+        println("Jet-specific engine checks")
+    }
+}
+
+fun main() {
+    val jet = Jet("F-16")
+    jet.startEngine()
+    jet.fly()
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+F-16 engine started
+Jet-specific engine checks
+F-16 is flying at supersonic speed
+  </code></pre>
+
+  <h3>4. Key Points About Abstract Classes</h3>
+  <ul>
+    <li>Cannot be instantiated directly: <code>val a = Aircraft()</code> is not allowed.</li>
+    <li>Can have both abstract and concrete members.</li>
+    <li>Subclasses must override abstract members but may optionally override open members.</li>
+    <li>Useful when you want to provide some default behavior while enforcing implementation of certain methods.</li>
+  </ul>
+
+  <h3>5. Abstract vs Interface</h3>
+  <ul>
+    <li><strong>Abstract class:</strong> Can have constructors, state (properties), and both abstract and concrete methods.</li>
+    <li><strong>Interface:</strong> Cannot have state (prior to Kotlin 1.1; now interfaces can have properties with default getters), usually used for pure behavior contracts.</li>
+    <li>Use abstract classes when subclasses share common state or behavior; use interfaces for multiple behavior contracts.</li>
+  </ul>
+
+  <h3>6. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What is an abstract class in Kotlin?</strong> <br>
+        A class that cannot be instantiated and can contain abstract (unimplemented) and concrete (implemented) members.</li>
+    <li><strong>Can abstract classes have constructors?</strong> <br>
+        Yes, abstract classes can have primary or secondary constructors which can be called by subclasses.</li>
+    <li><strong>Can an abstract class contain properties?</strong> <br>
+        Yes, it can have properties with or without initial values.</li>
+    <li><strong>Difference between abstract class and interface?</strong> <br>
+        Abstract class can have state and constructors, while interface is typically used for behavior contracts and multiple implementations.</li>
+    <li><strong>Can a subclass avoid overriding an abstract member?</strong> <br>
+        No, all abstract members must be implemented in the concrete subclass.</li>
+  </ul>
+
+  <h3>7. Key Takeaways</h3>
+  <ul>
+    <li>Abstract classes are used to define a common blueprint with partial implementation.</li>
+    <li>They enforce contracts for subclasses while allowing shared behavior.</li>
+    <li>Abstract members must be overridden; open members are optional.</li>
+    <li>Use abstract classes when subclasses share common state or functionality.</li>
+  </ul>
+</section>

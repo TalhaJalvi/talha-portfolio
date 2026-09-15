@@ -1,0 +1,183 @@
+<section id="kotlin-types-of-inheritance">
+  <h2>Types of Inheritance in Kotlin</h2>
+  <p>
+    Kotlin supports several forms of inheritance that help organize code and reuse functionality. 
+    Unlike some languages, Kotlin does not allow multiple inheritance of classes but allows implementing multiple interfaces.
+  </p>
+
+  <h3>1. Single Inheritance</h3>
+  <p>In single inheritance, a subclass inherits from only one parent class. This is the simplest form of inheritance.</p>
+  <pre><code>
+open class Aircraft(val name: String) {
+    fun status() = println("$name is ready for flight")
+}
+
+class Jet(name: String, val maxSpeed: Int) : Aircraft(name)
+
+fun main() {
+    val jet = Jet("Falcon", 1200)
+    jet.status()  // Inherited from Aircraft
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Falcon is ready for flight
+  </code></pre>
+
+  <h3>2. Multilevel Inheritance</h3>
+  <p>Multilevel inheritance occurs when a class inherits from a class that itself inherits from another class.</p>
+  <pre><code>
+open class Aircraft(val name: String)
+
+open class Jet(name: String, val maxSpeed: Int) : Aircraft(name)
+
+class FighterJet(name: String, maxSpeed: Int, val missiles: Int) : Jet(name, maxSpeed)
+
+fun main() {
+    val fJet = FighterJet("Eagle", 1500, 8)
+    println("${fJet.name} with ${fJet.missiles} missiles")
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Eagle with 8 missiles
+  </code></pre>
+
+  <h3>3. Hierarchical Inheritance</h3>
+  <p>In hierarchical inheritance, multiple subclasses inherit from a single parent class.</p>
+  <pre><code>
+open class Aircraft(val name: String)
+
+class Jet(name: String) : Aircraft(name)
+class Helicopter(name: String) : Aircraft(name)
+
+fun main() {
+    val jet = Jet("Falcon")
+    val heli = Helicopter("Apache")
+    println(jet.name)
+    println(heli.name)
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Falcon
+Apache
+  </code></pre>
+
+  <h3>4. Interface-based / Multiple Inheritance of Behavior</h3>
+  <p>
+    Kotlin allows a class to implement multiple interfaces, which is how multiple inheritance of behavior is achieved without the diamond problem.
+  </p>
+  <pre><code>
+interface Flyable {
+    fun fly() = println("Flying")
+}
+
+interface Movable {
+    fun move() = println("Moving")
+}
+
+class Drone : Flyable, Movable
+
+fun main() {
+    val drone = Drone()
+    drone.fly()   // From Flyable
+    drone.move()  // From Movable
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+Flying
+Moving
+  </code></pre>
+
+  <h3>5. Why Multiple Inheritance of Classes is Not Allowed</h3>
+  <p>
+    If a class could inherit from multiple classes, it could create ambiguity in case the parent classes have methods with the same signature. 
+    This is called the <strong>diamond problem</strong>.
+  </p>
+  <pre><code>
+// Hypothetical problematic scenario
+open class A {
+    open fun action() = println("Action from A")
+}
+
+open class B {
+    open fun action() = println("Action from B")
+}
+
+// class C : A(), B() // ❌ Error: multiple inheritance not allowed
+  </code></pre>
+  <p>
+    Using interfaces, this problem is solved because Kotlin allows you to explicitly override methods and resolve conflicts.
+  </p>
+
+  <h3>6. Hybrid Inheritance</h3>
+  <p>
+    Hybrid inheritance is a combination of two or more inheritance types, such as multilevel, hierarchical, and interface-based inheritance. 
+    Kotlin supports hybrid inheritance safely using interfaces to implement multiple behaviors while maintaining single class inheritance.
+  </p>
+  <pre><code>
+open class Aircraft(val name: String) {
+    fun status() = println("$name is ready")
+}
+
+// Multilevel + Hierarchical
+class Jet(name: String, val maxSpeed: Int) : Aircraft(name)
+class Helicopter(name: String) : Aircraft(name)
+
+// Interface-based behaviors
+interface Flyable {
+    fun fly() = println("Flying")
+}
+
+interface Movable {
+    fun move() = println("Moving")
+}
+
+// Hybrid Inheritance: class + multiple interfaces
+class AdvancedDrone(name: String) : Aircraft(name), Flyable, Movable
+
+fun main() {
+    val drone = AdvancedDrone("X-Drone")
+    drone.status() // from Aircraft
+    drone.fly()    // from Flyable
+    drone.move()   // from Movable
+}
+  </code></pre>
+  <p><strong>Output:</strong></p>
+  <pre><code>
+X-Drone is ready
+Flying
+Moving
+  </code></pre>
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li>AdvancedDrone inherits from <code>Aircraft</code> (multilevel + hierarchical inheritance).</li>
+    <li>It also implements <code>Flyable</code> and <code>Movable</code> interfaces to add additional behaviors (interface-based inheritance).</li>
+    <li>This combination is called <strong>hybrid inheritance</strong>—mixing class inheritance and multiple interface implementations safely.</li>
+  </ul>
+
+  <h3>7. Technical Interview Questions</h3>
+  <ul>
+    <li><strong>What are the types of inheritance in Kotlin?</strong> <br>
+        Single, Multilevel, Hierarchical, Interface-based (multiple interfaces), Hybrid.</li>
+    <li><strong>Why doesn't Kotlin allow multiple class inheritance?</strong> <br>
+        To avoid the diamond problem—ambiguity in method resolution when two parent classes have the same method.</li>
+    <li><strong>How can Kotlin achieve multiple inheritance?</strong> <br>
+        By using interfaces, which allow multiple behavior implementations and explicit conflict resolution.</li>
+    <li><strong>What is hybrid inheritance?</strong> <br>
+        A combination of multiple inheritance types (class + interface) implemented safely in Kotlin.</li>
+    <li><strong>What is the diamond problem?</strong> <br>
+        When a class inherits from two classes that have the same method, causing ambiguity in which method to call.</li>
+  </ul>
+
+  <h3>8. Key Takeaways</h3>
+  <ul>
+    <li>Kotlin supports single inheritance for classes but allows multiple interface implementation.</li>
+    <li>Single, multilevel, and hierarchical inheritance help structure your class hierarchy logically.</li>
+    <li>Interface-based inheritance provides multiple behavior inheritance safely.</li>
+    <li>Hybrid inheritance combines class inheritance and multiple interface implementations for flexibility.</li>
+    <li>Understanding the diamond problem is important for designing safe class hierarchies.</li>
+  </ul>
+</section>

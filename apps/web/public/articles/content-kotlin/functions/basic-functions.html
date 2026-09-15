@@ -1,0 +1,164 @@
+<section id="kotlin-functions" class="container my-5">
+  <div class="card p-4 shadow-sm rounded-4">
+    <h2 class="fw-bold mb-4 text-primary">Basic Functions in Kotlin</h2>
+
+    <h4>1. Why Use Functions?</h4>
+    <p>
+      Functions are fundamental building blocks of Kotlin programs. They allow you to
+      group reusable code into logical units, improving readability, reducing redundancy,
+      and making debugging easier.
+    </p>
+    <p>
+      Instead of repeating the same logic in multiple places, you can define a function once
+      and call it whenever needed — making your code cleaner and more modular.
+    </p>
+
+    <hr>
+
+    <h4>2. How to Define and Use Functions</h4>
+    <p>
+      A function in Kotlin is declared using the <code>fun</code> keyword, followed by its
+      name, parameters (if any), and return type.
+    </p>
+
+    <pre><code class="language-kotlin">
+// Basic function example
+fun greet() {
+    println("Hello, Kotlin!")
+}
+
+fun main() {
+    greet()  // Output: Hello, Kotlin!
+}
+    </code></pre>
+
+    <h5>Function with Parameters</h5>
+    <pre><code class="language-kotlin">
+fun greetUser(name: String) {
+    println("Welcome, $name!")
+}
+
+fun main() {
+    greetUser("Talha")  // Output: Welcome, Talha!
+}
+    </code></pre>
+
+    <h5>Function with Return Type</h5>
+    <pre><code class="language-kotlin">
+fun add(a: Int, b: Int): Int {
+    return a + b
+}
+
+fun main() {
+    val sum = add(10, 5)
+    println("Sum is $sum")  // Output: Sum is 15
+}
+    </code></pre>
+
+    <h5>Single-Expression Functions</h5>
+    <p>
+      If your function returns a single expression, you can simplify it using
+      <em>expression body syntax</em>:
+    </p>
+    <pre><code class="language-kotlin">
+fun multiply(a: Int, b: Int) = a * b
+
+fun main() {
+    println(multiply(4, 6))  // Output: 24
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>3. Function Types</h4>
+    <ul>
+      <li><strong>Top-level functions:</strong> Declared outside any class — accessible anywhere in the file.</li>
+      <li><strong>Member functions:</strong> Declared inside a class or object.</li>
+      <li><strong>Local functions:</strong> Declared inside another function to limit visibility.</li>
+    </ul>
+
+    <pre><code class="language-kotlin">
+// Example of a local function
+fun outerFunction() {
+    fun innerHelper(x: Int): Int = x * x
+    println(innerHelper(5))  // Output: 25
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>4. Default and Named Parameters</h4>
+    <p>
+      Kotlin allows you to assign default values to parameters and call functions using named arguments:
+    </p>
+    <pre><code class="language-kotlin">
+fun displayInfo(name: String, age: Int = 18) {
+    println("Name: $name, Age: $age")
+}
+
+fun main() {
+    displayInfo("Ali")               // Uses default age
+    displayInfo(name = "Sara", age = 25) // Uses named arguments
+}
+    </code></pre>
+
+    <hr>
+
+    <h4>5. When to Use and When Not to Use Functions</h4>
+
+    <h6>Use functions when:</h6>
+    <ul>
+      <li>A block of code needs to be reused multiple times.</li>
+      <li>You want to improve readability and modularity.</li>
+      <li>You want to separate logic into smaller, testable units.</li>
+    </ul>
+
+    <h6>Avoid or simplify functions when:</h6>
+    <ul>
+      <li>The logic is too simple and used only once.</li>
+      <li>You are writing one-off initialization code (e.g., inside <code>main()</code>).</li>
+    </ul>
+
+    <hr>
+
+    <h4>6. Interview Questions</h4>
+    <ul>
+      <li>What is the syntax to define a function in Kotlin?</li>
+      <li>What are the differences between a function and a method?</li>
+      <li>Explain single-expression functions with an example.</li>
+      <li>What are default and named arguments in Kotlin functions?</li>
+      <li>Can functions be nested inside other functions? If yes, why would you do that?</li>
+      <li>
+        How are functions in Kotlin different from Java methods?
+        <p class="mt-2">
+          In Kotlin, functions are more flexible than Java methods. Kotlin allows <strong>top-level functions</strong> (defined outside classes), while Java requires all methods to be inside a class.  
+          Kotlin functions can also have <strong>default and named parameters</strong>, <strong>single-expression syntax</strong>, and can be treated as <strong>first-class citizens</strong> — meaning you can store them in variables, pass them as arguments, or return them from other functions.  
+          Additionally, Kotlin doesn’t require the <code>static</code> keyword for utility functions — they can simply exist at the top level of a file.
+        </p>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h4>7. Example Program</h4>
+    <pre><code class="language-kotlin">
+fun calculateGrade(score: Int): String {
+    return when {
+        score >= 90 -> "A"
+        score >= 80 -> "B"
+        score >= 70 -> "C"
+        else -> "Fail"
+    }
+}
+
+fun main() {
+    println("Student Grade: ${calculateGrade(85)}") // Output: Student Grade: B
+}
+    </code></pre>
+
+    <p>
+      Functions in Kotlin not only make your code cleaner but also align with modern programming principles — 
+      encouraging readability, reuse, and functional-style design.
+    </p>
+  </div>
+</section>

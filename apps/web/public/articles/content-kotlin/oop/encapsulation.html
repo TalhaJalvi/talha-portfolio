@@ -1,0 +1,98 @@
+<section id="kotlin-encapsulation">
+  <h2>Encapsulation in Kotlin: Access Modifiers, Getters & Setters</h2>
+  <p><strong>Encapsulation in Kotlin</strong> means protecting internal state and exposing only the operations other code needs. Kotlin supports this with <code>private</code>, <code>protected</code>, <code>internal</code>, and <code>public</code>, together with property getters and setters.</p>
+
+  <div class="callout"><strong>Quick answer:</strong> keep state private when callers should not change it directly, then expose safe methods or restricted setters that preserve the rules of your class.</div>
+
+  <h3>1. Why Encapsulation Matters</h3>
+  <ul>
+    <li><strong>Protects state:</strong> prevents invalid changes from outside the class.</li>
+    <li><strong>Controls APIs:</strong> callers depend on a small, intentional surface.</li>
+    <li><strong>Makes refactoring safer:</strong> implementation details can change without breaking callers.</li>
+    <li><strong>Improves maintainability:</strong> mutation happens in predictable places.</li>
+  </ul>
+
+  <h3>2. Basic Encapsulation Example</h3>
+  <pre><code>class BankAccount {
+    private var balance: Double = 0.0
+
+    fun deposit(amount: Double) {
+        if (amount > 0) balance += amount
+    }
+
+    fun withdraw(amount: Double): Boolean {
+        if (amount <= 0 || amount > balance) return false
+        balance -= amount
+        return true
+    }
+
+    fun currentBalance(): Double = balance
+}</code></pre>
+  <p><code>balance</code> cannot be assigned from outside the class. Every mutation passes through a method that can validate the operation.</p>
+
+  <h3>3. Kotlin Visibility Modifiers</h3>
+  <table>
+    <thead><tr><th>Modifier</th><th>Scope</th><th>Common use</th></tr></thead>
+    <tbody>
+      <tr><td><code>public</code></td><td>Everywhere</td><td>Stable API for callers</td></tr>
+      <tr><td><code>private</code></td><td>Class member, or file for top-level declarations</td><td>Implementation details and private state</td></tr>
+      <tr><td><code>protected</code></td><td>Class and subclasses</td><td>Extension points for inheritance</td></tr>
+      <tr><td><code>internal</code></td><td>Same module</td><td>APIs shared inside one module</td></tr>
+    </tbody>
+  </table>
+  <p>See <a href="visibility-modifiers.html">Kotlin visibility modifiers and file-level visibility</a> for a deeper explanation.</p>
+
+  <h3>4. Encapsulation with a Private Setter</h3>
+  <pre><code>class DownloadState {
+    var progress: Int = 0
+        private set
+
+    fun updateProgress(value: Int) {
+        progress = value.coerceIn(0, 100)
+    }
+}</code></pre>
+  <p>Other classes can read <code>progress</code>, while only <code>DownloadState</code> can assign to it.</p>
+
+  <h3>5. Custom Getter and Setter</h3>
+  <pre><code>class Pilot {
+    var name: String = "Unknown"
+        private set
+
+    var experienceYears: Int = 0
+        set(value) {
+            if (value >= 0) field = value
+        }
+
+    fun assignName(newName: String) {
+        if (newName.isNotBlank()) name = newName
+    }
+}</code></pre>
+  <p>The <code>field</code> keyword refers to the property's backing field inside a custom accessor.</p>
+
+  <h3>6. Encapsulation vs Abstraction</h3>
+  <p><strong>Encapsulation</strong> controls access to state and implementation details. <strong>Abstraction</strong> presents a simpler contract while hiding unnecessary complexity. They often work together, but they solve different problems.</p>
+
+  <h3>7. Common Interview Questions</h3>
+  <ul>
+    <li><strong>How does Kotlin support encapsulation?</strong> Through visibility modifiers, classes, properties, getters, setters, and methods that control mutation.</li>
+    <li><strong>What does <code>private set</code> do?</strong> It exposes the property's getter while restricting assignment to the declaring scope.</li>
+    <li><strong>What is <code>internal</code>?</strong> It limits a declaration to the same Kotlin module.</li>
+    <li><strong>What is the difference between encapsulation and abstraction?</strong> Encapsulation controls access; abstraction hides complexity behind a contract.</li>
+  </ul>
+
+  <h3>8. Related Kotlin OOP Guides</h3>
+  <ul>
+    <li><a href="visibility-modifiers.html">Visibility modifiers and file-level visibility</a></li>
+    <li><a href="properties-methods.html">Kotlin properties, getters and setters</a></li>
+    <li><a href="polymorphism.html">Polymorphism in Kotlin</a></li>
+    <li><a href="interfaces.html">Interfaces in Kotlin</a></li>
+  </ul>
+
+  <h3>9. Key Takeaways</h3>
+  <ul>
+    <li>Hide mutable implementation details unless callers genuinely need direct access.</li>
+    <li>Use methods and restricted setters to preserve valid state.</li>
+    <li>Use <code>internal</code> for module-level APIs and <code>private</code> for implementation details.</li>
+    <li>Good encapsulation reduces coupling and makes code easier to change safely.</li>
+  </ul>
+</section>
