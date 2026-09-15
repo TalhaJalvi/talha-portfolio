@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Test MCP Tools in Python | Talha Jalvi</title><meta name="description" content="Test MCP tools with the Python SDK's in-process client, including schema, happy path, validation, authorization, errors, structured output, and mutation safety."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/testing-observability/test-mcp-tools.html"><link rel="stylesheet" href="../../../css/mcp-module-09.css"></head><body><main><article><div class="nav"><a href="module-09-index.html">← Module 9</a><span>Lesson 3</span></div><h1>Test MCP Tools</h1><p>The current Python SDK can connect a <code>Client</code> directly to an <code>MCPServer</code> object, giving you fast tests without ports or subprocesses.</p><pre>import pytest
+from mcp.client import Client
+from server import mcp
+
+@pytest.mark.anyio
+async def test_lookup():
+    async with Client(mcp) as client:
+        result = await client.call_tool("lookup", {"id":"A-1"})
+        assert result is not None</pre><h2>Test more than the happy path</h2><ul><li>Required/missing fields.</li><li>Boundary values and enums.</li><li>Unauthorized caller.</li><li>Downstream timeout.</li><li>Not-found behavior.</li><li>Structured output contract.</li><li>Idempotency for mutations.</li></ul><h2>Snapshot schemas selectively</h2><p>Schema snapshots can catch accidental breaking changes, but make them readable and reviewable rather than snapshotting entire noisy protocol responses.</p><div class="next"><a href="test-resources-prompts.html">Next: Resources & Prompts →</a></div></article></main></body></html>

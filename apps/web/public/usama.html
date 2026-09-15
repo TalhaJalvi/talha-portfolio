@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculator — Amortization Schedule</title>
+  <meta name="description" content="Free online mortgage calculator with monthly payment calculation, amortization table, and interactive chart visualization.">
+
+  <!-- Chart.js for interactive chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #111827;
+    }
+    form {
+      display: grid;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px;
+      border: none;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .result {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 20px;
+      color: #2563eb;
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: right;
+    }
+    th {
+      background-color: #f3f4f6;
+      text-align: center;
+    }
+    .faq {
+      margin-top: 40px;
+    }
+    .faq h2 {
+      margin-bottom: 10px;
+    }
+    .faq p {
+      margin: 0 0 15px;
+      color: #555;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mortgage Calculator</h1>
+    <p style="text-align:center; color:#555;">
+      Calculate your monthly mortgage payments and view the amortization schedule.
+    </p>
+
+    <form id="mortgageForm">
+      <div>
+        <label for="amount">Loan Amount ($)</label>
+        <input type="number" id="amount" value="300000" required>
+      </div>
+      <div>
+        <label for="rate">Annual Interest Rate (%)</label>
+        <input type="number" id="rate" step="0.01" value="4.5" required>
+      </div>
+      <div>
+        <label for="years">Loan Term (Years)</label>
+        <input type="number" id="years" value="30" required>
+      </div>
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <canvas id="chart" height="200"></canvas>
+
+    <table id="amortizationTable"></table>
+
+    <section class="faq">
+      <h2>FAQs</h2>
+      <p><strong>What is amortization?</strong><br>
+      Amortization is the process of spreading your mortgage payments over time, showing how much goes toward principal and interest each month.</p>
+
+      <p><strong>Can I pay off my mortgage early?</strong><br>
+      Yes, making extra payments toward the principal reduces total interest and shortens your loan term.</p>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is amortization?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Amortization is the process of spreading your mortgage payments over time, showing how much goes toward principal and interest each month."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I pay off my mortgage early?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, making extra payments toward the principal reduces total interest and shortens your loan term."
+          }
+        }
+      ]
+    }
+    </script>
+  </main>
+
+  <script>
+    const form = document.getElementById("mortgageForm");
+    const resultDiv = document.getElementById("result");
+    const table = document.getElementById("amortizationTable");
+    const chartCanvas = document.getElementById("chart");
+    let chart;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const P = parseFloat(document.getElementById("amount").value);
+      const annualRate = parseFloat(document.getElementById("rate").value);
+      const years = parseInt(document.getElementById("years").value);
+
+      const r = annualRate / 100 / 12;
+      const n = years * 12;
+      const monthlyPayment = r === 0 ? P / n : (P * r) / (1 - Math.pow(1 + r, -n));
+
+      resultDiv.innerHTML = `Estimated Monthly Payment: <br> $${monthlyPayment.toFixed(2)}`;
+
+      // Generate amortization schedule
+      let balance = P;
+      const schedule = [];
+      for (let i = 1; i <= n; i++) {
+        const interest = balance * r;
+        const principal = monthlyPayment - interest;
+        balance -= principal;
+        schedule.push({
+          month: i,
+          principal: principal.toFixed(2),
+          interest: interest.toFixed(2),
+          balance: balance > 0 ? balance.toFixed(2) : 0
+        });
+      }
+
+      // Display first 12 months
+      let html = `
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Principal ($)</th>
+            <th>Interest ($)</th>
+            <th>Balance ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
+      schedule.slice(0, 12).forEach((row) => {
+        html += `
+          <tr>
+            <td>${row.month}</td>
+            <td>${row.principal}</td>
+            <td>${row.interest}</td>
+            <td>${row.balance}</td>
+          </tr>
+        `;
+      });
+      html += `</tbody>`;
+      table.innerHTML = html;
+
+      // Update chart
+      const labels = schedule.map((s) => s.month);
+      const principalData = schedule.map((s) => parseFloat(s.principal));
+      const interestData = schedule.map((s) => parseFloat(s.interest));
+
+      if (chart) chart.destroy();
+      chart = new Chart(chartCanvas, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Principal",
+              data: principalData,
+              borderColor: "#16a34a",
+              fill: false,
+              tension: 0.1,
+            },
+            {
+              label: "Interest",
+              data: interestData,
+              borderColor: "#2563eb",
+              fill: false,
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: { y: { beginAtZero: true } },
+          plugins: {
+            tooltip: { mode: "index", intersect: false },
+            legend: { position: "top" },
+          },
+        },
+      });
+    });
+  </script>
+</body>
+</html>

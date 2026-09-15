@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your First MCP Tool in Python: Types, Docstrings and Validation | Talha Jalvi</title><meta name="description" content="Create your first MCP tool with Python type hints and docstrings, understand generated schemas, validation, naming, and model-friendly tool design."><link rel="canonical" href="https://talhajalvi.com/articles/mcp/build-server/first-mcp-tool.html"><link rel="stylesheet" href="../../../css/mcp-module-04.css"></head><body><main><article><div class="nav"><a href="module-04-index.html">← Module 4</a><span>Lesson 3</span></div><h1>Your First MCP Tool</h1><pre>from mcp.server import MCPServer
+
+mcp = MCPServer("Utility Server")
+
+@mcp.tool()
+def calculate_tax(amount: float, rate: float) -> dict:
+    """Calculate tax for an amount using a decimal rate."""
+    tax = amount * rate
+    return {"amount": amount, "tax": tax, "total": amount + tax}</pre><h2>Type hints become the contract</h2><p>The SDK uses your function signature to derive the input schema. The docstring is part of the tool description that a host or model can use to decide when the tool is appropriate.</p><h2>Choose explicit types</h2><p>Use enums or constrained models when the domain has a limited set of values. Avoid accepting arbitrary dictionaries when a structured model would make invalid calls impossible.</p><h2>Keep descriptions operational</h2><p>Explain what the tool does, when it should be used, and important side effects. For mutation tools, make the destructive or irreversible nature obvious.</p><div class="note"><strong>Tool quality affects model quality.</strong> A technically valid tool with an ambiguous name or schema can still perform poorly.</div><div class="next"><a href="mcp-server-rest-api.html">Next: Wrap a REST API →</a></div></article></main></body></html>

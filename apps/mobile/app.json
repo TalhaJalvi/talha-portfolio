@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Talha Labs",
+    "slug": "talha-labs",
+    "scheme": "talhalabs",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.talhajalvi.labs"
+    },
+    "android": {
+      "package": "com.talhajalvi.labs"
+    }
+  }
+}

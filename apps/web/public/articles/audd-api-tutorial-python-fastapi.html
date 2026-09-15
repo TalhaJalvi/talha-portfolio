@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AudD API Tutorial: Recognize Songs with Python & FastAPI | Talha Jalvi</title>
+  <meta name="description" content="Learn how to recognize songs with the AudD Music Recognition API using Python and FastAPI, upload audio securely, request metadata, handle errors and normalize results for production apps.">
+  <meta name="author" content="Talha Abbas Jalvi">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://talhajalvi.com/articles/audd-api-tutorial-python-fastapi.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Talha Jalvi">
+  <meta property="og:title" content="AudD API Tutorial: Recognize Songs with Python & FastAPI">
+  <meta property="og:description" content="Build a practical music-recognition backend with AudD, Python and FastAPI, including audio upload, metadata, response normalization and production safeguards.">
+  <meta property="og:url" content="https://talhajalvi.com/articles/audd-api-tutorial-python-fastapi.html">
+  <meta name="twitter:card" content="summary">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "AudD API Tutorial: Recognize Songs with Python & FastAPI",
+    "description": "A practical guide to integrating the AudD Music Recognition API with Python and FastAPI.",
+    "datePublished": "2026-08-27",
+    "dateModified": "2026-08-27",
+    "author": {
+      "@type": "Person",
+      "name": "Talha Abbas Jalvi",
+      "url": "https://talhajalvi.com/"
+    },
+    "mainEntityOfPage": "https://talhajalvi.com/articles/audd-api-tutorial-python-fastapi.html",
+    "proficiencyLevel": "Intermediate"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#f8f9fa; --card:#fff; --text:#212529; --muted:#5f6872; --border:#dee2e6; --link:#0b57d0; --code:#111827; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.75; }
+    header.site-header { background:#fff; border-bottom:1px solid var(--border); padding:16px 24px; position:sticky; top:0; z-index:10; }
+    .nav { max-width:1050px; margin:auto; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+    .nav a { color:var(--text); text-decoration:none; font-weight:600; }
+    main { max-width:900px; margin:40px auto; padding:0 20px; }
+    article { background:var(--card); padding:42px; border:1px solid var(--border); border-radius:14px; }
+    h1 { font-size:2.5rem; line-height:1.2; margin-top:0; }
+    h2 { font-size:1.7rem; margin-top:2.6rem; }
+    h3 { font-size:1.25rem; margin-top:2rem; }
+    p, li { font-size:1.04rem; }
+    .lead { font-size:1.18rem; color:var(--muted); }
+    .meta { color:var(--muted); font-size:.95rem; margin-bottom:2rem; }
+    a { color:var(--link); }
+    pre { background:var(--code); color:#f8fafc; padding:18px; border-radius:10px; overflow-x:auto; line-height:1.55; }
+    code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    p code, li code { background:#eef1f4; color:#111827; padding:2px 5px; border-radius:4px; }
+    .callout { border-left:4px solid var(--link); background:#f3f7ff; padding:16px 18px; margin:1.5rem 0; }
+    .warning { border-left-color:#b45309; background:#fff7ed; }
+    .cta { margin-top:3rem; padding:24px; border-radius:12px; background:#111827; color:#fff; }
+    .cta h2 { color:#fff; margin-top:0; }
+    .cta a { color:#fff; }
+    footer { max-width:900px; margin:24px auto 50px; padding:0 20px; color:var(--muted); }
+    @media (max-width:700px) { article{padding:24px;} h1{font-size:2rem;} .nav{align-items:flex-start;flex-direction:column;} }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav">
+      <a href="../index.html">Talha Jalvi</a>
+      <div><a href="articles-home.html">Articles</a> &nbsp; <a href="mailto:talhajalvi321@gmail.com">Work with me</a></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <h1>AudD API Tutorial: Recognize Songs with Python & FastAPI</h1>
+      <p class="lead">This guide shows how to put AudD behind your own backend instead of exposing the provider token in a mobile or web client. We will recognize a song from an uploaded audio clip, request extra metadata, normalize the result and wrap the flow in FastAPI.</p>
+      <p class="meta">Published August 27, 2026 · Python · FastAPI · Music recognition APIs</p>
+
+      <p>AudD's standard recognition endpoint accepts a short audio file or a public URL and returns a JSON result containing fields such as artist, title, album, release date, label, timecode and a song link. You can also request additional metadata from providers such as Apple Music, Spotify, Deezer and MusicBrainz.</p>
+
+      <div class="callout"><strong>Architecture used in this guide:</strong> client records or selects audio → your FastAPI backend receives it → backend sends it to AudD → backend converts the provider response into your own stable JSON schema → client receives the normalized result.</div>
+
+      <h2>1. Why put AudD behind FastAPI?</h2>
+      <p>You can technically call a recognition API directly from a client, but doing that in a production app would expose your API token and couple your application to one provider's response format. A backend layer gives you better control over:</p>
+      <ul>
+        <li>keeping the AudD token private;</li>
+        <li>rate limiting and abuse protection;</li>
+        <li>audio validation and upload limits;</li>
+        <li>logging and recognition analytics;</li>
+        <li>normalizing metadata into your own schema;</li>
+        <li>switching to another recognition provider later.</li>
+      </ul>
+
+      <h2>2. Get your AudD API token</h2>
+      <p>Create an account in the AudD dashboard and obtain an API token. Store it as a server-side environment variable instead of writing it directly into source code.</p>
+
+      <pre><code>export AUDD_API_TOKEN="your-token-here"</code></pre>
+
+      <p>For local development you can also use a <code>.env</code> file, but make sure that file is excluded from Git.</p>
+
+      <h2>3. Test recognition with curl first</h2>
+      <p>Before adding FastAPI, verify that your token and sample audio work directly against AudD:</p>
+
+      <pre><code>curl https://api.audd.io/ \
+  -F api_token="$AUDD_API_TOKEN" \
+  -F file=@sample.mp3 \
+  -F return="apple_music,spotify"</code></pre>
+
+      <p>You can also send a public audio URL instead of uploading the file:</p>
+
+      <pre><code>curl https://api.audd.io/ \
+  -F api_token="$AUDD_API_TOKEN" \
+  -F url="https://example.com/sample.mp3" \
+  -F return="apple_music,spotify"</code></pre>
+
+      <p>AudD recommends the URL approach when the file is already publicly available because their server can fetch it directly. For audio recorded locally in a mobile app, multipart upload is usually the more natural backend workflow.</p>
+
+      <h2>4. Install the FastAPI dependencies</h2>
+
+      <pre><code>pip install fastapi uvicorn httpx python-multipart</code></pre>
+
+      <p><code>python-multipart</code> is required for file uploads in FastAPI. <code>httpx</code> gives us an async HTTP client so the recognition call does not block the server worker.</p>
+
+      <h2>5. Build a minimal recognition endpoint</h2>
+
+      <pre><code>import os
+
+import httpx
+from fastapi import FastAPI, File, HTTPException, UploadFile
+
+app = FastAPI()
+
+AUDD_API_TOKEN = os.environ["AUDD_API_TOKEN"]
+AUDD_URL = "https://api.audd.io/"
+
+
+@app.post("/api/recognize")
+async def recognize_song(file: UploadFile = File(...)):
+    audio = await file.read()
+
+    if not audio:
+        raise HTTPException(status_code=400, detail="Empty audio file")
+
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        response = await client.post(
+            AUDD_URL,
+            data={
+                "api_token": AUDD_API_TOKEN,
+                "return": "apple_music,spotify",
+            },
+            files={
+                "file": (
+                    file.filename or "audio.mp3",
+                    audio,
+                    file.content_type or "application/octet-stream",
+                )
+            },
+        )
+
+    response.raise_for_status()
+    payload = response.json()
+
+    if payload.get("status") != "success":
+        raise HTTPException(status_code=502, detail="Recognition provider failed")
+
+    result = payload.get("result")
+
+    if result is None:
+        return {"matched": False, "song": None}
+
+    return {
+        "matched": True,
+        "song": normalize_song(result),
+    }
+
+
+def normalize_song(result: dict) -> dict:
+    spotify = result.get("spotify") or {}
+    apple_music = result.get("apple_music") or {}
+
+    return {
+        "artist": result.get("artist"),
+        "title": result.get("title"),
+        "album": result.get("album"),
+        "release_date": result.get("release_date"),
+        "label": result.get("label"),
+        "timecode": result.get("timecode"),
+        "song_link": result.get("song_link"),
+        "spotify_url": (spotify.get("external_urls") or {}).get("spotify"),
+        "apple_music_url": apple_music.get("url"),
+    }</code></pre>
+
+      <p>Run the API:</p>
+
+      <pre><code>uvicorn main:app --reload</code></pre>
+
+      <p>Then send a local audio file to your own backend:</p>
+
+      <pre><code>curl http://localhost:8000/api/recognize \
+  -F file=@sample.mp3</code></pre>
+
+      <h2>6. Why normalize the response?</h2>
+      <p>Your client should ideally not know that AudD is the provider. Instead of returning the raw provider object everywhere, convert it into your own application model.</p>
+
+      <pre><code>{
+  "matched": true,
+  "song": {
+    "artist": "Example Artist",
+    "title": "Example Song",
+    "album": "Example Album",
+    "release_date": "2024-01-01",
+    "label": "Example Label",
+    "timecode": "00:14",
+    "song_link": "https://...",
+    "spotify_url": "https://open.spotify.com/...",
+    "apple_music_url": "https://music.apple.com/..."
+  }
+}</code></pre>
+
+      <p>That becomes especially useful if you later test ACRCloud, ShazamKit or another service. Your app can keep consuming the same internal model while only the backend adapter changes.</p>
+
+      <p>For a deeper provider comparison, see <a href="shazamkit-vs-acrcloud-vs-audd.html">ShazamKit vs ACRCloud vs AudD</a>.</p>
+
+      <h2>7. Add file-size and content-type validation</h2>
+      <p>The minimal endpoint works, but do not accept unlimited uploads in production. Set an explicit size limit and reject obviously unsupported input.</p>
+
+      <pre><code>MAX_AUDIO_BYTES = 10 * 1024 * 1024
+ALLOWED_TYPES = {
+    "audio/mpeg",
+    "audio/mp4",
+    "audio/wav",
+    "audio/x-wav",
+    "audio/aac",
+    "audio/ogg",
+}
+
+
+async def validate_audio(file: UploadFile) -> bytes:
+    if file.content_type not in ALLOWED_TYPES:
+        raise HTTPException(status_code=415, detail="Unsupported audio format")
+
+    audio = await file.read(MAX_AUDIO_BYTES + 1)
+
+    if len(audio) > MAX_AUDIO_BYTES:
+        raise HTTPException(status_code=413, detail="Audio file is too large")
+
+    if not audio:
+        raise HTTPException(status_code=400, detail="Empty audio file")
+
+    return audio</code></pre>
+
+      <div class="callout warning"><strong>Important:</strong> MIME type from the client is only one validation signal. For higher-risk upload systems, also inspect the actual file format and never trust the original filename as a storage path.</div>
+
+      <h2>8. Handle provider failures cleanly</h2>
+      <p>Network timeouts, provider errors and invalid JSON should not leak confusing exceptions to the client. Wrap the provider call and return a stable application error.</p>
+
+      <pre><code>async def call_audd(audio: bytes, filename: str, content_type: str) -> dict:
+    try:
+        async with httpx.AsyncClient(timeout=20.0) as client:
+            response = await client.post(
+                AUDD_URL,
+                data={
+                    "api_token": AUDD_API_TOKEN,
+                    "return": "apple_music,spotify",
+                },
+                files={"file": (filename, audio, content_type)},
+            )
+            response.raise_for_status()
+            return response.json()
+    except httpx.TimeoutException as exc:
+        raise HTTPException(status_code=504, detail="Music recognition timed out") from exc
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail="Music recognition service unavailable") from exc</code></pre>
+
+      <h2>9. Recognize from a URL instead of an upload</h2>
+      <p>If the audio is already stored at a public URL, you can avoid moving the bytes through your API server.</p>
+
+      <pre><code>from pydantic import BaseModel, HttpUrl
+
+
+class RecognitionUrlRequest(BaseModel):
+    url: HttpUrl
+
+
+@app.post("/api/recognize-url")
+async def recognize_song_url(body: RecognitionUrlRequest):
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        response = await client.post(
+            AUDD_URL,
+            data={
+                "api_token": AUDD_API_TOKEN,
+                "url": str(body.url),
+                "return": "apple_music,spotify",
+            },
+        )
+
+    response.raise_for_status()
+    payload = response.json()
+    result = payload.get("result")
+
+    return {
+        "matched": result is not None,
+        "song": normalize_song(result) if result else None,
+    }</code></pre>
+
+      <div class="callout warning"><strong>SSRF warning:</strong> if your backend accepts arbitrary URLs, do not blindly let it fetch private network addresses or internal services. Validate allowed schemes and destinations, or use pre-signed URLs from storage you control.</div>
+
+      <h2>10. What does the <code>return</code> parameter do?</h2>
+      <p>The standard endpoint can request additional provider metadata. AudD currently documents provider identifiers including <code>apple_music</code>, <code>spotify</code>, <code>deezer</code> and <code>musicbrainz</code>. Request only what the product actually uses because extra provider lookups can add latency.</p>
+
+      <pre><code>"return": "apple_music,spotify,deezer,musicbrainz"</code></pre>
+
+      <p>If all you need is basic recognition, skip the extra metadata and keep the request simpler.</p>
+
+      <h2>11. What about ISRC and UPC?</h2>
+      <p>Do not assume every standard recognition response will include an ISRC or UPC. AudD's SDK documentation notes that ISRC/UPC fields are associated with enterprise-plan capabilities. If those identifiers are important to your product, confirm the exact account/endpoint behavior you are paying for before designing your database schema around them.</p>
+
+      <p>A robust schema usually treats external identifiers as optional:</p>
+
+      <pre><code>class SongIdentity:
+    title: str | None
+    artist: str | None
+    isrc: str | None
+    upc: str | None
+    spotify_id: str | None
+    apple_music_id: str | None</code></pre>
+
+      <h2>12. Short clips, streams and long files are different products</h2>
+      <p>AudD separates recognition workflows:</p>
+      <ul>
+        <li><strong>Standard Recognition:</strong> short clips and normal song-identification requests;</li>
+        <li><strong>Audio Streams:</strong> continuous radio/live-stream monitoring with results delivered in real time;</li>
+        <li><strong>Enterprise:</strong> large audio or video files that may contain multiple songs.</li>
+      </ul>
+
+      <p>Do not implement continuous monitoring by repeatedly calling the short-clip endpoint unless that architecture is deliberately chosen after evaluating cost, latency and provider guidance.</p>
+
+      <h2>13. Production checklist</h2>
+      <ul>
+        <li>keep the provider token on the server;</li>
+        <li>set upload size and request time limits;</li>
+        <li>rate-limit recognition per user/device/account;</li>
+        <li>do not persist raw audio longer than necessary;</li>
+        <li>log latency and match/no-match rates, not secrets;</li>
+        <li>normalize the provider response into your own model;</li>
+        <li>treat optional metadata and provider IDs as nullable;</li>
+        <li>test with noisy, quiet and short real-world recordings;</li>
+        <li>handle provider outages without crashing the client flow;</li>
+        <li>review current AudD pricing and limits before scaling traffic.</li>
+      </ul>
+
+      <h2>Final architecture</h2>
+      <pre><code>Mobile / Web Client
+        |
+        | audio clip
+        v
+FastAPI Recognition Endpoint
+        |
+        | validated multipart request
+        v
+AudD Adapter
+        |
+        | provider JSON
+        v
+Normalization Layer
+        |
+        | stable application schema
+        v
+Client + Database + Analytics</code></pre>
+
+      <p>This keeps the most volatile part of the system—the external recognition provider—behind a small adapter. That is much easier to maintain than letting provider-specific response fields spread through a mobile app and database.</p>
+
+      <h2>Official references</h2>
+      <ul>
+        <li><a href="https://docs.audd.io/" rel="noopener">AudD Music Recognition API documentation</a></li>
+        <li><a href="https://docs.audd.io/sdks/python/" rel="noopener">AudD Python SDK documentation</a></li>
+        <li><a href="https://docs.audd.io/streams/" rel="noopener">AudD Audio Streams documentation</a></li>
+        <li><a href="https://docs.audd.io/enterprise/" rel="noopener">AudD Enterprise endpoint documentation</a></li>
+      </ul>
+
+      <div class="cta">
+        <h2>Building music recognition into an app?</h2>
+        <p>I work on React Native, Android and Python backend systems, including audio recognition and metadata pipelines. If you need help turning a prototype into a production flow, <a href="mailto:talhajalvi321@gmail.com?subject=AudD%20music%20recognition%20project">get in touch</a>.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>© 2026 Talha Abbas Jalvi · <a href="articles-home.html">More engineering articles</a> · <a href="shazamkit-vs-acrcloud-vs-audd.html">Compare music recognition APIs</a></footer>
+</body>
+</html>

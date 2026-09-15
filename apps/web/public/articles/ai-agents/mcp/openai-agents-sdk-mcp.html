@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect MCP to the OpenAI Agents SDK in Python | Talha Jalvi</title><meta name="description" content="Use MCP with the OpenAI Agents SDK in Python, choose hosted, Streamable HTTP, or stdio integration, and understand the current runtime options."><link rel="canonical" href="https://talhajalvi.com/articles/ai-agents/mcp/openai-agents-sdk-mcp.html"><link rel="stylesheet" href="../../../css/mcp-module-06.css"></head><body><main><article><div class="nav"><a href="module-06-index.html">← Module 6</a><span>Lesson 2</span></div><h1>Connect MCP to the OpenAI Agents SDK</h1><p>The OpenAI Agents SDK supports multiple MCP integration styles. Use hosted MCP when the Responses API should call a publicly reachable server on your behalf; use Streamable HTTP when your application manages the connection; use stdio for a local subprocess.</p><h2>Streamable HTTP example</h2><pre>from agents import Agent, Runner
+from agents.mcp import MCPServerStreamableHttp
+
+async with MCPServerStreamableHttp(
+    name="Internal MCP",
+    params={"url":"https://mcp.example.com/mcp"},
+    cache_tools_list=True,
+) as server:
+    agent = Agent(
+        name="Assistant",
+        instructions="Use approved tools when needed.",
+        mcp_servers=[server],
+    )
+    result = await Runner.run(agent, "Find order A-100")</pre><h2>Choose the integration boundary deliberately</h2><p>Hosted MCP reduces local round-trip orchestration. Locally managed MCP gives your code direct control over headers, filtering, metadata, and connection lifecycle.</p><h2>Reference</h2><p><a href="https://openai.github.io/openai-agents-python/mcp/">Official MCP integration guide</a></p><div class="next"><a href="hosted-mcp-openai.html">Next: Hosted MCP →</a></div></article></main></body></html>

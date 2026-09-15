@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Public content sitemaps.
+Sitemap: https://talhajalvi.com/tal-sitemap.xml
+Sitemap: https://talhajalvi.com/course-sitemap.xml
+Sitemap: https://talhajalvi.com/astra-sitemap.xml

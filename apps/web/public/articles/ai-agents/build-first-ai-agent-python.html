@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build Your First AI Agent in Python with the OpenAI Agents SDK</title><meta name="description" content="Build a simple AI agent in Python using the OpenAI Agents SDK, then add a function tool, run the agent loop and understand what happens under the hood."><meta name="author" content="Talha Abbas Jalvi"><meta name="robots" content="index,follow"><link rel="canonical" href="https://talhajalvi.com/articles/ai-agents/build-first-ai-agent-python.html"><link rel="stylesheet" href="../../css/ai-course.css"></head><body><header class="site-header"><div class="inner"><a class="brand" href="../../index.html">Talha Jalvi</a><nav class="nav-links"><a href="index.html">Course</a><a href="index.html">Module index</a></nav></div></header><div class="course-shell"><aside class="course-nav"><h2>Module 1</h2><ol><li><a href="what-is-an-ai-agent.html">What Is an AI Agent?</a></li><li><a href="agent-architecture-model-tools-memory-orchestration.html">Agent Architecture</a></li><li><a href="build-first-ai-agent-python.html">Build First Agent</a></li></ol></aside><article class="article"><p class="eyebrow">Module 1 · Lesson 10</p><h1>Build Your First AI Agent in Python</h1><p class="lead">In this lesson we will build a small tool-using agent with the current OpenAI Agents SDK, then map the code back to the agent loop you learned earlier.</p><p class="meta">Updated August 2026 · Python · OpenAI Agents SDK</p><h2>What we are building</h2><p>The agent will answer developer-support questions. It will have one deterministic tool that returns the deployment status of a project. The example is intentionally small so you can see the architecture clearly.</p><h2>Prerequisites</h2><ul><li>Python 3</li><li>An OpenAI API key</li><li>A terminal and virtual environment</li></ul><p>The current OpenAI Agents SDK quickstart installs the package as <code>openai-agents</code>.</p><h2>1. Create a project</h2><pre><code>mkdir first-agent
+cd first-agent
+python -m venv .venv
+source .venv/bin/activate</code></pre><p>On Windows, activate the virtual environment using the appropriate <code>.venv\Scripts\activate</code> command.</p><h2>2. Install the SDK</h2><pre><code>pip install openai-agents</code></pre><p>Set your API key in the environment rather than hard-coding it into source control.</p><pre><code>export OPENAI_API_KEY="your-key-here"</code></pre><h2>3. Create a basic agent</h2><pre><code>from agents import Agent, Runner
+
+agent = Agent(
+    name="Developer Support Agent",
+    instructions=(
+        "Help developers understand project status. "
+        "Be concise and do not invent deployment information."
+    ),
+)
+
+result = Runner.run_sync(
+    agent,
+    "Explain what a health check endpoint is."
+)
+
+print(result.final_output)</code></pre><p>This already uses an agent runtime, but it behaves much like a normal model-backed assistant because we have not added any external capability.</p><h2>4. Add a function tool</h2><p>The Agents SDK can turn a Python function into a tool and derive a schema from its type annotations and documentation.</p><pre><code>from agents import Agent, Runner, function_tool
+
+@function_tool
+def get_deployment_status(project: str) -> str:
+    """Return the current deployment status for a known project."""
+    statuses = {
+        "api": "healthy",
+        "worker": "degraded",
+        "dashboard": "healthy",
+    }
+    return statuses.get(project.lower(), "unknown project")
+
+agent = Agent(
+    name="Developer Support Agent",
+    instructions=(
+        "Help developers investigate deployment status. "
+        "Use the deployment-status tool when status data is needed. "
+        "Never invent a status."
+    ),
+    tools=[get_deployment_status],
+)
+
+result = Runner.run_sync(
+    agent,
+    "Is the worker healthy right now?"
+)
+
+print(result.final_output)</code></pre><h2>What happens during this run?</h2><ol><li>The runner sends the user request, instructions and tool definition to the model.</li><li>The model sees that current deployment status requires the tool.</li><li>It requests <code>get_deployment_status</code> with an argument such as <code>{"project":"worker"}</code>.</li><li>The SDK executes your Python function.</li><li>The result <code>degraded</code> is returned to the model.</li><li>The model produces the final user-facing answer.</li></ol><p>That is the agent loop in practical form.</p><h2>5. Replace the toy dictionary with a real service</h2><p>In production, the tool can call an internal API or service layer. Keep credentials and authorization in your application, not in model context.</p><pre><code>@function_tool
+def get_deployment_status(project: str) -> dict:
+    """Fetch deployment health for one approved project."""
+    if project not in ALLOWED_PROJECTS:
+        return {"ok": False, "error": "unknown_project"}
+
+    response = deployment_client.get_status(project)
+    return {
+        "ok": True,
+        "project": project,
+        "status": response.status,
+        "checked_at": response.checked_at,
+    }</code></pre><h2>Why normalize the result?</h2><p>Your downstream API might return logs, internal hostnames and dozens of fields. The model only needs the information required for the next decision. A small structured response is cheaper, safer and easier to reason about.</p><h2>6. Add tool errors intentionally</h2><p>Do not return stack traces to the model. Convert expected failures into a small domain-level result.</p><pre><code>{
+  "ok": false,
+  "error": "service_unavailable",
+  "message": "Deployment status is temporarily unavailable."
+}</code></pre><p>Your application can separately log the real exception with correlation IDs for debugging.</p><h2>7. Add limits before adding more autonomy</h2><p>A production agent should have explicit boundaries: tool timeouts, request timeouts, step limits, read/write separation and human approval for sensitive actions. The exact controls depend on your runtime and product.</p><h2>8. Inspect traces</h2><p>OpenAI's current Agents SDK includes tracing for agent runs, model generations, function tool calls, handoffs and guardrails. Tracing helps answer questions such as: Why did the model choose this tool? How many turns did the task require? Which tool failed?</p><h2>Common beginner mistakes</h2><h3>Putting business logic in the prompt</h3><p>“Only deploy if tests pass” is useful guidance, but the deploy function itself should verify test status before making a deployment.</p><h3>Giving the agent one giant generic tool</h3><p>A tool like <code>run_admin_action(action, payload)</code> is difficult to secure and difficult for the model to use reliably. Prefer narrow business capabilities.</p><h3>Hard-coding secrets</h3><p>Keep API keys in environment variables or a secret manager. Never return credentials in tool output.</p><h3>Skipping evaluation</h3><p>Create a small test set before adding more tools. Include cases where the correct behavior is to ask for clarification or refuse to call a tool.</p><h2>Where MCP fits next</h2><p>Our tool currently lives directly inside the agent application. That is fine for local capabilities. MCP becomes valuable when you want a standardized server that can expose tools, resources or prompts to multiple AI clients. The later modules of this course will build those servers from scratch.</p><div class="callout"><strong>You now have the complete Module 1 mental model:</strong> the model decides; tools expose capabilities; the runtime executes the loop; deterministic code controls permissions and side effects.</div><h2>Official references</h2><div class="references"><ul><li><a href="https://openai.github.io/openai-agents-python/quickstart/">OpenAI Agents SDK — Quickstart</a></li><li><a href="https://openai.github.io/openai-agents-python/tools/">OpenAI Agents SDK — Tools</a></li><li><a href="https://openai.github.io/openai-agents-python/tracing/">OpenAI Agents SDK — Tracing</a></li></ul></div><nav class="lesson-nav"><a href="agent-architecture-model-tools-memory-orchestration.html">← Previous</a><a href="index.html">Back to Module 1 index →</a></nav></article></div><footer class="footer">© 2026 Talha Abbas Jalvi</footer></body></html>

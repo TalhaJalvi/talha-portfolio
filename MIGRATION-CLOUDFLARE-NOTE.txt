@@ -1,0 +1,1 @@
+Cloudflare production web deploy should run `npx wrangler deploy` from repository root. The root wrangler.jsonc publishes only ./apps/web/public, so repository metadata and monorepo source files are not exposed as static assets.
