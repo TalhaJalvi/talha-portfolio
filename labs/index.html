@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Engineering Labs | Practice System Design by Building & Breaking Systems</title>
+  <meta name="description" content="Interactive engineering labs for practicing system design, scalability, caching, queues, databases and failure handling by running modeled traffic through architectures.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://talhajalvi.com/labs/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Engineering Labs | Talha Jalvi">
+  <meta property="og:description" content="Build architectures, run traffic, trigger failures and learn system design from consequences instead of static diagrams.">
+  <meta property="og:url" content="https://talhajalvi.com/labs/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="../css/fontawesome-all.css" rel="stylesheet">
+  <link href="../css/course-library.css?v=labs-1" rel="stylesheet">
+  <link href="system-design/lab.css?v=1" rel="stylesheet">
+  <link rel="icon" href="../images/favicon.svg">
+</head>
+<body class="labs-home">
+  <nav class="labs-nav">
+    <div class="container labs-nav-inner">
+      <a class="labs-brand" href="../index.html"><img src="../images/favicon.svg" width="36" height="36" alt="">Talha Labs</a>
+      <div class="labs-nav-links">
+        <a href="../articles/articles-home.html">Learn</a>
+        <a class="active" href="./">Labs</a>
+        <a href="../index.html#services">Services</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="labs-hero">
+    <div class="container">
+      <span class="labs-kicker">Interactive engineering practice</span>
+      <h1>Build it. Stress it. Break it. Understand why.</h1>
+      <p>Practice system design by running modeled user traffic through an architecture, watching bottlenecks appear, triggering failures and improving the design.</p>
+      <div class="labs-actions">
+        <a class="lab-primary" href="system-design/">Open System Design Lab</a>
+        <a class="lab-secondary" href="../articles/python-backend-development/system-design/">Review system design concepts</a>
+      </div>
+      <div class="labs-proof-grid">
+        <div><strong>Traffic simulation</strong><span>Normal load, peak traffic and viral spikes</span></div>
+        <div><strong>Failure drills</strong><span>Cache loss, database pressure and overloaded servers</span></div>
+        <div><strong>Trade-off feedback</strong><span>Latency, throughput, errors and cost signals</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="labs-section">
+      <div class="container">
+        <div class="labs-section-intro">
+          <span class="labs-kicker dark">Available now</span>
+          <h2>System Design Lab</h2>
+          <p>The first lab focuses on the core skill behind architecture interviews: translating traffic and reliability requirements into a design, then testing whether your assumptions survive.</p>
+        </div>
+        <a class="lab-card featured" href="system-design/">
+          <div class="lab-card-top">
+            <span class="lab-status">Live · V1</span>
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3>URL Shortener Capacity Challenge</h3>
+          <p>Configure API servers, cache capacity and database throughput. Run multiple traffic shapes, identify the bottleneck, then improve the design until it survives the target load.</p>
+          <div class="lab-card-tags"><span>Throughput</span><span>Caching</span><span>Database</span><span>Failure modes</span></div>
+          <b>Launch lab →</b>
+        </a>
+      </div>
+    </section>
+
+    <section class="labs-section labs-soft">
+      <div class="container">
+        <div class="labs-section-intro">
+          <span class="labs-kicker dark">Product direction</span>
+          <h2>Not another passive system design course.</h2>
+          <p>Written guides explain concepts. Labs let you experience the consequences. The roadmap is intentionally built around experimentation rather than memorizing a reference diagram.</p>
+        </div>
+        <div class="labs-roadmap">
+          <article><span>01</span><h3>Capacity labs</h3><p>Requests per second, concurrency, queues, cache hit rates, read/write mixes and database pressure.</p></article>
+          <article><span>02</span><h3>Failure labs</h3><p>Cache outages, unhealthy instances, replica lag, retry storms and dependency failures.</p></article>
+          <article><span>03</span><h3>Scenario challenges</h3><p>Feeds, chat, file upload, notification systems and e-commerce traffic with changing constraints.</p></article>
+          <article><span>04</span><h3>Interview mode</h3><p>Timed prompts and adaptive follow-up questions that challenge architecture assumptions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="labs-section">
+      <div class="container lab-note-panel">
+        <div>
+          <span class="labs-kicker dark">How simulation works</span>
+          <h2>Modeled systems, not fake certainty.</h2>
+          <p>Real server capacity depends on hardware, code, queries and workload. Each lab therefore publishes its assumptions explicitly and evaluates your architecture inside that scenario. The goal is learning the reasoning process: demand → capacity → bottleneck → trade-off.</p>
+        </div>
+        <a class="lab-primary dark-button" href="system-design/">Try the first simulation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="labs-footer"><div class="container">Talha Labs · Interactive software engineering practice · <a href="../index.html">talhajalvi.com</a></div></footer>
+</body>
+</html>
